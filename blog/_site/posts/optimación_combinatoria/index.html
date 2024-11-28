@@ -250,7 +250,7 @@ window.Quarto = {
 
 
 
-<div id="d31229e2" class="cell" data-execution_count="1">
+<div id="021cdf52" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -379,7 +379,7 @@ window.Quarto = {
 <p><strong>Figura 3.</strong></p>
 <p><em>Ruta óptima encontrada mediante el algoritmo de Colonia de Hormigas.</em> <img src="images/imagen1.png" class="img-fluid" alt="Ruta óptima encontrada mediante el algoritmo de Colonia de Hormigas"> <em>Nota.</em> Puede observarse que esta visualización gráfica está dada por líneas rectas entre cada una de las ciudades y no muestra con fidelidad la forma en que se haría el recrorrido. Elaboración propia.</p>
 <p>Con el fin de que el camino óptimo pueda reflejar la realidad del viaje, en la Figura 4 se ilustra la utilización de la API gratuita <em>Open Route Service</em> para graficar el recorrido propuesto a lo largo de las carreteras en el mapa de México. La API key para acceder a este servicio es la siguiente:</p>
-<div id="939defcd" class="cell" data-execution_count="2">
+<div id="662b3b1f" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>api_key <span class="op">=</span> <span class="st">"5b3ce3597851110001cf6248c140bc578aac4c2d95295dc798e53a22"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1102,289 +1102,290 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span><span class="co"> [optimización, métodos heurísticos, python]</span></span>
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="an">image:</span><span class="co"> "image.jpg"</span></span>
 <span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="an">bibliography:</span><span class="co"> ref.bib</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mpl_toolkits.mplot3d <span class="im">import</span> Axes3D</span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.animation <span class="im">import</span> FuncAnimation</span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> HTML</span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> display</span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> Image <span class="im">as</span> IPImage</span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> io</span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> PIL <span class="im">import</span> Image</span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="fu"># Optimización Combinatoria</span></span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>La optimización combinatoria es clave para resolver problemas complejos de rutas y logística. En este artículo, exploraremos cómo el algoritmo de colonia de hormigas, inspirado en la naturaleza, puede abordar el desafío de encontrar la ruta más eficiente para recorrer los estados de México por un vendedor.</span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a><span class="fu">## Problema del Viajero:</span></span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>Un vendedor debe realizar un recorrido por **todas las capitales** de los **32 estados** de los **Estados Unidos Mexicanos**.</span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a><span class="fu">### Tareas:</span></span>
-<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>**Optimización con métodos metaheurísticos:**</span>
-<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Utilice **colonias de hormigas** para encontrar el orden óptimo del recorrido.</span>
-<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Utilice **algoritmos genéticos** para encontrar el orden óptimo del recorrido.</span>
-<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>**Costo del recorrido:**</span>
-<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>El costo de desplazamiento entre ciudades se calcula como la suma de:</span>
-<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a><span class="ss">        -   </span>El valor de la **hora del vendedor** (este es un parámetro que debe estudiarse).</span>
-<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a><span class="ss">        -   </span>El **costo de los peajes**.</span>
-<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a><span class="ss">        -   </span>El **costo del combustible**.</span>
-<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Cada equipo debe definir el **vehículo** que utilizará el vendedor para realizar el recorrido y, con base en esta elección, **calcular el costo del combustible**.</span>
-<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a><span class="fu">### Representación Visual:</span></span>
-<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Cree un **GIF animado** o un **video** que muestre cómo se comporta la **mejor solución** encontrada, usando un **gráfico del recorrido** en el mapa de México.</span>
-<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
-<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a><span class="fu">### Discusión:</span></span>
-<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>Reflexione sobre: - Los resultados obtenidos con las **colonias de hormigas** y los **algoritmos genéticos**. - Comparación de costos y tiempo de ejecución.</span>
-<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a><span class="fu">## Solución de las tareas propuestas</span></span>
-<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a><span class="fu">### Extracción de datos</span></span>
-<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>Para empezar a solucionar el problema, es necesario obtener información acerca del valor del salario del vendedor, el costo de los peajes y el cálculo correspondiente al costo total destinado a combustible; definiendo entonces el modelo de automóvil a considerar en el ejercicio, junto con su respectivo costo de gasolina. Durante el desarrollo de este proceso de extracción de información se tomaron como referencia las ciudades capitales de cada uno de los estados mexicanos y se observó el mapa de la división política de México en sus 32 estados, a fin de tener un mejor entendimiento de la región.</span>
-<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a>**Figura 1.**</span>
-<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a>*Mapa de México.* ![Mapa de México](images/mapa_mexico.jpg) *Nota.* El mapa representa cada una de las ciudades capitales del país. Adaptado de *Fondo plano de mapa de méxico* <span class="sc">\[</span>Ilustración<span class="sc">\]</span>, por Freepik, 2024, Freepik (<span class="ot">&lt;https://www.freepik.es/vector-gratis/mapa-mexico).&gt;</span> Licencia gratuita.</span>
-<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Distancias y tiempo de conducción</span></span>
-<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a>La tabla de distancias y tiempo de conducción entre las ciudades fue obtenida a través del sitio web @mejoresrutas2024, diseñado especialmente para el cálculo y planeación de viajes a lo largo de todo el país. Dicho recurso online permite obtener información como distancias, tiempo de conducción y otros valores asociados entre dos ciudades ingresando el nombre de cada una de ellas.</span>
-<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Peajes</span></span>
-<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a>Para obtener la información de los peajes, fue utilizado el mismo sitio web @mejoresrutas2024, el cual también contiene datos relacionados con el costo actual de los peajes que se encuentran entre las ciudades donde se realiza la consulta.</span>
-<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a>Debido al gran número de combinaciones posibles, se programó un bot en Python empleando la librería *Beautiful Soup*, lo que permitió automatizar la extracción de la información anteriormente mencionada. En el repositorio en GitHub es posible encontrar el archivo con el código para llevar a cabo esta tarea.</span>
-<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a><span class="fu">### Definición de gastos</span></span>
-<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a>En la siguiente sección se definen los gastos que deben ser consultados, entre los cuales se encuentran el salario del vendedor, el modelo de automóvil a utilizar y su correspondiente gasto de combustible.</span>
-<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Salario del vendedor</span></span>
-<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a>Para definir el salario del vendedor, se toma como referencia el salario minimo en México, que actualmente se encuentra en 248,93 pesos diarios según la @conasami2024; por lo tanto, para una jornada de 8 horas, el salario mínimo por hora es de 31,12 aproximadamente. Dicho esto, se decide establecer un salario de 35 pesos mexicanos por hora para el vendedor del presente ejercicio.</span>
-<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Modelo del carro y gasto en gasolina</span></span>
-<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a>De acuerdo con @elpais2024, el modelo de automóvil más vendido actualmente en México es el Nissan Versa, por lo que se ha considerado conveniente seleccionarlo como medio de transporte a utilizar por parte del vendedor. Esto permitirá hacer una estimación más justa del costo total de realizar la ruta por los 32 estados mexicanos en el contexto de dicho país.</span>
-<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a>Adicionalmente, es importante considerar que el rendimiento promedio de este modelo en carreteras es de 25 kilómetros por litro de acuerdo con información proporcionada por @nissanversarendimiento2023 y que el tipo de gasolina que utiliza es la comúnmente denominada como "Gasolina Magna" en México la cual, al día 14 de noviembre, tiene un precio promedio de 23.96 pesos mexicanos por litro según @gasolinamx2024.</span>
-<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Transformaciones</span></span>
-<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a>Se ha obtenido la información anterior con el objetivo de calcular el costo total de desplazamiento entre las ciudades capitales de México, sin embargo, se observa que no todos los datos se encuentran en las unidades requeridas (MXN): hay magnitudes en litros, horas, kilómetros, etc. Por lo tanto, se realizarán las siguientes transformaciones en todas las unidades para poder sumar dichos gastos en pesos mexicanos, a diferencia del caso de los peajes, pues estos ya se encuentran en la unidad monetaria deseada.</span>
-<span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a><span class="fu">##### Tiempo de viaje</span></span>
-<span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-105"><a href="#cb3-105" aria-hidden="true" tabindex="-1"></a>El costo por el salario del vendedor es calculado la forma que se muestra en la Ecuación (1):</span>
-<span id="cb3-106"><a href="#cb3-106" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-107"><a href="#cb3-107" aria-hidden="true" tabindex="-1"></a>$$ </span>
-<span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a>\text{Costo<span class="sc">\_</span>vendedor} = \text{tiempo} \times \text{salario<span class="sc">\_</span>del<span class="sc">\_</span>vendedor} \tag{1}</span>
-<span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-111"><a href="#cb3-111" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Gasolina para el viaje</span></span>
-<span id="cb3-112"><a href="#cb3-112" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-113"><a href="#cb3-113" aria-hidden="true" tabindex="-1"></a>El gasto total en gasolina se obtiene con la fórmula mostrada en la Ecuación (2):</span>
-<span id="cb3-114"><a href="#cb3-114" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-115"><a href="#cb3-115" aria-hidden="true" tabindex="-1"></a>$$ </span>
-<span id="cb3-116"><a href="#cb3-116" aria-hidden="true" tabindex="-1"></a>\text{Costo<span class="sc">\_</span>gasolina} = \left( \frac{\text{Distancia}}{\text{Rendimiento (km/litro)}} \right) \times \text{Precio<span class="sc">\_</span>por<span class="sc">\_</span>litro} \tag{2}</span>
-<span id="cb3-117"><a href="#cb3-117" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb3-118"><a href="#cb3-118" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-119"><a href="#cb3-119" aria-hidden="true" tabindex="-1"></a><span class="fu">##### Gasto total</span></span>
-<span id="cb3-120"><a href="#cb3-120" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-121"><a href="#cb3-121" aria-hidden="true" tabindex="-1"></a>Después de realizar las operaciones mostradas anteriormente, se tiene como resultado toda la información necesaria en las unidades requeridas para obtener un valor correspondiente al gasto total del viaje en pesos mexicanos, de acuerdo con lo definido en la Ecuación (3).</span>
-<span id="cb3-122"><a href="#cb3-122" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-123"><a href="#cb3-123" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb3-124"><a href="#cb3-124" aria-hidden="true" tabindex="-1"></a>\text{Gasto<span class="sc">\_</span>recorrido} = \text{Costo<span class="sc">\_</span>gasolina} + \text{Costo<span class="sc">\_</span>vendedor} + \text{Costo<span class="sc">\_</span>Peajes} \tag{3}</span>
-<span id="cb3-125"><a href="#cb3-125" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb3-126"><a href="#cb3-126" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-127"><a href="#cb3-127" aria-hidden="true" tabindex="-1"></a><span class="fu">### Ruta óptima</span></span>
-<span id="cb3-128"><a href="#cb3-128" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-129"><a href="#cb3-129" aria-hidden="true" tabindex="-1"></a>A continuación, se procede con la utilización de los algoritmos propuestos para este caso: Colonia de Hormigas y Algoritmos Genéticos, con el fin de responder a la actividad planteada al principio del presente ejercicio, esto es, hallar la ruta óptima para el recorrido del vendedor a través de los 32 estados de México.</span>
-<span id="cb3-130"><a href="#cb3-130" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-131"><a href="#cb3-131" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Colonia de Hormigas</span></span>
-<span id="cb3-132"><a href="#cb3-132" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-133"><a href="#cb3-133" aria-hidden="true" tabindex="-1"></a>Considerando la información recolectada en @acowikipedia2024 y @acobook2018 y lo presentado en la primera sección del trabajo, puede decirse que los **algoritmos de colonia de hormigas (Ant Colony Optimization, ACO)** son una técnica de optimización basada en la inteligencia colectiva observada en las colonias de hormigas naturales. Fueron inspirados en el comportamiento de las hormigas en la naturaleza para resolver problemas complejos de optimización combinatoria, en esta segunda parte del trabajo profundizaremos más en sus hiperparámetros claves los cuales son:</span>
-<span id="cb3-134"><a href="#cb3-134" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-135"><a href="#cb3-135" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Cantidad de hormigas:** Cantidad de hormigas que participarán en cada iteración de la búsqueda de soluciones. Influye en la capacidad del algoritmo de explorar diferentes soluciones de manera simultánea. En este caso se utilizarán 32 hormigas, es decir, igual al número de estados en México.</span>
-<span id="cb3-136"><a href="#cb3-136" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-137"><a href="#cb3-137" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Alpha**: Controla la influencia de la feromona en la probabilidad de que una hormiga elija ese camino. A medida que el valor aumenta, las hormigas son más propensas a seguir caminos con más feromona. Aquí se utilizará un valor de 1 para otorgar una influencia moderada de las feromonas depositadas.</span>
-<span id="cb3-138"><a href="#cb3-138" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-139"><a href="#cb3-139" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Beta**: Controla la preferencia de las hormigas por caminos más "baratos" o prometedores, lo cual ayuda aumentar la exploración. Se va a considerar un valor de 2, puesto que se busca minimizar el costo del viaje</span>
-<span id="cb3-140"><a href="#cb3-140" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-141"><a href="#cb3-141" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**\\(\\rho\\)**: Indica la tasa de evaporación de la feromona, lo cual evita que las soluciones previas influencien las iteraciones futuras. Se seleccionó una tasa de evaporación del 0.5, es decir, el 50% de las feromonas se evaporan en cada iteración.</span>
-<span id="cb3-142"><a href="#cb3-142" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-143"><a href="#cb3-143" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**\\(Q\\)**: Cantidad de feromona depositada por una hormiga en su recorrido tras encontrar una solución. Se utilizará un valor de 100 para indicar la cantidad de feromonas en el camino.</span>
-<span id="cb3-144"><a href="#cb3-144" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-145"><a href="#cb3-145" aria-hidden="true" tabindex="-1"></a>Una vez definidos los hiperparámetros, se puede continuar con la ejecución del algoritmo de colonia de hormigas, cuyo detalle se puede observar más a profundidad en el repositorio de GitHub. En la Figura 2 se puede observar cómo va variando el costo de realizar el viaje en cada una de las iteraciones que realizó dicho algoritmo.</span>
-<span id="cb3-146"><a href="#cb3-146" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-147"><a href="#cb3-147" aria-hidden="true" tabindex="-1"></a>**Figura 2.**</span>
-<span id="cb3-148"><a href="#cb3-148" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-149"><a href="#cb3-149" aria-hidden="true" tabindex="-1"></a>*Función costo del algoritmo Colonia de Hormigas.* ![Función costo del algoritmo Colonia de Hormigas](images/costo-aco-primera.png) *Nota.* La gráfica muestra la evolución del costo total del viaje a medida que se ejecutan las diferentes iteraciones del algoritmo, que para este caso fueron 500. Elaboración propia.</span>
-<span id="cb3-150"><a href="#cb3-150" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-151"><a href="#cb3-151" aria-hidden="true" tabindex="-1"></a>De acuerdo con la imagen anterior, es posible observar que el costo mínimo se alcanza relativamente rápido, antes de las 100 iteraciones. En este sentido, también es interesante notar que el cálculo de esta función de costo varía al considerar diferentes variaciones que puedan realizarse sobre el planteamiento inicial del problema, comportamiento que se verá más adelante.</span>
-<span id="cb3-152"><a href="#cb3-152" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-153"><a href="#cb3-153" aria-hidden="true" tabindex="-1"></a>Posteriormente, en la Figura 3 puede verse la ruta óptima encontrada por el algoritmo de colonia de hormigas para que el vendedor pueda recorrer los 32 estados mexicanos.</span>
-<span id="cb3-154"><a href="#cb3-154" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-155"><a href="#cb3-155" aria-hidden="true" tabindex="-1"></a>**Figura 3.**</span>
-<span id="cb3-156"><a href="#cb3-156" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-157"><a href="#cb3-157" aria-hidden="true" tabindex="-1"></a>*Ruta óptima encontrada mediante el algoritmo de Colonia de Hormigas.* ![Ruta óptima encontrada mediante el algoritmo de Colonia de Hormigas](images/imagen1.png) *Nota.* Puede observarse que esta visualización gráfica está dada por líneas rectas entre cada una de las ciudades y no muestra con fidelidad la forma en que se haría el recrorrido. Elaboración propia.</span>
-<span id="cb3-158"><a href="#cb3-158" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-159"><a href="#cb3-159" aria-hidden="true" tabindex="-1"></a>Con el fin de que el camino óptimo pueda reflejar la realidad del viaje, en la Figura 4 se ilustra la utilización de la API gratuita *Open Route Service* para graficar el recorrido propuesto a lo largo de las carreteras en el mapa de México. La API key para acceder a este servicio es la siguiente:</span>
-<span id="cb3-160"><a href="#cb3-160" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-163"><a href="#cb3-163" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb3-164"><a href="#cb3-164" aria-hidden="true" tabindex="-1"></a>api_key <span class="op">=</span> <span class="st">"5b3ce3597851110001cf6248c140bc578aac4c2d95295dc798e53a22"</span></span>
-<span id="cb3-165"><a href="#cb3-165" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb3-166"><a href="#cb3-166" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-167"><a href="#cb3-167" aria-hidden="true" tabindex="-1"></a>**Figura 4.**</span>
-<span id="cb3-168"><a href="#cb3-168" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-169"><a href="#cb3-169" aria-hidden="true" tabindex="-1"></a>*Forma realista del camino óptimo encontrado mediante el uso del algoritmo de Colonia de Hormigas.* ![Forma realista del camino óptimo encontrado mediante el uso del algoritmo de Colonia de Hormigas](images/imagen2.png) *Nota.* El gráfico muestra las carreteras que deberían seguirse para completar el recorrido propuesto, sin embargo, algunos aspectos siguen siendo siendo interesantes. Elaboración propia.</span>
-<span id="cb3-170"><a href="#cb3-170" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-171"><a href="#cb3-171" aria-hidden="true" tabindex="-1"></a>Como se mencionó anteriormente, de esta forma se obtiene una ruta óptima más realista. No obstante, llama la atención que, en ciertas secciones, la ruta implica cruzar cuerpos de agua. Al investigar las razones de este comportamiento, se descubrió que para conectar algunos estados del país como Baja California Sur y Sinaloa, la opción de tomar un ferri es considerada la más conveniente según servicios de planificación de trayectos como @mejoresrutasferri2024 y @bajaferries2024.</span>
-<span id="cb3-172"><a href="#cb3-172" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-173"><a href="#cb3-173" aria-hidden="true" tabindex="-1"></a>Dado que la matriz de costos actual no considera el valor asociado al uso del ferri ni los gastos asociados al transporte del vehículo para continuar posteriormente el recorrido, se propone un análisis de los siguientes escenarios:</span>
-<span id="cb3-174"><a href="#cb3-174" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-175"><a href="#cb3-175" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Incluir el costo del ferri en la matriz de costos y evaluar la ruta resultante.</span>
-<span id="cb3-176"><a href="#cb3-176" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-177"><a href="#cb3-177" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Realizar el viaje completamente por tierra, excluyendo los estados que se alcanzan únicamente utilizando el ferri.</span>
-<span id="cb3-178"><a href="#cb3-178" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-179"><a href="#cb3-179" aria-hidden="true" tabindex="-1"></a>**Primer escenario**</span>
-<span id="cb3-180"><a href="#cb3-180" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-181"><a href="#cb3-181" aria-hidden="true" tabindex="-1"></a>Se consultó el valor del tiquete de ferri para una persona adulta y el costo del transporte de un automóvil, encontrando que el más económico para un adulto es de **1,460 pesos mexicanos**, mientras que el transporte del automóvil tiene un valor de **5,480 pesos mexicanos** según @debate2023.</span>
-<span id="cb3-182"><a href="#cb3-182" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-183"><a href="#cb3-183" aria-hidden="true" tabindex="-1"></a>Estos costos fueron utilizados como parámetros para el algoritmo de colonia de hormigas, llegando a que, como se observa en la Figura 5, el algoritmo sigue alcanzando un mínimo de manera relativamente rápida.</span>
-<span id="cb3-184"><a href="#cb3-184" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-185"><a href="#cb3-185" aria-hidden="true" tabindex="-1"></a>**Figura 5.**</span>
-<span id="cb3-186"><a href="#cb3-186" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-187"><a href="#cb3-187" aria-hidden="true" tabindex="-1"></a>*Evolución de la función costo del algoritmo de Colonia de Hormigas teniendo en cuenta al ferri.* ![Evolución de la función costo del algoritmo de Colonia de Hormigas teniendo en cuenta al ferri](images/costos-aco-segunda.png) *Nota.* Es interesante notar que, a pesar del incremento en el costo de moverse entre dos estados (debido al ferri), el algoritmo logró encontrar una ruta más barata que la hallada originalmente. Esto sugiere que en la primera solución encontrada el algoritmo podría haberse quedado atascado en un mínimo local debido a la falta de iteraciones. Elaboración propia.</span>
-<span id="cb3-188"><a href="#cb3-188" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-189"><a href="#cb3-189" aria-hidden="true" tabindex="-1"></a>Además, también es posible observar que el tiempo y la distancia se redujeron en esta nueva solución, lo cual permite pensar que esta ruta no solo es más económica, sino también más eficiente, a pesar de que está considerando el costo adicional del ferri y el transporte del vehículo.</span>
-<span id="cb3-190"><a href="#cb3-190" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-191"><a href="#cb3-191" aria-hidden="true" tabindex="-1"></a>Los resultados correspondientes a la visualización gráfica del camino óptimo encontrado para el vendedor en este escenario pueden observarse a continuación, en las Figuras 6 y 7.</span>
-<span id="cb3-192"><a href="#cb3-192" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-193"><a href="#cb3-193" aria-hidden="true" tabindex="-1"></a>**Figura 6.**</span>
-<span id="cb3-194"><a href="#cb3-194" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-195"><a href="#cb3-195" aria-hidden="true" tabindex="-1"></a>*Ruta óptima encontrada mediante el algoritmo de Colonia de Hormigas teniendo en cuenta el costo del ferri.* ![Ruta óptima encontrada mediante el algoritmo de Colonia de Hormigas teniendo en cuenta el costo del ferri](images/imagen3.png). *Nota.* Las observaciones respecto a la forma en que se conectan los distintos puntos del recorrido permanecen iguales que en el caso considerado originalmente. Elaboración propia.</span>
-<span id="cb3-196"><a href="#cb3-196" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-197"><a href="#cb3-197" aria-hidden="true" tabindex="-1"></a>**Figura 7.**</span>
-<span id="cb3-198"><a href="#cb3-198" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-199"><a href="#cb3-199" aria-hidden="true" tabindex="-1"></a>*Carreteras encontradas mediante el uso del algoritmo de Colonia de Hormigas.* ![Carreteras encontradas mediante el uso del algoritmo de Colonia de Hormigas](images/imagen4.png) *Nota.* Esta imagen también fue generada por medio del uso de la API gratuita, así que sus resultados son reproducibles. Elaboración propia.</span>
-<span id="cb3-200"><a href="#cb3-200" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-201"><a href="#cb3-201" aria-hidden="true" tabindex="-1"></a>**Segundo escenario**</span>
-<span id="cb3-202"><a href="#cb3-202" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-203"><a href="#cb3-203" aria-hidden="true" tabindex="-1"></a>En este segundo escenario, la ciudad de **La Paz** fue eliminada del recorrido, por lo que el viaje ahora solo incluye los **31 estados restantes**. En consecuencia, también se redujo la cantidad de hormigas utilizadas en el algoritmo a un valor de **31**, asignando una hormiga por estado para realizar la búsqueda.</span>
-<span id="cb3-204"><a href="#cb3-204" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-205"><a href="#cb3-205" aria-hidden="true" tabindex="-1"></a>Como era de esperarse, el precio del recorrido se redujo en este caso. Sin embargo, al algoritmo le tomó muchas más iteraciones encontrar el costo mínimo, como se observa en la Figura 8.</span>
-<span id="cb3-206"><a href="#cb3-206" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-207"><a href="#cb3-207" aria-hidden="true" tabindex="-1"></a>**Figura 8.**</span>
-<span id="cb3-208"><a href="#cb3-208" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-209"><a href="#cb3-209" aria-hidden="true" tabindex="-1"></a>*Evolución de la función costo para los 31 estados de México.* ![Evolución de la función costo para los 31 estados de México](images/costo-aco-tercera.png) *Nota.* El hecho de que el planteamiento inicial de ciudades y estados a recorrer cambiara al no tener en cuenta el estado que solamente puede ser conectado vía marítima fue un factor determinante en la ejecución del algoritmo de hormigas, siendo mucho menos rápido que en el primer escenario (incluso que en el escenario original). Elaboración propia.</span>
-<span id="cb3-210"><a href="#cb3-210" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-211"><a href="#cb3-211" aria-hidden="true" tabindex="-1"></a>A diferencia del caso anterior, la Figura 8 también muestra que la **distancia** y el **tiempo** aumentaron. Esto se debe a que, al no utilizar el ferri, el automóvil tuvo que realizar un recorrido más largo en ciertas partes para completar su ruta. Por lo tanto, aunque esta solución es más eficiente en términos de costo, no lo es en términos de tiempo y distancia recorrida.</span>
-<span id="cb3-212"><a href="#cb3-212" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-213"><a href="#cb3-213" aria-hidden="true" tabindex="-1"></a>La visualización gráfica de los resultados obtenidos para este caso pueden observarse en las Figuras 9 y 10, teniendo en cuenta las mismas consideraciones anteriormente mencionadas.</span>
-<span id="cb3-214"><a href="#cb3-214" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-215"><a href="#cb3-215" aria-hidden="true" tabindex="-1"></a>**Figura 9.**</span>
-<span id="cb3-216"><a href="#cb3-216" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-217"><a href="#cb3-217" aria-hidden="true" tabindex="-1"></a>*Ruta óptima encontrada mediante el uso del algoritmo de Colonia de Hormigas para 31 estados de México.* <span class="al">![Ruta encontradas mediante el uso del algoritmo de Colonia de Hormigas para 31 estados de México](images/imagen5.png)</span> Elaboración propia.</span>
-<span id="cb3-218"><a href="#cb3-218" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-219"><a href="#cb3-219" aria-hidden="true" tabindex="-1"></a>**Figura 10.**</span>
-<span id="cb3-220"><a href="#cb3-220" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-221"><a href="#cb3-221" aria-hidden="true" tabindex="-1"></a>*Orden de las carreteras encontrado mediante el uso del algoritmo de Colonia de Hormigas para 31 estados de México.* ![Orden de las carreteras encontrado mediante el uso del algoritmo de Colonia de Hormigas para 31 estados de México](images/imagen6.png) *Nota.* Sumado a los inconvenientes observados en este escenario, al desconectar uno de los estados de México, puede observarse que una gran región del país queda excluida del recorrido del vendedor, lo que puede implicar significativas pérdidas económicas y oportunidades de establecer nuevos negocios.</span>
-<span id="cb3-222"><a href="#cb3-222" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-223"><a href="#cb3-223" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Algoritmo genético</span></span>
-<span id="cb3-224"><a href="#cb3-224" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-225"><a href="#cb3-225" aria-hidden="true" tabindex="-1"></a>De acuerdo con información proporcionada por @tesisga2009 y encontrada en @gawikipedia2024, y como se explico en la primera sección del trabajo, puede decirse que los **algoritmos genéticos (Genetic Algorithms, GA)** son una técnica de optimización inspirada en los principios de la selección natural y la evolución biológica. Los GA buscan soluciones óptimas mediante la creación, evaluación y modificación de una población de individuos, representando posibles soluciones a un problema dado. La evolución de la población se realiza mediante operadores genéticos como la mutación y en esta sección profundizaremos más en sus hiperparámetros clave, los cuales son:</span>
-<span id="cb3-226"><a href="#cb3-226" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-227"><a href="#cb3-227" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Tamaño de la población**: Define el número de individuos en cada generación. Un tamaño de población más grande permite una mejor exploración del espacio de soluciones, pero también aumenta el tiempo de cómputo. En este caso, se utilizará una población de 100 individuos, lo que proporciona un equilibrio adecuado entre diversidad y eficiencia computacional.</span>
-<span id="cb3-228"><a href="#cb3-228" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-229"><a href="#cb3-229" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Número de generaciones**: Especifica cuántas veces se evolucionará la población mediante el proceso de selección, cruce y mutación; se consideran adecuadas un total de 200 generaciones para permitir al algoritmo explorar el espacio de búsqueda y converger hacia una solución óptima o cercana al óptimo.</span>
-<span id="cb3-230"><a href="#cb3-230" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-231"><a href="#cb3-231" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Tasa de mutación**: Representa la probabilidad de que un gen sea modificado aleatoriamente en un individuo. La mutación introduce variación genética, lo que ayuda a explorar nuevas áreas del espacio de búsqueda y a evitar estancamientos en óptimos locales. Se empleará una tasa de mutación de 0.1 (10%), lo que mantiene una buena cantidad de diversidad sin perturbar excesivamente a la población.</span>
-<span id="cb3-232"><a href="#cb3-232" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-233"><a href="#cb3-233" aria-hidden="true" tabindex="-1"></a>De la misma manera en que se realizó en la sección anterior, la presentación de resultados comienza con una obtención de resultados iniciales considerando los 32 estados de México y sin tener en cuenta el costo del ferri.</span>
-<span id="cb3-234"><a href="#cb3-234" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-235"><a href="#cb3-235" aria-hidden="true" tabindex="-1"></a>Como se observa en la Figura 11, alcanzar el mínimo toma casi 175 generaciones, lo que indica que este algoritmo se demora más en llegar a un valor mínimo en comparación con el algoritmo de colonia de hormigas. Además, la solución que encuentra tiene un costo mayor y toma más tiempo y una mayor distancia completarla.</span>
-<span id="cb3-236"><a href="#cb3-236" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-237"><a href="#cb3-237" aria-hidden="true" tabindex="-1"></a>**Figura 11.**</span>
-<span id="cb3-238"><a href="#cb3-238" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-239"><a href="#cb3-239" aria-hidden="true" tabindex="-1"></a>*Evolución de la función costo del algoritmo genético.* ![Evolución de la función costo del algoritmo genético](images/costo-genetico-primera.png) *Nota.* En la ejecución de este algoritmo, la solución óptima se encontró en una iteración muy cercana al límite máximo establecido, a diferencia del algoritmo de colonia de hormigas, que lo realizó muy rápidamente. Elaboración propia.</span>
-<span id="cb3-240"><a href="#cb3-240" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-241"><a href="#cb3-241" aria-hidden="true" tabindex="-1"></a>Ahora bien, en las Figuras 12 y 13 se tiene la visualización gráfica del recorrido propuesto por este algoritmo, siguiendo los mismos procedimientos de utilización de la API que se mencionaron de manera previa.</span>
-<span id="cb3-242"><a href="#cb3-242" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-243"><a href="#cb3-243" aria-hidden="true" tabindex="-1"></a>**Figura 12.**</span>
-<span id="cb3-244"><a href="#cb3-244" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-245"><a href="#cb3-245" aria-hidden="true" tabindex="-1"></a>*Ruta óptima encontrada mediante algoritmo genético.* <span class="al">![Ruta óptima encontrada mediante algoritmo genético](images/imagen1_ga.png)</span> Elaboración propia.</span>
-<span id="cb3-246"><a href="#cb3-246" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-247"><a href="#cb3-247" aria-hidden="true" tabindex="-1"></a>**Figura 13.**</span>
-<span id="cb3-248"><a href="#cb3-248" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-249"><a href="#cb3-249" aria-hidden="true" tabindex="-1"></a>*Ruta óptima con las carreteras encontrada mediante algoritmo genético.* <span class="al">![Ruta óptima con las carreteras encontrada mediante algoritmo genético](images/imagen2_ga.png)</span> Elaboración propia.</span>
-<span id="cb3-250"><a href="#cb3-250" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-251"><a href="#cb3-251" aria-hidden="true" tabindex="-1"></a>Nuevamente, se considera pertinente considerar los dos escenarios adicionales de análisis: un nuevo cálculo de costos teniendo en cuenta el tiquete de ferri y el transporte adicional para el automóvil y la exclusión La Paz, como territorio que solo puede conectarse a través de cuerpos de agua.</span>
-<span id="cb3-252"><a href="#cb3-252" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-253"><a href="#cb3-253" aria-hidden="true" tabindex="-1"></a>**Primer escenario**</span>
-<span id="cb3-254"><a href="#cb3-254" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-255"><a href="#cb3-255" aria-hidden="true" tabindex="-1"></a>Es posible observar que al tomar en cuenta el costo del ferri, en este caso sí se aumenta el costo del camino óptimo y el número de iteraciones se reduce un poco, como puede verse en la Figura 14. Sin embargo, el tiempo que toma completar esta ruta es mucho más alto que en el caso anterior, lo que podría indicar que esta solución se quedó atrapada en un mínimo local.</span>
-<span id="cb3-256"><a href="#cb3-256" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-257"><a href="#cb3-257" aria-hidden="true" tabindex="-1"></a>**Figura 14.**</span>
-<span id="cb3-258"><a href="#cb3-258" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-259"><a href="#cb3-259" aria-hidden="true" tabindex="-1"></a>*Evolución de la función costo del algoritmo genético teniendo en cuenta el costo del ferri.* <span class="al">![Evolución de la función costo del algoritmo genético teniendo en cuenta el costo del ferri](images/costo-genetico-segunda.png)</span> Elaboración propia.</span>
-<span id="cb3-260"><a href="#cb3-260" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-261"><a href="#cb3-261" aria-hidden="true" tabindex="-1"></a>Por otra parte, en las Figuras 15 y 16 se puede observar el recorrido propuesto por esta solución del algoritmo para que el vendedor se desplace por todo el país, viendo que los puntos de inicio y finalización son diferentes a los que había arrojado como resultado el algoritmo de colonia de hormigas.</span>
-<span id="cb3-262"><a href="#cb3-262" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-263"><a href="#cb3-263" aria-hidden="true" tabindex="-1"></a>**Figura 15.**</span>
-<span id="cb3-264"><a href="#cb3-264" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-265"><a href="#cb3-265" aria-hidden="true" tabindex="-1"></a>*Ruta óptima encontrada mediante algoritmos genéticos teniendo en cuenta el costo del ferri.* ![Ruta óptima encontrada mediante algoritmos genéticos teniendo en cuenta el costo del ferri](images/imagen3_ga.png) *Nota.* Sabiendo que la ruta marítima que seleccionaron ambos algoritmos es la misma, puede decirse que las diferencias entre sus resultados radican en otros aspectos inherentes a su propia definición, como pueden serlo los hiperparámetros y la forma en que realizan una búsqueda de la solución óptima. Elaboración propia.</span>
-<span id="cb3-266"><a href="#cb3-266" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-267"><a href="#cb3-267" aria-hidden="true" tabindex="-1"></a>**Figura 16.**</span>
-<span id="cb3-268"><a href="#cb3-268" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-269"><a href="#cb3-269" aria-hidden="true" tabindex="-1"></a>*Ruta óptima de carreteras encontrada mediante algoritmo genético teniendo en cuenta el costo del ferri.* ![Ruta óptima de carreteras encontrada mediante algoritmo genético teniendo en cuenta el costo del ferri](images/imagen4_ga.png) *Nota.* La utilización de la API se dio exactamente igual que en los escenarios anteriores, de manera que estos resultados también son reproducibles.</span>
-<span id="cb3-270"><a href="#cb3-270" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-271"><a href="#cb3-271" aria-hidden="true" tabindex="-1"></a>**Segundo escenario**</span>
-<span id="cb3-272"><a href="#cb3-272" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-273"><a href="#cb3-273" aria-hidden="true" tabindex="-1"></a>En este último escenario, el cual solamente considera 31 de los estados de México, es posible notar que el costo óptimo nuevamente bajó y, a diferencia del algoritmo de colonia de hormigas, el algoritmo genético sí encuentra una forma de reducir el tiempo y la distancia del recorrido, mostrando una mejoría en ese aspecto.</span>
-<span id="cb3-274"><a href="#cb3-274" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-275"><a href="#cb3-275" aria-hidden="true" tabindex="-1"></a>De acuerdo con la Figura 17, en este escenario el algoritmo genético necesitó más iteraciones para encontrar un mínimo, lo cual se ve compensado por el hecho de que mejoró el desempeño del algoritmo de colonia de hormigas en términos de las variables anteriormente mencionadas.</span>
-<span id="cb3-276"><a href="#cb3-276" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-277"><a href="#cb3-277" aria-hidden="true" tabindex="-1"></a>**Figura 17.**</span>
-<span id="cb3-278"><a href="#cb3-278" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-279"><a href="#cb3-279" aria-hidden="true" tabindex="-1"></a>*Evolución de la función costo del algoritmo genético cuando se tienen en cuenta 31 estados de México.* <span class="al">![Evolución de la función costo del algoritmo genético cuando se tienen en cuenta 31 estados de México](images/costo-genetico-tercera.png)</span> Elaboración propia.</span>
-<span id="cb3-280"><a href="#cb3-280" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-281"><a href="#cb3-281" aria-hidden="true" tabindex="-1"></a>Finalmente, las Figuras 18 y 19 permiten observar el recorrido que debería realizar el vendedor de acuerdo con este escenario propuesto, en el que también queda aislada una amplia región del país debido a la decisión de no considerar recorridos que no fueran terrestres.</span>
-<span id="cb3-282"><a href="#cb3-282" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-283"><a href="#cb3-283" aria-hidden="true" tabindex="-1"></a>**Figura 18.**</span>
-<span id="cb3-284"><a href="#cb3-284" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-285"><a href="#cb3-285" aria-hidden="true" tabindex="-1"></a>*Ruta óptima encontrada mediante algoritmos genéticos teniendo en cuenta solo 31 estados de México.* <span class="al">![Ruta encontrada mediante algoritmos genéticos teniendo en cuenta solo 31 estados de México](images/imagen5_ga.png)</span> Elaboración propia.</span>
-<span id="cb3-286"><a href="#cb3-286" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-287"><a href="#cb3-287" aria-hidden="true" tabindex="-1"></a>**Figura 19.**</span>
-<span id="cb3-288"><a href="#cb3-288" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-289"><a href="#cb3-289" aria-hidden="true" tabindex="-1"></a>*Ruta óptima de carreteras encontrada mediante algoritmos genéticos teniendo en cuenta 31 de los estados de México.* ![Ruta de carreteras encontrada mediante algoritmos genéticos teniendo en cuenta 31 de los estados de México](images/imagen6_ga.png) *Nota.* Al observar las carreteras que debería recorrer esta solución, puede observarse que el vendedor terminaría pasando por los mismos caminos varias veces, ya que deben darse varios recorridos de manera repetida por la necesidad de conectar algunos territorios de los 31 estados sin contemplar la opción del viaje en ferri. Elaboración propia.</span>
-<span id="cb3-290"><a href="#cb3-290" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-291"><a href="#cb3-291" aria-hidden="true" tabindex="-1"></a><span class="fu">### Verificación de la calidad de la solución</span></span>
-<span id="cb3-292"><a href="#cb3-292" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-293"><a href="#cb3-293" aria-hidden="true" tabindex="-1"></a>Es importante evaluar qué tan buena es la solución alcanzada. Métodos exhaustivos como la fuerza bruta, que permiten comprobar cuál es la mejor solución entre todas las posibles, resultan computacionalmente inviables en este caso. Aprovechando que disponemos de un gran número de iteraciones y tres diferentes escenarios que nos permiten variar las condiciones del problema, podemos concluir que la solución obtenida es, al menos, razonablemente buena.</span>
-<span id="cb3-294"><a href="#cb3-294" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-295"><a href="#cb3-295" aria-hidden="true" tabindex="-1"></a>Además, es relevante analizar el comportamiento de las funciones de costo. En todos los escenarios se observa que el costo se reduce significativamente al principio y luego comienza a fluctuar alrededor de una media estable. Esto indica que el algoritmo está convergiendo hacia esos valores. A partir de este comportamiento, seleccionamos la solución con el menor costo como la mejor alternativa.</span>
-<span id="cb3-296"><a href="#cb3-296" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-297"><a href="#cb3-297" aria-hidden="true" tabindex="-1"></a>En general, las funciones de costo tienden a estabilizarse dentro de un rango limitado de valores. Este patrón nos permite confiar en que las soluciones obtenidas se encuentran entre las mejores posibles, considerando las limitaciones inherentes a los métodos no determinísticos.</span>
-<span id="cb3-298"><a href="#cb3-298" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-299"><a href="#cb3-299" aria-hidden="true" tabindex="-1"></a><span class="fu">### Discusión de los resultados</span></span>
-<span id="cb3-300"><a href="#cb3-300" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-301"><a href="#cb3-301" aria-hidden="true" tabindex="-1"></a>Los resultados obtenidos al aplicar el Algoritmo de Colonia de Hormigas y el Algoritmo Genético en tres situaciones diferentes permiten destacar las fortalezas y diferencias de cada uno. Por un lado, el Algoritmo de Colonia de Hormigas logra encontrar una solución más económica y en un menor número de iteraciones en comparación con el Algoritmo Genético. Por lo tanto, en esta evaluación específica, dicho algoritmo puede considerarse más eficiente para resolver el problema en esta situación particular.</span>
-<span id="cb3-302"><a href="#cb3-302" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-303"><a href="#cb3-303" aria-hidden="true" tabindex="-1"></a>No obstante, es importante señalar que la elección del algoritmo adecuado depende en gran medida de la naturaleza del problema. Incluso para un mismo problema, diferentes enfoques pueden llevar a variaciones significativas en los resultados, como se observó en este análisis. Aunque en este caso el Algoritmo de Colonia de Hormigas demostró ser más eficiente que el Algoritmo Genético, esta ventaja es altamente circunstancial y no necesariamente aplicable a todos los contextos. Esto refuerza la importancia de adaptar la metodología a las características específicas del problema a resolver.</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co">  cache: true</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mpl_toolkits.mplot3d <span class="im">import</span> Axes3D</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.animation <span class="im">import</span> FuncAnimation</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> HTML</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> display</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> Image <span class="im">as</span> IPImage</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> io</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> PIL <span class="im">import</span> Image</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="fu"># Optimización Combinatoria</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>La optimización combinatoria es clave para resolver problemas complejos de rutas y logística. En este artículo, exploraremos cómo el algoritmo de colonia de hormigas, inspirado en la naturaleza, puede abordar el desafío de encontrar la ruta más eficiente para recorrer los estados de México por un vendedor.</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="fu">## Problema del Viajero:</span></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>Un vendedor debe realizar un recorrido por **todas las capitales** de los **32 estados** de los **Estados Unidos Mexicanos**.</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a><span class="fu">### Tareas:</span></span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>**Optimización con métodos metaheurísticos:**</span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Utilice **colonias de hormigas** para encontrar el orden óptimo del recorrido.</span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Utilice **algoritmos genéticos** para encontrar el orden óptimo del recorrido.</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>**Costo del recorrido:**</span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>El costo de desplazamiento entre ciudades se calcula como la suma de:</span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a><span class="ss">        -   </span>El valor de la **hora del vendedor** (este es un parámetro que debe estudiarse).</span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a><span class="ss">        -   </span>El **costo de los peajes**.</span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a><span class="ss">        -   </span>El **costo del combustible**.</span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Cada equipo debe definir el **vehículo** que utilizará el vendedor para realizar el recorrido y, con base en esta elección, **calcular el costo del combustible**.</span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a><span class="fu">### Representación Visual:</span></span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Cree un **GIF animado** o un **video** que muestre cómo se comporta la **mejor solución** encontrada, usando un **gráfico del recorrido** en el mapa de México.</span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a><span class="fu">### Discusión:</span></span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>Reflexione sobre: - Los resultados obtenidos con las **colonias de hormigas** y los **algoritmos genéticos**. - Comparación de costos y tiempo de ejecución.</span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a><span class="fu">## Solución de las tareas propuestas</span></span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a><span class="fu">### Extracción de datos</span></span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a>Para empezar a solucionar el problema, es necesario obtener información acerca del valor del salario del vendedor, el costo de los peajes y el cálculo correspondiente al costo total destinado a combustible; definiendo entonces el modelo de automóvil a considerar en el ejercicio, junto con su respectivo costo de gasolina. Durante el desarrollo de este proceso de extracción de información se tomaron como referencia las ciudades capitales de cada uno de los estados mexicanos y se observó el mapa de la división política de México en sus 32 estados, a fin de tener un mejor entendimiento de la región.</span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a>**Figura 1.**</span>
+<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a>*Mapa de México.* ![Mapa de México](images/mapa_mexico.jpg) *Nota.* El mapa representa cada una de las ciudades capitales del país. Adaptado de *Fondo plano de mapa de méxico* <span class="sc">\[</span>Ilustración<span class="sc">\]</span>, por Freepik, 2024, Freepik (<span class="ot">&lt;https://www.freepik.es/vector-gratis/mapa-mexico).&gt;</span> Licencia gratuita.</span>
+<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Distancias y tiempo de conducción</span></span>
+<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a>La tabla de distancias y tiempo de conducción entre las ciudades fue obtenida a través del sitio web @mejoresrutas2024, diseñado especialmente para el cálculo y planeación de viajes a lo largo de todo el país. Dicho recurso online permite obtener información como distancias, tiempo de conducción y otros valores asociados entre dos ciudades ingresando el nombre de cada una de ellas.</span>
+<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Peajes</span></span>
+<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a>Para obtener la información de los peajes, fue utilizado el mismo sitio web @mejoresrutas2024, el cual también contiene datos relacionados con el costo actual de los peajes que se encuentran entre las ciudades donde se realiza la consulta.</span>
+<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a>Debido al gran número de combinaciones posibles, se programó un bot en Python empleando la librería *Beautiful Soup*, lo que permitió automatizar la extracción de la información anteriormente mencionada. En el repositorio en GitHub es posible encontrar el archivo con el código para llevar a cabo esta tarea.</span>
+<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a><span class="fu">### Definición de gastos</span></span>
+<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a>En la siguiente sección se definen los gastos que deben ser consultados, entre los cuales se encuentran el salario del vendedor, el modelo de automóvil a utilizar y su correspondiente gasto de combustible.</span>
+<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Salario del vendedor</span></span>
+<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a>Para definir el salario del vendedor, se toma como referencia el salario minimo en México, que actualmente se encuentra en 248,93 pesos diarios según la @conasami2024; por lo tanto, para una jornada de 8 horas, el salario mínimo por hora es de 31,12 aproximadamente. Dicho esto, se decide establecer un salario de 35 pesos mexicanos por hora para el vendedor del presente ejercicio.</span>
+<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Modelo del carro y gasto en gasolina</span></span>
+<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a>De acuerdo con @elpais2024, el modelo de automóvil más vendido actualmente en México es el Nissan Versa, por lo que se ha considerado conveniente seleccionarlo como medio de transporte a utilizar por parte del vendedor. Esto permitirá hacer una estimación más justa del costo total de realizar la ruta por los 32 estados mexicanos en el contexto de dicho país.</span>
+<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a>Adicionalmente, es importante considerar que el rendimiento promedio de este modelo en carreteras es de 25 kilómetros por litro de acuerdo con información proporcionada por @nissanversarendimiento2023 y que el tipo de gasolina que utiliza es la comúnmente denominada como "Gasolina Magna" en México la cual, al día 14 de noviembre, tiene un precio promedio de 23.96 pesos mexicanos por litro según @gasolinamx2024.</span>
+<span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Transformaciones</span></span>
+<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a>Se ha obtenido la información anterior con el objetivo de calcular el costo total de desplazamiento entre las ciudades capitales de México, sin embargo, se observa que no todos los datos se encuentran en las unidades requeridas (MXN): hay magnitudes en litros, horas, kilómetros, etc. Por lo tanto, se realizarán las siguientes transformaciones en todas las unidades para poder sumar dichos gastos en pesos mexicanos, a diferencia del caso de los peajes, pues estos ya se encuentran en la unidad monetaria deseada.</span>
+<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a><span class="fu">##### Tiempo de viaje</span></span>
+<span id="cb3-105"><a href="#cb3-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-106"><a href="#cb3-106" aria-hidden="true" tabindex="-1"></a>El costo por el salario del vendedor es calculado la forma que se muestra en la Ecuación (1):</span>
+<span id="cb3-107"><a href="#cb3-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a>$$ </span>
+<span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a>\text{Costo<span class="sc">\_</span>vendedor} = \text{tiempo} \times \text{salario<span class="sc">\_</span>del<span class="sc">\_</span>vendedor} \tag{1}</span>
+<span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-111"><a href="#cb3-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-112"><a href="#cb3-112" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Gasolina para el viaje</span></span>
+<span id="cb3-113"><a href="#cb3-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-114"><a href="#cb3-114" aria-hidden="true" tabindex="-1"></a>El gasto total en gasolina se obtiene con la fórmula mostrada en la Ecuación (2):</span>
+<span id="cb3-115"><a href="#cb3-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-116"><a href="#cb3-116" aria-hidden="true" tabindex="-1"></a>$$ </span>
+<span id="cb3-117"><a href="#cb3-117" aria-hidden="true" tabindex="-1"></a>\text{Costo<span class="sc">\_</span>gasolina} = \left( \frac{\text{Distancia}}{\text{Rendimiento (km/litro)}} \right) \times \text{Precio<span class="sc">\_</span>por<span class="sc">\_</span>litro} \tag{2}</span>
+<span id="cb3-118"><a href="#cb3-118" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-119"><a href="#cb3-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-120"><a href="#cb3-120" aria-hidden="true" tabindex="-1"></a><span class="fu">##### Gasto total</span></span>
+<span id="cb3-121"><a href="#cb3-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-122"><a href="#cb3-122" aria-hidden="true" tabindex="-1"></a>Después de realizar las operaciones mostradas anteriormente, se tiene como resultado toda la información necesaria en las unidades requeridas para obtener un valor correspondiente al gasto total del viaje en pesos mexicanos, de acuerdo con lo definido en la Ecuación (3).</span>
+<span id="cb3-123"><a href="#cb3-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-124"><a href="#cb3-124" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-125"><a href="#cb3-125" aria-hidden="true" tabindex="-1"></a>\text{Gasto<span class="sc">\_</span>recorrido} = \text{Costo<span class="sc">\_</span>gasolina} + \text{Costo<span class="sc">\_</span>vendedor} + \text{Costo<span class="sc">\_</span>Peajes} \tag{3}</span>
+<span id="cb3-126"><a href="#cb3-126" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-127"><a href="#cb3-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-128"><a href="#cb3-128" aria-hidden="true" tabindex="-1"></a><span class="fu">### Ruta óptima</span></span>
+<span id="cb3-129"><a href="#cb3-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-130"><a href="#cb3-130" aria-hidden="true" tabindex="-1"></a>A continuación, se procede con la utilización de los algoritmos propuestos para este caso: Colonia de Hormigas y Algoritmos Genéticos, con el fin de responder a la actividad planteada al principio del presente ejercicio, esto es, hallar la ruta óptima para el recorrido del vendedor a través de los 32 estados de México.</span>
+<span id="cb3-131"><a href="#cb3-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-132"><a href="#cb3-132" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Colonia de Hormigas</span></span>
+<span id="cb3-133"><a href="#cb3-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-134"><a href="#cb3-134" aria-hidden="true" tabindex="-1"></a>Considerando la información recolectada en @acowikipedia2024 y @acobook2018 y lo presentado en la primera sección del trabajo, puede decirse que los **algoritmos de colonia de hormigas (Ant Colony Optimization, ACO)** son una técnica de optimización basada en la inteligencia colectiva observada en las colonias de hormigas naturales. Fueron inspirados en el comportamiento de las hormigas en la naturaleza para resolver problemas complejos de optimización combinatoria, en esta segunda parte del trabajo profundizaremos más en sus hiperparámetros claves los cuales son:</span>
+<span id="cb3-135"><a href="#cb3-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-136"><a href="#cb3-136" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Cantidad de hormigas:** Cantidad de hormigas que participarán en cada iteración de la búsqueda de soluciones. Influye en la capacidad del algoritmo de explorar diferentes soluciones de manera simultánea. En este caso se utilizarán 32 hormigas, es decir, igual al número de estados en México.</span>
+<span id="cb3-137"><a href="#cb3-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-138"><a href="#cb3-138" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Alpha**: Controla la influencia de la feromona en la probabilidad de que una hormiga elija ese camino. A medida que el valor aumenta, las hormigas son más propensas a seguir caminos con más feromona. Aquí se utilizará un valor de 1 para otorgar una influencia moderada de las feromonas depositadas.</span>
+<span id="cb3-139"><a href="#cb3-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-140"><a href="#cb3-140" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Beta**: Controla la preferencia de las hormigas por caminos más "baratos" o prometedores, lo cual ayuda aumentar la exploración. Se va a considerar un valor de 2, puesto que se busca minimizar el costo del viaje</span>
+<span id="cb3-141"><a href="#cb3-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-142"><a href="#cb3-142" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**\\(\\rho\\)**: Indica la tasa de evaporación de la feromona, lo cual evita que las soluciones previas influencien las iteraciones futuras. Se seleccionó una tasa de evaporación del 0.5, es decir, el 50% de las feromonas se evaporan en cada iteración.</span>
+<span id="cb3-143"><a href="#cb3-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-144"><a href="#cb3-144" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**\\(Q\\)**: Cantidad de feromona depositada por una hormiga en su recorrido tras encontrar una solución. Se utilizará un valor de 100 para indicar la cantidad de feromonas en el camino.</span>
+<span id="cb3-145"><a href="#cb3-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-146"><a href="#cb3-146" aria-hidden="true" tabindex="-1"></a>Una vez definidos los hiperparámetros, se puede continuar con la ejecución del algoritmo de colonia de hormigas, cuyo detalle se puede observar más a profundidad en el repositorio de GitHub. En la Figura 2 se puede observar cómo va variando el costo de realizar el viaje en cada una de las iteraciones que realizó dicho algoritmo.</span>
+<span id="cb3-147"><a href="#cb3-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-148"><a href="#cb3-148" aria-hidden="true" tabindex="-1"></a>**Figura 2.**</span>
+<span id="cb3-149"><a href="#cb3-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-150"><a href="#cb3-150" aria-hidden="true" tabindex="-1"></a>*Función costo del algoritmo Colonia de Hormigas.* ![Función costo del algoritmo Colonia de Hormigas](images/costo-aco-primera.png) *Nota.* La gráfica muestra la evolución del costo total del viaje a medida que se ejecutan las diferentes iteraciones del algoritmo, que para este caso fueron 500. Elaboración propia.</span>
+<span id="cb3-151"><a href="#cb3-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-152"><a href="#cb3-152" aria-hidden="true" tabindex="-1"></a>De acuerdo con la imagen anterior, es posible observar que el costo mínimo se alcanza relativamente rápido, antes de las 100 iteraciones. En este sentido, también es interesante notar que el cálculo de esta función de costo varía al considerar diferentes variaciones que puedan realizarse sobre el planteamiento inicial del problema, comportamiento que se verá más adelante.</span>
+<span id="cb3-153"><a href="#cb3-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-154"><a href="#cb3-154" aria-hidden="true" tabindex="-1"></a>Posteriormente, en la Figura 3 puede verse la ruta óptima encontrada por el algoritmo de colonia de hormigas para que el vendedor pueda recorrer los 32 estados mexicanos.</span>
+<span id="cb3-155"><a href="#cb3-155" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-156"><a href="#cb3-156" aria-hidden="true" tabindex="-1"></a>**Figura 3.**</span>
+<span id="cb3-157"><a href="#cb3-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-158"><a href="#cb3-158" aria-hidden="true" tabindex="-1"></a>*Ruta óptima encontrada mediante el algoritmo de Colonia de Hormigas.* ![Ruta óptima encontrada mediante el algoritmo de Colonia de Hormigas](images/imagen1.png) *Nota.* Puede observarse que esta visualización gráfica está dada por líneas rectas entre cada una de las ciudades y no muestra con fidelidad la forma en que se haría el recrorrido. Elaboración propia.</span>
+<span id="cb3-159"><a href="#cb3-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-160"><a href="#cb3-160" aria-hidden="true" tabindex="-1"></a>Con el fin de que el camino óptimo pueda reflejar la realidad del viaje, en la Figura 4 se ilustra la utilización de la API gratuita *Open Route Service* para graficar el recorrido propuesto a lo largo de las carreteras en el mapa de México. La API key para acceder a este servicio es la siguiente:</span>
+<span id="cb3-161"><a href="#cb3-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-164"><a href="#cb3-164" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb3-165"><a href="#cb3-165" aria-hidden="true" tabindex="-1"></a>api_key <span class="op">=</span> <span class="st">"5b3ce3597851110001cf6248c140bc578aac4c2d95295dc798e53a22"</span></span>
+<span id="cb3-166"><a href="#cb3-166" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-167"><a href="#cb3-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-168"><a href="#cb3-168" aria-hidden="true" tabindex="-1"></a>**Figura 4.**</span>
+<span id="cb3-169"><a href="#cb3-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-170"><a href="#cb3-170" aria-hidden="true" tabindex="-1"></a>*Forma realista del camino óptimo encontrado mediante el uso del algoritmo de Colonia de Hormigas.* ![Forma realista del camino óptimo encontrado mediante el uso del algoritmo de Colonia de Hormigas](images/imagen2.png) *Nota.* El gráfico muestra las carreteras que deberían seguirse para completar el recorrido propuesto, sin embargo, algunos aspectos siguen siendo siendo interesantes. Elaboración propia.</span>
+<span id="cb3-171"><a href="#cb3-171" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-172"><a href="#cb3-172" aria-hidden="true" tabindex="-1"></a>Como se mencionó anteriormente, de esta forma se obtiene una ruta óptima más realista. No obstante, llama la atención que, en ciertas secciones, la ruta implica cruzar cuerpos de agua. Al investigar las razones de este comportamiento, se descubrió que para conectar algunos estados del país como Baja California Sur y Sinaloa, la opción de tomar un ferri es considerada la más conveniente según servicios de planificación de trayectos como @mejoresrutasferri2024 y @bajaferries2024.</span>
+<span id="cb3-173"><a href="#cb3-173" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-174"><a href="#cb3-174" aria-hidden="true" tabindex="-1"></a>Dado que la matriz de costos actual no considera el valor asociado al uso del ferri ni los gastos asociados al transporte del vehículo para continuar posteriormente el recorrido, se propone un análisis de los siguientes escenarios:</span>
+<span id="cb3-175"><a href="#cb3-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-176"><a href="#cb3-176" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Incluir el costo del ferri en la matriz de costos y evaluar la ruta resultante.</span>
+<span id="cb3-177"><a href="#cb3-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-178"><a href="#cb3-178" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Realizar el viaje completamente por tierra, excluyendo los estados que se alcanzan únicamente utilizando el ferri.</span>
+<span id="cb3-179"><a href="#cb3-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-180"><a href="#cb3-180" aria-hidden="true" tabindex="-1"></a>**Primer escenario**</span>
+<span id="cb3-181"><a href="#cb3-181" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-182"><a href="#cb3-182" aria-hidden="true" tabindex="-1"></a>Se consultó el valor del tiquete de ferri para una persona adulta y el costo del transporte de un automóvil, encontrando que el más económico para un adulto es de **1,460 pesos mexicanos**, mientras que el transporte del automóvil tiene un valor de **5,480 pesos mexicanos** según @debate2023.</span>
+<span id="cb3-183"><a href="#cb3-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-184"><a href="#cb3-184" aria-hidden="true" tabindex="-1"></a>Estos costos fueron utilizados como parámetros para el algoritmo de colonia de hormigas, llegando a que, como se observa en la Figura 5, el algoritmo sigue alcanzando un mínimo de manera relativamente rápida.</span>
+<span id="cb3-185"><a href="#cb3-185" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-186"><a href="#cb3-186" aria-hidden="true" tabindex="-1"></a>**Figura 5.**</span>
+<span id="cb3-187"><a href="#cb3-187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-188"><a href="#cb3-188" aria-hidden="true" tabindex="-1"></a>*Evolución de la función costo del algoritmo de Colonia de Hormigas teniendo en cuenta al ferri.* ![Evolución de la función costo del algoritmo de Colonia de Hormigas teniendo en cuenta al ferri](images/costos-aco-segunda.png) *Nota.* Es interesante notar que, a pesar del incremento en el costo de moverse entre dos estados (debido al ferri), el algoritmo logró encontrar una ruta más barata que la hallada originalmente. Esto sugiere que en la primera solución encontrada el algoritmo podría haberse quedado atascado en un mínimo local debido a la falta de iteraciones. Elaboración propia.</span>
+<span id="cb3-189"><a href="#cb3-189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-190"><a href="#cb3-190" aria-hidden="true" tabindex="-1"></a>Además, también es posible observar que el tiempo y la distancia se redujeron en esta nueva solución, lo cual permite pensar que esta ruta no solo es más económica, sino también más eficiente, a pesar de que está considerando el costo adicional del ferri y el transporte del vehículo.</span>
+<span id="cb3-191"><a href="#cb3-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-192"><a href="#cb3-192" aria-hidden="true" tabindex="-1"></a>Los resultados correspondientes a la visualización gráfica del camino óptimo encontrado para el vendedor en este escenario pueden observarse a continuación, en las Figuras 6 y 7.</span>
+<span id="cb3-193"><a href="#cb3-193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-194"><a href="#cb3-194" aria-hidden="true" tabindex="-1"></a>**Figura 6.**</span>
+<span id="cb3-195"><a href="#cb3-195" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-196"><a href="#cb3-196" aria-hidden="true" tabindex="-1"></a>*Ruta óptima encontrada mediante el algoritmo de Colonia de Hormigas teniendo en cuenta el costo del ferri.* ![Ruta óptima encontrada mediante el algoritmo de Colonia de Hormigas teniendo en cuenta el costo del ferri](images/imagen3.png). *Nota.* Las observaciones respecto a la forma en que se conectan los distintos puntos del recorrido permanecen iguales que en el caso considerado originalmente. Elaboración propia.</span>
+<span id="cb3-197"><a href="#cb3-197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-198"><a href="#cb3-198" aria-hidden="true" tabindex="-1"></a>**Figura 7.**</span>
+<span id="cb3-199"><a href="#cb3-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-200"><a href="#cb3-200" aria-hidden="true" tabindex="-1"></a>*Carreteras encontradas mediante el uso del algoritmo de Colonia de Hormigas.* ![Carreteras encontradas mediante el uso del algoritmo de Colonia de Hormigas](images/imagen4.png) *Nota.* Esta imagen también fue generada por medio del uso de la API gratuita, así que sus resultados son reproducibles. Elaboración propia.</span>
+<span id="cb3-201"><a href="#cb3-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-202"><a href="#cb3-202" aria-hidden="true" tabindex="-1"></a>**Segundo escenario**</span>
+<span id="cb3-203"><a href="#cb3-203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-204"><a href="#cb3-204" aria-hidden="true" tabindex="-1"></a>En este segundo escenario, la ciudad de **La Paz** fue eliminada del recorrido, por lo que el viaje ahora solo incluye los **31 estados restantes**. En consecuencia, también se redujo la cantidad de hormigas utilizadas en el algoritmo a un valor de **31**, asignando una hormiga por estado para realizar la búsqueda.</span>
+<span id="cb3-205"><a href="#cb3-205" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-206"><a href="#cb3-206" aria-hidden="true" tabindex="-1"></a>Como era de esperarse, el precio del recorrido se redujo en este caso. Sin embargo, al algoritmo le tomó muchas más iteraciones encontrar el costo mínimo, como se observa en la Figura 8.</span>
+<span id="cb3-207"><a href="#cb3-207" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-208"><a href="#cb3-208" aria-hidden="true" tabindex="-1"></a>**Figura 8.**</span>
+<span id="cb3-209"><a href="#cb3-209" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-210"><a href="#cb3-210" aria-hidden="true" tabindex="-1"></a>*Evolución de la función costo para los 31 estados de México.* ![Evolución de la función costo para los 31 estados de México](images/costo-aco-tercera.png) *Nota.* El hecho de que el planteamiento inicial de ciudades y estados a recorrer cambiara al no tener en cuenta el estado que solamente puede ser conectado vía marítima fue un factor determinante en la ejecución del algoritmo de hormigas, siendo mucho menos rápido que en el primer escenario (incluso que en el escenario original). Elaboración propia.</span>
+<span id="cb3-211"><a href="#cb3-211" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-212"><a href="#cb3-212" aria-hidden="true" tabindex="-1"></a>A diferencia del caso anterior, la Figura 8 también muestra que la **distancia** y el **tiempo** aumentaron. Esto se debe a que, al no utilizar el ferri, el automóvil tuvo que realizar un recorrido más largo en ciertas partes para completar su ruta. Por lo tanto, aunque esta solución es más eficiente en términos de costo, no lo es en términos de tiempo y distancia recorrida.</span>
+<span id="cb3-213"><a href="#cb3-213" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-214"><a href="#cb3-214" aria-hidden="true" tabindex="-1"></a>La visualización gráfica de los resultados obtenidos para este caso pueden observarse en las Figuras 9 y 10, teniendo en cuenta las mismas consideraciones anteriormente mencionadas.</span>
+<span id="cb3-215"><a href="#cb3-215" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-216"><a href="#cb3-216" aria-hidden="true" tabindex="-1"></a>**Figura 9.**</span>
+<span id="cb3-217"><a href="#cb3-217" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-218"><a href="#cb3-218" aria-hidden="true" tabindex="-1"></a>*Ruta óptima encontrada mediante el uso del algoritmo de Colonia de Hormigas para 31 estados de México.* <span class="al">![Ruta encontradas mediante el uso del algoritmo de Colonia de Hormigas para 31 estados de México](images/imagen5.png)</span> Elaboración propia.</span>
+<span id="cb3-219"><a href="#cb3-219" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-220"><a href="#cb3-220" aria-hidden="true" tabindex="-1"></a>**Figura 10.**</span>
+<span id="cb3-221"><a href="#cb3-221" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-222"><a href="#cb3-222" aria-hidden="true" tabindex="-1"></a>*Orden de las carreteras encontrado mediante el uso del algoritmo de Colonia de Hormigas para 31 estados de México.* ![Orden de las carreteras encontrado mediante el uso del algoritmo de Colonia de Hormigas para 31 estados de México](images/imagen6.png) *Nota.* Sumado a los inconvenientes observados en este escenario, al desconectar uno de los estados de México, puede observarse que una gran región del país queda excluida del recorrido del vendedor, lo que puede implicar significativas pérdidas económicas y oportunidades de establecer nuevos negocios.</span>
+<span id="cb3-223"><a href="#cb3-223" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-224"><a href="#cb3-224" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Algoritmo genético</span></span>
+<span id="cb3-225"><a href="#cb3-225" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-226"><a href="#cb3-226" aria-hidden="true" tabindex="-1"></a>De acuerdo con información proporcionada por @tesisga2009 y encontrada en @gawikipedia2024, y como se explico en la primera sección del trabajo, puede decirse que los **algoritmos genéticos (Genetic Algorithms, GA)** son una técnica de optimización inspirada en los principios de la selección natural y la evolución biológica. Los GA buscan soluciones óptimas mediante la creación, evaluación y modificación de una población de individuos, representando posibles soluciones a un problema dado. La evolución de la población se realiza mediante operadores genéticos como la mutación y en esta sección profundizaremos más en sus hiperparámetros clave, los cuales son:</span>
+<span id="cb3-227"><a href="#cb3-227" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-228"><a href="#cb3-228" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Tamaño de la población**: Define el número de individuos en cada generación. Un tamaño de población más grande permite una mejor exploración del espacio de soluciones, pero también aumenta el tiempo de cómputo. En este caso, se utilizará una población de 100 individuos, lo que proporciona un equilibrio adecuado entre diversidad y eficiencia computacional.</span>
+<span id="cb3-229"><a href="#cb3-229" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-230"><a href="#cb3-230" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Número de generaciones**: Especifica cuántas veces se evolucionará la población mediante el proceso de selección, cruce y mutación; se consideran adecuadas un total de 200 generaciones para permitir al algoritmo explorar el espacio de búsqueda y converger hacia una solución óptima o cercana al óptimo.</span>
+<span id="cb3-231"><a href="#cb3-231" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-232"><a href="#cb3-232" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Tasa de mutación**: Representa la probabilidad de que un gen sea modificado aleatoriamente en un individuo. La mutación introduce variación genética, lo que ayuda a explorar nuevas áreas del espacio de búsqueda y a evitar estancamientos en óptimos locales. Se empleará una tasa de mutación de 0.1 (10%), lo que mantiene una buena cantidad de diversidad sin perturbar excesivamente a la población.</span>
+<span id="cb3-233"><a href="#cb3-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-234"><a href="#cb3-234" aria-hidden="true" tabindex="-1"></a>De la misma manera en que se realizó en la sección anterior, la presentación de resultados comienza con una obtención de resultados iniciales considerando los 32 estados de México y sin tener en cuenta el costo del ferri.</span>
+<span id="cb3-235"><a href="#cb3-235" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-236"><a href="#cb3-236" aria-hidden="true" tabindex="-1"></a>Como se observa en la Figura 11, alcanzar el mínimo toma casi 175 generaciones, lo que indica que este algoritmo se demora más en llegar a un valor mínimo en comparación con el algoritmo de colonia de hormigas. Además, la solución que encuentra tiene un costo mayor y toma más tiempo y una mayor distancia completarla.</span>
+<span id="cb3-237"><a href="#cb3-237" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-238"><a href="#cb3-238" aria-hidden="true" tabindex="-1"></a>**Figura 11.**</span>
+<span id="cb3-239"><a href="#cb3-239" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-240"><a href="#cb3-240" aria-hidden="true" tabindex="-1"></a>*Evolución de la función costo del algoritmo genético.* ![Evolución de la función costo del algoritmo genético](images/costo-genetico-primera.png) *Nota.* En la ejecución de este algoritmo, la solución óptima se encontró en una iteración muy cercana al límite máximo establecido, a diferencia del algoritmo de colonia de hormigas, que lo realizó muy rápidamente. Elaboración propia.</span>
+<span id="cb3-241"><a href="#cb3-241" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-242"><a href="#cb3-242" aria-hidden="true" tabindex="-1"></a>Ahora bien, en las Figuras 12 y 13 se tiene la visualización gráfica del recorrido propuesto por este algoritmo, siguiendo los mismos procedimientos de utilización de la API que se mencionaron de manera previa.</span>
+<span id="cb3-243"><a href="#cb3-243" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-244"><a href="#cb3-244" aria-hidden="true" tabindex="-1"></a>**Figura 12.**</span>
+<span id="cb3-245"><a href="#cb3-245" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-246"><a href="#cb3-246" aria-hidden="true" tabindex="-1"></a>*Ruta óptima encontrada mediante algoritmo genético.* <span class="al">![Ruta óptima encontrada mediante algoritmo genético](images/imagen1_ga.png)</span> Elaboración propia.</span>
+<span id="cb3-247"><a href="#cb3-247" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-248"><a href="#cb3-248" aria-hidden="true" tabindex="-1"></a>**Figura 13.**</span>
+<span id="cb3-249"><a href="#cb3-249" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-250"><a href="#cb3-250" aria-hidden="true" tabindex="-1"></a>*Ruta óptima con las carreteras encontrada mediante algoritmo genético.* <span class="al">![Ruta óptima con las carreteras encontrada mediante algoritmo genético](images/imagen2_ga.png)</span> Elaboración propia.</span>
+<span id="cb3-251"><a href="#cb3-251" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-252"><a href="#cb3-252" aria-hidden="true" tabindex="-1"></a>Nuevamente, se considera pertinente considerar los dos escenarios adicionales de análisis: un nuevo cálculo de costos teniendo en cuenta el tiquete de ferri y el transporte adicional para el automóvil y la exclusión La Paz, como territorio que solo puede conectarse a través de cuerpos de agua.</span>
+<span id="cb3-253"><a href="#cb3-253" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-254"><a href="#cb3-254" aria-hidden="true" tabindex="-1"></a>**Primer escenario**</span>
+<span id="cb3-255"><a href="#cb3-255" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-256"><a href="#cb3-256" aria-hidden="true" tabindex="-1"></a>Es posible observar que al tomar en cuenta el costo del ferri, en este caso sí se aumenta el costo del camino óptimo y el número de iteraciones se reduce un poco, como puede verse en la Figura 14. Sin embargo, el tiempo que toma completar esta ruta es mucho más alto que en el caso anterior, lo que podría indicar que esta solución se quedó atrapada en un mínimo local.</span>
+<span id="cb3-257"><a href="#cb3-257" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-258"><a href="#cb3-258" aria-hidden="true" tabindex="-1"></a>**Figura 14.**</span>
+<span id="cb3-259"><a href="#cb3-259" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-260"><a href="#cb3-260" aria-hidden="true" tabindex="-1"></a>*Evolución de la función costo del algoritmo genético teniendo en cuenta el costo del ferri.* <span class="al">![Evolución de la función costo del algoritmo genético teniendo en cuenta el costo del ferri](images/costo-genetico-segunda.png)</span> Elaboración propia.</span>
+<span id="cb3-261"><a href="#cb3-261" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-262"><a href="#cb3-262" aria-hidden="true" tabindex="-1"></a>Por otra parte, en las Figuras 15 y 16 se puede observar el recorrido propuesto por esta solución del algoritmo para que el vendedor se desplace por todo el país, viendo que los puntos de inicio y finalización son diferentes a los que había arrojado como resultado el algoritmo de colonia de hormigas.</span>
+<span id="cb3-263"><a href="#cb3-263" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-264"><a href="#cb3-264" aria-hidden="true" tabindex="-1"></a>**Figura 15.**</span>
+<span id="cb3-265"><a href="#cb3-265" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-266"><a href="#cb3-266" aria-hidden="true" tabindex="-1"></a>*Ruta óptima encontrada mediante algoritmos genéticos teniendo en cuenta el costo del ferri.* ![Ruta óptima encontrada mediante algoritmos genéticos teniendo en cuenta el costo del ferri](images/imagen3_ga.png) *Nota.* Sabiendo que la ruta marítima que seleccionaron ambos algoritmos es la misma, puede decirse que las diferencias entre sus resultados radican en otros aspectos inherentes a su propia definición, como pueden serlo los hiperparámetros y la forma en que realizan una búsqueda de la solución óptima. Elaboración propia.</span>
+<span id="cb3-267"><a href="#cb3-267" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-268"><a href="#cb3-268" aria-hidden="true" tabindex="-1"></a>**Figura 16.**</span>
+<span id="cb3-269"><a href="#cb3-269" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-270"><a href="#cb3-270" aria-hidden="true" tabindex="-1"></a>*Ruta óptima de carreteras encontrada mediante algoritmo genético teniendo en cuenta el costo del ferri.* ![Ruta óptima de carreteras encontrada mediante algoritmo genético teniendo en cuenta el costo del ferri](images/imagen4_ga.png) *Nota.* La utilización de la API se dio exactamente igual que en los escenarios anteriores, de manera que estos resultados también son reproducibles.</span>
+<span id="cb3-271"><a href="#cb3-271" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-272"><a href="#cb3-272" aria-hidden="true" tabindex="-1"></a>**Segundo escenario**</span>
+<span id="cb3-273"><a href="#cb3-273" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-274"><a href="#cb3-274" aria-hidden="true" tabindex="-1"></a>En este último escenario, el cual solamente considera 31 de los estados de México, es posible notar que el costo óptimo nuevamente bajó y, a diferencia del algoritmo de colonia de hormigas, el algoritmo genético sí encuentra una forma de reducir el tiempo y la distancia del recorrido, mostrando una mejoría en ese aspecto.</span>
+<span id="cb3-275"><a href="#cb3-275" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-276"><a href="#cb3-276" aria-hidden="true" tabindex="-1"></a>De acuerdo con la Figura 17, en este escenario el algoritmo genético necesitó más iteraciones para encontrar un mínimo, lo cual se ve compensado por el hecho de que mejoró el desempeño del algoritmo de colonia de hormigas en términos de las variables anteriormente mencionadas.</span>
+<span id="cb3-277"><a href="#cb3-277" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-278"><a href="#cb3-278" aria-hidden="true" tabindex="-1"></a>**Figura 17.**</span>
+<span id="cb3-279"><a href="#cb3-279" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-280"><a href="#cb3-280" aria-hidden="true" tabindex="-1"></a>*Evolución de la función costo del algoritmo genético cuando se tienen en cuenta 31 estados de México.* <span class="al">![Evolución de la función costo del algoritmo genético cuando se tienen en cuenta 31 estados de México](images/costo-genetico-tercera.png)</span> Elaboración propia.</span>
+<span id="cb3-281"><a href="#cb3-281" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-282"><a href="#cb3-282" aria-hidden="true" tabindex="-1"></a>Finalmente, las Figuras 18 y 19 permiten observar el recorrido que debería realizar el vendedor de acuerdo con este escenario propuesto, en el que también queda aislada una amplia región del país debido a la decisión de no considerar recorridos que no fueran terrestres.</span>
+<span id="cb3-283"><a href="#cb3-283" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-284"><a href="#cb3-284" aria-hidden="true" tabindex="-1"></a>**Figura 18.**</span>
+<span id="cb3-285"><a href="#cb3-285" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-286"><a href="#cb3-286" aria-hidden="true" tabindex="-1"></a>*Ruta óptima encontrada mediante algoritmos genéticos teniendo en cuenta solo 31 estados de México.* <span class="al">![Ruta encontrada mediante algoritmos genéticos teniendo en cuenta solo 31 estados de México](images/imagen5_ga.png)</span> Elaboración propia.</span>
+<span id="cb3-287"><a href="#cb3-287" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-288"><a href="#cb3-288" aria-hidden="true" tabindex="-1"></a>**Figura 19.**</span>
+<span id="cb3-289"><a href="#cb3-289" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-290"><a href="#cb3-290" aria-hidden="true" tabindex="-1"></a>*Ruta óptima de carreteras encontrada mediante algoritmos genéticos teniendo en cuenta 31 de los estados de México.* ![Ruta de carreteras encontrada mediante algoritmos genéticos teniendo en cuenta 31 de los estados de México](images/imagen6_ga.png) *Nota.* Al observar las carreteras que debería recorrer esta solución, puede observarse que el vendedor terminaría pasando por los mismos caminos varias veces, ya que deben darse varios recorridos de manera repetida por la necesidad de conectar algunos territorios de los 31 estados sin contemplar la opción del viaje en ferri. Elaboración propia.</span>
+<span id="cb3-291"><a href="#cb3-291" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-292"><a href="#cb3-292" aria-hidden="true" tabindex="-1"></a><span class="fu">### Verificación de la calidad de la solución</span></span>
+<span id="cb3-293"><a href="#cb3-293" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-294"><a href="#cb3-294" aria-hidden="true" tabindex="-1"></a>Es importante evaluar qué tan buena es la solución alcanzada. Métodos exhaustivos como la fuerza bruta, que permiten comprobar cuál es la mejor solución entre todas las posibles, resultan computacionalmente inviables en este caso. Aprovechando que disponemos de un gran número de iteraciones y tres diferentes escenarios que nos permiten variar las condiciones del problema, podemos concluir que la solución obtenida es, al menos, razonablemente buena.</span>
+<span id="cb3-295"><a href="#cb3-295" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-296"><a href="#cb3-296" aria-hidden="true" tabindex="-1"></a>Además, es relevante analizar el comportamiento de las funciones de costo. En todos los escenarios se observa que el costo se reduce significativamente al principio y luego comienza a fluctuar alrededor de una media estable. Esto indica que el algoritmo está convergiendo hacia esos valores. A partir de este comportamiento, seleccionamos la solución con el menor costo como la mejor alternativa.</span>
+<span id="cb3-297"><a href="#cb3-297" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-298"><a href="#cb3-298" aria-hidden="true" tabindex="-1"></a>En general, las funciones de costo tienden a estabilizarse dentro de un rango limitado de valores. Este patrón nos permite confiar en que las soluciones obtenidas se encuentran entre las mejores posibles, considerando las limitaciones inherentes a los métodos no determinísticos.</span>
+<span id="cb3-299"><a href="#cb3-299" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-300"><a href="#cb3-300" aria-hidden="true" tabindex="-1"></a><span class="fu">### Discusión de los resultados</span></span>
+<span id="cb3-301"><a href="#cb3-301" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-302"><a href="#cb3-302" aria-hidden="true" tabindex="-1"></a>Los resultados obtenidos al aplicar el Algoritmo de Colonia de Hormigas y el Algoritmo Genético en tres situaciones diferentes permiten destacar las fortalezas y diferencias de cada uno. Por un lado, el Algoritmo de Colonia de Hormigas logra encontrar una solución más económica y en un menor número de iteraciones en comparación con el Algoritmo Genético. Por lo tanto, en esta evaluación específica, dicho algoritmo puede considerarse más eficiente para resolver el problema en esta situación particular.</span>
+<span id="cb3-303"><a href="#cb3-303" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-304"><a href="#cb3-304" aria-hidden="true" tabindex="-1"></a>No obstante, es importante señalar que la elección del algoritmo adecuado depende en gran medida de la naturaleza del problema. Incluso para un mismo problema, diferentes enfoques pueden llevar a variaciones significativas en los resultados, como se observó en este análisis. Aunque en este caso el Algoritmo de Colonia de Hormigas demostró ser más eficiente que el Algoritmo Genético, esta ventaja es altamente circunstancial y no necesariamente aplicable a todos los contextos. Esto refuerza la importancia de adaptar la metodología a las características específicas del problema a resolver.</span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

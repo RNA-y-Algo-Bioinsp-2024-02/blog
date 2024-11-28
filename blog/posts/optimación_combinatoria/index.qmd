@@ -14,6 +14,8 @@ date: "2024-11-15"
 categories: [optimización, métodos heurísticos, python]
 image: "image.jpg"
 bibliography: ref.bib
+execute:
+  cache: true
 ---
 
 ```{python}
