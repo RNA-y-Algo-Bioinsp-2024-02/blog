@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_4374dd667a7d0687a7f9894ee2e159a9 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_4374dd667a7d0687a7f9894ee2e159a9" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_4374dd667a7d0687a7f9894ee2e159a9 = L.map(
+                "map_4374dd667a7d0687a7f9894ee2e159a9",
+                {
+                    center: [25.4383, -100.9833],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 6,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_fadb732ba96e4e6d4fbadc520c9c36d0 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors", "detectRetina": false, "maxNativeZoom": 19, "maxZoom": 19, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            );
+        
+    
+            tile_layer_fadb732ba96e4e6d4fbadc520c9c36d0.addTo(map_4374dd667a7d0687a7f9894ee2e159a9);
+        
+    
+            var poly_line_d0df08e64d0ead64baee51ba9ecab815 = L.polyline(
+                [[25.4383, -100.9833], [25.6866, -100.3161]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_4374dd667a7d0687a7f9894ee2e159a9);
+        
+    
+            var poly_line_d9e054756ec87b5c39ba5758c9b4765e = L.polyline(
+                [[25.6866, -100.3161], [24.2669, -98.8363]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_4374dd667a7d0687a7f9894ee2e159a9);
+        
+    
+            var poly_line_680cf02319bf4d6c454223b053ffa460 = L.polyline(
+                [[24.2669, -98.8363], [22.1565, -100.9855]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_4374dd667a7d0687a7f9894ee2e159a9);
+        
+    
+            var poly_line_8c7c808cdc933f8c4022edaded1e5658 = L.polyline(
+                [[22.1565, -100.9855], [20.5888, -100.3899]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_4374dd667a7d0687a7f9894ee2e159a9);
+        
+    
+            var poly_line_2b155079e163bdccb4881e86b121584a = L.polyline(
+                [[20.5888, -100.3899], [19.7008, -101.186]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_4374dd667a7d0687a7f9894ee2e159a9);
+        
+    
+            var poly_line_ed6fb48dcecaa975855d740e7686f70f = L.polyline(
+                [[19.7008, -101.186], [21.0169, -101.2591]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_4374dd667a7d0687a7f9894ee2e159a9);
+        
+    
+            var poly_line_7279ae12e0df221d6d66650417b7b983 = L.polyline(
+                [[21.0169, -101.2591], [22.7709, -102.5833]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_4374dd667a7d0687a7f9894ee2e159a9);
+        
+    
+            var poly_line_6877742ff90859b16e820a22401fbf0e = L.polyline(
+                [[22.7709, -102.5833], [21.8833, -102.2833]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_4374dd667a7d0687a7f9894ee2e159a9);
+        
+    
+            var poly_line_7206ce52e2b7d767fa286011f72273c7 = L.polyline(
+                [[21.8833, -102.2833], [21.5083, -104.895]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_4374dd667a7d0687a7f9894ee2e159a9);
+        
+    
+            var poly_line_257d030cd9c804134a188d56c658c0b5 = L.polyline(
+                [[21.5083, -104.895], [20.6767, -103.3476]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_4374dd667a7d0687a7f9894ee2e159a9);
+        
+    
+            var poly_line_aebd99d2a039cc3493a101ef95ecf40b = L.polyline(
+                [[20.6767, -103.3476], [19.2433, -103.725]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_4374dd667a7d0687a7f9894ee2e159a9);
+        
+    
+            var poly_line_c41f90aa072b2ac39aeaa909795ee511 = L.polyline(
+                [[19.2433, -103.725], [19.2922, -99.6672]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_4374dd667a7d0687a7f9894ee2e159a9);
+        
+    
+            var poly_line_47ecb0e2a660aee988675ab2dd04e654 = L.polyline(
+                [[19.2922, -99.6672], [19.4326, -99.1332]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_4374dd667a7d0687a7f9894ee2e159a9);
+        
+    
+            var poly_line_91c9d4d146c5e27091ca81258dc899fd = L.polyline(
+                [[19.4326, -99.1332], [18.9167, -99.25]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_4374dd667a7d0687a7f9894ee2e159a9);
+        
+    
+            var poly_line_fb92209434912c623a818e5d06e78d54 = L.polyline(
+                [[18.9167, -99.25], [17.5506, -99.5058]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_4374dd667a7d0687a7f9894ee2e159a9);
+        
+    
+            var poly_line_6e2d59e1e74351ba064b0c76a0808176 = L.polyline(
+                [[17.5506, -99.5058], [19.0413, -98.2062]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_4374dd667a7d0687a7f9894ee2e159a9);
+        
+    
+            var poly_line_29cce9db1109f29e7b0a130c9604ef4a = L.polyline(
+                [[19.0413, -98.2062], [19.3139, -98.2419]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_4374dd667a7d0687a7f9894ee2e159a9);
+        
+    
+            var poly_line_f133cad6ebfaf70e3a810d6bfc595e3f = L.polyline(
+                [[19.3139, -98.2419], [17.06, -96.7216]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_4374dd667a7d0687a7f9894ee2e159a9);
+        
+    
+            var poly_line_bef26bc64d21fb88258ca1f6d2306e6c = L.polyline(
+                [[17.06, -96.7216], [16.7531, -93.1167]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_4374dd667a7d0687a7f9894ee2e159a9);
+        
+    
+            var poly_line_a82175d00d5af242488d95bc165acc0f = L.polyline(
+                [[16.7531, -93.1167], [17.9892, -92.9291]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_4374dd667a7d0687a7f9894ee2e159a9);
+        
+    
+            var poly_line_b1c26de0b87db9c78f8a2f5471a3b62d = L.polyline(
+                [[17.9892, -92.9291], [19.8439, -90.5253]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_4374dd667a7d0687a7f9894ee2e159a9);
+        
+    
+            var poly_line_69f0ee24c401bd8d3082d0226de44822 = L.polyline(
+                [[19.8439, -90.5253], [20.9667, -89.6167]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_4374dd667a7d0687a7f9894ee2e159a9);
+        
+    
+            var poly_line_87dbf12ab17294982de93fc74c121086 = L.polyline(
+                [[20.9667, -89.6167], [18.5, -88.3]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_4374dd667a7d0687a7f9894ee2e159a9);
+        
+    
+            var poly_line_504aea9cec387cb51e58bfd6f655b156 = L.polyline(
+                [[18.5, -88.3], [19.1738, -96.1342]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_4374dd667a7d0687a7f9894ee2e159a9);
+        
+    
+            var poly_line_2b07bb7fa4cb031a571ad9d26c79c025 = L.polyline(
+                [[19.1738, -96.1342], [20.1167, -98.7333]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_4374dd667a7d0687a7f9894ee2e159a9);
+        
+    
+            var poly_line_5e6ecccd7c13efc85bca97df101ffb9a = L.polyline(
+                [[20.1167, -98.7333], [24.0228, -104.6532]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_4374dd667a7d0687a7f9894ee2e159a9);
+        
+    
+            var poly_line_1f3b15297ab4a9a478cf4ba648d56a68 = L.polyline(
+                [[24.0228, -104.6532], [24.8083, -107.3939]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_4374dd667a7d0687a7f9894ee2e159a9);
+        
+    
+            var poly_line_b694c63c0661d9a99e852e4ab38f979a = L.polyline(
+                [[24.8083, -107.3939], [29.0729, -110.9559]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_4374dd667a7d0687a7f9894ee2e159a9);
+        
+    
+            var poly_line_2efb44d6d60efcdfe9668c3b458ed617 = L.polyline(
+                [[29.0729, -110.9559], [32.5333, -117.0167]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_4374dd667a7d0687a7f9894ee2e159a9);
+        
+    
+            var poly_line_50b8d4fa0550a1ec142be505f2a51922 = L.polyline(
+                [[32.5333, -117.0167], [28.6353, -106.0894]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_4374dd667a7d0687a7f9894ee2e159a9);
+        
+    
+            var poly_line_3ca9dc6e25cd7b248f199cc1ec0ac00e = L.polyline(
+                [[28.6353, -106.0894], [25.4383, -100.9833]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_4374dd667a7d0687a7f9894ee2e159a9);
+        
+    
+            var marker_ed288aa7ecb048893ad93dfff4700669 = L.marker(
+                [25.4383, -100.9833],
+                {}
+            ).addTo(map_4374dd667a7d0687a7f9894ee2e159a9);
+        
+    
+            var icon_82fa869223090995ee029f87c2aa0283 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_ed288aa7ecb048893ad93dfff4700669.setIcon(icon_82fa869223090995ee029f87c2aa0283);
+        
+    
+        var popup_027bdcdfa0a4a6fe4ff170804dceec49 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_85e93717246b85d92650b1a6bd2bf25b = $(`<div id="html_85e93717246b85d92650b1a6bd2bf25b" style="width: 100.0%; height: 100.0%;">Inicio/Final: Saltillo</div>`)[0];
+                popup_027bdcdfa0a4a6fe4ff170804dceec49.setContent(html_85e93717246b85d92650b1a6bd2bf25b);
+            
+        
+
+        marker_ed288aa7ecb048893ad93dfff4700669.bindPopup(popup_027bdcdfa0a4a6fe4ff170804dceec49)
+        ;
+
+        
+    
+    
+            var marker_3159f0982f254794eb233f97f9663f11 = L.marker(
+                [25.6866, -100.3161],
+                {}
+            ).addTo(map_4374dd667a7d0687a7f9894ee2e159a9);
+        
+    
+            var icon_65d24fd0d59cc6417a32b2159d106cf3 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_3159f0982f254794eb233f97f9663f11.setIcon(icon_65d24fd0d59cc6417a32b2159d106cf3);
+        
+    
+        var popup_3cc464879fedfb4db6dd0ff7f919dcb9 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_663a0303b801dd0ae99a2b126f6964b8 = $(`<div id="html_663a0303b801dd0ae99a2b126f6964b8" style="width: 100.0%; height: 100.0%;">Intermedia: Monterrey</div>`)[0];
+                popup_3cc464879fedfb4db6dd0ff7f919dcb9.setContent(html_663a0303b801dd0ae99a2b126f6964b8);
+            
+        
+
+        marker_3159f0982f254794eb233f97f9663f11.bindPopup(popup_3cc464879fedfb4db6dd0ff7f919dcb9)
+        ;
+
+        
+    
+    
+            var marker_35c7453974a92e97124fb3a3dab4a55c = L.marker(
+                [24.2669, -98.8363],
+                {}
+            ).addTo(map_4374dd667a7d0687a7f9894ee2e159a9);
+        
+    
+            var icon_d6c6e9238cdb9b208e88a918c28d6103 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_35c7453974a92e97124fb3a3dab4a55c.setIcon(icon_d6c6e9238cdb9b208e88a918c28d6103);
+        
+    
+        var popup_a93bb4c7a74a92a40224fb168e9bda78 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_6c3d1890e94c1d325502c9980ff17d33 = $(`<div id="html_6c3d1890e94c1d325502c9980ff17d33" style="width: 100.0%; height: 100.0%;">Intermedia: Ciudad Victoria</div>`)[0];
+                popup_a93bb4c7a74a92a40224fb168e9bda78.setContent(html_6c3d1890e94c1d325502c9980ff17d33);
+            
+        
+
+        marker_35c7453974a92e97124fb3a3dab4a55c.bindPopup(popup_a93bb4c7a74a92a40224fb168e9bda78)
+        ;
+
+        
+    
+    
+            var marker_e564f0d8ac47c9afa0bd1869bf029179 = L.marker(
+                [22.1565, -100.9855],
+                {}
+            ).addTo(map_4374dd667a7d0687a7f9894ee2e159a9);
+        
+    
+            var icon_c4b2d25753d7537fae75003720f02e59 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_e564f0d8ac47c9afa0bd1869bf029179.setIcon(icon_c4b2d25753d7537fae75003720f02e59);
+        
+    
+        var popup_46f16335785855db1a39d872141343df = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_e86be3ca90986f3133ee76289fc5c7dd = $(`<div id="html_e86be3ca90986f3133ee76289fc5c7dd" style="width: 100.0%; height: 100.0%;">Intermedia: San Luis Potosí</div>`)[0];
+                popup_46f16335785855db1a39d872141343df.setContent(html_e86be3ca90986f3133ee76289fc5c7dd);
+            
+        
+
+        marker_e564f0d8ac47c9afa0bd1869bf029179.bindPopup(popup_46f16335785855db1a39d872141343df)
+        ;
+
+        
+    
+    
+            var marker_b3382912231782ae83d1facf7c1d9eec = L.marker(
+                [20.5888, -100.3899],
+                {}
+            ).addTo(map_4374dd667a7d0687a7f9894ee2e159a9);
+        
+    
+            var icon_7982293d581251b24bc3b8b6a366a9e6 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_b3382912231782ae83d1facf7c1d9eec.setIcon(icon_7982293d581251b24bc3b8b6a366a9e6);
+        
+    
+        var popup_8a74e44ca86924fd04a5fc2d2904f331 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_4d464a84f9f29a888e34df3ff43f2d26 = $(`<div id="html_4d464a84f9f29a888e34df3ff43f2d26" style="width: 100.0%; height: 100.0%;">Intermedia: Santiago de Querétaro</div>`)[0];
+                popup_8a74e44ca86924fd04a5fc2d2904f331.setContent(html_4d464a84f9f29a888e34df3ff43f2d26);
+            
+        
+
+        marker_b3382912231782ae83d1facf7c1d9eec.bindPopup(popup_8a74e44ca86924fd04a5fc2d2904f331)
+        ;
+
+        
+    
+    
+            var marker_348a0e16bc47df552ae0be555e630953 = L.marker(
+                [19.7008, -101.186],
+                {}
+            ).addTo(map_4374dd667a7d0687a7f9894ee2e159a9);
+        
+    
+            var icon_d61c4e871f263a09261b8ec18c082c09 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_348a0e16bc47df552ae0be555e630953.setIcon(icon_d61c4e871f263a09261b8ec18c082c09);
+        
+    
+        var popup_48f5ed7caa397fa1d87337b14892775e = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_a4e9e3c1eb0ada3bf4ba73029943b6d5 = $(`<div id="html_a4e9e3c1eb0ada3bf4ba73029943b6d5" style="width: 100.0%; height: 100.0%;">Intermedia: Morelia</div>`)[0];
+                popup_48f5ed7caa397fa1d87337b14892775e.setContent(html_a4e9e3c1eb0ada3bf4ba73029943b6d5);
+            
+        
+
+        marker_348a0e16bc47df552ae0be555e630953.bindPopup(popup_48f5ed7caa397fa1d87337b14892775e)
+        ;
+
+        
+    
+    
+            var marker_259f31794dcea1690864dedfa206a254 = L.marker(
+                [21.0169, -101.2591],
+                {}
+            ).addTo(map_4374dd667a7d0687a7f9894ee2e159a9);
+        
+    
+            var icon_3868264d5754dd7c31afc953ab9ab615 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_259f31794dcea1690864dedfa206a254.setIcon(icon_3868264d5754dd7c31afc953ab9ab615);
+        
+    
+        var popup_3708b0d7ec6c4d04172a674efdaebea4 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_6a06e903e9fb582a095351b11fe51c3b = $(`<div id="html_6a06e903e9fb582a095351b11fe51c3b" style="width: 100.0%; height: 100.0%;">Intermedia: Guanajuato</div>`)[0];
+                popup_3708b0d7ec6c4d04172a674efdaebea4.setContent(html_6a06e903e9fb582a095351b11fe51c3b);
+            
+        
+
+        marker_259f31794dcea1690864dedfa206a254.bindPopup(popup_3708b0d7ec6c4d04172a674efdaebea4)
+        ;
+
+        
+    
+    
+            var marker_36ef71673dc88d3c4a5d12acf25fec93 = L.marker(
+                [22.7709, -102.5833],
+                {}
+            ).addTo(map_4374dd667a7d0687a7f9894ee2e159a9);
+        
+    
+            var icon_54d8fbf89cda4b3e21dd5c608ad86e30 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_36ef71673dc88d3c4a5d12acf25fec93.setIcon(icon_54d8fbf89cda4b3e21dd5c608ad86e30);
+        
+    
+        var popup_9f7f0cc0a4933af9b3846cc670dc9a39 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_916c609165eb11c1b5b83758c93facea = $(`<div id="html_916c609165eb11c1b5b83758c93facea" style="width: 100.0%; height: 100.0%;">Intermedia: Zacatecas</div>`)[0];
+                popup_9f7f0cc0a4933af9b3846cc670dc9a39.setContent(html_916c609165eb11c1b5b83758c93facea);
+            
+        
+
+        marker_36ef71673dc88d3c4a5d12acf25fec93.bindPopup(popup_9f7f0cc0a4933af9b3846cc670dc9a39)
+        ;
+
+        
+    
+    
+            var marker_3339d3be25ee028264171b4e10efae37 = L.marker(
+                [21.8833, -102.2833],
+                {}
+            ).addTo(map_4374dd667a7d0687a7f9894ee2e159a9);
+        
+    
+            var icon_3787d165127defb45888ac6ad56592f7 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_3339d3be25ee028264171b4e10efae37.setIcon(icon_3787d165127defb45888ac6ad56592f7);
+        
+    
+        var popup_7b3b1b5a6762f561cf8d7be795c1f934 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_f6be32899521d82b951a3aaf1261be59 = $(`<div id="html_f6be32899521d82b951a3aaf1261be59" style="width: 100.0%; height: 100.0%;">Intermedia: Aguascalientes</div>`)[0];
+                popup_7b3b1b5a6762f561cf8d7be795c1f934.setContent(html_f6be32899521d82b951a3aaf1261be59);
+            
+        
+
+        marker_3339d3be25ee028264171b4e10efae37.bindPopup(popup_7b3b1b5a6762f561cf8d7be795c1f934)
+        ;
+
+        
+    
+    
+            var marker_d17a5869e012159f23a7bb2c072b2e57 = L.marker(
+                [21.5083, -104.895],
+                {}
+            ).addTo(map_4374dd667a7d0687a7f9894ee2e159a9);
+        
+    
+            var icon_7f5e62ac81176394547ce6d7026a5090 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_d17a5869e012159f23a7bb2c072b2e57.setIcon(icon_7f5e62ac81176394547ce6d7026a5090);
+        
+    
+        var popup_2d922fe34c3da6accdbfe4bc343be788 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_70b252187f95906adfc8b5b6c581f06f = $(`<div id="html_70b252187f95906adfc8b5b6c581f06f" style="width: 100.0%; height: 100.0%;">Intermedia: Tepic</div>`)[0];
+                popup_2d922fe34c3da6accdbfe4bc343be788.setContent(html_70b252187f95906adfc8b5b6c581f06f);
+            
+        
+
+        marker_d17a5869e012159f23a7bb2c072b2e57.bindPopup(popup_2d922fe34c3da6accdbfe4bc343be788)
+        ;
+
+        
+    
+    
+            var marker_53006f2fabc0258867f05da9c5e5e53e = L.marker(
+                [20.6767, -103.3476],
+                {}
+            ).addTo(map_4374dd667a7d0687a7f9894ee2e159a9);
+        
+    
+            var icon_744616df3cf4c6bed890d9246e1e292c = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_53006f2fabc0258867f05da9c5e5e53e.setIcon(icon_744616df3cf4c6bed890d9246e1e292c);
+        
+    
+        var popup_d47b75c6d1f2f03f9f024b67ba3db730 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_7703afdbbee5a6d3e00590f234a8d63b = $(`<div id="html_7703afdbbee5a6d3e00590f234a8d63b" style="width: 100.0%; height: 100.0%;">Intermedia: Guadalajara</div>`)[0];
+                popup_d47b75c6d1f2f03f9f024b67ba3db730.setContent(html_7703afdbbee5a6d3e00590f234a8d63b);
+            
+        
+
+        marker_53006f2fabc0258867f05da9c5e5e53e.bindPopup(popup_d47b75c6d1f2f03f9f024b67ba3db730)
+        ;
+
+        
+    
+    
+            var marker_a26e737ead40906f74db9b2ec4382795 = L.marker(
+                [19.2433, -103.725],
+                {}
+            ).addTo(map_4374dd667a7d0687a7f9894ee2e159a9);
+        
+    
+            var icon_1f559ce61819387512f7001c953a8d68 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_a26e737ead40906f74db9b2ec4382795.setIcon(icon_1f559ce61819387512f7001c953a8d68);
+        
+    
+        var popup_f402032f344726bf887bfeadaf19c9b7 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_21fd20436b3223b9541525409a743beb = $(`<div id="html_21fd20436b3223b9541525409a743beb" style="width: 100.0%; height: 100.0%;">Intermedia: Colima</div>`)[0];
+                popup_f402032f344726bf887bfeadaf19c9b7.setContent(html_21fd20436b3223b9541525409a743beb);
+            
+        
+
+        marker_a26e737ead40906f74db9b2ec4382795.bindPopup(popup_f402032f344726bf887bfeadaf19c9b7)
+        ;
+
+        
+    
+    
+            var marker_36c1426f2b6c05bc0aaebc1470df0e8a = L.marker(
+                [19.2922, -99.6672],
+                {}
+            ).addTo(map_4374dd667a7d0687a7f9894ee2e159a9);
+        
+    
+            var icon_b793f1768e37d1e972e7552987fffcac = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_36c1426f2b6c05bc0aaebc1470df0e8a.setIcon(icon_b793f1768e37d1e972e7552987fffcac);
+        
+    
+        var popup_e10ec1bd12c0a5758a3730458f590f52 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_de4ac9a377ead3184b309f1a215eb8bc = $(`<div id="html_de4ac9a377ead3184b309f1a215eb8bc" style="width: 100.0%; height: 100.0%;">Intermedia: Toluca de Lerdo</div>`)[0];
+                popup_e10ec1bd12c0a5758a3730458f590f52.setContent(html_de4ac9a377ead3184b309f1a215eb8bc);
+            
+        
+
+        marker_36c1426f2b6c05bc0aaebc1470df0e8a.bindPopup(popup_e10ec1bd12c0a5758a3730458f590f52)
+        ;
+
+        
+    
+    
+            var marker_85fd94a748d5b8f813ba7d3676065a31 = L.marker(
+                [19.4326, -99.1332],
+                {}
+            ).addTo(map_4374dd667a7d0687a7f9894ee2e159a9);
+        
+    
+            var icon_04d02daa561cbe076fb5b4667ef69e31 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_85fd94a748d5b8f813ba7d3676065a31.setIcon(icon_04d02daa561cbe076fb5b4667ef69e31);
+        
+    
+        var popup_8530e4d91e9a4b56d670d4af26631022 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_de364c7411814e7fea732e65e675f7da = $(`<div id="html_de364c7411814e7fea732e65e675f7da" style="width: 100.0%; height: 100.0%;">Intermedia: CDMX</div>`)[0];
+                popup_8530e4d91e9a4b56d670d4af26631022.setContent(html_de364c7411814e7fea732e65e675f7da);
+            
+        
+
+        marker_85fd94a748d5b8f813ba7d3676065a31.bindPopup(popup_8530e4d91e9a4b56d670d4af26631022)
+        ;
+
+        
+    
+    
+            var marker_3bea4b3892c371e193419f9c49530e99 = L.marker(
+                [18.9167, -99.25],
+                {}
+            ).addTo(map_4374dd667a7d0687a7f9894ee2e159a9);
+        
+    
+            var icon_af92630e57dd46de34af023ef0f2dc59 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_3bea4b3892c371e193419f9c49530e99.setIcon(icon_af92630e57dd46de34af023ef0f2dc59);
+        
+    
+        var popup_e1c10721ed1be331314ed138cb4a64ce = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_8a630ed52065e506adc89e011238606f = $(`<div id="html_8a630ed52065e506adc89e011238606f" style="width: 100.0%; height: 100.0%;">Intermedia: Cuernavaca</div>`)[0];
+                popup_e1c10721ed1be331314ed138cb4a64ce.setContent(html_8a630ed52065e506adc89e011238606f);
+            
+        
+
+        marker_3bea4b3892c371e193419f9c49530e99.bindPopup(popup_e1c10721ed1be331314ed138cb4a64ce)
+        ;
+
+        
+    
+    
+            var marker_fb1541589903c15e87ad2ed2f1ef69ce = L.marker(
+                [17.5506, -99.5058],
+                {}
+            ).addTo(map_4374dd667a7d0687a7f9894ee2e159a9);
+        
+    
+            var icon_da13669b5822757222febd3db8e211e1 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_fb1541589903c15e87ad2ed2f1ef69ce.setIcon(icon_da13669b5822757222febd3db8e211e1);
+        
+    
+        var popup_e15ed9543edd4797f0663f458d6e59ad = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_1e010adc8d1b2a07f80234ede1444715 = $(`<div id="html_1e010adc8d1b2a07f80234ede1444715" style="width: 100.0%; height: 100.0%;">Intermedia: Chilpancingo de los Bravo</div>`)[0];
+                popup_e15ed9543edd4797f0663f458d6e59ad.setContent(html_1e010adc8d1b2a07f80234ede1444715);
+            
+        
+
+        marker_fb1541589903c15e87ad2ed2f1ef69ce.bindPopup(popup_e15ed9543edd4797f0663f458d6e59ad)
+        ;
+
+        
+    
+    
+            var marker_1954ce92b8128d5fd349f3f4843b7c54 = L.marker(
+                [19.0413, -98.2062],
+                {}
+            ).addTo(map_4374dd667a7d0687a7f9894ee2e159a9);
+        
+    
+            var icon_653f24109a7fb83ee6e3346606c510ba = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_1954ce92b8128d5fd349f3f4843b7c54.setIcon(icon_653f24109a7fb83ee6e3346606c510ba);
+        
+    
+        var popup_d5696e417c570dfc73033716fa0f7d40 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_faaf3e72a7643fcea250741b4c5226d9 = $(`<div id="html_faaf3e72a7643fcea250741b4c5226d9" style="width: 100.0%; height: 100.0%;">Intermedia: Heroica Puebla de Zaragoza</div>`)[0];
+                popup_d5696e417c570dfc73033716fa0f7d40.setContent(html_faaf3e72a7643fcea250741b4c5226d9);
+            
+        
+
+        marker_1954ce92b8128d5fd349f3f4843b7c54.bindPopup(popup_d5696e417c570dfc73033716fa0f7d40)
+        ;
+
+        
+    
+    
+            var marker_137bcbfacb473eb7cf3e9228e94279a5 = L.marker(
+                [19.3139, -98.2419],
+                {}
+            ).addTo(map_4374dd667a7d0687a7f9894ee2e159a9);
+        
+    
+            var icon_c74568622534fb923dc88e896bec3f11 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_137bcbfacb473eb7cf3e9228e94279a5.setIcon(icon_c74568622534fb923dc88e896bec3f11);
+        
+    
+        var popup_484cb6bca32506b610ae9aaa1917dca0 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_5e3f21cf0d79e599814d6ebf16b2c5f8 = $(`<div id="html_5e3f21cf0d79e599814d6ebf16b2c5f8" style="width: 100.0%; height: 100.0%;">Intermedia: Tlaxcala de Xicohténcatl</div>`)[0];
+                popup_484cb6bca32506b610ae9aaa1917dca0.setContent(html_5e3f21cf0d79e599814d6ebf16b2c5f8);
+            
+        
+
+        marker_137bcbfacb473eb7cf3e9228e94279a5.bindPopup(popup_484cb6bca32506b610ae9aaa1917dca0)
+        ;
+
+        
+    
+    
+            var marker_a1bfd5a9f3a01307d36889497c2260e8 = L.marker(
+                [17.06, -96.7216],
+                {}
+            ).addTo(map_4374dd667a7d0687a7f9894ee2e159a9);
+        
+    
+            var icon_ff9dfc26f67f4c1faea8245fca2d2649 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_a1bfd5a9f3a01307d36889497c2260e8.setIcon(icon_ff9dfc26f67f4c1faea8245fca2d2649);
+        
+    
+        var popup_605dab1295fa865818bb32baf74295b7 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_6aa121d07710a54a6ea1a00387f84dac = $(`<div id="html_6aa121d07710a54a6ea1a00387f84dac" style="width: 100.0%; height: 100.0%;">Intermedia: Oaxaca de Juárez</div>`)[0];
+                popup_605dab1295fa865818bb32baf74295b7.setContent(html_6aa121d07710a54a6ea1a00387f84dac);
+            
+        
+
+        marker_a1bfd5a9f3a01307d36889497c2260e8.bindPopup(popup_605dab1295fa865818bb32baf74295b7)
+        ;
+
+        
+    
+    
+            var marker_f320f9c726174f12ba9a4cdd7435f422 = L.marker(
+                [16.7531, -93.1167],
+                {}
+            ).addTo(map_4374dd667a7d0687a7f9894ee2e159a9);
+        
+    
+            var icon_2b4375a0b0646d8af5cf8266821006be = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_f320f9c726174f12ba9a4cdd7435f422.setIcon(icon_2b4375a0b0646d8af5cf8266821006be);
+        
+    
+        var popup_8d481f3841ea253f151310735bd675a5 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_87296dc39199e03ef129d7b6e8866482 = $(`<div id="html_87296dc39199e03ef129d7b6e8866482" style="width: 100.0%; height: 100.0%;">Intermedia: Tuxtla Gutiérrez</div>`)[0];
+                popup_8d481f3841ea253f151310735bd675a5.setContent(html_87296dc39199e03ef129d7b6e8866482);
+            
+        
+
+        marker_f320f9c726174f12ba9a4cdd7435f422.bindPopup(popup_8d481f3841ea253f151310735bd675a5)
+        ;
+
+        
+    
+    
+            var marker_5ce6e178d0e51a0e3066db4f50aee693 = L.marker(
+                [17.9892, -92.9291],
+                {}
+            ).addTo(map_4374dd667a7d0687a7f9894ee2e159a9);
+        
+    
+            var icon_1a5ac0e07c6bdc5bbc1745ef960485bb = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_5ce6e178d0e51a0e3066db4f50aee693.setIcon(icon_1a5ac0e07c6bdc5bbc1745ef960485bb);
+        
+    
+        var popup_0065818e4554a5449660d60bb6a18c68 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_f53c01fa41b956851550276c66d1bd27 = $(`<div id="html_f53c01fa41b956851550276c66d1bd27" style="width: 100.0%; height: 100.0%;">Intermedia: Villahermosa</div>`)[0];
+                popup_0065818e4554a5449660d60bb6a18c68.setContent(html_f53c01fa41b956851550276c66d1bd27);
+            
+        
+
+        marker_5ce6e178d0e51a0e3066db4f50aee693.bindPopup(popup_0065818e4554a5449660d60bb6a18c68)
+        ;
+
+        
+    
+    
+            var marker_22def0a1c7f91a38c5d6dca6ebd333f3 = L.marker(
+                [19.8439, -90.5253],
+                {}
+            ).addTo(map_4374dd667a7d0687a7f9894ee2e159a9);
+        
+    
+            var icon_d3bea3f2f395cf70b2d0f00ee1def18e = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_22def0a1c7f91a38c5d6dca6ebd333f3.setIcon(icon_d3bea3f2f395cf70b2d0f00ee1def18e);
+        
+    
+        var popup_97cd008454a1000cf6886e9fe097fff6 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_3efda847fcdde203314420fcbdd27555 = $(`<div id="html_3efda847fcdde203314420fcbdd27555" style="width: 100.0%; height: 100.0%;">Intermedia: San Francisco de Campeche</div>`)[0];
+                popup_97cd008454a1000cf6886e9fe097fff6.setContent(html_3efda847fcdde203314420fcbdd27555);
+            
+        
+
+        marker_22def0a1c7f91a38c5d6dca6ebd333f3.bindPopup(popup_97cd008454a1000cf6886e9fe097fff6)
+        ;
+
+        
+    
+    
+            var marker_3a48c8bf2d6e51d5562eee4746377a8e = L.marker(
+                [20.9667, -89.6167],
+                {}
+            ).addTo(map_4374dd667a7d0687a7f9894ee2e159a9);
+        
+    
+            var icon_43c66a9cebc71fd0b8b5d646a086600b = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_3a48c8bf2d6e51d5562eee4746377a8e.setIcon(icon_43c66a9cebc71fd0b8b5d646a086600b);
+        
+    
+        var popup_66e609e5449e5f65e517c673fb38f4db = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_a99a06c5e1406580025d4837c86af3b8 = $(`<div id="html_a99a06c5e1406580025d4837c86af3b8" style="width: 100.0%; height: 100.0%;">Intermedia: Mérida</div>`)[0];
+                popup_66e609e5449e5f65e517c673fb38f4db.setContent(html_a99a06c5e1406580025d4837c86af3b8);
+            
+        
+
+        marker_3a48c8bf2d6e51d5562eee4746377a8e.bindPopup(popup_66e609e5449e5f65e517c673fb38f4db)
+        ;
+
+        
+    
+    
+            var marker_3c1cbb5cce5053e25adaf69e4e56c449 = L.marker(
+                [18.5, -88.3],
+                {}
+            ).addTo(map_4374dd667a7d0687a7f9894ee2e159a9);
+        
+    
+            var icon_e735a1e39cf191ead585d9c0cb1e8bd9 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_3c1cbb5cce5053e25adaf69e4e56c449.setIcon(icon_e735a1e39cf191ead585d9c0cb1e8bd9);
+        
+    
+        var popup_0bf4400561e567bb081fc72a50a63903 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_35c9a640eb13ed3d9486a1929cd03267 = $(`<div id="html_35c9a640eb13ed3d9486a1929cd03267" style="width: 100.0%; height: 100.0%;">Intermedia: Chetumal</div>`)[0];
+                popup_0bf4400561e567bb081fc72a50a63903.setContent(html_35c9a640eb13ed3d9486a1929cd03267);
+            
+        
+
+        marker_3c1cbb5cce5053e25adaf69e4e56c449.bindPopup(popup_0bf4400561e567bb081fc72a50a63903)
+        ;
+
+        
+    
+    
+            var marker_319f4d33ac44ebf95bb720184bf8d868 = L.marker(
+                [19.1738, -96.1342],
+                {}
+            ).addTo(map_4374dd667a7d0687a7f9894ee2e159a9);
+        
+    
+            var icon_92ce83c00e1e89f8091c83b80687f68a = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_319f4d33ac44ebf95bb720184bf8d868.setIcon(icon_92ce83c00e1e89f8091c83b80687f68a);
+        
+    
+        var popup_76cf5a405834f19639a0c64e79cc852d = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_9c9cfdd7b2eceb2294e94b1355a342b5 = $(`<div id="html_9c9cfdd7b2eceb2294e94b1355a342b5" style="width: 100.0%; height: 100.0%;">Intermedia: Xalapa-Enríquez</div>`)[0];
+                popup_76cf5a405834f19639a0c64e79cc852d.setContent(html_9c9cfdd7b2eceb2294e94b1355a342b5);
+            
+        
+
+        marker_319f4d33ac44ebf95bb720184bf8d868.bindPopup(popup_76cf5a405834f19639a0c64e79cc852d)
+        ;
+
+        
+    
+    
+            var marker_0c9e79335cf814f9b884766ece6bd0c9 = L.marker(
+                [20.1167, -98.7333],
+                {}
+            ).addTo(map_4374dd667a7d0687a7f9894ee2e159a9);
+        
+    
+            var icon_bea50e67cd58c1f4ab5f109c7877931f = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_0c9e79335cf814f9b884766ece6bd0c9.setIcon(icon_bea50e67cd58c1f4ab5f109c7877931f);
+        
+    
+        var popup_43c9481303bad52fb912db5546008913 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_310fabbe79dd7796b3b1418712a70c5d = $(`<div id="html_310fabbe79dd7796b3b1418712a70c5d" style="width: 100.0%; height: 100.0%;">Intermedia: Pachuca de Soto</div>`)[0];
+                popup_43c9481303bad52fb912db5546008913.setContent(html_310fabbe79dd7796b3b1418712a70c5d);
+            
+        
+
+        marker_0c9e79335cf814f9b884766ece6bd0c9.bindPopup(popup_43c9481303bad52fb912db5546008913)
+        ;
+
+        
+    
+    
+            var marker_385faf58aaf94f957cfc28de0c61573c = L.marker(
+                [24.0228, -104.6532],
+                {}
+            ).addTo(map_4374dd667a7d0687a7f9894ee2e159a9);
+        
+    
+            var icon_796124026a7203d23e3e9c518d428255 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_385faf58aaf94f957cfc28de0c61573c.setIcon(icon_796124026a7203d23e3e9c518d428255);
+        
+    
+        var popup_0082b9cfd741c6a5bf737705da3aa439 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_b089947b08dd1d730362b2004f94311c = $(`<div id="html_b089947b08dd1d730362b2004f94311c" style="width: 100.0%; height: 100.0%;">Intermedia: Victoria de Durango</div>`)[0];
+                popup_0082b9cfd741c6a5bf737705da3aa439.setContent(html_b089947b08dd1d730362b2004f94311c);
+            
+        
+
+        marker_385faf58aaf94f957cfc28de0c61573c.bindPopup(popup_0082b9cfd741c6a5bf737705da3aa439)
+        ;
+
+        
+    
+    
+            var marker_8fbf5592b10f76eb4489091bb95c8963 = L.marker(
+                [24.8083, -107.3939],
+                {}
+            ).addTo(map_4374dd667a7d0687a7f9894ee2e159a9);
+        
+    
+            var icon_947d8097e4912d9dc30a04177d8a111d = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_8fbf5592b10f76eb4489091bb95c8963.setIcon(icon_947d8097e4912d9dc30a04177d8a111d);
+        
+    
+        var popup_b4b784d87a90e801e0e11c2de9f136ad = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_bbf0f289fc647988cf025168c6659625 = $(`<div id="html_bbf0f289fc647988cf025168c6659625" style="width: 100.0%; height: 100.0%;">Intermedia: Culiacán Rosales</div>`)[0];
+                popup_b4b784d87a90e801e0e11c2de9f136ad.setContent(html_bbf0f289fc647988cf025168c6659625);
+            
+        
+
+        marker_8fbf5592b10f76eb4489091bb95c8963.bindPopup(popup_b4b784d87a90e801e0e11c2de9f136ad)
+        ;
+
+        
+    
+    
+            var marker_cdf351e0d54e25a53477c03c3c6dbf05 = L.marker(
+                [29.0729, -110.9559],
+                {}
+            ).addTo(map_4374dd667a7d0687a7f9894ee2e159a9);
+        
+    
+            var icon_00bef5f52585c614e6cfd8412eaca8f6 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_cdf351e0d54e25a53477c03c3c6dbf05.setIcon(icon_00bef5f52585c614e6cfd8412eaca8f6);
+        
+    
+        var popup_dc9fba1ce3e22e53b34a0b1fcecfc371 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_08148536dc30bab100c24044b720fbd2 = $(`<div id="html_08148536dc30bab100c24044b720fbd2" style="width: 100.0%; height: 100.0%;">Intermedia: Hermosillo</div>`)[0];
+                popup_dc9fba1ce3e22e53b34a0b1fcecfc371.setContent(html_08148536dc30bab100c24044b720fbd2);
+            
+        
+
+        marker_cdf351e0d54e25a53477c03c3c6dbf05.bindPopup(popup_dc9fba1ce3e22e53b34a0b1fcecfc371)
+        ;
+
+        
+    
+    
+            var marker_4aaba9bda8152e41d7c06a398dfd7cad = L.marker(
+                [32.5333, -117.0167],
+                {}
+            ).addTo(map_4374dd667a7d0687a7f9894ee2e159a9);
+        
+    
+            var icon_3c091d907570019f7cdc5d8b2d762a29 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_4aaba9bda8152e41d7c06a398dfd7cad.setIcon(icon_3c091d907570019f7cdc5d8b2d762a29);
+        
+    
+        var popup_62e26ac802406d9df5e29c011b351095 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_93e47ade8cbf77d2aaa38a01eb1d1efd = $(`<div id="html_93e47ade8cbf77d2aaa38a01eb1d1efd" style="width: 100.0%; height: 100.0%;">Intermedia: Mexicali</div>`)[0];
+                popup_62e26ac802406d9df5e29c011b351095.setContent(html_93e47ade8cbf77d2aaa38a01eb1d1efd);
+            
+        
+
+        marker_4aaba9bda8152e41d7c06a398dfd7cad.bindPopup(popup_62e26ac802406d9df5e29c011b351095)
+        ;
+
+        
+    
+    
+            var marker_94e61e4e8334444feb3d9d9011d97f26 = L.marker(
+                [28.6353, -106.0894],
+                {}
+            ).addTo(map_4374dd667a7d0687a7f9894ee2e159a9);
+        
+    
+            var icon_38ebb95ac71041c52f3075986ff003ca = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_94e61e4e8334444feb3d9d9011d97f26.setIcon(icon_38ebb95ac71041c52f3075986ff003ca);
+        
+    
+        var popup_44227bde8b276012660e388a28b4774a = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_06267e0ee781773df90edd9b7252bec9 = $(`<div id="html_06267e0ee781773df90edd9b7252bec9" style="width: 100.0%; height: 100.0%;">Penúltima parada: Chihuahua</div>`)[0];
+                popup_44227bde8b276012660e388a28b4774a.setContent(html_06267e0ee781773df90edd9b7252bec9);
+            
+        
+
+        marker_94e61e4e8334444feb3d9d9011d97f26.bindPopup(popup_44227bde8b276012660e388a28b4774a)
+        ;
+
+        
+    
+    
+            var marker_1aa639ae60fe53c144f06658153c37da = L.marker(
+                [25.4383, -100.9833],
+                {}
+            ).addTo(map_4374dd667a7d0687a7f9894ee2e159a9);
+        
+    
+            var icon_ce8b0b6aa58db977f4b9c84b3367bf3e = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_1aa639ae60fe53c144f06658153c37da.setIcon(icon_ce8b0b6aa58db977f4b9c84b3367bf3e);
+        
+    
+        var popup_ec047ff9dfdd97fffe1daf0b9e48398d = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_625032ba4f98843567e4ea1926fc5f6c = $(`<div id="html_625032ba4f98843567e4ea1926fc5f6c" style="width: 100.0%; height: 100.0%;">Inicio/Final: Saltillo</div>`)[0];
+                popup_ec047ff9dfdd97fffe1daf0b9e48398d.setContent(html_625032ba4f98843567e4ea1926fc5f6c);
+            
+        
+
+        marker_1aa639ae60fe53c144f06658153c37da.bindPopup(popup_ec047ff9dfdd97fffe1daf0b9e48398d)
+        ;
+
+        
+    
+</script>
+</html>

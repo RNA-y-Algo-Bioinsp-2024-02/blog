@@ -1,0 +1,8 @@
+/* css styles */
+.thumbnail-image {
+    width: 100%;          /* Asegura que ocupe todo el ancho disponible */
+    height: 200px;        /* Fija una altura consistente */
+    object-fit: cover;    /* Mantiene la proporción de la imagen */
+    border-radius: 8px;   /* Opcional: Bordes redondeados */
+    display: block;       /* Asegura que no haya márgenes inesperados */
+}

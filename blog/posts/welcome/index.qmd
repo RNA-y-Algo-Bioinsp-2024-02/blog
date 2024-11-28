@@ -1,0 +1,58 @@
+---
+title: "!Bienvenido a nuestro blog!"
+author: ""
+date: "2024-11-12"
+categories: [news]
+image: welcome.jpg
+---
+
+# **Bienvenidos a un Espacio para Aprender y Crear**
+
+Este blog ha sido diseñado como parte de un curso dedicado a la **inteligencia artificial y los modelos bioinspirados**, con el propósito de servir como un repositorio de trabajos, reflexiones y aprendizajes desarrollados a lo largo del programa. Más allá del curso, nuestro objetivo es que este espacio evolucione hacia un portafolio que abarque múltiples temáticas en **inteligencia artificial, analítica avanzada y aprendizaje automático**.
+
+------------------------------------------------------------------------
+
+## **¿Qué encontrarás aquí?**
+
+-   **Trabajos del curso:** Proyectos que exploran desde el funcionamiento básico de redes neuronales hasta implementaciones más avanzadas de algoritmos bioinspirados, como los basados en evolución genética o el comportamiento de colonias de hormigas.
+
+-   **Artículos educativos:** Explicaciones claras y prácticas sobre conceptos clave de inteligencia artificial y sus aplicaciones.
+
+-   **Recursos reproducibles:** Todo lo que publico está diseñado para ser reutilizable y comprensible, buscando contribuir al aprendizaje de otros.
+
+------------------------------------------------------------------------
+
+------------------------------------------------------------------------
+
+
+::: {style="text-align: center;"}
+<img src="robot.gif" alt="Welcome AI" width="60%"/>
+:::
+
+------------------------------------------------------------------------
+
+## **¿Por qué este blog?**
+
+La idea de este blog no solo es mostrar lo aprendido, sino también convertirlo en un material accesible y de calidad para otros. Crear contenido reproducible y útil puede ser un puente hacia el aprendizaje compartido, la inspiración y la mejora continua.
+
+Además, quieremos que este espacio sea un ejemplo de cómo construir un portafolio profesional que combine el rigor técnico con un diseño atractivo. Esto puede ser útil tanto para la comunidad académica como para el ámbito profesional.
+
+------------------------------------------------------------------------
+
+## **¿Cómo aprovechar este blog?**
+
+-   **Lee los proyectos:** Cada entrada está organizada para que puedas entender tanto la teoría como las implementaciones prácticas.
+-   **Descarga y reproduce:** Los ejemplos están diseñados para ser replicados, con código y explicaciones detalladas.
+-   **Construye sobre esto:** Usa las ideas presentadas como punto de partida para tus propios proyectos.
+
+------------------------------------------------------------------------
+
+# **Explora, aprende y comparte.**
+
+Gracias por visitar este espacio. Espero que encuentres aquí inspiración, herramientas y conocimientos que puedan acompañarte en tu propio camino en el mundo de la inteligencia artificial y más allá. 🚀
+
+**✨ ¡Manos a la obra! ✨**
+
+::: {style="text-align: center;"}
+<img src="letsgo.gif" alt="Let&apos;s go" width="40%"/>
+:::
