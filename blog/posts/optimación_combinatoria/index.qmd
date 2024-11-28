@@ -298,3 +298,15 @@ En general, las funciones de costo tienden a estabilizarse dentro de un rango li
 Los resultados obtenidos al aplicar el Algoritmo de Colonia de Hormigas y el Algoritmo Genético en tres situaciones diferentes permiten destacar las fortalezas y diferencias de cada uno. Por un lado, el Algoritmo de Colonia de Hormigas logra encontrar una solución más económica y en un menor número de iteraciones en comparación con el Algoritmo Genético. Por lo tanto, en esta evaluación específica, dicho algoritmo puede considerarse más eficiente para resolver el problema en esta situación particular.
 
 No obstante, es importante señalar que la elección del algoritmo adecuado depende en gran medida de la naturaleza del problema. Incluso para un mismo problema, diferentes enfoques pueden llevar a variaciones significativas en los resultados, como se observó en este análisis. Aunque en este caso el Algoritmo de Colonia de Hormigas demostró ser más eficiente que el Algoritmo Genético, esta ventaja es altamente circunstancial y no necesariamente aplicable a todos los contextos. Esto refuerza la importancia de adaptar la metodología a las características específicas del problema a resolver.
+
+En la figura 20 y 21 podemos encontrar las soluciones encontradas con algoritmo de colonia de hormigas y algoritmo genético.
+
+**Figura 20**
+
+Las tres soluciones obtenidas mediante el algoritmo de colonia de hormigas para la optimización de la ruta en las carreteras identificadas son las siguientes:
+
+![Las 3 rutas encontradas mediante el algoritmo de colonia de hormigas](soluciones_colonia_hormigas.gif)
+
+Las tres soluciones obtenidas mediante el algoritmo genético para la optimización de la ruta en las carreteras identificadas son las siguientes:
+
+![Las 3 rutas encontradas mediante el algoritmo genético](soluciones_genetico.gif)
