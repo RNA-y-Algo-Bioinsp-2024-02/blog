@@ -250,7 +250,7 @@ window.Quarto = {
 
 
 
-<div id="021cdf52" class="cell" data-execution_count="1">
+<div id="928c7ea8" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -379,7 +379,7 @@ window.Quarto = {
 <p><strong>Figura 3.</strong></p>
 <p><em>Ruta óptima encontrada mediante el algoritmo de Colonia de Hormigas.</em> <img src="images/imagen1.png" class="img-fluid" alt="Ruta óptima encontrada mediante el algoritmo de Colonia de Hormigas"> <em>Nota.</em> Puede observarse que esta visualización gráfica está dada por líneas rectas entre cada una de las ciudades y no muestra con fidelidad la forma en que se haría el recrorrido. Elaboración propia.</p>
 <p>Con el fin de que el camino óptimo pueda reflejar la realidad del viaje, en la Figura 4 se ilustra la utilización de la API gratuita <em>Open Route Service</em> para graficar el recorrido propuesto a lo largo de las carreteras en el mapa de México. La API key para acceder a este servicio es la siguiente:</p>
-<div id="662b3b1f" class="cell" data-execution_count="2">
+<div id="794534cf" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>api_key <span class="op">=</span> <span class="st">"5b3ce3597851110001cf6248c140bc578aac4c2d95295dc798e53a22"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -465,6 +465,22 @@ window.Quarto = {
 <h3 data-number="1.2.5" class="anchored" data-anchor-id="discusión-de-los-resultados"><span class="header-section-number">1.2.5</span> Discusión de los resultados</h3>
 <p>Los resultados obtenidos al aplicar el Algoritmo de Colonia de Hormigas y el Algoritmo Genético en tres situaciones diferentes permiten destacar las fortalezas y diferencias de cada uno. Por un lado, el Algoritmo de Colonia de Hormigas logra encontrar una solución más económica y en un menor número de iteraciones en comparación con el Algoritmo Genético. Por lo tanto, en esta evaluación específica, dicho algoritmo puede considerarse más eficiente para resolver el problema en esta situación particular.</p>
 <p>No obstante, es importante señalar que la elección del algoritmo adecuado depende en gran medida de la naturaleza del problema. Incluso para un mismo problema, diferentes enfoques pueden llevar a variaciones significativas en los resultados, como se observó en este análisis. Aunque en este caso el Algoritmo de Colonia de Hormigas demostró ser más eficiente que el Algoritmo Genético, esta ventaja es altamente circunstancial y no necesariamente aplicable a todos los contextos. Esto refuerza la importancia de adaptar la metodología a las características específicas del problema a resolver.</p>
+<p>En la figura 20 y 21 podemos encontrar las soluciones encontradas con algoritmo de colonia de hormigas y algoritmo genético.</p>
+<p><strong>Figura 20</strong></p>
+<p>Las tres soluciones obtenidas mediante el algoritmo de colonia de hormigas para la optimización de la ruta en las carreteras identificadas son las siguientes:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="soluciones_colonia_hormigas.gif" class="img-fluid figure-img"></p>
+<figcaption>Las 3 rutas encontradas mediante el algoritmo de colonia de hormigas</figcaption>
+</figure>
+</div>
+<p>Las tres soluciones obtenidas mediante el algoritmo genético para la optimización de la ruta en las carreteras identificadas son las siguientes:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="soluciones_genetico.gif" class="img-fluid figure-img"></p>
+<figcaption>Las 3 rutas encontradas mediante el algoritmo genético</figcaption>
+</figure>
+</div>
 
 
 <!-- -->
@@ -1386,6 +1402,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb3-302"><a href="#cb3-302" aria-hidden="true" tabindex="-1"></a>Los resultados obtenidos al aplicar el Algoritmo de Colonia de Hormigas y el Algoritmo Genético en tres situaciones diferentes permiten destacar las fortalezas y diferencias de cada uno. Por un lado, el Algoritmo de Colonia de Hormigas logra encontrar una solución más económica y en un menor número de iteraciones en comparación con el Algoritmo Genético. Por lo tanto, en esta evaluación específica, dicho algoritmo puede considerarse más eficiente para resolver el problema en esta situación particular.</span>
 <span id="cb3-303"><a href="#cb3-303" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-304"><a href="#cb3-304" aria-hidden="true" tabindex="-1"></a>No obstante, es importante señalar que la elección del algoritmo adecuado depende en gran medida de la naturaleza del problema. Incluso para un mismo problema, diferentes enfoques pueden llevar a variaciones significativas en los resultados, como se observó en este análisis. Aunque en este caso el Algoritmo de Colonia de Hormigas demostró ser más eficiente que el Algoritmo Genético, esta ventaja es altamente circunstancial y no necesariamente aplicable a todos los contextos. Esto refuerza la importancia de adaptar la metodología a las características específicas del problema a resolver.</span>
+<span id="cb3-305"><a href="#cb3-305" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-306"><a href="#cb3-306" aria-hidden="true" tabindex="-1"></a>En la figura 20 y 21 podemos encontrar las soluciones encontradas con algoritmo de colonia de hormigas y algoritmo genético.</span>
+<span id="cb3-307"><a href="#cb3-307" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-308"><a href="#cb3-308" aria-hidden="true" tabindex="-1"></a>**Figura 20**</span>
+<span id="cb3-309"><a href="#cb3-309" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-310"><a href="#cb3-310" aria-hidden="true" tabindex="-1"></a>Las tres soluciones obtenidas mediante el algoritmo de colonia de hormigas para la optimización de la ruta en las carreteras identificadas son las siguientes:</span>
+<span id="cb3-311"><a href="#cb3-311" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-312"><a href="#cb3-312" aria-hidden="true" tabindex="-1"></a><span class="al">![Las 3 rutas encontradas mediante el algoritmo de colonia de hormigas](soluciones_colonia_hormigas.gif)</span></span>
+<span id="cb3-313"><a href="#cb3-313" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-314"><a href="#cb3-314" aria-hidden="true" tabindex="-1"></a>Las tres soluciones obtenidas mediante el algoritmo genético para la optimización de la ruta en las carreteras identificadas son las siguientes:</span>
+<span id="cb3-315"><a href="#cb3-315" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-316"><a href="#cb3-316" aria-hidden="true" tabindex="-1"></a><span class="al">![Las 3 rutas encontradas mediante el algoritmo genético](soluciones_genetico.gif)</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
