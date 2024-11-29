@@ -1,0 +1,1454 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Julián Castaño Pineda">
+<meta name="author" content="Luis Andrés Altamar Romero">
+<meta name="author" content="Catalina Restrepo Salgado">
+<meta name="author" content="Tomás Rodríguez Taborda">
+<meta name="dcterms.date" content="2024-11-15">
+
+<title>Optimización Combinatoria – Redes Neuronales Artificiales y Algoritmos Bioinspirados</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-01c78b5cd655e4cd89133cf59d535862.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-474c6d7e63be50eb6972897072b39b27.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-818b32141788da5f3afc8302f6e847b9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-1851c9bb8f3f4849af8ba858f06152b9.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Redes Neuronales Artificiales y Algoritmos Bioinspirados</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <div class="quarto-title-block"><div><h1 class="title">Optimización Combinatoria</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+                                <div class="quarto-categories">
+                <div class="quarto-category">optimización</div>
+                <div class="quarto-category">métodos combinatorios</div>
+                <div class="quarto-category">python</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Authors</div>
+      <div class="quarto-title-meta-contents">
+               <p>Julián Castaño Pineda </p>
+               <p>Luis Andrés Altamar Romero </p>
+               <p>Catalina Restrepo Salgado </p>
+               <p>Tomás Rodríguez Taborda </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">November 15, 2024</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#optimización-combinatoria" id="toc-optimización-combinatoria" class="nav-link active" data-scroll-target="#optimización-combinatoria"><span class="header-section-number">1</span> Optimización Combinatoria</a>
+  <ul class="collapse">
+  <li><a href="#problema-del-viajero" id="toc-problema-del-viajero" class="nav-link" data-scroll-target="#problema-del-viajero"><span class="header-section-number">1.1</span> Problema del Viajero</a>
+  <ul class="collapse">
+  <li><a href="#tareas" id="toc-tareas" class="nav-link" data-scroll-target="#tareas"><span class="header-section-number">1.1.1</span> Tareas:</a></li>
+  <li><a href="#representación-visual" id="toc-representación-visual" class="nav-link" data-scroll-target="#representación-visual"><span class="header-section-number">1.1.2</span> Representación Visual:</a></li>
+  <li><a href="#discusión" id="toc-discusión" class="nav-link" data-scroll-target="#discusión"><span class="header-section-number">1.1.3</span> Discusión:</a></li>
+  </ul></li>
+  <li><a href="#solución-de-las-tareas-propuestas" id="toc-solución-de-las-tareas-propuestas" class="nav-link" data-scroll-target="#solución-de-las-tareas-propuestas"><span class="header-section-number">1.2</span> Solución de las tareas propuestas</a>
+  <ul class="collapse">
+  <li><a href="#extracción-de-datos" id="toc-extracción-de-datos" class="nav-link" data-scroll-target="#extracción-de-datos"><span class="header-section-number">1.2.1</span> Extracción de datos</a></li>
+  <li><a href="#definición-de-gastos" id="toc-definición-de-gastos" class="nav-link" data-scroll-target="#definición-de-gastos"><span class="header-section-number">1.2.2</span> Definición de gastos</a></li>
+  <li><a href="#ruta-óptima" id="toc-ruta-óptima" class="nav-link" data-scroll-target="#ruta-óptima"><span class="header-section-number">1.2.3</span> Ruta óptima</a></li>
+  <li><a href="#verificación-de-la-calidad-de-la-solución" id="toc-verificación-de-la-calidad-de-la-solución" class="nav-link" data-scroll-target="#verificación-de-la-calidad-de-la-solución"><span class="header-section-number">1.2.4</span> Verificación de la calidad de la solución</a></li>
+  <li><a href="#discusión-de-los-resultados" id="toc-discusión-de-los-resultados" class="nav-link" data-scroll-target="#discusión-de-los-resultados"><span class="header-section-number">1.2.5</span> Discusión de los resultados</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<section id="optimización-combinatoria" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Optimización Combinatoria</h1>
+<p>La optimización combinatoria es fundamental para resolver problemas complejos en rutas y logística. Este enfoque resulta especialmente útil en desafíos como el que se presenta a continuación, en el que un vendedor viajero busca la ruta más eficiente para recorrer los estados de México. Las técnicas empleadas para abordar este problema incluyen el algoritmo de colonia de hormigas, inspirado en el comportamiento de las hormigas en la naturaleza y los algoritmos genéticos, que simulan procesos evolutivos como la selección, cruce y mutación. Estas herramientas permitirán abordar el problema con la consideración de múltiples variables y restricciones, permitiendo además la optimización de recorridos en términos de tiempo y costo de manera.</p>
+<section id="problema-del-viajero" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="problema-del-viajero"><span class="header-section-number">1.1</span> Problema del Viajero</h2>
+<p>Un vendedor debe realizar un recorrido por <strong>todas las capitales</strong> de los <strong>32 estados</strong> de los <strong>Estados Unidos Mexicanos</strong>.</p>
+<section id="tareas" class="level3" data-number="1.1.1">
+<h3 data-number="1.1.1" class="anchored" data-anchor-id="tareas"><span class="header-section-number">1.1.1</span> Tareas:</h3>
+<ol type="1">
+<li><strong>Optimización con métodos metaheurísticos:</strong>
+<ul>
+<li>Utilice <strong>colonias de hormigas</strong> para encontrar el orden óptimo del recorrido.</li>
+<li>Utilice <strong>algoritmos genéticos</strong> para encontrar el orden óptimo del recorrido.</li>
+</ul></li>
+<li><strong>Costo del recorrido:</strong>
+<ul>
+<li>El costo de desplazamiento entre ciudades se calcula como la suma de:
+<ul>
+<li>El valor de la <strong>hora del vendedor</strong> (este es un parámetro que debe estudiarse).</li>
+<li>El <strong>costo de los peajes</strong>.</li>
+<li>El <strong>costo del combustible</strong>.</li>
+</ul></li>
+<li>Cada equipo debe definir el <strong>vehículo</strong> que utilizará el vendedor para realizar el recorrido y, con base en esta elección, <strong>calcular el costo del combustible</strong>.</li>
+</ul></li>
+</ol>
+</section>
+<section id="representación-visual" class="level3" data-number="1.1.2">
+<h3 data-number="1.1.2" class="anchored" data-anchor-id="representación-visual"><span class="header-section-number">1.1.2</span> Representación Visual:</h3>
+<ul>
+<li>Cree un <strong>GIF animado</strong> o un <strong>video</strong> que muestre cómo se comporta la <strong>mejor solución</strong> encontrada, usando un <strong>gráfico del recorrido</strong> en el mapa de México.</li>
+</ul>
+<hr>
+</section>
+<section id="discusión" class="level3" data-number="1.1.3">
+<h3 data-number="1.1.3" class="anchored" data-anchor-id="discusión"><span class="header-section-number">1.1.3</span> Discusión:</h3>
+<p>Reflexione sobre: - Los resultados obtenidos con las <strong>colonias de hormigas</strong> y los <strong>algoritmos genéticos</strong>. - Comparación de costos y tiempo de ejecución.</p>
+</section>
+</section>
+<section id="solución-de-las-tareas-propuestas" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="solución-de-las-tareas-propuestas"><span class="header-section-number">1.2</span> Solución de las tareas propuestas</h2>
+<section id="extracción-de-datos" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="extracción-de-datos"><span class="header-section-number">1.2.1</span> Extracción de datos</h3>
+<p>Para empezar a solucionar el problema, es necesario obtener información acerca del valor del salario del vendedor, el costo de los peajes y el cálculo correspondiente al costo total destinado a combustible; definiendo entonces el modelo de automóvil a considerar en el ejercicio, junto con su respectivo costo de gasolina. Durante el desarrollo de este proceso de extracción de información se tomaron como referencia las ciudades capitales de cada uno de los estados mexicanos y se observó el mapa de la división política de México en sus 32 estados, a fin de tener un mejor entendimiento de la región.</p>
+<p><strong>Figura 1.</strong></p>
+<p><em>Mapa de México.</em> <img src="images/mapa_mexico.jpg" class="img-fluid" alt="Mapa de México"> Adaptado de <em>Fondo plano de mapa de México</em> [Ilustración], por Freepik, 2024 (https://www.freepik.es/vector-gratis/mapa-mexico). Licencia gratuita.</p>
+<section id="distancias-y-tiempo-de-conducción" class="level4" data-number="1.2.1.1">
+<h4 data-number="1.2.1.1" class="anchored" data-anchor-id="distancias-y-tiempo-de-conducción"><span class="header-section-number">1.2.1.1</span> Distancias y tiempo de conducción</h4>
+<p>La tabla de distancias y tiempo de conducción entre las ciudades fue obtenida a través del sitio web <span class="citation" data-cites="mejoresrutas2024">Mejores Rutas (<a href="#ref-mejoresrutas2024" role="doc-biblioref">2024b</a>)</span>, diseñado especialmente para el cálculo y planeación de viajes a lo largo de todo el país. Dicho recurso online permite obtener información como distancias, tiempo de conducción y otros valores asociados entre dos ciudades ingresando el nombre de cada una de ellas.</p>
+</section>
+<section id="peajes" class="level4" data-number="1.2.1.2">
+<h4 data-number="1.2.1.2" class="anchored" data-anchor-id="peajes"><span class="header-section-number">1.2.1.2</span> Peajes</h4>
+<p>Para obtener la información de los peajes, fue utilizado el mismo sitio web <span class="citation" data-cites="mejoresrutas2024">Mejores Rutas (<a href="#ref-mejoresrutas2024" role="doc-biblioref">2024b</a>)</span>, el cual también contiene datos relacionados con el costo actual de los peajes que se encuentran entre las ciudades donde se realiza la consulta.</p>
+<p>Debido al gran número de combinaciones posibles, se programó un bot en Python empleando la librería <em>Beautiful Soup</em>, lo que permitió automatizar la extracción de la información anteriormente mencionada. En el repositorio de GitHub es posible encontrar el archivo con el código para llevar a cabo esta tarea.</p>
+</section>
+</section>
+<section id="definición-de-gastos" class="level3" data-number="1.2.2">
+<h3 data-number="1.2.2" class="anchored" data-anchor-id="definición-de-gastos"><span class="header-section-number">1.2.2</span> Definición de gastos</h3>
+<p>En la siguiente sección se definen los gastos que deben ser consultados, entre los cuales se encuentran el salario del vendedor, el modelo de automóvil a utilizar y su correspondiente gasto de combustible.</p>
+<section id="salario-del-vendedor" class="level4" data-number="1.2.2.1">
+<h4 data-number="1.2.2.1" class="anchored" data-anchor-id="salario-del-vendedor"><span class="header-section-number">1.2.2.1</span> Salario del vendedor</h4>
+<p>Para definir el salario del vendedor, se toma como referencia el salario minimo en México, que actualmente se encuentra en 248,93 pesos diarios según la <span class="citation" data-cites="conasami2024">Comisión Nacional de los Salarios Mínimos (CONASAMI) (<a href="#ref-conasami2024" role="doc-biblioref">2024</a>)</span>; por lo tanto, para una jornada de 8 horas, el salario mínimo por hora es de 31,12 aproximadamente. Dicho esto, se decide establecer un salario de 35 pesos mexicanos por hora para el vendedor del presente ejercicio.</p>
+</section>
+<section id="modelo-del-carro-y-gasto-en-gasolina" class="level4" data-number="1.2.2.2">
+<h4 data-number="1.2.2.2" class="anchored" data-anchor-id="modelo-del-carro-y-gasto-en-gasolina"><span class="header-section-number">1.2.2.2</span> Modelo del carro y gasto en gasolina</h4>
+<p>De acuerdo con <span class="citation" data-cites="elpais2024">El País (<a href="#ref-elpais2024" role="doc-biblioref">2024</a>)</span>, el modelo de automóvil más vendido actualmente en México es el Nissan Versa, por lo que se ha considerado conveniente seleccionarlo como medio de transporte a utilizar por parte del vendedor. Esto permitirá hacer una estimación más justa del costo total de realizar la ruta por los 32 estados mexicanos en el contexto de dicho país.</p>
+<p>Adicionalmente, es importante considerar que el rendimiento promedio de este modelo en carreteras es de 25 kilómetros por litro de acuerdo con información proporcionada por <span class="citation" data-cites="nissanversarendimiento2023">Redacción De Cero a 100 (<a href="#ref-nissanversarendimiento2023" role="doc-biblioref">2023</a>)</span> y que el tipo de gasolina que utiliza es la comúnmente denominada como “Gasolina Magna” en México la cual, al día 14 de noviembre, tiene un precio promedio de 23.96 pesos mexicanos por litro según <span class="citation" data-cites="gasolinamx2024">GasolinaMX.com (<a href="#ref-gasolinamx2024" role="doc-biblioref">2024</a>)</span>.</p>
+</section>
+<section id="transformaciones" class="level4" data-number="1.2.2.3">
+<h4 data-number="1.2.2.3" class="anchored" data-anchor-id="transformaciones"><span class="header-section-number">1.2.2.3</span> Transformaciones</h4>
+<p>Se ha obtenido la información anterior con el objetivo de calcular el costo total de desplazamiento entre las ciudades capitales de México, sin embargo, se observa que no todos los datos se encuentran en las unidades requeridas (MXN): hay magnitudes en litros, horas, kilómetros, etc. Por lo tanto, se realizarán las siguientes transformaciones en todas las unidades para poder sumar dichos gastos en pesos mexicanos, a diferencia del caso de los peajes, pues estos ya se encuentran en la unidad monetaria deseada.</p>
+<section id="tiempo-de-viaje" class="level5" data-number="1.2.2.3.1">
+<h5 data-number="1.2.2.3.1" class="anchored" data-anchor-id="tiempo-de-viaje"><span class="header-section-number">1.2.2.3.1</span> Tiempo de viaje</h5>
+<p>El costo por el salario del vendedor es calculado la forma que se muestra en la Ecuación (1):</p>
+<p><span class="math display">\[
+\text{Costo\_vendedor} = \text{tiempo} \times \text{salario\_del\_vendedor} \tag{1}
+\]</span></p>
+</section>
+</section>
+<section id="gasolina-para-el-viaje" class="level4" data-number="1.2.2.4">
+<h4 data-number="1.2.2.4" class="anchored" data-anchor-id="gasolina-para-el-viaje"><span class="header-section-number">1.2.2.4</span> Gasolina para el viaje</h4>
+<p>El gasto total en gasolina se obtiene con la fórmula mostrada en la Ecuación (2):</p>
+<p><span class="math display">\[
+\text{Costo\_gasolina} = \left( \frac{\text{Distancia}}{\text{Rendimiento (km/litro)}} \right) \times \text{Precio\_por\_litro} \tag{2}
+\]</span></p>
+<section id="gasto-total" class="level5" data-number="1.2.2.4.1">
+<h5 data-number="1.2.2.4.1" class="anchored" data-anchor-id="gasto-total"><span class="header-section-number">1.2.2.4.1</span> Gasto total</h5>
+<p>Después de realizar las operaciones mostradas anteriormente, se tiene como resultado toda la información necesaria en las unidades requeridas para obtener un valor correspondiente al gasto total del viaje en pesos mexicanos, de acuerdo con lo definido en la Ecuación (3).</p>
+<p><span class="math display">\[
+\text{Gasto\_recorrido} = \text{Costo\_gasolina} + \text{Costo\_vendedor} + \text{Costo\_Peajes} \tag{3}
+\]</span></p>
+</section>
+</section>
+</section>
+<section id="ruta-óptima" class="level3" data-number="1.2.3">
+<h3 data-number="1.2.3" class="anchored" data-anchor-id="ruta-óptima"><span class="header-section-number">1.2.3</span> Ruta óptima</h3>
+<p>A continuación, se procede con la utilización de los algoritmos propuestos para este caso: Colonia de Hormigas y Algoritmos Genéticos, con el fin de responder a la actividad planteada al principio del presente ejercicio, esto es, hallar la ruta óptima para el recorrido del vendedor a través de los 32 estados de México.</p>
+<section id="colonia-de-hormigas" class="level4" data-number="1.2.3.1">
+<h4 data-number="1.2.3.1" class="anchored" data-anchor-id="colonia-de-hormigas"><span class="header-section-number">1.2.3.1</span> Colonia de Hormigas</h4>
+<p>Considerando la información recolectada en <span class="citation" data-cites="acowikipedia2024">Wikipedia (<a href="#ref-acowikipedia2024" role="doc-biblioref">2024b</a>)</span> y <span class="citation" data-cites="acobook2018">Dorigo and Stützle (<a href="#ref-acobook2018" role="doc-biblioref">2018</a>)</span> y lo presentado en la primera sección del trabajo, puede decirse que los <strong>algoritmos de colonia de hormigas (Ant Colony Optimization, ACO)</strong> son una técnica de optimización basada en la inteligencia colectiva observada en las colonias de hormigas naturales. Fueron inspirados en el comportamiento de las hormigas en la naturaleza para resolver problemas complejos de optimización combinatoria, en esta segunda parte del trabajo profundizaremos más en sus hiperparámetros claves los cuales son:</p>
+<ul>
+<li><p><strong>Cantidad de hormigas:</strong> Cantidad de hormigas que participarán en cada iteración de la búsqueda de soluciones. Influye en la capacidad del algoritmo de explorar diferentes soluciones de manera simultánea. En este caso se utilizarán 32 hormigas, es decir, igual al número de estados en México.</p></li>
+<li><p><strong>Alpha</strong>: Controla la influencia de la feromona en la probabilidad de que una hormiga elija ese camino. A medida que el valor aumenta, las hormigas son más propensas a seguir caminos con más feromona. Aquí se utilizará un valor de 1 para otorgar una influencia moderada de las feromonas depositadas.</p></li>
+<li><p><strong>Beta</strong>: Controla la preferencia de las hormigas por caminos más “baratos” o prometedores, lo cual ayuda aumentar la exploración. Se va a considerar un valor de 2, puesto que se busca minimizar el costo del viaje</p></li>
+<li><p><strong>\(\rho\)</strong>: Indica la tasa de evaporación de la feromona, lo cual evita que las soluciones previas influencien las iteraciones futuras. Se seleccionó una tasa de evaporación del 0.5, es decir, el 50% de las feromonas se evaporan en cada iteración.</p></li>
+<li><p><strong>\(Q\)</strong>: Cantidad de feromona depositada por una hormiga en su recorrido tras encontrar una solución. Se utilizará un valor de 100 para indicar la cantidad de feromonas en el camino.</p></li>
+</ul>
+<p>Una vez definidos los hiperparámetros, se puede continuar con la ejecución del algoritmo de colonia de hormigas, cuyo detalle se puede observar más a profundidad en el repositorio de GitHub. En la Figura 2 se puede observar cómo va variando el costo de realizar el viaje en cada una de las iteraciones que realizó dicho algoritmo.</p>
+<p><strong>Figura 2.</strong></p>
+<p><em>Función costo del algoritmo Colonia de Hormigas.</em> <img src="images/costo-aco-primera.png" class="img-fluid" alt="Función costo del algoritmo Colonia de Hormigas"> <em>Nota.</em> La gráfica muestra la evolución del costo total del viaje a medida que se ejecutan las diferentes iteraciones del algoritmo, que para este caso fueron 500. Elaboración propia.</p>
+<p>De acuerdo con la imagen anterior, es posible observar que el costo mínimo se alcanza relativamente rápido, antes de las 100 iteraciones. En este sentido, también es interesante notar que el cálculo de esta función de costo varía al considerar diferentes variaciones que puedan realizarse sobre el planteamiento inicial del problema, comportamiento que se verá más adelante.</p>
+<p>Posteriormente, en la Figura 3 puede verse la ruta óptima encontrada por el algoritmo de colonia de hormigas para que el vendedor pueda recorrer los 32 estados mexicanos.</p>
+<p><strong>Figura 3.</strong></p>
+<p><em>Ruta óptima encontrada mediante el algoritmo de Colonia de Hormigas.</em> <img src="images/imagen1.png" class="img-fluid" alt="Ruta óptima encontrada mediante el algoritmo de Colonia de Hormigas"> <em>Nota.</em> Puede observarse que esta visualización gráfica está dada por líneas rectas entre cada una de las ciudades y no muestra con fidelidad la forma en que se haría el recrorrido. Elaboración propia.</p>
+<p>Con el fin de que el camino óptimo pueda reflejar la realidad del viaje, en la Figura 4 se ilustra la utilización de la API gratuita <em>Open Route Service</em> para graficar el recorrido propuesto a lo largo de las carreteras en el mapa de México. La API key para acceder a este servicio es la siguiente:</p>
+<div id="f608c4ff" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>api_key <span class="op">=</span> <span class="st">"5b3ce3597851110001cf6248c140bc578aac4c2d95295dc798e53a22"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p><strong>Figura 4.</strong></p>
+<p><em>Forma realista del camino óptimo encontrado mediante el uso del algoritmo de Colonia de Hormigas.</em> <img src="images/imagen2.png" class="img-fluid" alt="Forma realista del camino óptimo encontrado mediante el uso del algoritmo de Colonia de Hormigas"> <em>Nota.</em> El gráfico muestra las carreteras que deberían seguirse para completar el recorrido propuesto, sin embargo, algunos aspectos siguen siendo siendo interesantes. Elaboración propia.</p>
+<p>Como se mencionó anteriormente, de esta forma se obtiene una ruta óptima más realista. No obstante, llama la atención que, en ciertas secciones, la ruta implica cruzar cuerpos de agua. Al investigar las razones de este comportamiento, se descubrió que para conectar algunos estados del país como Baja California Sur y Sinaloa, la opción de tomar un ferri es considerada la más conveniente según servicios de planificación de trayectos como <span class="citation" data-cites="mejoresrutasferri2024">Mejores Rutas (<a href="#ref-mejoresrutasferri2024" role="doc-biblioref">2024a</a>)</span> y <span class="citation" data-cites="bajaferries2024">Baja Ferries (<a href="#ref-bajaferries2024" role="doc-biblioref">2024</a>)</span>.</p>
+<p>Dado que la matriz de costos actual no considera el valor asociado al uso del ferri ni los gastos asociados al transporte del vehículo para continuar posteriormente el recorrido, se propone un análisis de los siguientes escenarios:</p>
+<ol type="1">
+<li><p>Incluir el costo del ferri en la matriz de costos y evaluar la ruta resultante.</p></li>
+<li><p>Realizar el viaje completamente por tierra, excluyendo los estados que se alcanzan únicamente utilizando el ferri.</p></li>
+</ol>
+<p><strong>Primer escenario</strong></p>
+<p>Se consultó el valor del tiquete de ferri para una persona adulta y el costo del transporte de un automóvil, encontrando que el más económico para un adulto es de <strong>1,460 pesos mexicanos</strong>, mientras que el transporte del automóvil tiene un valor de <strong>5,480 pesos mexicanos</strong> según <span class="citation" data-cites="debate2023">Debate (<a href="#ref-debate2023" role="doc-biblioref">2023</a>)</span>.</p>
+<p>Estos costos fueron utilizados como parámetros para el algoritmo de colonia de hormigas, llegando a que, como se observa en la Figura 5, el algoritmo sigue alcanzando un mínimo de manera relativamente rápida.</p>
+<p><strong>Figura 5.</strong></p>
+<p><em>Evolución de la función costo del algoritmo de Colonia de Hormigas teniendo en cuenta al ferri.</em> <img src="images/costos-aco-segunda.png" class="img-fluid" alt="Evolución de la función costo del algoritmo de Colonia de Hormigas teniendo en cuenta al ferri"> <em>Nota.</em> Es interesante notar que, a pesar del incremento en el costo de moverse entre dos estados (debido al ferri), el algoritmo logró encontrar una ruta más barata que la hallada originalmente. Esto sugiere que en la primera solución encontrada el algoritmo podría haberse quedado atascado en un mínimo local debido a la falta de iteraciones. Elaboración propia.</p>
+<p>Además, también es posible observar que el tiempo y la distancia se redujeron en esta nueva solución, lo cual permite pensar que esta ruta no solo es más económica, sino también más eficiente, a pesar de que está considerando el costo adicional del ferri y el transporte del vehículo.</p>
+<p>Los resultados correspondientes a la visualización gráfica del camino óptimo encontrado para el vendedor en este escenario pueden observarse a continuación, en las Figuras 6 y 7.</p>
+<p><strong>Figura 6.</strong></p>
+<p><em>Ruta óptima encontrada mediante el algoritmo de Colonia de Hormigas teniendo en cuenta el costo del ferri.</em> <img src="images/imagen3.png" class="img-fluid" alt="Ruta óptima encontrada mediante el algoritmo de Colonia de Hormigas teniendo en cuenta el costo del ferri"> <em>Nota.</em> Las observaciones respecto a la forma en que se conectan los distintos puntos del recorrido permanecen iguales que en el caso considerado originalmente. Elaboración propia.</p>
+<p><strong>Figura 7.</strong></p>
+<p><em>Carreteras encontradas mediante el uso del algoritmo de Colonia de Hormigas.</em> <img src="images/imagen4.png" class="img-fluid" alt="Carreteras encontradas mediante el uso del algoritmo de Colonia de Hormigas"> <em>Nota.</em> Esta imagen también fue generada por medio del uso de la API gratuita, así que sus resultados son reproducibles. Elaboración propia.</p>
+<p><strong>Segundo escenario</strong></p>
+<p>En este segundo escenario, la ciudad de <strong>La Paz</strong> fue eliminada del recorrido, por lo que el viaje ahora solo incluye los <strong>31 estados restantes</strong>. En consecuencia, también se redujo la cantidad de hormigas utilizadas en el algoritmo a un valor de <strong>31</strong>, asignando una hormiga por estado para realizar la búsqueda.</p>
+<p>Como era de esperarse, el precio del recorrido se redujo en este caso. Sin embargo, al algoritmo le tomó muchas más iteraciones encontrar el costo mínimo, como se observa en la Figura 8.</p>
+<p><strong>Figura 8.</strong></p>
+<p><em>Evolución de la función costo para los 31 estados de México.</em> <img src="images/costo-aco-tercera.png" class="img-fluid" alt="Evolución de la función costo para los 31 estados de México"> <em>Nota.</em> El hecho de que el planteamiento inicial de ciudades y estados a recorrer cambiara al no tener en cuenta el estado que solamente puede ser conectado vía marítima fue un factor determinante en la ejecución del algoritmo de hormigas, siendo mucho menos rápido que en el primer escenario (incluso que en el escenario original). Elaboración propia.</p>
+<p>A diferencia del caso anterior, la Figura 8 también muestra que la <strong>distancia</strong> y el <strong>tiempo</strong> aumentaron. Esto se debe a que, al no utilizar el ferri, el automóvil tuvo que realizar un recorrido más largo en ciertas partes para completar su ruta. Por lo tanto, aunque esta solución es más eficiente en términos de costo, no lo es en términos de tiempo y distancia recorrida.</p>
+<p>La visualización gráfica de los resultados obtenidos para este caso pueden observarse en las Figuras 9 y 10, teniendo en cuenta las mismas consideraciones anteriormente mencionadas.</p>
+<p><strong>Figura 9.</strong></p>
+<p><em>Ruta óptima encontrada mediante el uso del algoritmo de Colonia de Hormigas para 31 estados de México.</em> <img src="images/imagen5.png" class="img-fluid" alt="Ruta encontradas mediante el uso del algoritmo de Colonia de Hormigas para 31 estados de México"> Elaboración propia.</p>
+<p><strong>Figura 10.</strong></p>
+<p><em>Orden de las carreteras encontrado mediante el uso del algoritmo de Colonia de Hormigas para 31 estados de México.</em> <img src="images/imagen6.png" class="img-fluid" alt="Orden de las carreteras encontrado mediante el uso del algoritmo de Colonia de Hormigas para 31 estados de México"> <em>Nota.</em> Sumado a los inconvenientes observados en este escenario, al desconectar uno de los estados de México, puede observarse que una gran región del país queda excluida del recorrido del vendedor, lo que puede implicar significativas pérdidas económicas y oportunidades de establecer nuevos negocios.</p>
+</section>
+<section id="algoritmo-genético" class="level4" data-number="1.2.3.2">
+<h4 data-number="1.2.3.2" class="anchored" data-anchor-id="algoritmo-genético"><span class="header-section-number">1.2.3.2</span> Algoritmo genético</h4>
+<p>De acuerdo con información proporcionada por <span class="citation" data-cites="tesisga2009">José Ángel Fernández Prieto (<a href="#ref-tesisga2009" role="doc-biblioref">2029</a>)</span> y encontrada en <span class="citation" data-cites="gawikipedia2024">Wikipedia (<a href="#ref-gawikipedia2024" role="doc-biblioref">2024a</a>)</span>, y como se explico en la primera sección del trabajo, puede decirse que los <strong>algoritmos genéticos (Genetic Algorithms, GA)</strong> son una técnica de optimización inspirada en los principios de la selección natural y la evolución biológica. Los GA buscan soluciones óptimas mediante la creación, evaluación y modificación de una población de individuos, representando posibles soluciones a un problema dado. La evolución de la población se realiza mediante operadores genéticos como la mutación y en esta sección profundizaremos más en sus hiperparámetros clave, los cuales son:</p>
+<ul>
+<li><p><strong>Tamaño de la población</strong>: Define el número de individuos en cada generación. Un tamaño de población más grande permite una mejor exploración del espacio de soluciones, pero también aumenta el tiempo de cómputo. En este caso, se utilizará una población de 100 individuos, lo que proporciona un equilibrio adecuado entre diversidad y eficiencia computacional.</p></li>
+<li><p><strong>Número de generaciones</strong>: Especifica cuántas veces se evolucionará la población mediante el proceso de selección, cruce y mutación; se consideran adecuadas un total de 200 generaciones para permitir al algoritmo explorar el espacio de búsqueda y converger hacia una solución óptima o cercana al óptimo.</p></li>
+<li><p><strong>Tasa de mutación</strong>: Representa la probabilidad de que un gen sea modificado aleatoriamente en un individuo. La mutación introduce variación genética, lo que ayuda a explorar nuevas áreas del espacio de búsqueda y a evitar estancamientos en óptimos locales. Se empleará una tasa de mutación de 0.1 (10%), lo que mantiene una buena cantidad de diversidad sin perturbar excesivamente a la población.</p></li>
+</ul>
+<p>De la misma manera en que se realizó en la sección anterior, la presentación de resultados comienza con una obtención de resultados iniciales considerando los 32 estados de México y sin tener en cuenta el costo del ferri.</p>
+<p>Como se observa en la Figura 11, alcanzar el mínimo toma casi 175 generaciones, lo que indica que este algoritmo se demora más en llegar a un valor mínimo en comparación con el algoritmo de colonia de hormigas. Además, la solución que encuentra tiene un costo mayor y toma más tiempo y una mayor distancia completarla.</p>
+<p><strong>Figura 11.</strong></p>
+<p><em>Evolución de la función costo del algoritmo genético.</em> <img src="images/costo-genetico-primera.png" class="img-fluid" alt="Evolución de la función costo del algoritmo genético"> <em>Nota.</em> En la ejecución de este algoritmo, la solución óptima se encontró en una iteración muy cercana al límite máximo establecido, a diferencia del algoritmo de colonia de hormigas, que lo realizó muy rápidamente. Elaboración propia.</p>
+<p>Ahora bien, en las Figuras 12 y 13 se tiene la visualización gráfica del recorrido propuesto por este algoritmo, siguiendo los mismos procedimientos de utilización de la API que se mencionaron de manera previa.</p>
+<p><strong>Figura 12.</strong></p>
+<p><em>Ruta óptima encontrada mediante algoritmo genético.</em> <img src="images/imagen1_ga.png" class="img-fluid" alt="Ruta óptima encontrada mediante algoritmo genético"> Elaboración propia.</p>
+<p><strong>Figura 13.</strong></p>
+<p><em>Ruta óptima con las carreteras encontrada mediante algoritmo genético.</em> <img src="images/imagen2_ga.png" class="img-fluid" alt="Ruta óptima con las carreteras encontrada mediante algoritmo genético"> Elaboración propia.</p>
+<p>Nuevamente, se considera pertinente considerar los dos escenarios adicionales de análisis: un nuevo cálculo de costos teniendo en cuenta el tiquete de ferri y el transporte adicional para el automóvil y la exclusión La Paz, como territorio que solo puede conectarse a través de cuerpos de agua.</p>
+<p><strong>Primer escenario</strong></p>
+<p>Es posible observar que al tomar en cuenta el costo del ferri, en este caso sí se aumenta el costo del camino óptimo y el número de iteraciones se reduce un poco, como puede verse en la Figura 14. Sin embargo, el tiempo que toma completar esta ruta es mucho más alto que en el caso anterior, lo que podría indicar que esta solución se quedó atrapada en un mínimo local.</p>
+<p><strong>Figura 14.</strong></p>
+<p><em>Evolución de la función costo del algoritmo genético teniendo en cuenta el costo del ferri.</em> <img src="images/costo-genetico-segunda.png" class="img-fluid" alt="Evolución de la función costo del algoritmo genético teniendo en cuenta el costo del ferri"> Elaboración propia.</p>
+<p>Por otra parte, en las Figuras 15 y 16 se puede observar el recorrido propuesto por esta solución del algoritmo para que el vendedor se desplace por todo el país, viendo que los puntos de inicio y finalización son diferentes a los que había arrojado como resultado el algoritmo de colonia de hormigas.</p>
+<p><strong>Figura 15.</strong></p>
+<p><em>Ruta óptima encontrada mediante algoritmos genéticos teniendo en cuenta el costo del ferri.</em> <img src="images/imagen3_ga.png" class="img-fluid" alt="Ruta óptima encontrada mediante algoritmos genéticos teniendo en cuenta el costo del ferri"> <em>Nota.</em> Sabiendo que la ruta marítima que seleccionaron ambos algoritmos es la misma, puede decirse que las diferencias entre sus resultados radican en otros aspectos inherentes a su propia definición, como pueden serlo los hiperparámetros y la forma en que realizan una búsqueda de la solución óptima. Elaboración propia.</p>
+<p><strong>Figura 16.</strong></p>
+<p><em>Ruta óptima de carreteras encontrada mediante algoritmo genético teniendo en cuenta el costo del ferri.</em> <img src="images/imagen4_ga.png" class="img-fluid" alt="Ruta óptima de carreteras encontrada mediante algoritmo genético teniendo en cuenta el costo del ferri"> <em>Nota.</em> La utilización de la API se dio exactamente igual que en los escenarios anteriores, de manera que estos resultados también son reproducibles.</p>
+<p><strong>Segundo escenario</strong></p>
+<p>En este último escenario, el cual solamente considera 31 de los estados de México, es posible notar que el costo óptimo nuevamente bajó y, a diferencia del algoritmo de colonia de hormigas, el algoritmo genético sí encuentra una forma de reducir el tiempo y la distancia del recorrido, mostrando una mejoría en ese aspecto.</p>
+<p>De acuerdo con la Figura 17, en este escenario el algoritmo genético necesitó más iteraciones para encontrar un mínimo, lo cual se ve compensado por el hecho de que mejoró el desempeño del algoritmo de colonia de hormigas en términos de las variables anteriormente mencionadas.</p>
+<p><strong>Figura 17.</strong></p>
+<p><em>Evolución de la función costo del algoritmo genético cuando se tienen en cuenta 31 estados de México.</em> <img src="images/costo-genetico-tercera.png" class="img-fluid" alt="Evolución de la función costo del algoritmo genético cuando se tienen en cuenta 31 estados de México"> Elaboración propia.</p>
+<p>Finalmente, las Figuras 18 y 19 permiten observar el recorrido que debería realizar el vendedor de acuerdo con este escenario propuesto, en el que también queda aislada una amplia región del país debido a la decisión de no considerar recorridos que no fueran terrestres.</p>
+<p><strong>Figura 18.</strong></p>
+<p><em>Ruta óptima encontrada mediante algoritmos genéticos teniendo en cuenta solo 31 estados de México.</em> <img src="images/imagen5_ga.png" class="img-fluid" alt="Ruta encontrada mediante algoritmos genéticos teniendo en cuenta solo 31 estados de México"> Elaboración propia.</p>
+<p><strong>Figura 19.</strong></p>
+<p><em>Ruta óptima de carreteras encontrada mediante algoritmos genéticos teniendo en cuenta 31 de los estados de México.</em> <img src="images/imagen6_ga.png" class="img-fluid" alt="Ruta de carreteras encontrada mediante algoritmos genéticos teniendo en cuenta 31 de los estados de México"> <em>Nota.</em> Al observar las carreteras que debería recorrer esta solución, puede observarse que el vendedor terminaría pasando por los mismos caminos varias veces, ya que deben darse varios recorridos de manera repetida por la necesidad de conectar algunos territorios de los 31 estados sin contemplar la opción del viaje en ferri. Elaboración propia.</p>
+</section>
+</section>
+<section id="verificación-de-la-calidad-de-la-solución" class="level3" data-number="1.2.4">
+<h3 data-number="1.2.4" class="anchored" data-anchor-id="verificación-de-la-calidad-de-la-solución"><span class="header-section-number">1.2.4</span> Verificación de la calidad de la solución</h3>
+<p>Es importante evaluar qué tan buena es la solución alcanzada. Métodos exhaustivos como la fuerza bruta, que permiten comprobar cuál es la mejor solución entre todas las posibles, resultan computacionalmente inviables en este caso. Aprovechando que disponemos de un gran número de iteraciones y tres diferentes escenarios que nos permiten variar las condiciones del problema, podemos concluir que la solución obtenida es, al menos, razonablemente buena.</p>
+<p>Además, es relevante analizar el comportamiento de las funciones de costo. En todos los escenarios se observa que el costo se reduce significativamente al principio y luego comienza a fluctuar alrededor de una media estable. Esto indica que el algoritmo está convergiendo hacia esos valores. A partir de este comportamiento, seleccionamos la solución con el menor costo como la mejor alternativa.</p>
+<p>En general, las funciones de costo tienden a estabilizarse dentro de un rango limitado de valores. Este patrón nos permite confiar en que las soluciones obtenidas se encuentran entre las mejores posibles, considerando las limitaciones inherentes a los métodos no determinísticos.</p>
+</section>
+<section id="discusión-de-los-resultados" class="level3" data-number="1.2.5">
+<h3 data-number="1.2.5" class="anchored" data-anchor-id="discusión-de-los-resultados"><span class="header-section-number">1.2.5</span> Discusión de los resultados</h3>
+<p>Los resultados obtenidos al aplicar el Algoritmo de Colonia de Hormigas y el Algoritmo Genético en tres situaciones diferentes permiten destacar las fortalezas y diferencias de cada uno. Por un lado, el Algoritmo de Colonia de Hormigas logra encontrar una solución más económica y en un menor número de iteraciones en comparación con el Algoritmo Genético. Por lo tanto, en esta evaluación específica, dicho algoritmo puede considerarse más eficiente para resolver el problema en esta situación particular.</p>
+<p>No obstante, es importante señalar que la elección del algoritmo adecuado depende en gran medida de la naturaleza del problema. Incluso para un mismo problema, diferentes enfoques pueden llevar a variaciones significativas en los resultados, como se observó en este análisis. Aunque en este caso el Algoritmo de Colonia de Hormigas demostró ser más eficiente que el Algoritmo Genético, esta ventaja es altamente circunstancial y no necesariamente aplicable a todos los contextos. Esto refuerza la importancia de adaptar la metodología a las características específicas del problema a resolver.</p>
+<p>En la figura 20 y 21 podemos encontrar las soluciones encontradas con algoritmo de colonia de hormigas y algoritmo genético.</p>
+<p><strong>Figura 20</strong></p>
+<p>Las tres soluciones obtenidas mediante el algoritmo de colonia de hormigas para la optimización de la ruta en las carreteras identificadas son las siguientes:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="soluciones_colonia_hormigas.gif" class="img-fluid figure-img"></p>
+<figcaption>Las 3 rutas encontradas mediante el algoritmo de colonia de hormigas</figcaption>
+</figure>
+</div>
+<p>Las tres soluciones obtenidas mediante el algoritmo genético para la optimización de la ruta en las carreteras identificadas son las siguientes:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="soluciones_genetico.gif" class="img-fluid figure-img"></p>
+<figcaption>Las 3 rutas encontradas mediante el algoritmo genético</figcaption>
+</figure>
+</div>
+
+
+<!-- -->
+
+
+</section>
+</section>
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-bajaferries2024" class="csl-entry" role="listitem">
+Baja Ferries. 2024. <span>“Rutas y Horarios.”</span> 2024. <a href="https://www.bajaferries.com.mx/rutas_horario">https://www.bajaferries.com.mx/rutas_horario</a>.
+</div>
+<div id="ref-conasami2024" class="csl-entry" role="listitem">
+Comisión Nacional de los Salarios Mínimos (CONASAMI). 2024. <span>“Incremento a Los Salarios Mínimos Para 2024.”</span> <a href="https://www.gob.mx/conasami/articulos/incremento-a-los-salarios-minimos-para-2024">https://www.gob.mx/conasami/articulos/incremento-a-los-salarios-minimos-para-2024</a>.
+</div>
+<div id="ref-debate2023" class="csl-entry" role="listitem">
+Debate. 2023. <span>“¿Cuánto Cuesta Viajar a La Paz Desde Topolobampo? Estas Son Las Tarifas Del Buque Baja Ferries.”</span> <a href="https://www.debate.com.mx/sinaloa/losmochis/Cuanto-cuesta-viajar-a-La-Paz-desde-Topolobampo-Estas-son-las-tarifas-del-buque-Baja-Ferries-20230805-0071.html">https://www.debate.com.mx/sinaloa/losmochis/Cuanto-cuesta-viajar-a-La-Paz-desde-Topolobampo-Estas-son-las-tarifas-del-buque-Baja-Ferries-20230805-0071.html</a>.
+</div>
+<div id="ref-acobook2018" class="csl-entry" role="listitem">
+Dorigo, Marco, and Thomas Stützle. 2018. <span>“Ant Colony Optimization: Overview and Recent Advances.”</span> In, 311–51. <a href="https://doi.org/10.1007/978-3-319-91086-4_10">https://doi.org/10.1007/978-3-319-91086-4_10</a>.
+</div>
+<div id="ref-elpais2024" class="csl-entry" role="listitem">
+El País. 2024. <span>“Los Autos Más Vendidos En México En Lo Que Va de 2024.”</span> 2024. <a href="https://elpais.com/mexico/2024-09-20/los-autos-mas-vendidos-en-mexico-en-lo-que-va-de-2024.html">https://elpais.com/mexico/2024-09-20/los-autos-mas-vendidos-en-mexico-en-lo-que-va-de-2024.html</a>.
+</div>
+<div id="ref-gasolinamx2024" class="csl-entry" role="listitem">
+GasolinaMX.com. 2024. <span>“GASOLINA HOY - Precio México.”</span> 2024. <a href="https://www.gasolinamx.com/">https://www.gasolinamx.com/</a>.
+</div>
+<div id="ref-tesisga2009" class="csl-entry" role="listitem">
+José Ángel Fernández Prieto. 2029. <span>“Optimización Evolutiva de Los Parámetros de Control de Un Algoritmo Genético.”</span> Universidad de Alcalá. <a href="http://hdl.handle.net/10017/8029">http://hdl.handle.net/10017/8029</a>.
+</div>
+<div id="ref-mejoresrutasferri2024" class="csl-entry" role="listitem">
+Mejores Rutas. 2024a. <span>“Distancia de La Paz a Culiacán.”</span> 2024. <a href="https://mx.mejoresrutas.com/distancias/?from=La+Paz&amp;to=Culiac%C3%A1n&amp;v=&amp;sm=110&amp;so=90&amp;vh=c&amp;fc=8.00&amp;fp=25.54">https://mx.mejoresrutas.com/distancias/?from=La+Paz&amp;to=Culiac%C3%A1n&amp;v=&amp;sm=110&amp;so=90&amp;vh=c&amp;fc=8.00&amp;fp=25.54</a>.
+</div>
+<div id="ref-mejoresrutas2024" class="csl-entry" role="listitem">
+———. 2024b. <span>“Traza Tu Ruta: Calculador de Distancias Entre Ciudades.”</span> 2024. <a href="https://mx.mejoresrutas.com/">https://mx.mejoresrutas.com/</a>.
+</div>
+<div id="ref-nissanversarendimiento2023" class="csl-entry" role="listitem">
+Redacción De Cero a 100. 2023. <span>“¿Cuántos Kilómetros Por Litro Da El Nissan Versa 2024? Eficiencia Del Combustible de Este Sedán.”</span> 2023. <a href="https://www.deceroacien.com.mx/autos/2023/11/24/cuantos-kilometros-por-litro-da-el-nissan-versa-2024-eficiencia-del-combustible-de-este-sedan-9804.html">https://www.deceroacien.com.mx/autos/2023/11/24/cuantos-kilometros-por-litro-da-el-nissan-versa-2024-eficiencia-del-combustible-de-este-sedan-9804.html</a>.
+</div>
+<div id="ref-gawikipedia2024" class="csl-entry" role="listitem">
+Wikipedia. 2024a. <span>“Algoritmo Genético.”</span> 2024. <a href="https://es.wikipedia.org/wiki/Algoritmo_gen%C3%A9tico">https://es.wikipedia.org/wiki/Algoritmo_gen%C3%A9tico</a>.
+</div>
+<div id="ref-acowikipedia2024" class="csl-entry" role="listitem">
+———. 2024b. <span>“Ant Colony Optimization Algorithms.”</span> 2024. <a href="https://en.wikipedia.org/wiki/Ant_colony_optimization_algorithms">https://en.wikipedia.org/wiki/Ant_colony_optimization_algorithms</a>.
+</div>
+</div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb2" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Optimización Combinatoria"</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> </span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-width: 8      # Ancho de las figuras en pulgadas para HTML</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-height: 6     # Alto de las figuras en pulgadas para HTML</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">  - name: "Julián Castaño Pineda"</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">  - name: "Luis Andrés Altamar Romero"</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">  - name: "Catalina Restrepo Salgado"</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co">  - name: "Tomás Rodríguez Taborda"</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "2024-11-15"</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span><span class="co"> [optimización, métodos combinatorios, python]</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="an">image:</span><span class="co"> "image.jpg"</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="an">bibliography:</span><span class="co"> ref.bib</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co">  cache: true</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="fu"># Optimización Combinatoria</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>La optimización combinatoria es fundamental para resolver problemas complejos en rutas y logística. Este enfoque resulta especialmente útil en desafíos como el que se presenta a continuación, en el que un vendedor viajero busca la ruta más eficiente para recorrer los estados de México. Las técnicas empleadas para abordar este problema incluyen el algoritmo de colonia de hormigas, inspirado en el comportamiento de las hormigas en la naturaleza y los algoritmos genéticos, que simulan procesos evolutivos como la selección, cruce y mutación. Estas herramientas permitirán abordar el problema con la consideración de múltiples variables y restricciones, permitiendo además la optimización de recorridos en términos de tiempo y costo de manera.</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="fu">## Problema del Viajero</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>Un vendedor debe realizar un recorrido por **todas las capitales** de los **32 estados** de los **Estados Unidos Mexicanos**.</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="fu">### Tareas:</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>**Optimización con métodos metaheurísticos:**</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Utilice **colonias de hormigas** para encontrar el orden óptimo del recorrido.</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Utilice **algoritmos genéticos** para encontrar el orden óptimo del recorrido.</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>**Costo del recorrido:**</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>El costo de desplazamiento entre ciudades se calcula como la suma de:</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a><span class="ss">        -   </span>El valor de la **hora del vendedor** (este es un parámetro que debe estudiarse).</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="ss">        -   </span>El **costo de los peajes**.</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="ss">        -   </span>El **costo del combustible**.</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Cada equipo debe definir el **vehículo** que utilizará el vendedor para realizar el recorrido y, con base en esta elección, **calcular el costo del combustible**.</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="fu">### Representación Visual:</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Cree un **GIF animado** o un **video** que muestre cómo se comporta la **mejor solución** encontrada, usando un **gráfico del recorrido** en el mapa de México.</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a><span class="fu">### Discusión:</span></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>Reflexione sobre: - Los resultados obtenidos con las **colonias de hormigas** y los **algoritmos genéticos**. - Comparación de costos y tiempo de ejecución.</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a><span class="fu">## Solución de las tareas propuestas</span></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a><span class="fu">### Extracción de datos</span></span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>Para empezar a solucionar el problema, es necesario obtener información acerca del valor del salario del vendedor, el costo de los peajes y el cálculo correspondiente al costo total destinado a combustible; definiendo entonces el modelo de automóvil a considerar en el ejercicio, junto con su respectivo costo de gasolina. Durante el desarrollo de este proceso de extracción de información se tomaron como referencia las ciudades capitales de cada uno de los estados mexicanos y se observó el mapa de la división política de México en sus 32 estados, a fin de tener un mejor entendimiento de la región.</span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>**Figura 1.**</span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>*Mapa de México.* ![Mapa de México](images/mapa_mexico.jpg) Adaptado de *Fondo plano de mapa de México* <span class="co">[</span><span class="ot">Ilustración</span><span class="co">]</span>, por Freepik, 2024 (https://www.freepik.es/vector-gratis/mapa-mexico). Licencia gratuita.</span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Distancias y tiempo de conducción</span></span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>La tabla de distancias y tiempo de conducción entre las ciudades fue obtenida a través del sitio web @mejoresrutas2024, diseñado especialmente para el cálculo y planeación de viajes a lo largo de todo el país. Dicho recurso online permite obtener información como distancias, tiempo de conducción y otros valores asociados entre dos ciudades ingresando el nombre de cada una de ellas.</span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Peajes</span></span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>Para obtener la información de los peajes, fue utilizado el mismo sitio web @mejoresrutas2024, el cual también contiene datos relacionados con el costo actual de los peajes que se encuentran entre las ciudades donde se realiza la consulta.</span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>Debido al gran número de combinaciones posibles, se programó un bot en Python empleando la librería *Beautiful Soup*, lo que permitió automatizar la extracción de la información anteriormente mencionada. En el repositorio de GitHub es posible encontrar el archivo con el código para llevar a cabo esta tarea.</span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a><span class="fu">### Definición de gastos</span></span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>En la siguiente sección se definen los gastos que deben ser consultados, entre los cuales se encuentran el salario del vendedor, el modelo de automóvil a utilizar y su correspondiente gasto de combustible.</span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Salario del vendedor</span></span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>Para definir el salario del vendedor, se toma como referencia el salario minimo en México, que actualmente se encuentra en 248,93 pesos diarios según la @conasami2024; por lo tanto, para una jornada de 8 horas, el salario mínimo por hora es de 31,12 aproximadamente. Dicho esto, se decide establecer un salario de 35 pesos mexicanos por hora para el vendedor del presente ejercicio.</span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Modelo del carro y gasto en gasolina</span></span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a>De acuerdo con @elpais2024, el modelo de automóvil más vendido actualmente en México es el Nissan Versa, por lo que se ha considerado conveniente seleccionarlo como medio de transporte a utilizar por parte del vendedor. Esto permitirá hacer una estimación más justa del costo total de realizar la ruta por los 32 estados mexicanos en el contexto de dicho país.</span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>Adicionalmente, es importante considerar que el rendimiento promedio de este modelo en carreteras es de 25 kilómetros por litro de acuerdo con información proporcionada por @nissanversarendimiento2023 y que el tipo de gasolina que utiliza es la comúnmente denominada como "Gasolina Magna" en México la cual, al día 14 de noviembre, tiene un precio promedio de 23.96 pesos mexicanos por litro según @gasolinamx2024.</span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Transformaciones</span></span>
+<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a>Se ha obtenido la información anterior con el objetivo de calcular el costo total de desplazamiento entre las ciudades capitales de México, sin embargo, se observa que no todos los datos se encuentran en las unidades requeridas (MXN): hay magnitudes en litros, horas, kilómetros, etc. Por lo tanto, se realizarán las siguientes transformaciones en todas las unidades para poder sumar dichos gastos en pesos mexicanos, a diferencia del caso de los peajes, pues estos ya se encuentran en la unidad monetaria deseada.</span>
+<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a><span class="fu">##### Tiempo de viaje</span></span>
+<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a>El costo por el salario del vendedor es calculado la forma que se muestra en la Ecuación (1):</span>
+<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a>$$ </span>
+<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a>\text{Costo<span class="sc">\_</span>vendedor} = \text{tiempo} \times \text{salario<span class="sc">\_</span>del<span class="sc">\_</span>vendedor} \tag{1}</span>
+<span id="cb2-95"><a href="#cb2-95" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-96"><a href="#cb2-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-97"><a href="#cb2-97" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Gasolina para el viaje</span></span>
+<span id="cb2-98"><a href="#cb2-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-99"><a href="#cb2-99" aria-hidden="true" tabindex="-1"></a>El gasto total en gasolina se obtiene con la fórmula mostrada en la Ecuación (2):</span>
+<span id="cb2-100"><a href="#cb2-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-101"><a href="#cb2-101" aria-hidden="true" tabindex="-1"></a>$$ </span>
+<span id="cb2-102"><a href="#cb2-102" aria-hidden="true" tabindex="-1"></a>\text{Costo<span class="sc">\_</span>gasolina} = \left( \frac{\text{Distancia}}{\text{Rendimiento (km/litro)}} \right) \times \text{Precio<span class="sc">\_</span>por<span class="sc">\_</span>litro} \tag{2}</span>
+<span id="cb2-103"><a href="#cb2-103" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-104"><a href="#cb2-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-105"><a href="#cb2-105" aria-hidden="true" tabindex="-1"></a><span class="fu">##### Gasto total</span></span>
+<span id="cb2-106"><a href="#cb2-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-107"><a href="#cb2-107" aria-hidden="true" tabindex="-1"></a>Después de realizar las operaciones mostradas anteriormente, se tiene como resultado toda la información necesaria en las unidades requeridas para obtener un valor correspondiente al gasto total del viaje en pesos mexicanos, de acuerdo con lo definido en la Ecuación (3).</span>
+<span id="cb2-108"><a href="#cb2-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-109"><a href="#cb2-109" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-110"><a href="#cb2-110" aria-hidden="true" tabindex="-1"></a>\text{Gasto<span class="sc">\_</span>recorrido} = \text{Costo<span class="sc">\_</span>gasolina} + \text{Costo<span class="sc">\_</span>vendedor} + \text{Costo<span class="sc">\_</span>Peajes} \tag{3}</span>
+<span id="cb2-111"><a href="#cb2-111" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-112"><a href="#cb2-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-113"><a href="#cb2-113" aria-hidden="true" tabindex="-1"></a><span class="fu">### Ruta óptima</span></span>
+<span id="cb2-114"><a href="#cb2-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-115"><a href="#cb2-115" aria-hidden="true" tabindex="-1"></a>A continuación, se procede con la utilización de los algoritmos propuestos para este caso: Colonia de Hormigas y Algoritmos Genéticos, con el fin de responder a la actividad planteada al principio del presente ejercicio, esto es, hallar la ruta óptima para el recorrido del vendedor a través de los 32 estados de México.</span>
+<span id="cb2-116"><a href="#cb2-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-117"><a href="#cb2-117" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Colonia de Hormigas</span></span>
+<span id="cb2-118"><a href="#cb2-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-119"><a href="#cb2-119" aria-hidden="true" tabindex="-1"></a>Considerando la información recolectada en @acowikipedia2024 y @acobook2018 y lo presentado en la primera sección del trabajo, puede decirse que los **algoritmos de colonia de hormigas (Ant Colony Optimization, ACO)** son una técnica de optimización basada en la inteligencia colectiva observada en las colonias de hormigas naturales. Fueron inspirados en el comportamiento de las hormigas en la naturaleza para resolver problemas complejos de optimización combinatoria, en esta segunda parte del trabajo profundizaremos más en sus hiperparámetros claves los cuales son:</span>
+<span id="cb2-120"><a href="#cb2-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-121"><a href="#cb2-121" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Cantidad de hormigas:** Cantidad de hormigas que participarán en cada iteración de la búsqueda de soluciones. Influye en la capacidad del algoritmo de explorar diferentes soluciones de manera simultánea. En este caso se utilizarán 32 hormigas, es decir, igual al número de estados en México.</span>
+<span id="cb2-122"><a href="#cb2-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-123"><a href="#cb2-123" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Alpha**: Controla la influencia de la feromona en la probabilidad de que una hormiga elija ese camino. A medida que el valor aumenta, las hormigas son más propensas a seguir caminos con más feromona. Aquí se utilizará un valor de 1 para otorgar una influencia moderada de las feromonas depositadas.</span>
+<span id="cb2-124"><a href="#cb2-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-125"><a href="#cb2-125" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Beta**: Controla la preferencia de las hormigas por caminos más "baratos" o prometedores, lo cual ayuda aumentar la exploración. Se va a considerar un valor de 2, puesto que se busca minimizar el costo del viaje</span>
+<span id="cb2-126"><a href="#cb2-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-127"><a href="#cb2-127" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**\\(\\rho\\)**: Indica la tasa de evaporación de la feromona, lo cual evita que las soluciones previas influencien las iteraciones futuras. Se seleccionó una tasa de evaporación del 0.5, es decir, el 50% de las feromonas se evaporan en cada iteración.</span>
+<span id="cb2-128"><a href="#cb2-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-129"><a href="#cb2-129" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**\\(Q\\)**: Cantidad de feromona depositada por una hormiga en su recorrido tras encontrar una solución. Se utilizará un valor de 100 para indicar la cantidad de feromonas en el camino.</span>
+<span id="cb2-130"><a href="#cb2-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-131"><a href="#cb2-131" aria-hidden="true" tabindex="-1"></a>Una vez definidos los hiperparámetros, se puede continuar con la ejecución del algoritmo de colonia de hormigas, cuyo detalle se puede observar más a profundidad en el repositorio de GitHub. En la Figura 2 se puede observar cómo va variando el costo de realizar el viaje en cada una de las iteraciones que realizó dicho algoritmo.</span>
+<span id="cb2-132"><a href="#cb2-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-133"><a href="#cb2-133" aria-hidden="true" tabindex="-1"></a>**Figura 2.**</span>
+<span id="cb2-134"><a href="#cb2-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-135"><a href="#cb2-135" aria-hidden="true" tabindex="-1"></a>*Función costo del algoritmo Colonia de Hormigas.* ![Función costo del algoritmo Colonia de Hormigas](images/costo-aco-primera.png) *Nota.* La gráfica muestra la evolución del costo total del viaje a medida que se ejecutan las diferentes iteraciones del algoritmo, que para este caso fueron 500. Elaboración propia.</span>
+<span id="cb2-136"><a href="#cb2-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-137"><a href="#cb2-137" aria-hidden="true" tabindex="-1"></a>De acuerdo con la imagen anterior, es posible observar que el costo mínimo se alcanza relativamente rápido, antes de las 100 iteraciones. En este sentido, también es interesante notar que el cálculo de esta función de costo varía al considerar diferentes variaciones que puedan realizarse sobre el planteamiento inicial del problema, comportamiento que se verá más adelante.</span>
+<span id="cb2-138"><a href="#cb2-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-139"><a href="#cb2-139" aria-hidden="true" tabindex="-1"></a>Posteriormente, en la Figura 3 puede verse la ruta óptima encontrada por el algoritmo de colonia de hormigas para que el vendedor pueda recorrer los 32 estados mexicanos.</span>
+<span id="cb2-140"><a href="#cb2-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-141"><a href="#cb2-141" aria-hidden="true" tabindex="-1"></a>**Figura 3.**</span>
+<span id="cb2-142"><a href="#cb2-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-143"><a href="#cb2-143" aria-hidden="true" tabindex="-1"></a>*Ruta óptima encontrada mediante el algoritmo de Colonia de Hormigas.* ![Ruta óptima encontrada mediante el algoritmo de Colonia de Hormigas](images/imagen1.png) *Nota.* Puede observarse que esta visualización gráfica está dada por líneas rectas entre cada una de las ciudades y no muestra con fidelidad la forma en que se haría el recrorrido. Elaboración propia.</span>
+<span id="cb2-144"><a href="#cb2-144" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-145"><a href="#cb2-145" aria-hidden="true" tabindex="-1"></a>Con el fin de que el camino óptimo pueda reflejar la realidad del viaje, en la Figura 4 se ilustra la utilización de la API gratuita *Open Route Service* para graficar el recorrido propuesto a lo largo de las carreteras en el mapa de México. La API key para acceder a este servicio es la siguiente:</span>
+<span id="cb2-146"><a href="#cb2-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-149"><a href="#cb2-149" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb2-150"><a href="#cb2-150" aria-hidden="true" tabindex="-1"></a>api_key <span class="op">=</span> <span class="st">"5b3ce3597851110001cf6248c140bc578aac4c2d95295dc798e53a22"</span></span>
+<span id="cb2-151"><a href="#cb2-151" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb2-152"><a href="#cb2-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-153"><a href="#cb2-153" aria-hidden="true" tabindex="-1"></a>**Figura 4.**</span>
+<span id="cb2-154"><a href="#cb2-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-155"><a href="#cb2-155" aria-hidden="true" tabindex="-1"></a>*Forma realista del camino óptimo encontrado mediante el uso del algoritmo de Colonia de Hormigas.* ![Forma realista del camino óptimo encontrado mediante el uso del algoritmo de Colonia de Hormigas](images/imagen2.png) *Nota.* El gráfico muestra las carreteras que deberían seguirse para completar el recorrido propuesto, sin embargo, algunos aspectos siguen siendo siendo interesantes. Elaboración propia.</span>
+<span id="cb2-156"><a href="#cb2-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-157"><a href="#cb2-157" aria-hidden="true" tabindex="-1"></a>Como se mencionó anteriormente, de esta forma se obtiene una ruta óptima más realista. No obstante, llama la atención que, en ciertas secciones, la ruta implica cruzar cuerpos de agua. Al investigar las razones de este comportamiento, se descubrió que para conectar algunos estados del país como Baja California Sur y Sinaloa, la opción de tomar un ferri es considerada la más conveniente según servicios de planificación de trayectos como @mejoresrutasferri2024 y @bajaferries2024.</span>
+<span id="cb2-158"><a href="#cb2-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-159"><a href="#cb2-159" aria-hidden="true" tabindex="-1"></a>Dado que la matriz de costos actual no considera el valor asociado al uso del ferri ni los gastos asociados al transporte del vehículo para continuar posteriormente el recorrido, se propone un análisis de los siguientes escenarios:</span>
+<span id="cb2-160"><a href="#cb2-160" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-161"><a href="#cb2-161" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Incluir el costo del ferri en la matriz de costos y evaluar la ruta resultante.</span>
+<span id="cb2-162"><a href="#cb2-162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-163"><a href="#cb2-163" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Realizar el viaje completamente por tierra, excluyendo los estados que se alcanzan únicamente utilizando el ferri.</span>
+<span id="cb2-164"><a href="#cb2-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-165"><a href="#cb2-165" aria-hidden="true" tabindex="-1"></a>**Primer escenario**</span>
+<span id="cb2-166"><a href="#cb2-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-167"><a href="#cb2-167" aria-hidden="true" tabindex="-1"></a>Se consultó el valor del tiquete de ferri para una persona adulta y el costo del transporte de un automóvil, encontrando que el más económico para un adulto es de **1,460 pesos mexicanos**, mientras que el transporte del automóvil tiene un valor de **5,480 pesos mexicanos** según @debate2023.</span>
+<span id="cb2-168"><a href="#cb2-168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-169"><a href="#cb2-169" aria-hidden="true" tabindex="-1"></a>Estos costos fueron utilizados como parámetros para el algoritmo de colonia de hormigas, llegando a que, como se observa en la Figura 5, el algoritmo sigue alcanzando un mínimo de manera relativamente rápida.</span>
+<span id="cb2-170"><a href="#cb2-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-171"><a href="#cb2-171" aria-hidden="true" tabindex="-1"></a>**Figura 5.**</span>
+<span id="cb2-172"><a href="#cb2-172" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-173"><a href="#cb2-173" aria-hidden="true" tabindex="-1"></a>*Evolución de la función costo del algoritmo de Colonia de Hormigas teniendo en cuenta al ferri.* ![Evolución de la función costo del algoritmo de Colonia de Hormigas teniendo en cuenta al ferri](images/costos-aco-segunda.png) *Nota.* Es interesante notar que, a pesar del incremento en el costo de moverse entre dos estados (debido al ferri), el algoritmo logró encontrar una ruta más barata que la hallada originalmente. Esto sugiere que en la primera solución encontrada el algoritmo podría haberse quedado atascado en un mínimo local debido a la falta de iteraciones. Elaboración propia.</span>
+<span id="cb2-174"><a href="#cb2-174" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-175"><a href="#cb2-175" aria-hidden="true" tabindex="-1"></a>Además, también es posible observar que el tiempo y la distancia se redujeron en esta nueva solución, lo cual permite pensar que esta ruta no solo es más económica, sino también más eficiente, a pesar de que está considerando el costo adicional del ferri y el transporte del vehículo.</span>
+<span id="cb2-176"><a href="#cb2-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-177"><a href="#cb2-177" aria-hidden="true" tabindex="-1"></a>Los resultados correspondientes a la visualización gráfica del camino óptimo encontrado para el vendedor en este escenario pueden observarse a continuación, en las Figuras 6 y 7.</span>
+<span id="cb2-178"><a href="#cb2-178" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-179"><a href="#cb2-179" aria-hidden="true" tabindex="-1"></a>**Figura 6.**</span>
+<span id="cb2-180"><a href="#cb2-180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-181"><a href="#cb2-181" aria-hidden="true" tabindex="-1"></a>*Ruta óptima encontrada mediante el algoritmo de Colonia de Hormigas teniendo en cuenta el costo del ferri.* ![Ruta óptima encontrada mediante el algoritmo de Colonia de Hormigas teniendo en cuenta el costo del ferri](images/imagen3.png) *Nota.* Las observaciones respecto a la forma en que se conectan los distintos puntos del recorrido permanecen iguales que en el caso considerado originalmente. Elaboración propia.</span>
+<span id="cb2-182"><a href="#cb2-182" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-183"><a href="#cb2-183" aria-hidden="true" tabindex="-1"></a>**Figura 7.**</span>
+<span id="cb2-184"><a href="#cb2-184" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-185"><a href="#cb2-185" aria-hidden="true" tabindex="-1"></a>*Carreteras encontradas mediante el uso del algoritmo de Colonia de Hormigas.* ![Carreteras encontradas mediante el uso del algoritmo de Colonia de Hormigas](images/imagen4.png) *Nota.* Esta imagen también fue generada por medio del uso de la API gratuita, así que sus resultados son reproducibles. Elaboración propia.</span>
+<span id="cb2-186"><a href="#cb2-186" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-187"><a href="#cb2-187" aria-hidden="true" tabindex="-1"></a>**Segundo escenario**</span>
+<span id="cb2-188"><a href="#cb2-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-189"><a href="#cb2-189" aria-hidden="true" tabindex="-1"></a>En este segundo escenario, la ciudad de **La Paz** fue eliminada del recorrido, por lo que el viaje ahora solo incluye los **31 estados restantes**. En consecuencia, también se redujo la cantidad de hormigas utilizadas en el algoritmo a un valor de **31**, asignando una hormiga por estado para realizar la búsqueda.</span>
+<span id="cb2-190"><a href="#cb2-190" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-191"><a href="#cb2-191" aria-hidden="true" tabindex="-1"></a>Como era de esperarse, el precio del recorrido se redujo en este caso. Sin embargo, al algoritmo le tomó muchas más iteraciones encontrar el costo mínimo, como se observa en la Figura 8.</span>
+<span id="cb2-192"><a href="#cb2-192" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-193"><a href="#cb2-193" aria-hidden="true" tabindex="-1"></a>**Figura 8.**</span>
+<span id="cb2-194"><a href="#cb2-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-195"><a href="#cb2-195" aria-hidden="true" tabindex="-1"></a>*Evolución de la función costo para los 31 estados de México.* ![Evolución de la función costo para los 31 estados de México](images/costo-aco-tercera.png) *Nota.* El hecho de que el planteamiento inicial de ciudades y estados a recorrer cambiara al no tener en cuenta el estado que solamente puede ser conectado vía marítima fue un factor determinante en la ejecución del algoritmo de hormigas, siendo mucho menos rápido que en el primer escenario (incluso que en el escenario original). Elaboración propia.</span>
+<span id="cb2-196"><a href="#cb2-196" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-197"><a href="#cb2-197" aria-hidden="true" tabindex="-1"></a>A diferencia del caso anterior, la Figura 8 también muestra que la **distancia** y el **tiempo** aumentaron. Esto se debe a que, al no utilizar el ferri, el automóvil tuvo que realizar un recorrido más largo en ciertas partes para completar su ruta. Por lo tanto, aunque esta solución es más eficiente en términos de costo, no lo es en términos de tiempo y distancia recorrida.</span>
+<span id="cb2-198"><a href="#cb2-198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-199"><a href="#cb2-199" aria-hidden="true" tabindex="-1"></a>La visualización gráfica de los resultados obtenidos para este caso pueden observarse en las Figuras 9 y 10, teniendo en cuenta las mismas consideraciones anteriormente mencionadas.</span>
+<span id="cb2-200"><a href="#cb2-200" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-201"><a href="#cb2-201" aria-hidden="true" tabindex="-1"></a>**Figura 9.**</span>
+<span id="cb2-202"><a href="#cb2-202" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-203"><a href="#cb2-203" aria-hidden="true" tabindex="-1"></a>*Ruta óptima encontrada mediante el uso del algoritmo de Colonia de Hormigas para 31 estados de México.* <span class="al">![Ruta encontradas mediante el uso del algoritmo de Colonia de Hormigas para 31 estados de México](images/imagen5.png)</span> Elaboración propia.</span>
+<span id="cb2-204"><a href="#cb2-204" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-205"><a href="#cb2-205" aria-hidden="true" tabindex="-1"></a>**Figura 10.**</span>
+<span id="cb2-206"><a href="#cb2-206" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-207"><a href="#cb2-207" aria-hidden="true" tabindex="-1"></a>*Orden de las carreteras encontrado mediante el uso del algoritmo de Colonia de Hormigas para 31 estados de México.* ![Orden de las carreteras encontrado mediante el uso del algoritmo de Colonia de Hormigas para 31 estados de México](images/imagen6.png) *Nota.* Sumado a los inconvenientes observados en este escenario, al desconectar uno de los estados de México, puede observarse que una gran región del país queda excluida del recorrido del vendedor, lo que puede implicar significativas pérdidas económicas y oportunidades de establecer nuevos negocios.</span>
+<span id="cb2-208"><a href="#cb2-208" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-209"><a href="#cb2-209" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Algoritmo genético</span></span>
+<span id="cb2-210"><a href="#cb2-210" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-211"><a href="#cb2-211" aria-hidden="true" tabindex="-1"></a>De acuerdo con información proporcionada por @tesisga2009 y encontrada en @gawikipedia2024, y como se explico en la primera sección del trabajo, puede decirse que los **algoritmos genéticos (Genetic Algorithms, GA)** son una técnica de optimización inspirada en los principios de la selección natural y la evolución biológica. Los GA buscan soluciones óptimas mediante la creación, evaluación y modificación de una población de individuos, representando posibles soluciones a un problema dado. La evolución de la población se realiza mediante operadores genéticos como la mutación y en esta sección profundizaremos más en sus hiperparámetros clave, los cuales son:</span>
+<span id="cb2-212"><a href="#cb2-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-213"><a href="#cb2-213" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Tamaño de la población**: Define el número de individuos en cada generación. Un tamaño de población más grande permite una mejor exploración del espacio de soluciones, pero también aumenta el tiempo de cómputo. En este caso, se utilizará una población de 100 individuos, lo que proporciona un equilibrio adecuado entre diversidad y eficiencia computacional.</span>
+<span id="cb2-214"><a href="#cb2-214" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-215"><a href="#cb2-215" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Número de generaciones**: Especifica cuántas veces se evolucionará la población mediante el proceso de selección, cruce y mutación; se consideran adecuadas un total de 200 generaciones para permitir al algoritmo explorar el espacio de búsqueda y converger hacia una solución óptima o cercana al óptimo.</span>
+<span id="cb2-216"><a href="#cb2-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-217"><a href="#cb2-217" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Tasa de mutación**: Representa la probabilidad de que un gen sea modificado aleatoriamente en un individuo. La mutación introduce variación genética, lo que ayuda a explorar nuevas áreas del espacio de búsqueda y a evitar estancamientos en óptimos locales. Se empleará una tasa de mutación de 0.1 (10%), lo que mantiene una buena cantidad de diversidad sin perturbar excesivamente a la población.</span>
+<span id="cb2-218"><a href="#cb2-218" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-219"><a href="#cb2-219" aria-hidden="true" tabindex="-1"></a>De la misma manera en que se realizó en la sección anterior, la presentación de resultados comienza con una obtención de resultados iniciales considerando los 32 estados de México y sin tener en cuenta el costo del ferri.</span>
+<span id="cb2-220"><a href="#cb2-220" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-221"><a href="#cb2-221" aria-hidden="true" tabindex="-1"></a>Como se observa en la Figura 11, alcanzar el mínimo toma casi 175 generaciones, lo que indica que este algoritmo se demora más en llegar a un valor mínimo en comparación con el algoritmo de colonia de hormigas. Además, la solución que encuentra tiene un costo mayor y toma más tiempo y una mayor distancia completarla.</span>
+<span id="cb2-222"><a href="#cb2-222" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-223"><a href="#cb2-223" aria-hidden="true" tabindex="-1"></a>**Figura 11.**</span>
+<span id="cb2-224"><a href="#cb2-224" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-225"><a href="#cb2-225" aria-hidden="true" tabindex="-1"></a>*Evolución de la función costo del algoritmo genético.* ![Evolución de la función costo del algoritmo genético](images/costo-genetico-primera.png) *Nota.* En la ejecución de este algoritmo, la solución óptima se encontró en una iteración muy cercana al límite máximo establecido, a diferencia del algoritmo de colonia de hormigas, que lo realizó muy rápidamente. Elaboración propia.</span>
+<span id="cb2-226"><a href="#cb2-226" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-227"><a href="#cb2-227" aria-hidden="true" tabindex="-1"></a>Ahora bien, en las Figuras 12 y 13 se tiene la visualización gráfica del recorrido propuesto por este algoritmo, siguiendo los mismos procedimientos de utilización de la API que se mencionaron de manera previa.</span>
+<span id="cb2-228"><a href="#cb2-228" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-229"><a href="#cb2-229" aria-hidden="true" tabindex="-1"></a>**Figura 12.**</span>
+<span id="cb2-230"><a href="#cb2-230" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-231"><a href="#cb2-231" aria-hidden="true" tabindex="-1"></a>*Ruta óptima encontrada mediante algoritmo genético.* <span class="al">![Ruta óptima encontrada mediante algoritmo genético](images/imagen1_ga.png)</span> Elaboración propia.</span>
+<span id="cb2-232"><a href="#cb2-232" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-233"><a href="#cb2-233" aria-hidden="true" tabindex="-1"></a>**Figura 13.**</span>
+<span id="cb2-234"><a href="#cb2-234" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-235"><a href="#cb2-235" aria-hidden="true" tabindex="-1"></a>*Ruta óptima con las carreteras encontrada mediante algoritmo genético.* <span class="al">![Ruta óptima con las carreteras encontrada mediante algoritmo genético](images/imagen2_ga.png)</span> Elaboración propia.</span>
+<span id="cb2-236"><a href="#cb2-236" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-237"><a href="#cb2-237" aria-hidden="true" tabindex="-1"></a>Nuevamente, se considera pertinente considerar los dos escenarios adicionales de análisis: un nuevo cálculo de costos teniendo en cuenta el tiquete de ferri y el transporte adicional para el automóvil y la exclusión La Paz, como territorio que solo puede conectarse a través de cuerpos de agua.</span>
+<span id="cb2-238"><a href="#cb2-238" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-239"><a href="#cb2-239" aria-hidden="true" tabindex="-1"></a>**Primer escenario**</span>
+<span id="cb2-240"><a href="#cb2-240" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-241"><a href="#cb2-241" aria-hidden="true" tabindex="-1"></a>Es posible observar que al tomar en cuenta el costo del ferri, en este caso sí se aumenta el costo del camino óptimo y el número de iteraciones se reduce un poco, como puede verse en la Figura 14. Sin embargo, el tiempo que toma completar esta ruta es mucho más alto que en el caso anterior, lo que podría indicar que esta solución se quedó atrapada en un mínimo local.</span>
+<span id="cb2-242"><a href="#cb2-242" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-243"><a href="#cb2-243" aria-hidden="true" tabindex="-1"></a>**Figura 14.**</span>
+<span id="cb2-244"><a href="#cb2-244" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-245"><a href="#cb2-245" aria-hidden="true" tabindex="-1"></a>*Evolución de la función costo del algoritmo genético teniendo en cuenta el costo del ferri.* <span class="al">![Evolución de la función costo del algoritmo genético teniendo en cuenta el costo del ferri](images/costo-genetico-segunda.png)</span> Elaboración propia.</span>
+<span id="cb2-246"><a href="#cb2-246" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-247"><a href="#cb2-247" aria-hidden="true" tabindex="-1"></a>Por otra parte, en las Figuras 15 y 16 se puede observar el recorrido propuesto por esta solución del algoritmo para que el vendedor se desplace por todo el país, viendo que los puntos de inicio y finalización son diferentes a los que había arrojado como resultado el algoritmo de colonia de hormigas.</span>
+<span id="cb2-248"><a href="#cb2-248" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-249"><a href="#cb2-249" aria-hidden="true" tabindex="-1"></a>**Figura 15.**</span>
+<span id="cb2-250"><a href="#cb2-250" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-251"><a href="#cb2-251" aria-hidden="true" tabindex="-1"></a>*Ruta óptima encontrada mediante algoritmos genéticos teniendo en cuenta el costo del ferri.* ![Ruta óptima encontrada mediante algoritmos genéticos teniendo en cuenta el costo del ferri](images/imagen3_ga.png) *Nota.* Sabiendo que la ruta marítima que seleccionaron ambos algoritmos es la misma, puede decirse que las diferencias entre sus resultados radican en otros aspectos inherentes a su propia definición, como pueden serlo los hiperparámetros y la forma en que realizan una búsqueda de la solución óptima. Elaboración propia.</span>
+<span id="cb2-252"><a href="#cb2-252" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-253"><a href="#cb2-253" aria-hidden="true" tabindex="-1"></a>**Figura 16.**</span>
+<span id="cb2-254"><a href="#cb2-254" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-255"><a href="#cb2-255" aria-hidden="true" tabindex="-1"></a>*Ruta óptima de carreteras encontrada mediante algoritmo genético teniendo en cuenta el costo del ferri.* ![Ruta óptima de carreteras encontrada mediante algoritmo genético teniendo en cuenta el costo del ferri](images/imagen4_ga.png) *Nota.* La utilización de la API se dio exactamente igual que en los escenarios anteriores, de manera que estos resultados también son reproducibles.</span>
+<span id="cb2-256"><a href="#cb2-256" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-257"><a href="#cb2-257" aria-hidden="true" tabindex="-1"></a>**Segundo escenario**</span>
+<span id="cb2-258"><a href="#cb2-258" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-259"><a href="#cb2-259" aria-hidden="true" tabindex="-1"></a>En este último escenario, el cual solamente considera 31 de los estados de México, es posible notar que el costo óptimo nuevamente bajó y, a diferencia del algoritmo de colonia de hormigas, el algoritmo genético sí encuentra una forma de reducir el tiempo y la distancia del recorrido, mostrando una mejoría en ese aspecto.</span>
+<span id="cb2-260"><a href="#cb2-260" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-261"><a href="#cb2-261" aria-hidden="true" tabindex="-1"></a>De acuerdo con la Figura 17, en este escenario el algoritmo genético necesitó más iteraciones para encontrar un mínimo, lo cual se ve compensado por el hecho de que mejoró el desempeño del algoritmo de colonia de hormigas en términos de las variables anteriormente mencionadas.</span>
+<span id="cb2-262"><a href="#cb2-262" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-263"><a href="#cb2-263" aria-hidden="true" tabindex="-1"></a>**Figura 17.**</span>
+<span id="cb2-264"><a href="#cb2-264" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-265"><a href="#cb2-265" aria-hidden="true" tabindex="-1"></a>*Evolución de la función costo del algoritmo genético cuando se tienen en cuenta 31 estados de México.* <span class="al">![Evolución de la función costo del algoritmo genético cuando se tienen en cuenta 31 estados de México](images/costo-genetico-tercera.png)</span> Elaboración propia.</span>
+<span id="cb2-266"><a href="#cb2-266" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-267"><a href="#cb2-267" aria-hidden="true" tabindex="-1"></a>Finalmente, las Figuras 18 y 19 permiten observar el recorrido que debería realizar el vendedor de acuerdo con este escenario propuesto, en el que también queda aislada una amplia región del país debido a la decisión de no considerar recorridos que no fueran terrestres.</span>
+<span id="cb2-268"><a href="#cb2-268" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-269"><a href="#cb2-269" aria-hidden="true" tabindex="-1"></a>**Figura 18.**</span>
+<span id="cb2-270"><a href="#cb2-270" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-271"><a href="#cb2-271" aria-hidden="true" tabindex="-1"></a>*Ruta óptima encontrada mediante algoritmos genéticos teniendo en cuenta solo 31 estados de México.* <span class="al">![Ruta encontrada mediante algoritmos genéticos teniendo en cuenta solo 31 estados de México](images/imagen5_ga.png)</span> Elaboración propia.</span>
+<span id="cb2-272"><a href="#cb2-272" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-273"><a href="#cb2-273" aria-hidden="true" tabindex="-1"></a>**Figura 19.**</span>
+<span id="cb2-274"><a href="#cb2-274" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-275"><a href="#cb2-275" aria-hidden="true" tabindex="-1"></a>*Ruta óptima de carreteras encontrada mediante algoritmos genéticos teniendo en cuenta 31 de los estados de México.* ![Ruta de carreteras encontrada mediante algoritmos genéticos teniendo en cuenta 31 de los estados de México](images/imagen6_ga.png) *Nota.* Al observar las carreteras que debería recorrer esta solución, puede observarse que el vendedor terminaría pasando por los mismos caminos varias veces, ya que deben darse varios recorridos de manera repetida por la necesidad de conectar algunos territorios de los 31 estados sin contemplar la opción del viaje en ferri. Elaboración propia.</span>
+<span id="cb2-276"><a href="#cb2-276" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-277"><a href="#cb2-277" aria-hidden="true" tabindex="-1"></a><span class="fu">### Verificación de la calidad de la solución</span></span>
+<span id="cb2-278"><a href="#cb2-278" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-279"><a href="#cb2-279" aria-hidden="true" tabindex="-1"></a>Es importante evaluar qué tan buena es la solución alcanzada. Métodos exhaustivos como la fuerza bruta, que permiten comprobar cuál es la mejor solución entre todas las posibles, resultan computacionalmente inviables en este caso. Aprovechando que disponemos de un gran número de iteraciones y tres diferentes escenarios que nos permiten variar las condiciones del problema, podemos concluir que la solución obtenida es, al menos, razonablemente buena.</span>
+<span id="cb2-280"><a href="#cb2-280" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-281"><a href="#cb2-281" aria-hidden="true" tabindex="-1"></a>Además, es relevante analizar el comportamiento de las funciones de costo. En todos los escenarios se observa que el costo se reduce significativamente al principio y luego comienza a fluctuar alrededor de una media estable. Esto indica que el algoritmo está convergiendo hacia esos valores. A partir de este comportamiento, seleccionamos la solución con el menor costo como la mejor alternativa.</span>
+<span id="cb2-282"><a href="#cb2-282" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-283"><a href="#cb2-283" aria-hidden="true" tabindex="-1"></a>En general, las funciones de costo tienden a estabilizarse dentro de un rango limitado de valores. Este patrón nos permite confiar en que las soluciones obtenidas se encuentran entre las mejores posibles, considerando las limitaciones inherentes a los métodos no determinísticos.</span>
+<span id="cb2-284"><a href="#cb2-284" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-285"><a href="#cb2-285" aria-hidden="true" tabindex="-1"></a><span class="fu">### Discusión de los resultados</span></span>
+<span id="cb2-286"><a href="#cb2-286" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-287"><a href="#cb2-287" aria-hidden="true" tabindex="-1"></a>Los resultados obtenidos al aplicar el Algoritmo de Colonia de Hormigas y el Algoritmo Genético en tres situaciones diferentes permiten destacar las fortalezas y diferencias de cada uno. Por un lado, el Algoritmo de Colonia de Hormigas logra encontrar una solución más económica y en un menor número de iteraciones en comparación con el Algoritmo Genético. Por lo tanto, en esta evaluación específica, dicho algoritmo puede considerarse más eficiente para resolver el problema en esta situación particular.</span>
+<span id="cb2-288"><a href="#cb2-288" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-289"><a href="#cb2-289" aria-hidden="true" tabindex="-1"></a>No obstante, es importante señalar que la elección del algoritmo adecuado depende en gran medida de la naturaleza del problema. Incluso para un mismo problema, diferentes enfoques pueden llevar a variaciones significativas en los resultados, como se observó en este análisis. Aunque en este caso el Algoritmo de Colonia de Hormigas demostró ser más eficiente que el Algoritmo Genético, esta ventaja es altamente circunstancial y no necesariamente aplicable a todos los contextos. Esto refuerza la importancia de adaptar la metodología a las características específicas del problema a resolver.</span>
+<span id="cb2-290"><a href="#cb2-290" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-291"><a href="#cb2-291" aria-hidden="true" tabindex="-1"></a>En la figura 20 y 21 podemos encontrar las soluciones encontradas con algoritmo de colonia de hormigas y algoritmo genético.</span>
+<span id="cb2-292"><a href="#cb2-292" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-293"><a href="#cb2-293" aria-hidden="true" tabindex="-1"></a>**Figura 20**</span>
+<span id="cb2-294"><a href="#cb2-294" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-295"><a href="#cb2-295" aria-hidden="true" tabindex="-1"></a>Las tres soluciones obtenidas mediante el algoritmo de colonia de hormigas para la optimización de la ruta en las carreteras identificadas son las siguientes:</span>
+<span id="cb2-296"><a href="#cb2-296" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-297"><a href="#cb2-297" aria-hidden="true" tabindex="-1"></a><span class="al">![Las 3 rutas encontradas mediante el algoritmo de colonia de hormigas](soluciones_colonia_hormigas.gif)</span></span>
+<span id="cb2-298"><a href="#cb2-298" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-299"><a href="#cb2-299" aria-hidden="true" tabindex="-1"></a>Las tres soluciones obtenidas mediante el algoritmo genético para la optimización de la ruta en las carreteras identificadas son las siguientes:</span>
+<span id="cb2-300"><a href="#cb2-300" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-301"><a href="#cb2-301" aria-hidden="true" tabindex="-1"></a><span class="al">![Las 3 rutas encontradas mediante el algoritmo genético](soluciones_genetico.gif)</span></span>
+</code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

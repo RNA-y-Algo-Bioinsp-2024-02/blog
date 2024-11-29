@@ -1,14 +1,14 @@
 ---
-title: "!Bienvenido a nuestro blog!"
+title: "¡Bienvenidos a nuestro blog!"
 author: ""
 date: "2024-11-12"
 categories: [news]
 image: welcome.jpg
 ---
 
-# **Bienvenidos a un Espacio para Aprender y Crear**
+# **Bienvenidos a un espacio para aprender y crear**
 
-Este blog ha sido diseñado como parte de un curso dedicado a la **inteligencia artificial y los modelos bioinspirados**, con el propósito de servir como un repositorio de trabajos, reflexiones y aprendizajes desarrollados a lo largo del programa. Más allá del curso, nuestro objetivo es que este espacio evolucione hacia un portafolio que abarque múltiples temáticas en **inteligencia artificial, analítica avanzada y aprendizaje automático**.
+Este blog ha sido diseñado como parte de un curso dedicado a las **Redes Neuronales y Algoritmos Bioinspirados**, con el propósito de servir como un repositorio de trabajos, reflexiones y aprendizajes desarrollados a lo largo del programa. Más allá del curso, nuestro objetivo es que este espacio evolucione hacia un portafolio que abarque múltiples temáticas en **inteligencia artificial, analítica avanzada y aprendizaje automático**.
 
 ------------------------------------------------------------------------
 
@@ -23,7 +23,6 @@ Este blog ha sido diseñado como parte de un curso dedicado a la **inteligencia 
 ------------------------------------------------------------------------
 
 ------------------------------------------------------------------------
-
 
 ::: {style="text-align: center;"}
 <img src="robot.gif" alt="Welcome AI" width="60%"/>

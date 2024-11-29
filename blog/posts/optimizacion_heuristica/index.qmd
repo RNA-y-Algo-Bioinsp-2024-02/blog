@@ -1,5 +1,5 @@
 ---
-title: "Métodos de optimización heurística"
+title: "Optimización Heurística"
 format: 
   html:
     fig-width: 8      # Ancho de las figuras en pulgadas para HTML
@@ -324,7 +324,7 @@ $$f(\mathbf{x}) = \sum_{i=1}^{d-1} \left[ 100(x_{i+1} - x_i^2)^2 + (x_i - 1)^2 \
 |-----------|-----------|--------|-----|
 | -1.5      | -1.7      | 0.001  | 30  |
 
-![](rosenbrock.gif)
+![](images/rosenbrock.gif)
 
 ### Función de Rastrigin
 
@@ -334,7 +334,7 @@ $$f(\mathbf{x}) = 10d + \sum_{i=1}^{d} \left[ x_i^2 - 10 \cos(2\pi x_i) \right]$
 |-----------|-----------|--------|-----|
 | -0.46     | 0.46      | 0.005  | 30  |
 
-![](rastrigin.gif)
+![](images/rastrigin.gif)
 
 ### Función de Schwefel
 
@@ -344,7 +344,7 @@ $$ f(\mathbf{x}) = 418.9829d - \sum_{i=1}^{d} x_i \sin(\sqrt{|x_i|}) $$
 |-----------|-----------|--------|-----|
 | 310       | 310       | 0.8    | 30  |
 
-![](schwefel.gif)
+![](images/schwefel.gif)
 
 ### Función de Griewank
 
@@ -354,7 +354,7 @@ $$ f(\mathbf{x}) = 1 + \frac{1}{4000} \sum_{i=1}^{d} x_i^2 - \prod_{i=1}^{d} \co
 |-----------|-----------|--------|-----|
 | -500      | 500       | 70     | 33  |
 
-![](griewank.gif)
+![](images/griewank.gif)
 
 ### Función Goldstein-Price
 
@@ -369,7 +369,7 @@ $$
 |-----------|-----------|---------|-----|
 | 0.5       | -1.5      | 0.00005 | 50  |
 
-![](goldstein_price.gif)
+![](images/goldstein_price.gif)
 
 ### Función de las seis jorobas de camello
 
@@ -379,7 +379,7 @@ $$ f(x_1, x_2) = \left(4 - 2.1x_1^2 + \frac{x_1^4}{3}\right)x_1^2 + x_1x_2 + \le
 |-----------|-----------|--------|-----|
 | -1        | -1        | 0.015  | 33  |
 
-![](camel_six_humps.gif)
+![](images/camel_six_humps.gif)
 :::
 
 El método del gradiente descendente puede imaginarse como una persona deslizándose por una colina representada por una función. El punto de inicio es el lugar desde donde comienza a deslizarse, y la tasa de aprendizaje actúa como la aceleración que controla la velocidad del deslizamiento en cada paso. Si esta aceleración es demasiado alta, puede ayudar a llegar más rápido al valle más bajo, pero también existe el riesgo de salir del camino o incluso terminar subiendo una colina debido a un impulso excesivo que sobrepasa el objetivo.
@@ -435,7 +435,7 @@ Para problemas de **minimización**, menor $f(x)$ implica mejor fitness.
 
 Se genera una población inicial de $P$ individuos de forma aleatoria dentro de un intervalo $[a, b]$ :
 
-$$x_{ij} \sim \text{U}(a, b), \quad \forall i \in \{1, 2, \ldots, P\}, \; j \in \{1, 2, \ldots, n\}$$ 
+$$x_{ij} \sim \text{U}(a, b), \quad \forall i \in \{1, 2, \ldots, P\}, \; j \in \{1, 2, \ldots, n\}$$
 
 donde:
 
@@ -579,25 +579,25 @@ def genetic_algorithm(fitness_function, population_size, generations, mutation_r
 
 $$f(\mathbf{x}) = \sum_{i=1}^{d-1} \left[ 100(x_{i+1} - x_i^2)^2 + (x_i - 1)^2 \right]$$
 
-![](Rosenbrock_population_animation.gif)
+![](images/Rosenbrock_population_animation.gif)
 
 ### Función de Rastrigin
 
 $$f(\mathbf{x}) = 10d + \sum_{i=1}^{d} \left[ x_i^2 - 10 \cos(2\pi x_i) \right]$$
 
-![](Rastrigin_population_animation.gif)
+![](images/Rastrigin_population_animation.gif)
 
 ### Función de Schwefel
 
 $$ f(\mathbf{x}) = 418.9829d - \sum_{i=1}^{d} x_i \sin(\sqrt{|x_i|}) $$
 
-![](Schwefel_population_animation.gif)
+![](images/Schwefel_population_animation.gif)
 
 ### Función de Griewank
 
 $$ f(\mathbf{x}) = 1 + \frac{1}{4000} \sum_{i=1}^{d} x_i^2 - \prod_{i=1}^{d} \cos\left(\frac{x_i}{\sqrt{i}}\right) $$
 
-![](Griewank_population_animation.gif)
+![](images/Griewank_population_animation.gif)
 
 ### Función Goldstein-Price
 
@@ -608,14 +608,13 @@ f(x_1, x_2) = & \left[1 + (x_1 + x_2 + 1)^2 (19 - 14x_1 + 3x_1^2 - 14x_2 + 6x_1x
 \end{align}
 $$
 
-![](Goldstein_Price_population_animation.gif)
+![](images/Goldstein_Price_population_animation.gif)
 
 ### Función de las seis jorobas de camello
 
 $$ f(x_1, x_2) = \left(4 - 2.1x_1^2 + \frac{x_1^4}{3}\right)x_1^2 + x_1x_2 + \left(-4 + 4x_2^2\right)x_2^2 $$
 
-![](Camel_Six_Humps_population_animation.gif)
-
+![](images/Camel_Six_Humps_population_animation.gif)
 :::
 
 Los algoritmos genéticos convergen hacia soluciones aproximadas, aunque no garantizan alcanzar el óptimo global. Sin embargo, suelen mostrar una rápida convergencia en pocas generaciones. Estos algoritmos buscan equilibrar dos objetivos clave: **Exploración**, que consiste en descubrir nuevas regiones del espacio de búsqueda, y **Explotación**, enfocada en refinar y mejorar las soluciones existentes.
@@ -662,14 +661,13 @@ self.velocities = np.zeros((n_particles, dimensions))
 self.scores = np.array([self.objective_function(p) for p in self.positions])
 ```
 
-
 Además, su aceleración, que representa un cambio en la velocidad, está influenciada por dos factores principales:
 
 -   Atracción hacia su mejor posición personal: Cada partícula tiende a moverse hacia la mejor ubicación que ha identificado en su trayectoria histórica (*pbest).*
 
 -   Atracción hacia la mejor posición global: Las partículas también se dirigen hacia la mejor ubicación encontrada por el grupo completo en el espacio de búsqueda (*pgbest*).
 
-![](paste-1.png)
+![](images/paste-1.png)
 
 [@sancho_pso_image]
 
@@ -739,25 +737,25 @@ Estas modificaciones resultaron en una mejora significativa en la estabilidad de
 
 $$f(\mathbf{x}) = \sum_{i=1}^{d-1} \left[ 100(x_{i+1} - x_i^2)^2 + (x_i - 1)^2 \right]$$
 
-![](Rosenbrock_particulas_animation.gif)
+![](images/Rosenbrock_particulas_animation.gif)
 
 ### Función de Rastrigin
 
 $$f(\mathbf{x}) = 10d + \sum_{i=1}^{d} \left[ x_i^2 - 10 \cos(2\pi x_i) \right]$$
 
-![](Rastrigin_particulas_animation.gif)
+![](images/Rastrigin_particulas_animation.gif)
 
 ### Función de Schwefel
 
 $$ f(\mathbf{x}) = 418.9829d - \sum_{i=1}^{d} x_i \sin(\sqrt{|x_i|}) $$
 
-![](Schwefel_particulas_animation.gif)
+![](images/Schwefel_particulas_animation.gif)
 
 ### Función de Griewank
 
 $$ f(\mathbf{x}) = 1 + \frac{1}{4000} \sum_{i=1}^{d} x_i^2 - \prod_{i=1}^{d} \cos\left(\frac{x_i}{\sqrt{i}}\right) $$
 
-![](Griewank_particulas_animation.gif)
+![](images/Griewank_particulas_animation.gif)
 
 ### Función Goldstein-Price
 
@@ -768,13 +766,13 @@ f(x_1, x_2) = & \left[1 + (x_1 + x_2 + 1)^2 (19 - 14x_1 + 3x_1^2 - 14x_2 + 6x_1x
 \end{align}
 $$
 
-![](Goldstein_Price_particulas_animation.gif)
+![](images/Goldstein_Price_particulas_animation.gif)
 
 ### Función de las seis jorobas de camello
 
 $$ f(x_1, x_2) = \left(4 - 2.1x_1^2 + \frac{x_1^4}{3}\right)x_1^2 + x_1x_2 + \left(-4 + 4x_2^2\right)x_2^2 $$
 
-![](Camel_Six_Humps_particulas_animation.gif)
+![](images/Camel_Six_Humps_particulas_animation.gif)
 :::
 
 ## Optimización diferencial
@@ -791,7 +789,7 @@ La Evolución Diferencial (ED) es un algoritmo de optimización poblacional insp
 
     -   Cada individuo es un vector que representa un punto en el espacio de búsqueda.
 
-``` {python}
+```{python}
 def initialize_population(self):
     """
     Inicializa la población de manera aleatoria dentro de los límites especificados
@@ -857,7 +855,7 @@ def mutation(self, population):
 
 -   **Cruce:** Se crea un vector de prueba combinando el vector mutante y el individuo objetivo mediante un operador de cruce.
 
-``` {python}
+```{python}
 def crossover(self, population, mutation_pop):
     """
     Aplica el cruce binomial (crossover)
@@ -886,7 +884,7 @@ def crossover(self, population, mutation_pop):
 
 -   **Selección:** Se compara el valor de la función objetivo del vector de prueba con el del individuo objetivo. El mejor de los dos se selecciona para la siguiente generación.
 
-``` {python}
+```{python}
 def selection(self, population, trial_pop):
     """
     Selección de los mejores individuos
@@ -920,37 +918,37 @@ def selection(self, population, trial_pop):
 
 $$f(\mathbf{x}) = \sum_{i=1}^{d-1} \left[ 100(x_{i+1} - x_i^2)^2 + (x_i - 1)^2 \right]$$
 
-![](Rosenbrock_diferential_evolution_animation.gif)
+![](images/Rosenbrock_diferential_evolution_animation.gif)
 
 ### Función de Rastrigin
 
 $$f(\mathbf{x}) = 10d + \sum_{i=1}^{d} \left[ x_i^2 - 10 \cos(2\pi x_i) \right]$$
 
-![](Rastrigin_diferential_evolution_animation.gif)
+![](images/Rastrigin_diferential_evolution_animation.gif)
 
 ### Función de Schwefel
 
 $$ f(\mathbf{x}) = 418.9829d - \sum_{i=1}^{d} x_i \sin(\sqrt{|x_i|}) $$
 
-![](Schwefel_diferential_evolution_animation.gif)
+![](images/Schwefel_diferential_evolution_animation.gif)
 
 ### Función de Griewank
 
 $$ f(\mathbf{x}) = 1 + \frac{1}{4000} \sum_{i=1}^{d} x_i^2 - \prod_{i=1}^{d} \cos\left(\frac{x_i}{\sqrt{i}}\right) $$
 
-![](Griewank_diferential_evolution_animation.gif)
+![](images/Griewank_diferential_evolution_animation.gif)
 
 ### Función Goldstein-Price
 
 $$ \begin{align} f(x_1, x_2) = & \left[1 + (x_1 + x_2 + 1)^2 (19 - 14x_1 + 3x_1^2 - 14x_2 + 6x_1x_2 + 3x_2^2)\right] \\          & \left[30 + (2x_1 - 3x_2)^2 (18 - 32x_1 + 12x_1^2 + 48x_2 - 36x_1x_2 + 27x_2^2)\right] \end{align} $$
 
-![](Goldstein_Price_diferential_evolution_animation.gif)
+![](images/Goldstein_Price_diferential_evolution_animation.gif)
 
 ### Función de las seis jorobas de camello
 
 $$ f(x_1, x_2) = \left(4 - 2.1x_1^2 + \frac{x_1^4}{3}\right)x_1^2 + x_1x_2 + \left(-4 + 4x_2^2\right)x_2^2 $$
 
-![](Camel_Six_Humps_diferential_evolution_animation.gif)
+![](images/Camel_Six_Humps_diferential_evolution_animation.gif)
 :::
 
 # Resultados
@@ -961,6 +959,6 @@ Como se puede observar, en la mayoría de los casos de optimización para una un
 
 # Conclusiones y comentarios
 
-# Discusión:
+# Discusión
 
 Reflexione sobre los siguientes puntos: - ¿Qué aportaron los métodos de **descenso por gradiente** y qué aportaron los **métodos heurísticos**? - Para responder a esta pregunta, considere: - El **valor final** de la función objetivo. - El **número de evaluaciones** de la función objetivo. - Es posible que se requiera realizar **varias corridas** de los algoritmos para obtener conclusiones significativas.

@@ -12,7 +12,7 @@
 <meta name="author" content="Tomás Rodríguez Taborda">
 <meta name="dcterms.date" content="2024-11-15">
 
-<title>Métodos de optimización heurística – Redes Neuronales Artificiales y Algoritmos Bioinspirados</title>
+<title>Optimización Heurística – Redes Neuronales Artificiales y Algoritmos Bioinspirados</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -199,7 +199,7 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <div class="quarto-title-block"><div><h1 class="title">Métodos de optimización heurística</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+      <div class="quarto-title-block"><div><h1 class="title">Optimización Heurística</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
                                 <div class="quarto-categories">
                 <div class="quarto-category">optimización</div>
                 <div class="quarto-category">métodos heurísticos</div>
@@ -257,7 +257,7 @@ window.Quarto = {
   </ul></li>
   <li><a href="#resultados" id="toc-resultados" class="nav-link" data-scroll-target="#resultados"><span class="header-section-number">3</span> Resultados</a></li>
   <li><a href="#conclusiones-y-comentarios" id="toc-conclusiones-y-comentarios" class="nav-link" data-scroll-target="#conclusiones-y-comentarios"><span class="header-section-number">4</span> Conclusiones y comentarios</a></li>
-  <li><a href="#discusión" id="toc-discusión" class="nav-link" data-scroll-target="#discusión"><span class="header-section-number">5</span> Discusión:</a></li>
+  <li><a href="#discusión" id="toc-discusión" class="nav-link" data-scroll-target="#discusión"><span class="header-section-number">5</span> Discusión</a></li>
   </ul>
 </nav>
 </nav>
@@ -272,7 +272,7 @@ window.Quarto = {
 
 
 
-<div id="635a928f" class="cell" data-execution_count="2">
+<div id="460b91a8" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -292,7 +292,7 @@ window.Quarto = {
 <section id="funciones-a-optimizar" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Funciones a optimizar</h1>
 <p>Se seleccionaron seis funciones comúnmente empleadas para evaluar métodos de optimización, debido a sus características particulares. Estas funciones presentan desafíos como la existencia de un mínimo global acompañado de múltiples mínimos locales, así como valles que pueden dificultar la convergencia de los algoritmos. A continuación, se describen dichas funciones, incluyendo su forma funcional generalizada para <span class="math inline">\(d\)</span> dimensiones, su representación gráfica en 2 dimensiones, el valor del mínimo global, una breve descripción de cada función y el rango de evaluación sugerido por diversos autores. Las gráficas fueron generadas a partir de la funcion <code>plot_function()</code> que se muestra en la pestaña de <code>Code</code> sugerida.</p>
-<div id="57f4d108" class="cell" data-execution_count="3">
+<div id="d265d6d1" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_function(f, x1_range, x2_range, title<span class="op">=</span><span class="st">"Function Plot"</span>, x1_point<span class="op">=</span><span class="va">None</span>, x2_point<span class="op">=</span><span class="va">None</span>, elev<span class="op">=</span><span class="dv">30</span>, azim<span class="op">=</span><span class="dv">45</span> ):</span>
@@ -339,7 +339,7 @@ window.Quarto = {
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <p><span class="math display">\[f(\mathbf{x}) = \sum_{i=1}^{d-1} \left[ 100(x_{i+1} - x_i^2)^2 + (x_i - 1)^2 \right]\]</span></p>
-<div id="1b482791" class="cell" height="auto" width="100%" data-execution_count="4">
+<div id="467e14e1" class="cell" height="auto" width="100%" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Función de Rosenbrock</span></span>
@@ -367,7 +367,7 @@ window.Quarto = {
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <p><span class="math display">\[f(\mathbf{x}) = 10d + \sum_{i=1}^{d} \left[ x_i^2 - 10 \cos(2\pi x_i) \right]\]</span></p>
-<div id="d76c8b63" class="cell" data-execution_count="5">
+<div id="1dc795da" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Función de Rastrigin</span></span>
@@ -392,7 +392,7 @@ window.Quarto = {
 </div>
 <div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
 <p><span class="math display">\[ f(\mathbf{x}) = 418.9829d - \sum_{i=1}^{d} x_i \sin(\sqrt{|x_i|}) \]</span></p>
-<div id="fc12492f" class="cell" data-execution_count="6">
+<div id="0e675663" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Función de Schwefel</span></span>
@@ -417,7 +417,7 @@ window.Quarto = {
 </div>
 <div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
 <p><span class="math display">\[ f(\mathbf{x}) = 1 + \frac{1}{4000} \sum_{i=1}^{d} x_i^2 - \prod_{i=1}^{d} \cos\left(\frac{x_i}{\sqrt{i}}\right) \]</span></p>
-<div id="5b976e3c" class="cell" data-execution_count="7">
+<div id="9f23f916" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Función de Griewank</span></span>
@@ -468,7 +468,7 @@ f(x_1, x_2) = &amp; \left[1 + (x_1 + x_2 + 1)^2 (19 - 14x_1 + 3x_1^2 - 14x_2 + 6
          &amp; \left[30 + (2x_1 - 3x_2)^2 (18 - 32x_1 + 12x_1^2 + 48x_2 - 36x_1x_2 + 27x_2^2)\right]
 \end{align}
 \]</span></p>
-<div id="85fbf933" class="cell" data-execution_count="8">
+<div id="8bac86ca" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Función Goldstein-Price</span></span>
@@ -496,7 +496,7 @@ f(x_1, x_2) = &amp; \left[1 + (x_1 + x_2 + 1)^2 (19 - 14x_1 + 3x_1^2 - 14x_2 + 6
 </div>
 <div id="tabset-1-6" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-6-tab">
 <p><span class="math display">\[ f(x_1, x_2) = \left(4 - 2.1x_1^2 + \frac{x_1^4}{3}\right)x_1^2 + x_1x_2 + \left(-4 + 4x_2^2\right)x_2^2 \]</span></p>
-<div id="c2da98d5" class="cell" data-execution_count="9">
+<div id="ecc4df05" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Función de las seis jorobas de camello</span></span>
@@ -544,7 +544,7 @@ f(x_1, x_2) = &amp; \left[1 + (x_1 + x_2 + 1)^2 (19 - 14x_1 + 3x_1^2 - 14x_2 + 6
 <p><span class="math display">\[ \frac{\partial f}{\partial x_1} \approx \frac{f(x_1 + h, x_2) - f(x_1 - h, x_2)}{2h} \]</span></p>
 <p><span class="math display">\[ \frac{\partial f}{\partial x_2} \approx \frac{f(x_1, x_2 + h) - f(x_1, x_2 - h)}{2h} \]</span></p>
 <p>donde <span class="math inline">\(h\)</span> es un pequeño incremento (típicamente <span class="math inline">\(10^{-7}\)</span> o <span class="math inline">\(10^{-8}\)</span>).</p>
-<div id="c39ec7ed" class="cell" data-execution_count="10">
+<div id="bc052e36" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> partial_derivative(x0, func, i, h, <span class="op">*</span>args):</span>
@@ -623,7 +623,7 @@ f(x_1, x_2) = &amp; \left[1 + (x_1 + x_2 + 1)^2 (19 - 14x_1 + 3x_1^2 - 14x_2 + 6
 </tr>
 </tbody>
 </table>
-<p><img src="rosenbrock.gif" class="img-fluid"></p>
+<p><img src="images/rosenbrock.gif" class="img-fluid"></p>
 </div>
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
 <p><span class="math display">\[f(\mathbf{x}) = 10d + \sum_{i=1}^{d} \left[ x_i^2 - 10 \cos(2\pi x_i) \right]\]</span></p>
@@ -645,7 +645,7 @@ f(x_1, x_2) = &amp; \left[1 + (x_1 + x_2 + 1)^2 (19 - 14x_1 + 3x_1^2 - 14x_2 + 6
 </tr>
 </tbody>
 </table>
-<p><img src="rastrigin.gif" class="img-fluid"></p>
+<p><img src="images/rastrigin.gif" class="img-fluid"></p>
 </div>
 <div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
 <p><span class="math display">\[ f(\mathbf{x}) = 418.9829d - \sum_{i=1}^{d} x_i \sin(\sqrt{|x_i|}) \]</span></p>
@@ -667,7 +667,7 @@ f(x_1, x_2) = &amp; \left[1 + (x_1 + x_2 + 1)^2 (19 - 14x_1 + 3x_1^2 - 14x_2 + 6
 </tr>
 </tbody>
 </table>
-<p><img src="schwefel.gif" class="img-fluid"></p>
+<p><img src="images/schwefel.gif" class="img-fluid"></p>
 </div>
 <div id="tabset-2-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-4-tab">
 <p><span class="math display">\[ f(\mathbf{x}) = 1 + \frac{1}{4000} \sum_{i=1}^{d} x_i^2 - \prod_{i=1}^{d} \cos\left(\frac{x_i}{\sqrt{i}}\right) \]</span></p>
@@ -689,7 +689,7 @@ f(x_1, x_2) = &amp; \left[1 + (x_1 + x_2 + 1)^2 (19 - 14x_1 + 3x_1^2 - 14x_2 + 6
 </tr>
 </tbody>
 </table>
-<p><img src="griewank.gif" class="img-fluid"></p>
+<p><img src="images/griewank.gif" class="img-fluid"></p>
 </div>
 <div id="tabset-2-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-5-tab">
 <p><span class="math display">\[
@@ -716,7 +716,7 @@ f(x_1, x_2) = &amp; \left[1 + (x_1 + x_2 + 1)^2 (19 - 14x_1 + 3x_1^2 - 14x_2 + 6
 </tr>
 </tbody>
 </table>
-<p><img src="goldstein_price.gif" class="img-fluid"></p>
+<p><img src="images/goldstein_price.gif" class="img-fluid"></p>
 </div>
 <div id="tabset-2-6" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-6-tab">
 <p><span class="math display">\[ f(x_1, x_2) = \left(4 - 2.1x_1^2 + \frac{x_1^4}{3}\right)x_1^2 + x_1x_2 + \left(-4 + 4x_2^2\right)x_2^2 \]</span></p>
@@ -738,7 +738,7 @@ f(x_1, x_2) = &amp; \left[1 + (x_1 + x_2 + 1)^2 (19 - 14x_1 + 3x_1^2 - 14x_2 + 6
 </tr>
 </tbody>
 </table>
-<p><img src="camel_six_humps.gif" class="img-fluid"></p>
+<p><img src="images/camel_six_humps.gif" class="img-fluid"></p>
 </div>
 </div>
 </div>
@@ -784,7 +784,7 @@ f(x_1, x_2) = &amp; \left[1 + (x_1 + x_2 + 1)^2 (19 - 14x_1 + 3x_1^2 - 14x_2 + 6
 <ul>
 <li><span class="math inline">\(x_{ij}\)</span> es la <span class="math inline">\(j-ésima\)</span> coordenada del <span class="math inline">\(i-ésimo\)</span> individuo.</li>
 </ul>
-<div id="a62f9fa9" class="cell" data-execution_count="11">
+<div id="e31afafa" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Inicializar población</span></span>
@@ -796,7 +796,7 @@ f(x_1, x_2) = &amp; \left[1 + (x_1 + x_2 + 1)^2 (19 - 14x_1 + 3x_1^2 - 14x_2 + 6
 <p><strong>Evaluación del Fitness</strong></p>
 <p>Cada individuo de la población es evaluado usando la función objetivo:</p>
 <p><span class="math inline">\(\text{Fitness}_i = f(x_i)\)</span></p>
-<div id="65e3aacc" class="cell" data-execution_count="12">
+<div id="559a158b" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Evaluar fitness</span></span>
@@ -808,7 +808,7 @@ f(x_1, x_2) = &amp; \left[1 + (x_1 + x_2 + 1)^2 (19 - 14x_1 + 3x_1^2 - 14x_2 + 6
 <p><strong>Selección</strong></p>
 <p>Se seleccionan individuos para reproducirse basándose en su fitness. Un métodos comune es el método de torneo, donde primero se seleccionan <span class="math inline">\(k\)</span> individuos al azar y luego se elige al mejor de ellos(mejor fitness):</p>
 <p><span class="math display">\[\text{Individuo seleccionado} = \arg\min_{j \in S} \text{Fitness}_j, \; S \subseteq \{1, \ldots, P\}, \; |S| = k\]</span></p>
-<div id="92f25676" class="cell" data-execution_count="13">
+<div id="028b99c5" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Selección por torneo</span></span>
@@ -827,7 +827,7 @@ f(x_1, x_2) = &amp; \left[1 + (x_1 + x_2 + 1)^2 (19 - 14x_1 + 3x_1^2 - 14x_2 + 6
 <p><span class="math display">\[\text{Hijo 1} = (\text{Padre}_1[:k], \text{Padre}_2[k:])\]</span></p>
 <p><span class="math display">\[\text{Hijo 2} = (\text{Padre}_2[:k], \text{Padre}_1[k:])\]</span></p>
 <p>La probabilidad de realizar un cruce está determinada por <span class="math inline">\(p_c\)</span> (tasa de cruce).</p>
-<div id="475b9aa5" class="cell" data-execution_count="14">
+<div id="d96bf086" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cruce</span></span>
@@ -848,7 +848,7 @@ f(x_1, x_2) = &amp; \left[1 + (x_1 + x_2 + 1)^2 (19 - 14x_1 + 3x_1^2 - 14x_2 + 6
 <li><span class="math inline">\(\Delta\)</span> es una perturbación aleatoria.</li>
 <li><span class="math inline">\(x_{ij}\)</span> se restringe a los límites del problema.</li>
 </ul>
-<div id="43a5eb12" class="cell" data-execution_count="15">
+<div id="7dde67cd" class="cell" data-execution_count="15">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mutación</span></span>
@@ -863,7 +863,7 @@ f(x_1, x_2) = &amp; \left[1 + (x_1 + x_2 + 1)^2 (19 - 14x_1 + 3x_1^2 - 14x_2 + 6
 <hr>
 <p><strong>Evaluación y Sustitución</strong></p>
 <p>La nueva población es evaluada, y mediante el uso de elitismo, es posible conservar a los mejores individuos. El algoritmo continúa iterando con esta población actualizada, mejorando progresivamente la optimización de la función objetivo al incrementar el fitness general de la población.</p>
-<div id="c6a8f515" class="cell" data-execution_count="16">
+<div id="3a8bbea3" class="cell" data-execution_count="16">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Algoritmo completo</span></span>
@@ -911,19 +911,19 @@ f(x_1, x_2) = &amp; \left[1 + (x_1 + x_2 + 1)^2 (19 - 14x_1 + 3x_1^2 - 14x_2 + 6
 <div class="tab-content">
 <div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
 <p><span class="math display">\[f(\mathbf{x}) = \sum_{i=1}^{d-1} \left[ 100(x_{i+1} - x_i^2)^2 + (x_i - 1)^2 \right]\]</span></p>
-<p><img src="Rosenbrock_population_animation.gif" class="img-fluid"></p>
+<p><img src="images/Rosenbrock_population_animation.gif" class="img-fluid"></p>
 </div>
 <div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
 <p><span class="math display">\[f(\mathbf{x}) = 10d + \sum_{i=1}^{d} \left[ x_i^2 - 10 \cos(2\pi x_i) \right]\]</span></p>
-<p><img src="Rastrigin_population_animation.gif" class="img-fluid"></p>
+<p><img src="images/Rastrigin_population_animation.gif" class="img-fluid"></p>
 </div>
 <div id="tabset-3-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-3-tab">
 <p><span class="math display">\[ f(\mathbf{x}) = 418.9829d - \sum_{i=1}^{d} x_i \sin(\sqrt{|x_i|}) \]</span></p>
-<p><img src="Schwefel_population_animation.gif" class="img-fluid"></p>
+<p><img src="images/Schwefel_population_animation.gif" class="img-fluid"></p>
 </div>
 <div id="tabset-3-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-4-tab">
 <p><span class="math display">\[ f(\mathbf{x}) = 1 + \frac{1}{4000} \sum_{i=1}^{d} x_i^2 - \prod_{i=1}^{d} \cos\left(\frac{x_i}{\sqrt{i}}\right) \]</span></p>
-<p><img src="Griewank_population_animation.gif" class="img-fluid"></p>
+<p><img src="images/Griewank_population_animation.gif" class="img-fluid"></p>
 </div>
 <div id="tabset-3-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-5-tab">
 <p><span class="math display">\[
@@ -932,11 +932,11 @@ f(x_1, x_2) = &amp; \left[1 + (x_1 + x_2 + 1)^2 (19 - 14x_1 + 3x_1^2 - 14x_2 + 6
          &amp; \left[30 + (2x_1 - 3x_2)^2 (18 - 32x_1 + 12x_1^2 + 48x_2 - 36x_1x_2 + 27x_2^2)\right]
 \end{align}
 \]</span></p>
-<p><img src="Goldstein_Price_population_animation.gif" class="img-fluid"></p>
+<p><img src="images/Goldstein_Price_population_animation.gif" class="img-fluid"></p>
 </div>
 <div id="tabset-3-6" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-6-tab">
 <p><span class="math display">\[ f(x_1, x_2) = \left(4 - 2.1x_1^2 + \frac{x_1^4}{3}\right)x_1^2 + x_1x_2 + \left(-4 + 4x_2^2\right)x_2^2 \]</span></p>
-<p><img src="Camel_Six_Humps_population_animation.gif" class="img-fluid"></p>
+<p><img src="images/Camel_Six_Humps_population_animation.gif" class="img-fluid"></p>
 </div>
 </div>
 </div>
@@ -967,7 +967,7 @@ f(x_1, x_2) = &amp; \left[1 + (x_1 + x_2 + 1)^2 (19 - 14x_1 + 3x_1^2 - 14x_2 + 6
 <p>Los métodos PSO se atribuyen originalmente a los investigadores Kennedy, Eberhart​ y Shi. En un principio fueron concebidos para elaborar modelos de conductas sociales,​como el movimiento descrito por los organismos vivos en una bandada de aves o un banco de peces. Posteriormente el algoritmo se simplificó y se comprobó que era adecuado para problemas de optimización. <span class="citation" data-cites="kennedy1997particle">(<a href="#ref-kennedy1997particle" role="doc-biblioref">Kennedy 1997</a>)</span></p>
 <p><strong>Funcionamiento de PSOz</strong></p>
 <p>En el algoritmo PSO (Particle Swarm Optimization), cada partícula, que representa un individuo, posee una posición <em>p</em>⃗&nbsp; ​ dentro del espacio de búsqueda y una velocidad <em>v</em>⃗&nbsp;que determina su desplazamiento. Estas partículas, al igual que objetos en un entorno físico, cuentan con una inercia <em>w</em>, la cual conserva su movimiento en la dirección previamente seguida.</p>
-<div id="3fb3d075" class="cell" data-execution_count="17">
+<div id="ecef50a3" class="cell" data-execution_count="17">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="va">self</span>.positions <span class="op">=</span> np.random.uniform(</span>
@@ -987,9 +987,9 @@ f(x_1, x_2) = &amp; \left[1 + (x_1 + x_2 + 1)^2 (19 - 14x_1 + 3x_1^2 - 14x_2 + 6
 <li><p>Atracción hacia su mejor posición personal: Cada partícula tiende a moverse hacia la mejor ubicación que ha identificado en su trayectoria histórica (<em>pbest).</em></p></li>
 <li><p>Atracción hacia la mejor posición global: Las partículas también se dirigen hacia la mejor ubicación encontrada por el grupo completo en el espacio de búsqueda (<em>pgbest</em>).</p></li>
 </ul>
-<p><img src="paste-1.png" class="img-fluid"></p>
+<p><img src="images/paste-1.png" class="img-fluid"></p>
 <p><span class="citation" data-cites="sancho_pso_image">(<a href="#ref-sancho_pso_image" role="doc-biblioref">Sancho Caparrini 2024</a>)</span></p>
-<div id="d74bca7e" class="cell" data-execution_count="18">
+<div id="6515efa3" class="cell" data-execution_count="18">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> iteration <span class="kw">in</span> <span class="bu">range</span>(<span class="va">self</span>.max_iter):</span>
@@ -1027,7 +1027,7 @@ f(x_1, x_2) = &amp; \left[1 + (x_1 + x_2 + 1)^2 (19 - 14x_1 + 3x_1^2 - 14x_2 + 6
 <p>El algoritmo se detiene cuando se alcanza un número máximo de iteraciones, o cuando la mejora en la función objetivo es menor a un umbral predefinido.</p>
 <p>Al implementar el algoritmo, se presentó un comportamiento oscilatorio donde las partículas convergían inicialmente pero luego se dispersaban de manera repentina. El análisis reveló cuatro posibles causas: velocidades excesivas de las partículas, coeficientes de aprendizaje mal ajustados, peso de inercia estático y ausencia de un mecanismo de estabilización.</p>
 <p>La solución implementada aborda estos problemas mediante cuatro modificaciones: Se &nbsp;limitó la velocidad máxima al 10% del espacio de búsqueda para evitar saltos excesivos, se optimizaron los coeficientes cognitivo y social a un valor de 2.0 para balancear exploración y explotación, se implementó un peso de inercia dinámico que decrece linealmente de 0.9 a 0.4 durante la optimización y se añadió un factor de constricción calculado a partir de los coeficientes de aprendizaje para garantizar convergencia matemática.</p>
-<div id="d5c2ae8f" class="cell" data-execution_count="19">
+<div id="ff9caf05" class="cell" data-execution_count="19">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Control de Velocidad Máxima</span></span>
@@ -1053,19 +1053,19 @@ f(x_1, x_2) = &amp; \left[1 + (x_1 + x_2 + 1)^2 (19 - 14x_1 + 3x_1^2 - 14x_2 + 6
 <div class="tab-content">
 <div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
 <p><span class="math display">\[f(\mathbf{x}) = \sum_{i=1}^{d-1} \left[ 100(x_{i+1} - x_i^2)^2 + (x_i - 1)^2 \right]\]</span></p>
-<p><img src="Rosenbrock_particulas_animation.gif" class="img-fluid"></p>
+<p><img src="images/Rosenbrock_particulas_animation.gif" class="img-fluid"></p>
 </div>
 <div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
 <p><span class="math display">\[f(\mathbf{x}) = 10d + \sum_{i=1}^{d} \left[ x_i^2 - 10 \cos(2\pi x_i) \right]\]</span></p>
-<p><img src="Rastrigin_particulas_animation.gif" class="img-fluid"></p>
+<p><img src="images/Rastrigin_particulas_animation.gif" class="img-fluid"></p>
 </div>
 <div id="tabset-4-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-3-tab">
 <p><span class="math display">\[ f(\mathbf{x}) = 418.9829d - \sum_{i=1}^{d} x_i \sin(\sqrt{|x_i|}) \]</span></p>
-<p><img src="Schwefel_particulas_animation.gif" class="img-fluid"></p>
+<p><img src="images/Schwefel_particulas_animation.gif" class="img-fluid"></p>
 </div>
 <div id="tabset-4-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-4-tab">
 <p><span class="math display">\[ f(\mathbf{x}) = 1 + \frac{1}{4000} \sum_{i=1}^{d} x_i^2 - \prod_{i=1}^{d} \cos\left(\frac{x_i}{\sqrt{i}}\right) \]</span></p>
-<p><img src="Griewank_particulas_animation.gif" class="img-fluid"></p>
+<p><img src="images/Griewank_particulas_animation.gif" class="img-fluid"></p>
 </div>
 <div id="tabset-4-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-5-tab">
 <p><span class="math display">\[
@@ -1074,11 +1074,11 @@ f(x_1, x_2) = &amp; \left[1 + (x_1 + x_2 + 1)^2 (19 - 14x_1 + 3x_1^2 - 14x_2 + 6
          &amp; \left[30 + (2x_1 - 3x_2)^2 (18 - 32x_1 + 12x_1^2 + 48x_2 - 36x_1x_2 + 27x_2^2)\right]
 \end{align}
 \]</span></p>
-<p><img src="Goldstein_Price_particulas_animation.gif" class="img-fluid"></p>
+<p><img src="images/Goldstein_Price_particulas_animation.gif" class="img-fluid"></p>
 </div>
 <div id="tabset-4-6" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-6-tab">
 <p><span class="math display">\[ f(x_1, x_2) = \left(4 - 2.1x_1^2 + \frac{x_1^4}{3}\right)x_1^2 + x_1x_2 + \left(-4 + 4x_2^2\right)x_2^2 \]</span></p>
-<p><img src="Camel_Six_Humps_particulas_animation.gif" class="img-fluid"></p>
+<p><img src="images/Camel_Six_Humps_particulas_animation.gif" class="img-fluid"></p>
 </div>
 </div>
 </div>
@@ -1096,7 +1096,7 @@ f(x_1, x_2) = &amp; \left[1 + (x_1 + x_2 + 1)^2 (19 - 14x_1 + 3x_1^2 - 14x_2 + 6
 <li><p>Cada individuo es un vector que representa un punto en el espacio de búsqueda.</p></li>
 </ul></li>
 </ul>
-<div id="0df65c0b" class="cell" data-execution_count="20">
+<div id="881817cb" class="cell" data-execution_count="20">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> initialize_population(<span class="va">self</span>):</span>
@@ -1129,7 +1129,7 @@ f(x_1, x_2) = &amp; \left[1 + (x_1 + x_2 + 1)^2 (19 - 14x_1 + 3x_1^2 - 14x_2 + 6
 <li><strong>Mutación:</strong> Se crea un vector mutante sumando a un individuo objetivo una diferencia escalada entre otros dos individuos de la población.</li>
 </ul></li>
 </ul>
-<div id="c1f25403" class="cell" data-execution_count="21">
+<div id="252c6934" class="cell" data-execution_count="21">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mutation(<span class="va">self</span>, population):</span>
@@ -1169,7 +1169,7 @@ f(x_1, x_2) = &amp; \left[1 + (x_1 + x_2 + 1)^2 (19 - 14x_1 + 3x_1^2 - 14x_2 + 6
 <ul>
 <li><strong>Cruce:</strong> Se crea un vector de prueba combinando el vector mutante y el individuo objetivo mediante un operador de cruce.</li>
 </ul>
-<div id="9a645be7" class="cell" data-execution_count="22">
+<div id="2acdebb2" class="cell" data-execution_count="22">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> crossover(<span class="va">self</span>, population, mutation_pop):</span>
@@ -1201,7 +1201,7 @@ f(x_1, x_2) = &amp; \left[1 + (x_1 + x_2 + 1)^2 (19 - 14x_1 + 3x_1^2 - 14x_2 + 6
 <ul>
 <li><strong>Selección:</strong> Se compara el valor de la función objetivo del vector de prueba con el del individuo objetivo. El mejor de los dos se selecciona para la siguiente generación.</li>
 </ul>
-<div id="501d4431" class="cell" data-execution_count="23">
+<div id="9b84a3c8" class="cell" data-execution_count="23">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> selection(<span class="va">self</span>, population, trial_pop):</span>
@@ -1238,27 +1238,27 @@ f(x_1, x_2) = &amp; \left[1 + (x_1 + x_2 + 1)^2 (19 - 14x_1 + 3x_1^2 - 14x_2 + 6
 <div class="tab-content">
 <div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
 <p><span class="math display">\[f(\mathbf{x}) = \sum_{i=1}^{d-1} \left[ 100(x_{i+1} - x_i^2)^2 + (x_i - 1)^2 \right]\]</span></p>
-<p><img src="Rosenbrock_diferential_evolution_animation.gif" class="img-fluid"></p>
+<p><img src="images/Rosenbrock_diferential_evolution_animation.gif" class="img-fluid"></p>
 </div>
 <div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
 <p><span class="math display">\[f(\mathbf{x}) = 10d + \sum_{i=1}^{d} \left[ x_i^2 - 10 \cos(2\pi x_i) \right]\]</span></p>
-<p><img src="Rastrigin_diferential_evolution_animation.gif" class="img-fluid"></p>
+<p><img src="images/Rastrigin_diferential_evolution_animation.gif" class="img-fluid"></p>
 </div>
 <div id="tabset-5-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-3-tab">
 <p><span class="math display">\[ f(\mathbf{x}) = 418.9829d - \sum_{i=1}^{d} x_i \sin(\sqrt{|x_i|}) \]</span></p>
-<p><img src="Schwefel_diferential_evolution_animation.gif" class="img-fluid"></p>
+<p><img src="images/Schwefel_diferential_evolution_animation.gif" class="img-fluid"></p>
 </div>
 <div id="tabset-5-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-4-tab">
 <p><span class="math display">\[ f(\mathbf{x}) = 1 + \frac{1}{4000} \sum_{i=1}^{d} x_i^2 - \prod_{i=1}^{d} \cos\left(\frac{x_i}{\sqrt{i}}\right) \]</span></p>
-<p><img src="Griewank_diferential_evolution_animation.gif" class="img-fluid"></p>
+<p><img src="images/Griewank_diferential_evolution_animation.gif" class="img-fluid"></p>
 </div>
 <div id="tabset-5-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-5-tab">
 <p><span class="math display">\[ \begin{align} f(x_1, x_2) = &amp; \left[1 + (x_1 + x_2 + 1)^2 (19 - 14x_1 + 3x_1^2 - 14x_2 + 6x_1x_2 + 3x_2^2)\right] \\          &amp; \left[30 + (2x_1 - 3x_2)^2 (18 - 32x_1 + 12x_1^2 + 48x_2 - 36x_1x_2 + 27x_2^2)\right] \end{align} \]</span></p>
-<p><img src="Goldstein_Price_diferential_evolution_animation.gif" class="img-fluid"></p>
+<p><img src="images/Goldstein_Price_diferential_evolution_animation.gif" class="img-fluid"></p>
 </div>
 <div id="tabset-5-6" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-6-tab">
 <p><span class="math display">\[ f(x_1, x_2) = \left(4 - 2.1x_1^2 + \frac{x_1^4}{3}\right)x_1^2 + x_1x_2 + \left(-4 + 4x_2^2\right)x_2^2 \]</span></p>
-<p><img src="Camel_Six_Humps_diferential_evolution_animation.gif" class="img-fluid"></p>
+<p><img src="images/Camel_Six_Humps_diferential_evolution_animation.gif" class="img-fluid"></p>
 </div>
 </div>
 </div>
@@ -1273,7 +1273,7 @@ f(x_1, x_2) = &amp; \left[1 + (x_1 + x_2 + 1)^2 (19 - 14x_1 + 3x_1^2 - 14x_2 + 6
 <h1 data-number="4"><span class="header-section-number">4</span> Conclusiones y comentarios</h1>
 </section>
 <section id="discusión" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> Discusión:</h1>
+<h1 data-number="5"><span class="header-section-number">5</span> Discusión</h1>
 <p>Reflexione sobre los siguientes puntos: - ¿Qué aportaron los métodos de <strong>descenso por gradiente</strong> y qué aportaron los <strong>métodos heurísticos</strong>? - Para responder a esta pregunta, considere: - El <strong>valor final</strong> de la función objetivo. - El <strong>número de evaluaciones</strong> de la función objetivo. - Es posible que se requiera realizar <strong>varias corridas</strong> de los algoritmos para obtener conclusiones significativas.</p>
 
 
@@ -1933,7 +1933,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="sourceCode" id="cb23" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Métodos de optimización heurística"</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Optimización Heurística"</span></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> </span></span>
 <span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
 <span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-width: 8      # Ancho de las figuras en pulgadas para HTML</span></span>
@@ -2258,7 +2258,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb23-342"><a href="#cb23-342" aria-hidden="true" tabindex="-1"></a>|-----------|-----------|--------|-----|</span>
 <span id="cb23-343"><a href="#cb23-343" aria-hidden="true" tabindex="-1"></a>| -1.5      | -1.7      | 0.001  | 30  |</span>
 <span id="cb23-344"><a href="#cb23-344" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-345"><a href="#cb23-345" aria-hidden="true" tabindex="-1"></a><span class="al">![](rosenbrock.gif)</span></span>
+<span id="cb23-345"><a href="#cb23-345" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/rosenbrock.gif)</span></span>
 <span id="cb23-346"><a href="#cb23-346" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-347"><a href="#cb23-347" aria-hidden="true" tabindex="-1"></a><span class="fu">### Función de Rastrigin</span></span>
 <span id="cb23-348"><a href="#cb23-348" aria-hidden="true" tabindex="-1"></a></span>
@@ -2268,7 +2268,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb23-352"><a href="#cb23-352" aria-hidden="true" tabindex="-1"></a>|-----------|-----------|--------|-----|</span>
 <span id="cb23-353"><a href="#cb23-353" aria-hidden="true" tabindex="-1"></a>| -0.46     | 0.46      | 0.005  | 30  |</span>
 <span id="cb23-354"><a href="#cb23-354" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-355"><a href="#cb23-355" aria-hidden="true" tabindex="-1"></a><span class="al">![](rastrigin.gif)</span></span>
+<span id="cb23-355"><a href="#cb23-355" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/rastrigin.gif)</span></span>
 <span id="cb23-356"><a href="#cb23-356" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-357"><a href="#cb23-357" aria-hidden="true" tabindex="-1"></a><span class="fu">### Función de Schwefel</span></span>
 <span id="cb23-358"><a href="#cb23-358" aria-hidden="true" tabindex="-1"></a></span>
@@ -2278,7 +2278,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb23-362"><a href="#cb23-362" aria-hidden="true" tabindex="-1"></a>|-----------|-----------|--------|-----|</span>
 <span id="cb23-363"><a href="#cb23-363" aria-hidden="true" tabindex="-1"></a>| 310       | 310       | 0.8    | 30  |</span>
 <span id="cb23-364"><a href="#cb23-364" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-365"><a href="#cb23-365" aria-hidden="true" tabindex="-1"></a><span class="al">![](schwefel.gif)</span></span>
+<span id="cb23-365"><a href="#cb23-365" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/schwefel.gif)</span></span>
 <span id="cb23-366"><a href="#cb23-366" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-367"><a href="#cb23-367" aria-hidden="true" tabindex="-1"></a><span class="fu">### Función de Griewank</span></span>
 <span id="cb23-368"><a href="#cb23-368" aria-hidden="true" tabindex="-1"></a></span>
@@ -2288,7 +2288,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb23-372"><a href="#cb23-372" aria-hidden="true" tabindex="-1"></a>|-----------|-----------|--------|-----|</span>
 <span id="cb23-373"><a href="#cb23-373" aria-hidden="true" tabindex="-1"></a>| -500      | 500       | 70     | 33  |</span>
 <span id="cb23-374"><a href="#cb23-374" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-375"><a href="#cb23-375" aria-hidden="true" tabindex="-1"></a><span class="al">![](griewank.gif)</span></span>
+<span id="cb23-375"><a href="#cb23-375" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/griewank.gif)</span></span>
 <span id="cb23-376"><a href="#cb23-376" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-377"><a href="#cb23-377" aria-hidden="true" tabindex="-1"></a><span class="fu">### Función Goldstein-Price</span></span>
 <span id="cb23-378"><a href="#cb23-378" aria-hidden="true" tabindex="-1"></a></span>
@@ -2303,7 +2303,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb23-387"><a href="#cb23-387" aria-hidden="true" tabindex="-1"></a>|-----------|-----------|---------|-----|</span>
 <span id="cb23-388"><a href="#cb23-388" aria-hidden="true" tabindex="-1"></a>| 0.5       | -1.5      | 0.00005 | 50  |</span>
 <span id="cb23-389"><a href="#cb23-389" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-390"><a href="#cb23-390" aria-hidden="true" tabindex="-1"></a><span class="al">![](goldstein_price.gif)</span></span>
+<span id="cb23-390"><a href="#cb23-390" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/goldstein_price.gif)</span></span>
 <span id="cb23-391"><a href="#cb23-391" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-392"><a href="#cb23-392" aria-hidden="true" tabindex="-1"></a><span class="fu">### Función de las seis jorobas de camello</span></span>
 <span id="cb23-393"><a href="#cb23-393" aria-hidden="true" tabindex="-1"></a></span>
@@ -2313,7 +2313,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb23-397"><a href="#cb23-397" aria-hidden="true" tabindex="-1"></a>|-----------|-----------|--------|-----|</span>
 <span id="cb23-398"><a href="#cb23-398" aria-hidden="true" tabindex="-1"></a>| -1        | -1        | 0.015  | 33  |</span>
 <span id="cb23-399"><a href="#cb23-399" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-400"><a href="#cb23-400" aria-hidden="true" tabindex="-1"></a><span class="al">![](camel_six_humps.gif)</span></span>
+<span id="cb23-400"><a href="#cb23-400" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/camel_six_humps.gif)</span></span>
 <span id="cb23-401"><a href="#cb23-401" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb23-402"><a href="#cb23-402" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-403"><a href="#cb23-403" aria-hidden="true" tabindex="-1"></a>El método del gradiente descendente puede imaginarse como una persona deslizándose por una colina representada por una función. El punto de inicio es el lugar desde donde comienza a deslizarse, y la tasa de aprendizaje actúa como la aceleración que controla la velocidad del deslizamiento en cada paso. Si esta aceleración es demasiado alta, puede ayudar a llegar más rápido al valle más bajo, pero también existe el riesgo de salir del camino o incluso terminar subiendo una colina debido a un impulso excesivo que sobrepasa el objetivo.</span>
@@ -2369,7 +2369,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb23-453"><a href="#cb23-453" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-454"><a href="#cb23-454" aria-hidden="true" tabindex="-1"></a>Se genera una población inicial de $P$ individuos de forma aleatoria dentro de un intervalo $<span class="co">[</span><span class="ot">a, b</span><span class="co">]</span>$ :</span>
 <span id="cb23-455"><a href="#cb23-455" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-456"><a href="#cb23-456" aria-hidden="true" tabindex="-1"></a>$$x_{ij} \sim \text{U}(a, b), \quad \forall i \in <span class="sc">\{</span>1, 2, \ldots, P<span class="sc">\}</span>, \; j \in <span class="sc">\{</span>1, 2, \ldots, n<span class="sc">\}</span>$$ </span>
+<span id="cb23-456"><a href="#cb23-456" aria-hidden="true" tabindex="-1"></a>$$x_{ij} \sim \text{U}(a, b), \quad \forall i \in <span class="sc">\{</span>1, 2, \ldots, P<span class="sc">\}</span>, \; j \in <span class="sc">\{</span>1, 2, \ldots, n<span class="sc">\}</span>$$</span>
 <span id="cb23-457"><a href="#cb23-457" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-458"><a href="#cb23-458" aria-hidden="true" tabindex="-1"></a>donde:</span>
 <span id="cb23-459"><a href="#cb23-459" aria-hidden="true" tabindex="-1"></a></span>
@@ -2513,25 +2513,25 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb23-609"><a href="#cb23-609" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-610"><a href="#cb23-610" aria-hidden="true" tabindex="-1"></a>$$f(\mathbf{x}) = \sum_{i=1}^{d-1} \left<span class="co">[</span><span class="ot"> 100(x_{i+1} - x_i^2)^2 + (x_i - 1)^2 \right</span><span class="co">]</span>$$</span>
 <span id="cb23-611"><a href="#cb23-611" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-612"><a href="#cb23-612" aria-hidden="true" tabindex="-1"></a><span class="al">![](Rosenbrock_population_animation.gif)</span></span>
+<span id="cb23-612"><a href="#cb23-612" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/Rosenbrock_population_animation.gif)</span></span>
 <span id="cb23-613"><a href="#cb23-613" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-614"><a href="#cb23-614" aria-hidden="true" tabindex="-1"></a><span class="fu">### Función de Rastrigin</span></span>
 <span id="cb23-615"><a href="#cb23-615" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-616"><a href="#cb23-616" aria-hidden="true" tabindex="-1"></a>$$f(\mathbf{x}) = 10d + \sum_{i=1}^{d} \left<span class="co">[</span><span class="ot"> x_i^2 - 10 \cos(2\pi x_i) \right</span><span class="co">]</span>$$</span>
 <span id="cb23-617"><a href="#cb23-617" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-618"><a href="#cb23-618" aria-hidden="true" tabindex="-1"></a><span class="al">![](Rastrigin_population_animation.gif)</span></span>
+<span id="cb23-618"><a href="#cb23-618" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/Rastrigin_population_animation.gif)</span></span>
 <span id="cb23-619"><a href="#cb23-619" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-620"><a href="#cb23-620" aria-hidden="true" tabindex="-1"></a><span class="fu">### Función de Schwefel</span></span>
 <span id="cb23-621"><a href="#cb23-621" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-622"><a href="#cb23-622" aria-hidden="true" tabindex="-1"></a>$$ f(\mathbf{x}) = 418.9829d - \sum_{i=1}^{d} x_i \sin(\sqrt{|x_i|}) $$</span>
 <span id="cb23-623"><a href="#cb23-623" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-624"><a href="#cb23-624" aria-hidden="true" tabindex="-1"></a><span class="al">![](Schwefel_population_animation.gif)</span></span>
+<span id="cb23-624"><a href="#cb23-624" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/Schwefel_population_animation.gif)</span></span>
 <span id="cb23-625"><a href="#cb23-625" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-626"><a href="#cb23-626" aria-hidden="true" tabindex="-1"></a><span class="fu">### Función de Griewank</span></span>
 <span id="cb23-627"><a href="#cb23-627" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-628"><a href="#cb23-628" aria-hidden="true" tabindex="-1"></a>$$ f(\mathbf{x}) = 1 + \frac{1}{4000} \sum_{i=1}^{d} x_i^2 - \prod_{i=1}^{d} \cos\left(\frac{x_i}{\sqrt{i}}\right) $$</span>
 <span id="cb23-629"><a href="#cb23-629" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-630"><a href="#cb23-630" aria-hidden="true" tabindex="-1"></a><span class="al">![](Griewank_population_animation.gif)</span></span>
+<span id="cb23-630"><a href="#cb23-630" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/Griewank_population_animation.gif)</span></span>
 <span id="cb23-631"><a href="#cb23-631" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-632"><a href="#cb23-632" aria-hidden="true" tabindex="-1"></a><span class="fu">### Función Goldstein-Price</span></span>
 <span id="cb23-633"><a href="#cb23-633" aria-hidden="true" tabindex="-1"></a></span>
@@ -2542,208 +2542,206 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb23-638"><a href="#cb23-638" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
 <span id="cb23-639"><a href="#cb23-639" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb23-640"><a href="#cb23-640" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-641"><a href="#cb23-641" aria-hidden="true" tabindex="-1"></a><span class="al">![](Goldstein_Price_population_animation.gif)</span></span>
+<span id="cb23-641"><a href="#cb23-641" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/Goldstein_Price_population_animation.gif)</span></span>
 <span id="cb23-642"><a href="#cb23-642" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-643"><a href="#cb23-643" aria-hidden="true" tabindex="-1"></a><span class="fu">### Función de las seis jorobas de camello</span></span>
 <span id="cb23-644"><a href="#cb23-644" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-645"><a href="#cb23-645" aria-hidden="true" tabindex="-1"></a>$$ f(x_1, x_2) = \left(4 - 2.1x_1^2 + \frac{x_1^4}{3}\right)x_1^2 + x_1x_2 + \left(-4 + 4x_2^2\right)x_2^2 $$</span>
 <span id="cb23-646"><a href="#cb23-646" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-647"><a href="#cb23-647" aria-hidden="true" tabindex="-1"></a><span class="al">![](Camel_Six_Humps_population_animation.gif)</span></span>
-<span id="cb23-648"><a href="#cb23-648" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-649"><a href="#cb23-649" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb23-650"><a href="#cb23-650" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-651"><a href="#cb23-651" aria-hidden="true" tabindex="-1"></a>Los algoritmos genéticos convergen hacia soluciones aproximadas, aunque no garantizan alcanzar el óptimo global. Sin embargo, suelen mostrar una rápida convergencia en pocas generaciones. Estos algoritmos buscan equilibrar dos objetivos clave: **Exploración**, que consiste en descubrir nuevas regiones del espacio de búsqueda, y **Explotación**, enfocada en refinar y mejorar las soluciones existentes.</span>
-<span id="cb23-652"><a href="#cb23-652" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-653"><a href="#cb23-653" aria-hidden="true" tabindex="-1"></a>Para las simulaciones presentadas en los GIF, se utilizaron los siguientes parámetros: tamaño de población = 30, número de generaciones = 20, tasa de mutación = 0.5, y tasa de cruce = 0.5. El parámetro de mutación $\delta$ se ajusta según los límites de evaluación de las funciones objetivo, representando aproximadamente un 5% del rango de dichas funciones.</span>
-<span id="cb23-654"><a href="#cb23-654" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-655"><a href="#cb23-655" aria-hidden="true" tabindex="-1"></a><span class="fu">### Observaciones</span></span>
-<span id="cb23-656"><a href="#cb23-656" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-657"><a href="#cb23-657" aria-hidden="true" tabindex="-1"></a>Ventajas:</span>
-<span id="cb23-658"><a href="#cb23-658" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-659"><a href="#cb23-659" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>No requiere derivadas ni condiciones específicas en \$\$\$f(x)\$ .</span>
-<span id="cb23-660"><a href="#cb23-660" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Es efectivo en espacios de búsqueda multimodales o no convexos.</span>
-<span id="cb23-661"><a href="#cb23-661" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Adaptable a diversos problemas.</span>
-<span id="cb23-662"><a href="#cb23-662" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-663"><a href="#cb23-663" aria-hidden="true" tabindex="-1"></a>Desventajas:</span>
-<span id="cb23-664"><a href="#cb23-664" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-665"><a href="#cb23-665" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Puede ser computacionalmente costoso.</span>
-<span id="cb23-666"><a href="#cb23-666" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>No garantiza convergencia al óptimo global.</span>
-<span id="cb23-667"><a href="#cb23-667" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Requiere ajuste cuidadoso de parámetros.</span>
-<span id="cb23-668"><a href="#cb23-668" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-669"><a href="#cb23-669" aria-hidden="true" tabindex="-1"></a><span class="fu">## Optimización de partículas</span></span>
-<span id="cb23-670"><a href="#cb23-670" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-671"><a href="#cb23-671" aria-hidden="true" tabindex="-1"></a><span class="fu">### Concepto Básico y Analogía</span></span>
-<span id="cb23-672"><a href="#cb23-672" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-673"><a href="#cb23-673" aria-hidden="true" tabindex="-1"></a>La Optimización por Enjambre de Partículas (PSO) es una técnica metaheurística inspirada en el comportamiento social de los animales, como los pájaros o los peces. En PSO, cada solución potencial al problema se representa como una partícula que se mueve en un espacio de búsqueda multidimensional. Cada partícula ajusta su posición y velocidad en cada iteración, basándose en su propia mejor posición encontrada (pBest) y la mejor posición encontrada por todo el enjambre (gBest). <span class="co">[</span><span class="ot">@kennedy1995particle</span><span class="co">]</span></span>
-<span id="cb23-674"><a href="#cb23-674" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-675"><a href="#cb23-675" aria-hidden="true" tabindex="-1"></a>Los métodos PSO se atribuyen originalmente a los investigadores Kennedy, Eberhart​ y Shi. En un principio fueron concebidos para elaborar modelos de conductas sociales,​como el movimiento descrito por los organismos vivos en una bandada de aves o un banco de peces. Posteriormente el algoritmo se simplificó y se comprobó que era adecuado para problemas de optimización. <span class="co">[</span><span class="ot">@kennedy1997particle</span><span class="co">]</span></span>
-<span id="cb23-676"><a href="#cb23-676" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-677"><a href="#cb23-677" aria-hidden="true" tabindex="-1"></a>**Funcionamiento de PSOz**</span>
-<span id="cb23-678"><a href="#cb23-678" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-679"><a href="#cb23-679" aria-hidden="true" tabindex="-1"></a>En el algoritmo PSO (Particle Swarm Optimization), cada partícula, que representa un individuo, posee una posición *p*⃗&nbsp; ​ dentro del espacio de búsqueda y una velocidad *v*⃗&nbsp;que determina su desplazamiento. Estas partículas, al igual que objetos en un entorno físico, cuentan con una inercia *w*, la cual conserva su movimiento en la dirección previamente seguida.</span>
-<span id="cb23-680"><a href="#cb23-680" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-683"><a href="#cb23-683" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb23-684"><a href="#cb23-684" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb23-685"><a href="#cb23-685" aria-hidden="true" tabindex="-1"></a><span class="va">self</span>.positions <span class="op">=</span> np.random.uniform(</span>
-<span id="cb23-686"><a href="#cb23-686" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.bounds[:, <span class="dv">0</span>],</span>
-<span id="cb23-687"><a href="#cb23-687" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.bounds[:, <span class="dv">1</span>],</span>
-<span id="cb23-688"><a href="#cb23-688" aria-hidden="true" tabindex="-1"></a>    size<span class="op">=</span>(n_particles, dimensions)</span>
-<span id="cb23-689"><a href="#cb23-689" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb23-690"><a href="#cb23-690" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-691"><a href="#cb23-691" aria-hidden="true" tabindex="-1"></a><span class="va">self</span>.velocities <span class="op">=</span> np.zeros((n_particles, dimensions))</span>
-<span id="cb23-692"><a href="#cb23-692" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-693"><a href="#cb23-693" aria-hidden="true" tabindex="-1"></a><span class="co"># Evaluar posiciones iniciales</span></span>
-<span id="cb23-694"><a href="#cb23-694" aria-hidden="true" tabindex="-1"></a><span class="va">self</span>.scores <span class="op">=</span> np.array([<span class="va">self</span>.objective_function(p) <span class="cf">for</span> p <span class="kw">in</span> <span class="va">self</span>.positions])</span>
-<span id="cb23-695"><a href="#cb23-695" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb23-696"><a href="#cb23-696" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-647"><a href="#cb23-647" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/Camel_Six_Humps_population_animation.gif)</span></span>
+<span id="cb23-648"><a href="#cb23-648" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb23-649"><a href="#cb23-649" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-650"><a href="#cb23-650" aria-hidden="true" tabindex="-1"></a>Los algoritmos genéticos convergen hacia soluciones aproximadas, aunque no garantizan alcanzar el óptimo global. Sin embargo, suelen mostrar una rápida convergencia en pocas generaciones. Estos algoritmos buscan equilibrar dos objetivos clave: **Exploración**, que consiste en descubrir nuevas regiones del espacio de búsqueda, y **Explotación**, enfocada en refinar y mejorar las soluciones existentes.</span>
+<span id="cb23-651"><a href="#cb23-651" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-652"><a href="#cb23-652" aria-hidden="true" tabindex="-1"></a>Para las simulaciones presentadas en los GIF, se utilizaron los siguientes parámetros: tamaño de población = 30, número de generaciones = 20, tasa de mutación = 0.5, y tasa de cruce = 0.5. El parámetro de mutación $\delta$ se ajusta según los límites de evaluación de las funciones objetivo, representando aproximadamente un 5% del rango de dichas funciones.</span>
+<span id="cb23-653"><a href="#cb23-653" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-654"><a href="#cb23-654" aria-hidden="true" tabindex="-1"></a><span class="fu">### Observaciones</span></span>
+<span id="cb23-655"><a href="#cb23-655" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-656"><a href="#cb23-656" aria-hidden="true" tabindex="-1"></a>Ventajas:</span>
+<span id="cb23-657"><a href="#cb23-657" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-658"><a href="#cb23-658" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>No requiere derivadas ni condiciones específicas en \$\$\$f(x)\$ .</span>
+<span id="cb23-659"><a href="#cb23-659" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Es efectivo en espacios de búsqueda multimodales o no convexos.</span>
+<span id="cb23-660"><a href="#cb23-660" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Adaptable a diversos problemas.</span>
+<span id="cb23-661"><a href="#cb23-661" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-662"><a href="#cb23-662" aria-hidden="true" tabindex="-1"></a>Desventajas:</span>
+<span id="cb23-663"><a href="#cb23-663" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-664"><a href="#cb23-664" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Puede ser computacionalmente costoso.</span>
+<span id="cb23-665"><a href="#cb23-665" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>No garantiza convergencia al óptimo global.</span>
+<span id="cb23-666"><a href="#cb23-666" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Requiere ajuste cuidadoso de parámetros.</span>
+<span id="cb23-667"><a href="#cb23-667" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-668"><a href="#cb23-668" aria-hidden="true" tabindex="-1"></a><span class="fu">## Optimización de partículas</span></span>
+<span id="cb23-669"><a href="#cb23-669" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-670"><a href="#cb23-670" aria-hidden="true" tabindex="-1"></a><span class="fu">### Concepto Básico y Analogía</span></span>
+<span id="cb23-671"><a href="#cb23-671" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-672"><a href="#cb23-672" aria-hidden="true" tabindex="-1"></a>La Optimización por Enjambre de Partículas (PSO) es una técnica metaheurística inspirada en el comportamiento social de los animales, como los pájaros o los peces. En PSO, cada solución potencial al problema se representa como una partícula que se mueve en un espacio de búsqueda multidimensional. Cada partícula ajusta su posición y velocidad en cada iteración, basándose en su propia mejor posición encontrada (pBest) y la mejor posición encontrada por todo el enjambre (gBest). <span class="co">[</span><span class="ot">@kennedy1995particle</span><span class="co">]</span></span>
+<span id="cb23-673"><a href="#cb23-673" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-674"><a href="#cb23-674" aria-hidden="true" tabindex="-1"></a>Los métodos PSO se atribuyen originalmente a los investigadores Kennedy, Eberhart​ y Shi. En un principio fueron concebidos para elaborar modelos de conductas sociales,​como el movimiento descrito por los organismos vivos en una bandada de aves o un banco de peces. Posteriormente el algoritmo se simplificó y se comprobó que era adecuado para problemas de optimización. <span class="co">[</span><span class="ot">@kennedy1997particle</span><span class="co">]</span></span>
+<span id="cb23-675"><a href="#cb23-675" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-676"><a href="#cb23-676" aria-hidden="true" tabindex="-1"></a>**Funcionamiento de PSOz**</span>
+<span id="cb23-677"><a href="#cb23-677" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-678"><a href="#cb23-678" aria-hidden="true" tabindex="-1"></a>En el algoritmo PSO (Particle Swarm Optimization), cada partícula, que representa un individuo, posee una posición *p*⃗&nbsp; ​ dentro del espacio de búsqueda y una velocidad *v*⃗&nbsp;que determina su desplazamiento. Estas partículas, al igual que objetos en un entorno físico, cuentan con una inercia *w*, la cual conserva su movimiento en la dirección previamente seguida.</span>
+<span id="cb23-679"><a href="#cb23-679" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-682"><a href="#cb23-682" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb23-683"><a href="#cb23-683" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb23-684"><a href="#cb23-684" aria-hidden="true" tabindex="-1"></a><span class="va">self</span>.positions <span class="op">=</span> np.random.uniform(</span>
+<span id="cb23-685"><a href="#cb23-685" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.bounds[:, <span class="dv">0</span>],</span>
+<span id="cb23-686"><a href="#cb23-686" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.bounds[:, <span class="dv">1</span>],</span>
+<span id="cb23-687"><a href="#cb23-687" aria-hidden="true" tabindex="-1"></a>    size<span class="op">=</span>(n_particles, dimensions)</span>
+<span id="cb23-688"><a href="#cb23-688" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb23-689"><a href="#cb23-689" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-690"><a href="#cb23-690" aria-hidden="true" tabindex="-1"></a><span class="va">self</span>.velocities <span class="op">=</span> np.zeros((n_particles, dimensions))</span>
+<span id="cb23-691"><a href="#cb23-691" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-692"><a href="#cb23-692" aria-hidden="true" tabindex="-1"></a><span class="co"># Evaluar posiciones iniciales</span></span>
+<span id="cb23-693"><a href="#cb23-693" aria-hidden="true" tabindex="-1"></a><span class="va">self</span>.scores <span class="op">=</span> np.array([<span class="va">self</span>.objective_function(p) <span class="cf">for</span> p <span class="kw">in</span> <span class="va">self</span>.positions])</span>
+<span id="cb23-694"><a href="#cb23-694" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb23-695"><a href="#cb23-695" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-696"><a href="#cb23-696" aria-hidden="true" tabindex="-1"></a>Además, su aceleración, que representa un cambio en la velocidad, está influenciada por dos factores principales:</span>
 <span id="cb23-697"><a href="#cb23-697" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-698"><a href="#cb23-698" aria-hidden="true" tabindex="-1"></a>Además, su aceleración, que representa un cambio en la velocidad, está influenciada por dos factores principales:</span>
+<span id="cb23-698"><a href="#cb23-698" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Atracción hacia su mejor posición personal: Cada partícula tiende a moverse hacia la mejor ubicación que ha identificado en su trayectoria histórica (*pbest).*</span>
 <span id="cb23-699"><a href="#cb23-699" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-700"><a href="#cb23-700" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Atracción hacia su mejor posición personal: Cada partícula tiende a moverse hacia la mejor ubicación que ha identificado en su trayectoria histórica (*pbest).*</span>
+<span id="cb23-700"><a href="#cb23-700" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Atracción hacia la mejor posición global: Las partículas también se dirigen hacia la mejor ubicación encontrada por el grupo completo en el espacio de búsqueda (*pgbest*).</span>
 <span id="cb23-701"><a href="#cb23-701" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-702"><a href="#cb23-702" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Atracción hacia la mejor posición global: Las partículas también se dirigen hacia la mejor ubicación encontrada por el grupo completo en el espacio de búsqueda (*pgbest*).</span>
+<span id="cb23-702"><a href="#cb23-702" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/paste-1.png)</span></span>
 <span id="cb23-703"><a href="#cb23-703" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-704"><a href="#cb23-704" aria-hidden="true" tabindex="-1"></a><span class="al">![](paste-1.png)</span></span>
+<span id="cb23-704"><a href="#cb23-704" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">@sancho_pso_image</span><span class="co">]</span></span>
 <span id="cb23-705"><a href="#cb23-705" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-706"><a href="#cb23-706" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">@sancho_pso_image</span><span class="co">]</span></span>
-<span id="cb23-707"><a href="#cb23-707" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-710"><a href="#cb23-710" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb23-711"><a href="#cb23-711" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb23-712"><a href="#cb23-712" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> iteration <span class="kw">in</span> <span class="bu">range</span>(<span class="va">self</span>.max_iter):</span>
-<span id="cb23-713"><a href="#cb23-713" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Actualizar velocidades</span></span>
-<span id="cb23-714"><a href="#cb23-714" aria-hidden="true" tabindex="-1"></a>    r1, r2 <span class="op">=</span> np.random.rand(<span class="dv">2</span>)</span>
-<span id="cb23-715"><a href="#cb23-715" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.velocities <span class="op">=</span> (<span class="va">self</span>.w <span class="op">*</span> <span class="va">self</span>.velocities <span class="op">+</span></span>
-<span id="cb23-716"><a href="#cb23-716" aria-hidden="true" tabindex="-1"></a>                     <span class="va">self</span>.c1 <span class="op">*</span> r1 <span class="op">*</span> (<span class="va">self</span>.p_best <span class="op">-</span> <span class="va">self</span>.positions) <span class="op">+</span></span>
-<span id="cb23-717"><a href="#cb23-717" aria-hidden="true" tabindex="-1"></a>                     <span class="va">self</span>.c2 <span class="op">*</span> r2 <span class="op">*</span> (<span class="va">self</span>.g_best <span class="op">-</span> <span class="va">self</span>.positions))</span>
-<span id="cb23-718"><a href="#cb23-718" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb23-719"><a href="#cb23-719" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Actualizar posiciones</span></span>
-<span id="cb23-720"><a href="#cb23-720" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.positions <span class="op">+=</span> <span class="va">self</span>.velocities</span>
-<span id="cb23-721"><a href="#cb23-721" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb23-722"><a href="#cb23-722" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Mantener partículas dentro de los límites</span></span>
-<span id="cb23-723"><a href="#cb23-723" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.positions <span class="op">=</span> np.clip(</span>
-<span id="cb23-724"><a href="#cb23-724" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.positions,</span>
-<span id="cb23-725"><a href="#cb23-725" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.bounds[:, <span class="dv">0</span>],</span>
-<span id="cb23-726"><a href="#cb23-726" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.bounds[:, <span class="dv">1</span>]</span>
-<span id="cb23-727"><a href="#cb23-727" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb23-728"><a href="#cb23-728" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb23-729"><a href="#cb23-729" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Evaluar nuevas posiciones</span></span>
-<span id="cb23-730"><a href="#cb23-730" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.scores <span class="op">=</span> np.array([<span class="va">self</span>.objective_function(p) <span class="cf">for</span> p <span class="kw">in</span> <span class="va">self</span>.positions])</span>
-<span id="cb23-731"><a href="#cb23-731" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb23-732"><a href="#cb23-732" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Actualizar mejores posiciones personales</span></span>
-<span id="cb23-733"><a href="#cb23-733" aria-hidden="true" tabindex="-1"></a>    improved_mask <span class="op">=</span> <span class="va">self</span>.scores <span class="op">&lt;</span> <span class="va">self</span>.p_best_scores</span>
-<span id="cb23-734"><a href="#cb23-734" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.p_best[improved_mask] <span class="op">=</span> <span class="va">self</span>.positions[improved_mask]</span>
-<span id="cb23-735"><a href="#cb23-735" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.p_best_scores[improved_mask] <span class="op">=</span> <span class="va">self</span>.scores[improved_mask]</span>
-<span id="cb23-736"><a href="#cb23-736" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb23-737"><a href="#cb23-737" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Actualizar mejor posición global</span></span>
-<span id="cb23-738"><a href="#cb23-738" aria-hidden="true" tabindex="-1"></a>    min_score_idx <span class="op">=</span> np.argmin(<span class="va">self</span>.p_best_scores)</span>
-<span id="cb23-739"><a href="#cb23-739" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="va">self</span>.p_best_scores[min_score_idx] <span class="op">&lt;</span> <span class="va">self</span>.g_best_score:</span>
-<span id="cb23-740"><a href="#cb23-740" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.g_best <span class="op">=</span> <span class="va">self</span>.p_best[min_score_idx].copy()</span>
-<span id="cb23-741"><a href="#cb23-741" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.g_best_score <span class="op">=</span> <span class="va">self</span>.p_best_scores[min_score_idx]</span>
-<span id="cb23-742"><a href="#cb23-742" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb23-708"><a href="#cb23-708" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb23-709"><a href="#cb23-709" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb23-710"><a href="#cb23-710" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> iteration <span class="kw">in</span> <span class="bu">range</span>(<span class="va">self</span>.max_iter):</span>
+<span id="cb23-711"><a href="#cb23-711" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Actualizar velocidades</span></span>
+<span id="cb23-712"><a href="#cb23-712" aria-hidden="true" tabindex="-1"></a>    r1, r2 <span class="op">=</span> np.random.rand(<span class="dv">2</span>)</span>
+<span id="cb23-713"><a href="#cb23-713" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.velocities <span class="op">=</span> (<span class="va">self</span>.w <span class="op">*</span> <span class="va">self</span>.velocities <span class="op">+</span></span>
+<span id="cb23-714"><a href="#cb23-714" aria-hidden="true" tabindex="-1"></a>                     <span class="va">self</span>.c1 <span class="op">*</span> r1 <span class="op">*</span> (<span class="va">self</span>.p_best <span class="op">-</span> <span class="va">self</span>.positions) <span class="op">+</span></span>
+<span id="cb23-715"><a href="#cb23-715" aria-hidden="true" tabindex="-1"></a>                     <span class="va">self</span>.c2 <span class="op">*</span> r2 <span class="op">*</span> (<span class="va">self</span>.g_best <span class="op">-</span> <span class="va">self</span>.positions))</span>
+<span id="cb23-716"><a href="#cb23-716" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb23-717"><a href="#cb23-717" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Actualizar posiciones</span></span>
+<span id="cb23-718"><a href="#cb23-718" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.positions <span class="op">+=</span> <span class="va">self</span>.velocities</span>
+<span id="cb23-719"><a href="#cb23-719" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb23-720"><a href="#cb23-720" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Mantener partículas dentro de los límites</span></span>
+<span id="cb23-721"><a href="#cb23-721" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.positions <span class="op">=</span> np.clip(</span>
+<span id="cb23-722"><a href="#cb23-722" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.positions,</span>
+<span id="cb23-723"><a href="#cb23-723" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.bounds[:, <span class="dv">0</span>],</span>
+<span id="cb23-724"><a href="#cb23-724" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.bounds[:, <span class="dv">1</span>]</span>
+<span id="cb23-725"><a href="#cb23-725" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb23-726"><a href="#cb23-726" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb23-727"><a href="#cb23-727" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Evaluar nuevas posiciones</span></span>
+<span id="cb23-728"><a href="#cb23-728" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.scores <span class="op">=</span> np.array([<span class="va">self</span>.objective_function(p) <span class="cf">for</span> p <span class="kw">in</span> <span class="va">self</span>.positions])</span>
+<span id="cb23-729"><a href="#cb23-729" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb23-730"><a href="#cb23-730" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Actualizar mejores posiciones personales</span></span>
+<span id="cb23-731"><a href="#cb23-731" aria-hidden="true" tabindex="-1"></a>    improved_mask <span class="op">=</span> <span class="va">self</span>.scores <span class="op">&lt;</span> <span class="va">self</span>.p_best_scores</span>
+<span id="cb23-732"><a href="#cb23-732" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.p_best[improved_mask] <span class="op">=</span> <span class="va">self</span>.positions[improved_mask]</span>
+<span id="cb23-733"><a href="#cb23-733" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.p_best_scores[improved_mask] <span class="op">=</span> <span class="va">self</span>.scores[improved_mask]</span>
+<span id="cb23-734"><a href="#cb23-734" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb23-735"><a href="#cb23-735" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Actualizar mejor posición global</span></span>
+<span id="cb23-736"><a href="#cb23-736" aria-hidden="true" tabindex="-1"></a>    min_score_idx <span class="op">=</span> np.argmin(<span class="va">self</span>.p_best_scores)</span>
+<span id="cb23-737"><a href="#cb23-737" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="va">self</span>.p_best_scores[min_score_idx] <span class="op">&lt;</span> <span class="va">self</span>.g_best_score:</span>
+<span id="cb23-738"><a href="#cb23-738" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.g_best <span class="op">=</span> <span class="va">self</span>.p_best[min_score_idx].copy()</span>
+<span id="cb23-739"><a href="#cb23-739" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.g_best_score <span class="op">=</span> <span class="va">self</span>.p_best_scores[min_score_idx]</span>
+<span id="cb23-740"><a href="#cb23-740" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb23-741"><a href="#cb23-741" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-742"><a href="#cb23-742" aria-hidden="true" tabindex="-1"></a>El algoritmo se detiene cuando se alcanza un número máximo de iteraciones, o cuando la mejora en la función objetivo es menor a un umbral predefinido.</span>
 <span id="cb23-743"><a href="#cb23-743" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-744"><a href="#cb23-744" aria-hidden="true" tabindex="-1"></a>El algoritmo se detiene cuando se alcanza un número máximo de iteraciones, o cuando la mejora en la función objetivo es menor a un umbral predefinido.</span>
+<span id="cb23-744"><a href="#cb23-744" aria-hidden="true" tabindex="-1"></a>Al implementar el algoritmo, se presentó un comportamiento oscilatorio donde las partículas convergían inicialmente pero luego se dispersaban de manera repentina. El análisis reveló cuatro posibles causas: velocidades excesivas de las partículas, coeficientes de aprendizaje mal ajustados, peso de inercia estático y ausencia de un mecanismo de estabilización.</span>
 <span id="cb23-745"><a href="#cb23-745" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-746"><a href="#cb23-746" aria-hidden="true" tabindex="-1"></a>Al implementar el algoritmo, se presentó un comportamiento oscilatorio donde las partículas convergían inicialmente pero luego se dispersaban de manera repentina. El análisis reveló cuatro posibles causas: velocidades excesivas de las partículas, coeficientes de aprendizaje mal ajustados, peso de inercia estático y ausencia de un mecanismo de estabilización.</span>
+<span id="cb23-746"><a href="#cb23-746" aria-hidden="true" tabindex="-1"></a>La solución implementada aborda estos problemas mediante cuatro modificaciones: Se &nbsp;limitó la velocidad máxima al 10% del espacio de búsqueda para evitar saltos excesivos, se optimizaron los coeficientes cognitivo y social a un valor de 2.0 para balancear exploración y explotación, se implementó un peso de inercia dinámico que decrece linealmente de 0.9 a 0.4 durante la optimización y se añadió un factor de constricción calculado a partir de los coeficientes de aprendizaje para garantizar convergencia matemática.</span>
 <span id="cb23-747"><a href="#cb23-747" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-748"><a href="#cb23-748" aria-hidden="true" tabindex="-1"></a>La solución implementada aborda estos problemas mediante cuatro modificaciones: Se &nbsp;limitó la velocidad máxima al 10% del espacio de búsqueda para evitar saltos excesivos, se optimizaron los coeficientes cognitivo y social a un valor de 2.0 para balancear exploración y explotación, se implementó un peso de inercia dinámico que decrece linealmente de 0.9 a 0.4 durante la optimización y se añadió un factor de constricción calculado a partir de los coeficientes de aprendizaje para garantizar convergencia matemática.</span>
-<span id="cb23-749"><a href="#cb23-749" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-752"><a href="#cb23-752" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb23-753"><a href="#cb23-753" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb23-754"><a href="#cb23-754" aria-hidden="true" tabindex="-1"></a><span class="co"># Control de Velocidad Máxima</span></span>
-<span id="cb23-755"><a href="#cb23-755" aria-hidden="true" tabindex="-1"></a>v_max <span class="op">=</span> <span class="fl">0.1</span> <span class="op">*</span> (bounds[:, <span class="dv">1</span>] <span class="op">-</span> bounds[:, <span class="dv">0</span>])</span>
-<span id="cb23-756"><a href="#cb23-756" aria-hidden="true" tabindex="-1"></a>velocities <span class="op">=</span> np.clip(velocities, <span class="op">-</span>v_max, v_max)</span>
-<span id="cb23-757"><a href="#cb23-757" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-758"><a href="#cb23-758" aria-hidden="true" tabindex="-1"></a><span class="co"># Peso de Inercia Dinámico</span></span>
-<span id="cb23-759"><a href="#cb23-759" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> w_max <span class="op">-</span> (w_max <span class="op">-</span> w_min) <span class="op">*</span> (iteracion <span class="op">/</span> max_iter)</span>
-<span id="cb23-760"><a href="#cb23-760" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-761"><a href="#cb23-761" aria-hidden="true" tabindex="-1"></a><span class="co"># Factor de Constricción</span></span>
-<span id="cb23-762"><a href="#cb23-762" aria-hidden="true" tabindex="-1"></a>phi <span class="op">=</span> c1 <span class="op">+</span> c2</span>
-<span id="cb23-763"><a href="#cb23-763" aria-hidden="true" tabindex="-1"></a>chi <span class="op">=</span> <span class="dv">2</span> <span class="op">/</span> <span class="bu">abs</span>(<span class="dv">2</span> <span class="op">-</span> phi <span class="op">-</span> np.sqrt(phi <span class="op">*</span> phi <span class="op">-</span> <span class="dv">4</span> <span class="op">*</span> phi))</span>
-<span id="cb23-764"><a href="#cb23-764" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-765"><a href="#cb23-765" aria-hidden="true" tabindex="-1"></a><span class="co"># Parámetros Optimizados</span></span>
-<span id="cb23-766"><a href="#cb23-766" aria-hidden="true" tabindex="-1"></a>c1 <span class="op">=</span> c2 <span class="op">=</span> <span class="fl">2.0</span></span>
-<span id="cb23-767"><a href="#cb23-767" aria-hidden="true" tabindex="-1"></a>w_max <span class="op">=</span> <span class="fl">0.9</span></span>
-<span id="cb23-768"><a href="#cb23-768" aria-hidden="true" tabindex="-1"></a>w_min <span class="op">=</span> <span class="fl">0.4</span></span>
-<span id="cb23-769"><a href="#cb23-769" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb23-750"><a href="#cb23-750" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb23-751"><a href="#cb23-751" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb23-752"><a href="#cb23-752" aria-hidden="true" tabindex="-1"></a><span class="co"># Control de Velocidad Máxima</span></span>
+<span id="cb23-753"><a href="#cb23-753" aria-hidden="true" tabindex="-1"></a>v_max <span class="op">=</span> <span class="fl">0.1</span> <span class="op">*</span> (bounds[:, <span class="dv">1</span>] <span class="op">-</span> bounds[:, <span class="dv">0</span>])</span>
+<span id="cb23-754"><a href="#cb23-754" aria-hidden="true" tabindex="-1"></a>velocities <span class="op">=</span> np.clip(velocities, <span class="op">-</span>v_max, v_max)</span>
+<span id="cb23-755"><a href="#cb23-755" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-756"><a href="#cb23-756" aria-hidden="true" tabindex="-1"></a><span class="co"># Peso de Inercia Dinámico</span></span>
+<span id="cb23-757"><a href="#cb23-757" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> w_max <span class="op">-</span> (w_max <span class="op">-</span> w_min) <span class="op">*</span> (iteracion <span class="op">/</span> max_iter)</span>
+<span id="cb23-758"><a href="#cb23-758" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-759"><a href="#cb23-759" aria-hidden="true" tabindex="-1"></a><span class="co"># Factor de Constricción</span></span>
+<span id="cb23-760"><a href="#cb23-760" aria-hidden="true" tabindex="-1"></a>phi <span class="op">=</span> c1 <span class="op">+</span> c2</span>
+<span id="cb23-761"><a href="#cb23-761" aria-hidden="true" tabindex="-1"></a>chi <span class="op">=</span> <span class="dv">2</span> <span class="op">/</span> <span class="bu">abs</span>(<span class="dv">2</span> <span class="op">-</span> phi <span class="op">-</span> np.sqrt(phi <span class="op">*</span> phi <span class="op">-</span> <span class="dv">4</span> <span class="op">*</span> phi))</span>
+<span id="cb23-762"><a href="#cb23-762" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-763"><a href="#cb23-763" aria-hidden="true" tabindex="-1"></a><span class="co"># Parámetros Optimizados</span></span>
+<span id="cb23-764"><a href="#cb23-764" aria-hidden="true" tabindex="-1"></a>c1 <span class="op">=</span> c2 <span class="op">=</span> <span class="fl">2.0</span></span>
+<span id="cb23-765"><a href="#cb23-765" aria-hidden="true" tabindex="-1"></a>w_max <span class="op">=</span> <span class="fl">0.9</span></span>
+<span id="cb23-766"><a href="#cb23-766" aria-hidden="true" tabindex="-1"></a>w_min <span class="op">=</span> <span class="fl">0.4</span></span>
+<span id="cb23-767"><a href="#cb23-767" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb23-768"><a href="#cb23-768" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-769"><a href="#cb23-769" aria-hidden="true" tabindex="-1"></a>Estas modificaciones resultaron en una mejora significativa en la estabilidad del algoritmo, con una transición más suave entre las fases de exploración y explotación, y una convergencia más consistente hacia el óptimo global.</span>
 <span id="cb23-770"><a href="#cb23-770" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-771"><a href="#cb23-771" aria-hidden="true" tabindex="-1"></a>Estas modificaciones resultaron en una mejora significativa en la estabilidad del algoritmo, con una transición más suave entre las fases de exploración y explotación, y una convergencia más consistente hacia el óptimo global.</span>
-<span id="cb23-772"><a href="#cb23-772" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-773"><a href="#cb23-773" aria-hidden="true" tabindex="-1"></a>::: panel-tabset</span>
-<span id="cb23-774"><a href="#cb23-774" aria-hidden="true" tabindex="-1"></a><span class="fu">### Función de Rosenbrock</span></span>
+<span id="cb23-771"><a href="#cb23-771" aria-hidden="true" tabindex="-1"></a>::: panel-tabset</span>
+<span id="cb23-772"><a href="#cb23-772" aria-hidden="true" tabindex="-1"></a><span class="fu">### Función de Rosenbrock</span></span>
+<span id="cb23-773"><a href="#cb23-773" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-774"><a href="#cb23-774" aria-hidden="true" tabindex="-1"></a>$$f(\mathbf{x}) = \sum_{i=1}^{d-1} \left<span class="co">[</span><span class="ot"> 100(x_{i+1} - x_i^2)^2 + (x_i - 1)^2 \right</span><span class="co">]</span>$$</span>
 <span id="cb23-775"><a href="#cb23-775" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-776"><a href="#cb23-776" aria-hidden="true" tabindex="-1"></a>$$f(\mathbf{x}) = \sum_{i=1}^{d-1} \left<span class="co">[</span><span class="ot"> 100(x_{i+1} - x_i^2)^2 + (x_i - 1)^2 \right</span><span class="co">]</span>$$</span>
+<span id="cb23-776"><a href="#cb23-776" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/Rosenbrock_particulas_animation.gif)</span></span>
 <span id="cb23-777"><a href="#cb23-777" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-778"><a href="#cb23-778" aria-hidden="true" tabindex="-1"></a><span class="al">![](Rosenbrock_particulas_animation.gif)</span></span>
+<span id="cb23-778"><a href="#cb23-778" aria-hidden="true" tabindex="-1"></a><span class="fu">### Función de Rastrigin</span></span>
 <span id="cb23-779"><a href="#cb23-779" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-780"><a href="#cb23-780" aria-hidden="true" tabindex="-1"></a><span class="fu">### Función de Rastrigin</span></span>
+<span id="cb23-780"><a href="#cb23-780" aria-hidden="true" tabindex="-1"></a>$$f(\mathbf{x}) = 10d + \sum_{i=1}^{d} \left<span class="co">[</span><span class="ot"> x_i^2 - 10 \cos(2\pi x_i) \right</span><span class="co">]</span>$$</span>
 <span id="cb23-781"><a href="#cb23-781" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-782"><a href="#cb23-782" aria-hidden="true" tabindex="-1"></a>$$f(\mathbf{x}) = 10d + \sum_{i=1}^{d} \left<span class="co">[</span><span class="ot"> x_i^2 - 10 \cos(2\pi x_i) \right</span><span class="co">]</span>$$</span>
+<span id="cb23-782"><a href="#cb23-782" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/Rastrigin_particulas_animation.gif)</span></span>
 <span id="cb23-783"><a href="#cb23-783" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-784"><a href="#cb23-784" aria-hidden="true" tabindex="-1"></a><span class="al">![](Rastrigin_particulas_animation.gif)</span></span>
+<span id="cb23-784"><a href="#cb23-784" aria-hidden="true" tabindex="-1"></a><span class="fu">### Función de Schwefel</span></span>
 <span id="cb23-785"><a href="#cb23-785" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-786"><a href="#cb23-786" aria-hidden="true" tabindex="-1"></a><span class="fu">### Función de Schwefel</span></span>
+<span id="cb23-786"><a href="#cb23-786" aria-hidden="true" tabindex="-1"></a>$$ f(\mathbf{x}) = 418.9829d - \sum_{i=1}^{d} x_i \sin(\sqrt{|x_i|}) $$</span>
 <span id="cb23-787"><a href="#cb23-787" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-788"><a href="#cb23-788" aria-hidden="true" tabindex="-1"></a>$$ f(\mathbf{x}) = 418.9829d - \sum_{i=1}^{d} x_i \sin(\sqrt{|x_i|}) $$</span>
+<span id="cb23-788"><a href="#cb23-788" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/Schwefel_particulas_animation.gif)</span></span>
 <span id="cb23-789"><a href="#cb23-789" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-790"><a href="#cb23-790" aria-hidden="true" tabindex="-1"></a><span class="al">![](Schwefel_particulas_animation.gif)</span></span>
+<span id="cb23-790"><a href="#cb23-790" aria-hidden="true" tabindex="-1"></a><span class="fu">### Función de Griewank</span></span>
 <span id="cb23-791"><a href="#cb23-791" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-792"><a href="#cb23-792" aria-hidden="true" tabindex="-1"></a><span class="fu">### Función de Griewank</span></span>
+<span id="cb23-792"><a href="#cb23-792" aria-hidden="true" tabindex="-1"></a>$$ f(\mathbf{x}) = 1 + \frac{1}{4000} \sum_{i=1}^{d} x_i^2 - \prod_{i=1}^{d} \cos\left(\frac{x_i}{\sqrt{i}}\right) $$</span>
 <span id="cb23-793"><a href="#cb23-793" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-794"><a href="#cb23-794" aria-hidden="true" tabindex="-1"></a>$$ f(\mathbf{x}) = 1 + \frac{1}{4000} \sum_{i=1}^{d} x_i^2 - \prod_{i=1}^{d} \cos\left(\frac{x_i}{\sqrt{i}}\right) $$</span>
+<span id="cb23-794"><a href="#cb23-794" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/Griewank_particulas_animation.gif)</span></span>
 <span id="cb23-795"><a href="#cb23-795" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-796"><a href="#cb23-796" aria-hidden="true" tabindex="-1"></a><span class="al">![](Griewank_particulas_animation.gif)</span></span>
+<span id="cb23-796"><a href="#cb23-796" aria-hidden="true" tabindex="-1"></a><span class="fu">### Función Goldstein-Price</span></span>
 <span id="cb23-797"><a href="#cb23-797" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-798"><a href="#cb23-798" aria-hidden="true" tabindex="-1"></a><span class="fu">### Función Goldstein-Price</span></span>
-<span id="cb23-799"><a href="#cb23-799" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-800"><a href="#cb23-800" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb23-801"><a href="#cb23-801" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
-<span id="cb23-802"><a href="#cb23-802" aria-hidden="true" tabindex="-1"></a>f(x_1, x_2) = &amp; \left<span class="co">[</span><span class="ot">1 + (x_1 + x_2 + 1)^2 (19 - 14x_1 + 3x_1^2 - 14x_2 + 6x_1x_2 + 3x_2^2)\right</span><span class="co">]</span> <span class="sc">\\</span></span>
-<span id="cb23-803"><a href="#cb23-803" aria-hidden="true" tabindex="-1"></a>         &amp; \left<span class="co">[</span><span class="ot">30 + (2x_1 - 3x_2)^2 (18 - 32x_1 + 12x_1^2 + 48x_2 - 36x_1x_2 + 27x_2^2)\right</span><span class="co">]</span></span>
-<span id="cb23-804"><a href="#cb23-804" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
-<span id="cb23-805"><a href="#cb23-805" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb23-798"><a href="#cb23-798" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb23-799"><a href="#cb23-799" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
+<span id="cb23-800"><a href="#cb23-800" aria-hidden="true" tabindex="-1"></a>f(x_1, x_2) = &amp; \left<span class="co">[</span><span class="ot">1 + (x_1 + x_2 + 1)^2 (19 - 14x_1 + 3x_1^2 - 14x_2 + 6x_1x_2 + 3x_2^2)\right</span><span class="co">]</span> <span class="sc">\\</span></span>
+<span id="cb23-801"><a href="#cb23-801" aria-hidden="true" tabindex="-1"></a>         &amp; \left<span class="co">[</span><span class="ot">30 + (2x_1 - 3x_2)^2 (18 - 32x_1 + 12x_1^2 + 48x_2 - 36x_1x_2 + 27x_2^2)\right</span><span class="co">]</span></span>
+<span id="cb23-802"><a href="#cb23-802" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
+<span id="cb23-803"><a href="#cb23-803" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb23-804"><a href="#cb23-804" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-805"><a href="#cb23-805" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/Goldstein_Price_particulas_animation.gif)</span></span>
 <span id="cb23-806"><a href="#cb23-806" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-807"><a href="#cb23-807" aria-hidden="true" tabindex="-1"></a><span class="al">![](Goldstein_Price_particulas_animation.gif)</span></span>
+<span id="cb23-807"><a href="#cb23-807" aria-hidden="true" tabindex="-1"></a><span class="fu">### Función de las seis jorobas de camello</span></span>
 <span id="cb23-808"><a href="#cb23-808" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-809"><a href="#cb23-809" aria-hidden="true" tabindex="-1"></a><span class="fu">### Función de las seis jorobas de camello</span></span>
+<span id="cb23-809"><a href="#cb23-809" aria-hidden="true" tabindex="-1"></a>$$ f(x_1, x_2) = \left(4 - 2.1x_1^2 + \frac{x_1^4}{3}\right)x_1^2 + x_1x_2 + \left(-4 + 4x_2^2\right)x_2^2 $$</span>
 <span id="cb23-810"><a href="#cb23-810" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-811"><a href="#cb23-811" aria-hidden="true" tabindex="-1"></a>$$ f(x_1, x_2) = \left(4 - 2.1x_1^2 + \frac{x_1^4}{3}\right)x_1^2 + x_1x_2 + \left(-4 + 4x_2^2\right)x_2^2 $$</span>
-<span id="cb23-812"><a href="#cb23-812" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-813"><a href="#cb23-813" aria-hidden="true" tabindex="-1"></a><span class="al">![](Camel_Six_Humps_particulas_animation.gif)</span></span>
-<span id="cb23-814"><a href="#cb23-814" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb23-811"><a href="#cb23-811" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/Camel_Six_Humps_particulas_animation.gif)</span></span>
+<span id="cb23-812"><a href="#cb23-812" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb23-813"><a href="#cb23-813" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-814"><a href="#cb23-814" aria-hidden="true" tabindex="-1"></a><span class="fu">## Optimización diferencial</span></span>
 <span id="cb23-815"><a href="#cb23-815" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-816"><a href="#cb23-816" aria-hidden="true" tabindex="-1"></a><span class="fu">## Optimización diferencial</span></span>
+<span id="cb23-816"><a href="#cb23-816" aria-hidden="true" tabindex="-1"></a>**Funcionamiento Básico**</span>
 <span id="cb23-817"><a href="#cb23-817" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-818"><a href="#cb23-818" aria-hidden="true" tabindex="-1"></a>**Funcionamiento Básico**</span>
+<span id="cb23-818"><a href="#cb23-818" aria-hidden="true" tabindex="-1"></a>La Evolución Diferencial (ED) es un algoritmo de optimización poblacional inspirado en los procesos evolutivos naturales. Al igual que otros algoritmos de esta categoría, la ED mantiene una población de soluciones candidatas, las cuales se recombinan y mutan para producir nuevos individuos los cuales serán elegidos de acuerdo al valor de su función de desempeño. Lo que caracteriza a la ED es el uso de vectores de prueba, los cuales compiten con los individuos de la población actual a fin de sobrevivir. <span class="co">[</span><span class="ot">@price1995differential</span><span class="co">]</span></span>
 <span id="cb23-819"><a href="#cb23-819" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-820"><a href="#cb23-820" aria-hidden="true" tabindex="-1"></a>La Evolución Diferencial (ED) es un algoritmo de optimización poblacional inspirado en los procesos evolutivos naturales. Al igual que otros algoritmos de esta categoría, la ED mantiene una población de soluciones candidatas, las cuales se recombinan y mutan para producir nuevos individuos los cuales serán elegidos de acuerdo al valor de su función de desempeño. Lo que caracteriza a la ED es el uso de vectores de prueba, los cuales compiten con los individuos de la población actual a fin de sobrevivir. <span class="co">[</span><span class="ot">@price1995differential</span><span class="co">]</span></span>
+<span id="cb23-820"><a href="#cb23-820" aria-hidden="true" tabindex="-1"></a>**Pasos clave:**</span>
 <span id="cb23-821"><a href="#cb23-821" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-822"><a href="#cb23-822" aria-hidden="true" tabindex="-1"></a>**Pasos clave:**</span>
+<span id="cb23-822"><a href="#cb23-822" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Inicialización de la población:**</span>
 <span id="cb23-823"><a href="#cb23-823" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-824"><a href="#cb23-824" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Inicialización de la población:**</span>
+<span id="cb23-824"><a href="#cb23-824" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Se genera aleatoriamente una población inicial de individuos (soluciones potenciales).</span>
 <span id="cb23-825"><a href="#cb23-825" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-826"><a href="#cb23-826" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Se genera aleatoriamente una población inicial de individuos (soluciones potenciales).</span>
+<span id="cb23-826"><a href="#cb23-826" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Cada individuo es un vector que representa un punto en el espacio de búsqueda.</span>
 <span id="cb23-827"><a href="#cb23-827" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-828"><a href="#cb23-828" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Cada individuo es un vector que representa un punto en el espacio de búsqueda.</span>
-<span id="cb23-829"><a href="#cb23-829" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-830"><a href="#cb23-830" aria-hidden="true" tabindex="-1"></a><span class="in">``` {python}</span></span>
-<span id="cb23-831"><a href="#cb23-831" aria-hidden="true" tabindex="-1"></a><span class="in">def initialize_population(self):</span></span>
-<span id="cb23-832"><a href="#cb23-832" aria-hidden="true" tabindex="-1"></a><span class="in">    """</span></span>
-<span id="cb23-833"><a href="#cb23-833" aria-hidden="true" tabindex="-1"></a><span class="in">    Inicializa la población de manera aleatoria dentro de los límites especificados</span></span>
+<span id="cb23-830"><a href="#cb23-830" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb23-831"><a href="#cb23-831" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> initialize_population(<span class="va">self</span>):</span>
+<span id="cb23-832"><a href="#cb23-832" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb23-833"><a href="#cb23-833" aria-hidden="true" tabindex="-1"></a><span class="co">    Inicializa la población de manera aleatoria dentro de los límites especificados</span></span>
 <span id="cb23-834"><a href="#cb23-834" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-835"><a href="#cb23-835" aria-hidden="true" tabindex="-1"></a><span class="in">    Returns:</span></span>
-<span id="cb23-836"><a href="#cb23-836" aria-hidden="true" tabindex="-1"></a><span class="in">    - Matriz numpy con población inicial</span></span>
-<span id="cb23-837"><a href="#cb23-837" aria-hidden="true" tabindex="-1"></a><span class="in">    """</span></span>
-<span id="cb23-838"><a href="#cb23-838" aria-hidden="true" tabindex="-1"></a><span class="in">    # Crea una matriz de ceros con el tamaño de la población</span></span>
-<span id="cb23-839"><a href="#cb23-839" aria-hidden="true" tabindex="-1"></a><span class="in">    population = np.zeros((self.population_size, self.dimension))</span></span>
+<span id="cb23-835"><a href="#cb23-835" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb23-836"><a href="#cb23-836" aria-hidden="true" tabindex="-1"></a><span class="co">    - Matriz numpy con población inicial</span></span>
+<span id="cb23-837"><a href="#cb23-837" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb23-838"><a href="#cb23-838" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Crea una matriz de ceros con el tamaño de la población</span></span>
+<span id="cb23-839"><a href="#cb23-839" aria-hidden="true" tabindex="-1"></a>    population <span class="op">=</span> np.zeros((<span class="va">self</span>.population_size, <span class="va">self</span>.dimension))</span>
 <span id="cb23-840"><a href="#cb23-840" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-841"><a href="#cb23-841" aria-hidden="true" tabindex="-1"></a><span class="in">    # Genera valores aleatorios para cada dimensión</span></span>
-<span id="cb23-842"><a href="#cb23-842" aria-hidden="true" tabindex="-1"></a><span class="in">    for i in range(self.dimension):</span></span>
-<span id="cb23-843"><a href="#cb23-843" aria-hidden="true" tabindex="-1"></a><span class="in">        population[:, i] = np.random.uniform(</span></span>
-<span id="cb23-844"><a href="#cb23-844" aria-hidden="true" tabindex="-1"></a><span class="in">            self.bounds[i][0],  # Límite inferior</span></span>
-<span id="cb23-845"><a href="#cb23-845" aria-hidden="true" tabindex="-1"></a><span class="in">            self.bounds[i][1],  # Límite superior</span></span>
-<span id="cb23-846"><a href="#cb23-846" aria-hidden="true" tabindex="-1"></a><span class="in">            size=self.population_size  # Número de individuos</span></span>
-<span id="cb23-847"><a href="#cb23-847" aria-hidden="true" tabindex="-1"></a><span class="in">        )</span></span>
-<span id="cb23-848"><a href="#cb23-848" aria-hidden="true" tabindex="-1"></a><span class="in">    return population</span></span>
+<span id="cb23-841"><a href="#cb23-841" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Genera valores aleatorios para cada dimensión</span></span>
+<span id="cb23-842"><a href="#cb23-842" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="va">self</span>.dimension):</span>
+<span id="cb23-843"><a href="#cb23-843" aria-hidden="true" tabindex="-1"></a>        population[:, i] <span class="op">=</span> np.random.uniform(</span>
+<span id="cb23-844"><a href="#cb23-844" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.bounds[i][<span class="dv">0</span>],  <span class="co"># Límite inferior</span></span>
+<span id="cb23-845"><a href="#cb23-845" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.bounds[i][<span class="dv">1</span>],  <span class="co"># Límite superior</span></span>
+<span id="cb23-846"><a href="#cb23-846" aria-hidden="true" tabindex="-1"></a>            size<span class="op">=</span><span class="va">self</span>.population_size  <span class="co"># Número de individuos</span></span>
+<span id="cb23-847"><a href="#cb23-847" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb23-848"><a href="#cb23-848" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> population</span>
 <span id="cb23-849"><a href="#cb23-849" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb23-850"><a href="#cb23-850" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-851"><a href="#cb23-851" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Evaluación de la población:**</span>
@@ -2791,113 +2789,113 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb23-895"><a href="#cb23-895" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-896"><a href="#cb23-896" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Cruce:** Se crea un vector de prueba combinando el vector mutante y el individuo objetivo mediante un operador de cruce.</span>
 <span id="cb23-897"><a href="#cb23-897" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-898"><a href="#cb23-898" aria-hidden="true" tabindex="-1"></a><span class="in">``` {python}</span></span>
-<span id="cb23-899"><a href="#cb23-899" aria-hidden="true" tabindex="-1"></a><span class="in">def crossover(self, population, mutation_pop):</span></span>
-<span id="cb23-900"><a href="#cb23-900" aria-hidden="true" tabindex="-1"></a><span class="in">    """</span></span>
-<span id="cb23-901"><a href="#cb23-901" aria-hidden="true" tabindex="-1"></a><span class="in">    Aplica el cruce binomial (crossover)</span></span>
-<span id="cb23-902"><a href="#cb23-902" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-903"><a href="#cb23-903" aria-hidden="true" tabindex="-1"></a><span class="in">    Parameters:</span></span>
-<span id="cb23-904"><a href="#cb23-904" aria-hidden="true" tabindex="-1"></a><span class="in">    - population: Población actual</span></span>
-<span id="cb23-905"><a href="#cb23-905" aria-hidden="true" tabindex="-1"></a><span class="in">    - mutation_pop: Población mutada</span></span>
-<span id="cb23-906"><a href="#cb23-906" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-907"><a href="#cb23-907" aria-hidden="true" tabindex="-1"></a><span class="in">    Returns:</span></span>
-<span id="cb23-908"><a href="#cb23-908" aria-hidden="true" tabindex="-1"></a><span class="in">    - Población de prueba tras el cruce</span></span>
-<span id="cb23-909"><a href="#cb23-909" aria-hidden="true" tabindex="-1"></a><span class="in">    """</span></span>
-<span id="cb23-910"><a href="#cb23-910" aria-hidden="true" tabindex="-1"></a><span class="in">    # Crea una matriz para almacenar la población de prueba</span></span>
-<span id="cb23-911"><a href="#cb23-911" aria-hidden="true" tabindex="-1"></a><span class="in">    trial_pop = np.zeros_like(population)</span></span>
-<span id="cb23-912"><a href="#cb23-912" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-913"><a href="#cb23-913" aria-hidden="true" tabindex="-1"></a><span class="in">    for i in range(self.population_size):</span></span>
-<span id="cb23-914"><a href="#cb23-914" aria-hidden="true" tabindex="-1"></a><span class="in">        # Genera puntos de cruce basados en CR</span></span>
-<span id="cb23-915"><a href="#cb23-915" aria-hidden="true" tabindex="-1"></a><span class="in">        cross_points = np.random.rand(self.dimension) &lt;= self.CR</span></span>
-<span id="cb23-916"><a href="#cb23-916" aria-hidden="true" tabindex="-1"></a><span class="in">        # Asegura al menos un punto de cruce</span></span>
-<span id="cb23-917"><a href="#cb23-917" aria-hidden="true" tabindex="-1"></a><span class="in">        cross_points[np.random.randint(0, self.dimension)] = True</span></span>
-<span id="cb23-918"><a href="#cb23-918" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-919"><a href="#cb23-919" aria-hidden="true" tabindex="-1"></a><span class="in">        # Genera vector de prueba</span></span>
-<span id="cb23-920"><a href="#cb23-920" aria-hidden="true" tabindex="-1"></a><span class="in">        trial_pop[i] = np.where(cross_points, mutation_pop[i], population[i])</span></span>
-<span id="cb23-921"><a href="#cb23-921" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-922"><a href="#cb23-922" aria-hidden="true" tabindex="-1"></a><span class="in">    return trial_pop</span></span>
-<span id="cb23-923"><a href="#cb23-923" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb23-924"><a href="#cb23-924" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-925"><a href="#cb23-925" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Selección:** Se compara el valor de la función objetivo del vector de prueba con el del individuo objetivo. El mejor de los dos se selecciona para la siguiente generación.</span>
+<span id="cb23-900"><a href="#cb23-900" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb23-901"><a href="#cb23-901" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> crossover(<span class="va">self</span>, population, mutation_pop):</span>
+<span id="cb23-902"><a href="#cb23-902" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb23-903"><a href="#cb23-903" aria-hidden="true" tabindex="-1"></a><span class="co">    Aplica el cruce binomial (crossover)</span></span>
+<span id="cb23-904"><a href="#cb23-904" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-905"><a href="#cb23-905" aria-hidden="true" tabindex="-1"></a><span class="co">    Parameters:</span></span>
+<span id="cb23-906"><a href="#cb23-906" aria-hidden="true" tabindex="-1"></a><span class="co">    - population: Población actual</span></span>
+<span id="cb23-907"><a href="#cb23-907" aria-hidden="true" tabindex="-1"></a><span class="co">    - mutation_pop: Población mutada</span></span>
+<span id="cb23-908"><a href="#cb23-908" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-909"><a href="#cb23-909" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb23-910"><a href="#cb23-910" aria-hidden="true" tabindex="-1"></a><span class="co">    - Población de prueba tras el cruce</span></span>
+<span id="cb23-911"><a href="#cb23-911" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb23-912"><a href="#cb23-912" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Crea una matriz para almacenar la población de prueba</span></span>
+<span id="cb23-913"><a href="#cb23-913" aria-hidden="true" tabindex="-1"></a>    trial_pop <span class="op">=</span> np.zeros_like(population)</span>
+<span id="cb23-914"><a href="#cb23-914" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-915"><a href="#cb23-915" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="va">self</span>.population_size):</span>
+<span id="cb23-916"><a href="#cb23-916" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Genera puntos de cruce basados en CR</span></span>
+<span id="cb23-917"><a href="#cb23-917" aria-hidden="true" tabindex="-1"></a>        cross_points <span class="op">=</span> np.random.rand(<span class="va">self</span>.dimension) <span class="op">&lt;=</span> <span class="va">self</span>.CR</span>
+<span id="cb23-918"><a href="#cb23-918" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Asegura al menos un punto de cruce</span></span>
+<span id="cb23-919"><a href="#cb23-919" aria-hidden="true" tabindex="-1"></a>        cross_points[np.random.randint(<span class="dv">0</span>, <span class="va">self</span>.dimension)] <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb23-920"><a href="#cb23-920" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-921"><a href="#cb23-921" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Genera vector de prueba</span></span>
+<span id="cb23-922"><a href="#cb23-922" aria-hidden="true" tabindex="-1"></a>        trial_pop[i] <span class="op">=</span> np.where(cross_points, mutation_pop[i], population[i])</span>
+<span id="cb23-923"><a href="#cb23-923" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-924"><a href="#cb23-924" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> trial_pop</span>
+<span id="cb23-925"><a href="#cb23-925" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb23-926"><a href="#cb23-926" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-927"><a href="#cb23-927" aria-hidden="true" tabindex="-1"></a><span class="in">``` {python}</span></span>
-<span id="cb23-928"><a href="#cb23-928" aria-hidden="true" tabindex="-1"></a><span class="in">def selection(self, population, trial_pop):</span></span>
-<span id="cb23-929"><a href="#cb23-929" aria-hidden="true" tabindex="-1"></a><span class="in">    """</span></span>
-<span id="cb23-930"><a href="#cb23-930" aria-hidden="true" tabindex="-1"></a><span class="in">    Selección de los mejores individuos</span></span>
-<span id="cb23-931"><a href="#cb23-931" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-932"><a href="#cb23-932" aria-hidden="true" tabindex="-1"></a><span class="in">    Parameters:</span></span>
-<span id="cb23-933"><a href="#cb23-933" aria-hidden="true" tabindex="-1"></a><span class="in">    - population: Población actual</span></span>
-<span id="cb23-934"><a href="#cb23-934" aria-hidden="true" tabindex="-1"></a><span class="in">    - trial_pop: Población de prueba</span></span>
+<span id="cb23-927"><a href="#cb23-927" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Selección:** Se compara el valor de la función objetivo del vector de prueba con el del individuo objetivo. El mejor de los dos se selecciona para la siguiente generación.</span>
+<span id="cb23-928"><a href="#cb23-928" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-931"><a href="#cb23-931" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb23-932"><a href="#cb23-932" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> selection(<span class="va">self</span>, population, trial_pop):</span>
+<span id="cb23-933"><a href="#cb23-933" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb23-934"><a href="#cb23-934" aria-hidden="true" tabindex="-1"></a><span class="co">    Selección de los mejores individuos</span></span>
 <span id="cb23-935"><a href="#cb23-935" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-936"><a href="#cb23-936" aria-hidden="true" tabindex="-1"></a><span class="in">    Returns:</span></span>
-<span id="cb23-937"><a href="#cb23-937" aria-hidden="true" tabindex="-1"></a><span class="in">    - Nueva población y sus valores de aptitud</span></span>
-<span id="cb23-938"><a href="#cb23-938" aria-hidden="true" tabindex="-1"></a><span class="in">    """</span></span>
-<span id="cb23-939"><a href="#cb23-939" aria-hidden="true" tabindex="-1"></a><span class="in">    # Calcula la aptitud de la población actual y de prueba</span></span>
-<span id="cb23-940"><a href="#cb23-940" aria-hidden="true" tabindex="-1"></a><span class="in">    pop_fitness = np.array([self.func(ind) for ind in population])</span></span>
-<span id="cb23-941"><a href="#cb23-941" aria-hidden="true" tabindex="-1"></a><span class="in">    trial_fitness = np.array([self.func(ind) for ind in trial_pop])</span></span>
-<span id="cb23-942"><a href="#cb23-942" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-943"><a href="#cb23-943" aria-hidden="true" tabindex="-1"></a><span class="in">    # Identifica qué individuos de prueba son mejores</span></span>
-<span id="cb23-944"><a href="#cb23-944" aria-hidden="true" tabindex="-1"></a><span class="in">    better_indices = trial_fitness &lt; pop_fitness</span></span>
-<span id="cb23-945"><a href="#cb23-945" aria-hidden="true" tabindex="-1"></a><span class="in">    population[better_indices] = trial_pop[better_indices]</span></span>
+<span id="cb23-936"><a href="#cb23-936" aria-hidden="true" tabindex="-1"></a><span class="co">    Parameters:</span></span>
+<span id="cb23-937"><a href="#cb23-937" aria-hidden="true" tabindex="-1"></a><span class="co">    - population: Población actual</span></span>
+<span id="cb23-938"><a href="#cb23-938" aria-hidden="true" tabindex="-1"></a><span class="co">    - trial_pop: Población de prueba</span></span>
+<span id="cb23-939"><a href="#cb23-939" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-940"><a href="#cb23-940" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb23-941"><a href="#cb23-941" aria-hidden="true" tabindex="-1"></a><span class="co">    - Nueva población y sus valores de aptitud</span></span>
+<span id="cb23-942"><a href="#cb23-942" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb23-943"><a href="#cb23-943" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calcula la aptitud de la población actual y de prueba</span></span>
+<span id="cb23-944"><a href="#cb23-944" aria-hidden="true" tabindex="-1"></a>    pop_fitness <span class="op">=</span> np.array([<span class="va">self</span>.func(ind) <span class="cf">for</span> ind <span class="kw">in</span> population])</span>
+<span id="cb23-945"><a href="#cb23-945" aria-hidden="true" tabindex="-1"></a>    trial_fitness <span class="op">=</span> np.array([<span class="va">self</span>.func(ind) <span class="cf">for</span> ind <span class="kw">in</span> trial_pop])</span>
 <span id="cb23-946"><a href="#cb23-946" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-947"><a href="#cb23-947" aria-hidden="true" tabindex="-1"></a><span class="in">    return population, np.minimum(pop_fitness, trial_fitness)</span></span>
-<span id="cb23-948"><a href="#cb23-948" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb23-949"><a href="#cb23-949" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-950"><a href="#cb23-950" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Criterio de parada**:</span>
-<span id="cb23-951"><a href="#cb23-951" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-952"><a href="#cb23-952" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Se repiten los pasos 3 y 4 hasta que se cumpla un criterio de parada (número máximo de generaciones, mejora mínima en la función objetivo, etc.)</span>
+<span id="cb23-947"><a href="#cb23-947" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Identifica qué individuos de prueba son mejores</span></span>
+<span id="cb23-948"><a href="#cb23-948" aria-hidden="true" tabindex="-1"></a>    better_indices <span class="op">=</span> trial_fitness <span class="op">&lt;</span> pop_fitness</span>
+<span id="cb23-949"><a href="#cb23-949" aria-hidden="true" tabindex="-1"></a>    population[better_indices] <span class="op">=</span> trial_pop[better_indices]</span>
+<span id="cb23-950"><a href="#cb23-950" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-951"><a href="#cb23-951" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> population, np.minimum(pop_fitness, trial_fitness)</span>
+<span id="cb23-952"><a href="#cb23-952" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb23-953"><a href="#cb23-953" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-954"><a href="#cb23-954" aria-hidden="true" tabindex="-1"></a>        <span class="co">[</span><span class="ot">@martinez2019evolucion</span><span class="co">]</span></span>
+<span id="cb23-954"><a href="#cb23-954" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Criterio de parada**:</span>
 <span id="cb23-955"><a href="#cb23-955" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-956"><a href="#cb23-956" aria-hidden="true" tabindex="-1"></a>::: panel-tabset</span>
-<span id="cb23-957"><a href="#cb23-957" aria-hidden="true" tabindex="-1"></a><span class="fu">### Función de Rosenbrock</span></span>
-<span id="cb23-958"><a href="#cb23-958" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-959"><a href="#cb23-959" aria-hidden="true" tabindex="-1"></a>$$f(\mathbf{x}) = \sum_{i=1}^{d-1} \left<span class="co">[</span><span class="ot"> 100(x_{i+1} - x_i^2)^2 + (x_i - 1)^2 \right</span><span class="co">]</span>$$</span>
-<span id="cb23-960"><a href="#cb23-960" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-961"><a href="#cb23-961" aria-hidden="true" tabindex="-1"></a><span class="al">![](Rosenbrock_diferential_evolution_animation.gif)</span></span>
+<span id="cb23-956"><a href="#cb23-956" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Se repiten los pasos 3 y 4 hasta que se cumpla un criterio de parada (número máximo de generaciones, mejora mínima en la función objetivo, etc.)</span>
+<span id="cb23-957"><a href="#cb23-957" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-958"><a href="#cb23-958" aria-hidden="true" tabindex="-1"></a>        <span class="co">[</span><span class="ot">@martinez2019evolucion</span><span class="co">]</span></span>
+<span id="cb23-959"><a href="#cb23-959" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-960"><a href="#cb23-960" aria-hidden="true" tabindex="-1"></a>::: panel-tabset</span>
+<span id="cb23-961"><a href="#cb23-961" aria-hidden="true" tabindex="-1"></a><span class="fu">### Función de Rosenbrock</span></span>
 <span id="cb23-962"><a href="#cb23-962" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-963"><a href="#cb23-963" aria-hidden="true" tabindex="-1"></a><span class="fu">### Función de Rastrigin</span></span>
+<span id="cb23-963"><a href="#cb23-963" aria-hidden="true" tabindex="-1"></a>$$f(\mathbf{x}) = \sum_{i=1}^{d-1} \left<span class="co">[</span><span class="ot"> 100(x_{i+1} - x_i^2)^2 + (x_i - 1)^2 \right</span><span class="co">]</span>$$</span>
 <span id="cb23-964"><a href="#cb23-964" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-965"><a href="#cb23-965" aria-hidden="true" tabindex="-1"></a>$$f(\mathbf{x}) = 10d + \sum_{i=1}^{d} \left<span class="co">[</span><span class="ot"> x_i^2 - 10 \cos(2\pi x_i) \right</span><span class="co">]</span>$$</span>
+<span id="cb23-965"><a href="#cb23-965" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/Rosenbrock_diferential_evolution_animation.gif)</span></span>
 <span id="cb23-966"><a href="#cb23-966" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-967"><a href="#cb23-967" aria-hidden="true" tabindex="-1"></a><span class="al">![](Rastrigin_diferential_evolution_animation.gif)</span></span>
+<span id="cb23-967"><a href="#cb23-967" aria-hidden="true" tabindex="-1"></a><span class="fu">### Función de Rastrigin</span></span>
 <span id="cb23-968"><a href="#cb23-968" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-969"><a href="#cb23-969" aria-hidden="true" tabindex="-1"></a><span class="fu">### Función de Schwefel</span></span>
+<span id="cb23-969"><a href="#cb23-969" aria-hidden="true" tabindex="-1"></a>$$f(\mathbf{x}) = 10d + \sum_{i=1}^{d} \left<span class="co">[</span><span class="ot"> x_i^2 - 10 \cos(2\pi x_i) \right</span><span class="co">]</span>$$</span>
 <span id="cb23-970"><a href="#cb23-970" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-971"><a href="#cb23-971" aria-hidden="true" tabindex="-1"></a>$$ f(\mathbf{x}) = 418.9829d - \sum_{i=1}^{d} x_i \sin(\sqrt{|x_i|}) $$</span>
+<span id="cb23-971"><a href="#cb23-971" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/Rastrigin_diferential_evolution_animation.gif)</span></span>
 <span id="cb23-972"><a href="#cb23-972" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-973"><a href="#cb23-973" aria-hidden="true" tabindex="-1"></a><span class="al">![](Schwefel_diferential_evolution_animation.gif)</span></span>
+<span id="cb23-973"><a href="#cb23-973" aria-hidden="true" tabindex="-1"></a><span class="fu">### Función de Schwefel</span></span>
 <span id="cb23-974"><a href="#cb23-974" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-975"><a href="#cb23-975" aria-hidden="true" tabindex="-1"></a><span class="fu">### Función de Griewank</span></span>
+<span id="cb23-975"><a href="#cb23-975" aria-hidden="true" tabindex="-1"></a>$$ f(\mathbf{x}) = 418.9829d - \sum_{i=1}^{d} x_i \sin(\sqrt{|x_i|}) $$</span>
 <span id="cb23-976"><a href="#cb23-976" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-977"><a href="#cb23-977" aria-hidden="true" tabindex="-1"></a>$$ f(\mathbf{x}) = 1 + \frac{1}{4000} \sum_{i=1}^{d} x_i^2 - \prod_{i=1}^{d} \cos\left(\frac{x_i}{\sqrt{i}}\right) $$</span>
+<span id="cb23-977"><a href="#cb23-977" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/Schwefel_diferential_evolution_animation.gif)</span></span>
 <span id="cb23-978"><a href="#cb23-978" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-979"><a href="#cb23-979" aria-hidden="true" tabindex="-1"></a><span class="al">![](Griewank_diferential_evolution_animation.gif)</span></span>
+<span id="cb23-979"><a href="#cb23-979" aria-hidden="true" tabindex="-1"></a><span class="fu">### Función de Griewank</span></span>
 <span id="cb23-980"><a href="#cb23-980" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-981"><a href="#cb23-981" aria-hidden="true" tabindex="-1"></a><span class="fu">### Función Goldstein-Price</span></span>
+<span id="cb23-981"><a href="#cb23-981" aria-hidden="true" tabindex="-1"></a>$$ f(\mathbf{x}) = 1 + \frac{1}{4000} \sum_{i=1}^{d} x_i^2 - \prod_{i=1}^{d} \cos\left(\frac{x_i}{\sqrt{i}}\right) $$</span>
 <span id="cb23-982"><a href="#cb23-982" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-983"><a href="#cb23-983" aria-hidden="true" tabindex="-1"></a>$$ \begin{align} f(x_1, x_2) = &amp; \left<span class="co">[</span><span class="ot">1 + (x_1 + x_2 + 1)^2 (19 - 14x_1 + 3x_1^2 - 14x_2 + 6x_1x_2 + 3x_2^2)\right</span><span class="co">]</span> <span class="sc">\\</span>          &amp; \left<span class="co">[</span><span class="ot">30 + (2x_1 - 3x_2)^2 (18 - 32x_1 + 12x_1^2 + 48x_2 - 36x_1x_2 + 27x_2^2)\right</span><span class="co">]</span> \end{align} $$</span>
+<span id="cb23-983"><a href="#cb23-983" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/Griewank_diferential_evolution_animation.gif)</span></span>
 <span id="cb23-984"><a href="#cb23-984" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-985"><a href="#cb23-985" aria-hidden="true" tabindex="-1"></a><span class="al">![](Goldstein_Price_diferential_evolution_animation.gif)</span></span>
+<span id="cb23-985"><a href="#cb23-985" aria-hidden="true" tabindex="-1"></a><span class="fu">### Función Goldstein-Price</span></span>
 <span id="cb23-986"><a href="#cb23-986" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-987"><a href="#cb23-987" aria-hidden="true" tabindex="-1"></a><span class="fu">### Función de las seis jorobas de camello</span></span>
+<span id="cb23-987"><a href="#cb23-987" aria-hidden="true" tabindex="-1"></a>$$ \begin{align} f(x_1, x_2) = &amp; \left<span class="co">[</span><span class="ot">1 + (x_1 + x_2 + 1)^2 (19 - 14x_1 + 3x_1^2 - 14x_2 + 6x_1x_2 + 3x_2^2)\right</span><span class="co">]</span> <span class="sc">\\</span>          &amp; \left<span class="co">[</span><span class="ot">30 + (2x_1 - 3x_2)^2 (18 - 32x_1 + 12x_1^2 + 48x_2 - 36x_1x_2 + 27x_2^2)\right</span><span class="co">]</span> \end{align} $$</span>
 <span id="cb23-988"><a href="#cb23-988" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-989"><a href="#cb23-989" aria-hidden="true" tabindex="-1"></a>$$ f(x_1, x_2) = \left(4 - 2.1x_1^2 + \frac{x_1^4}{3}\right)x_1^2 + x_1x_2 + \left(-4 + 4x_2^2\right)x_2^2 $$</span>
+<span id="cb23-989"><a href="#cb23-989" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/Goldstein_Price_diferential_evolution_animation.gif)</span></span>
 <span id="cb23-990"><a href="#cb23-990" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-991"><a href="#cb23-991" aria-hidden="true" tabindex="-1"></a><span class="al">![](Camel_Six_Humps_diferential_evolution_animation.gif)</span></span>
-<span id="cb23-992"><a href="#cb23-992" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb23-993"><a href="#cb23-993" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-994"><a href="#cb23-994" aria-hidden="true" tabindex="-1"></a><span class="fu"># Resultados</span></span>
-<span id="cb23-995"><a href="#cb23-995" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-996"><a href="#cb23-996" aria-hidden="true" tabindex="-1"></a>Como se puede observar, en la mayoría de los casos de optimización para una unica corrida los puntos óptimos conergen a mínimos locales, lo que indica que los resultados óptimos pueden estar fuertemente influenciado por los valores iniciales de $x$ o las condiciones de inicio de los algoritmos. Por esta razón, para evaluar el rendimiento y el comportamiento de los algoritmos en un entorno más general, se realizarán múltiples ejecuciones. En cada corrida, los algoritmos partirán de valores iniciales distintos generados aleatoriamente. Con esto se verá cuanto tardan los algoritmos en mejorar la evaluación de la función objetivo y cuales pueden ser algunos comentarios particulares a realizar. Los resultados se presentaran para los casos de 2 y 3 dimensiones de las funciones.</span>
+<span id="cb23-991"><a href="#cb23-991" aria-hidden="true" tabindex="-1"></a><span class="fu">### Función de las seis jorobas de camello</span></span>
+<span id="cb23-992"><a href="#cb23-992" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-993"><a href="#cb23-993" aria-hidden="true" tabindex="-1"></a>$$ f(x_1, x_2) = \left(4 - 2.1x_1^2 + \frac{x_1^4}{3}\right)x_1^2 + x_1x_2 + \left(-4 + 4x_2^2\right)x_2^2 $$</span>
+<span id="cb23-994"><a href="#cb23-994" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-995"><a href="#cb23-995" aria-hidden="true" tabindex="-1"></a><span class="al">![](images/Camel_Six_Humps_diferential_evolution_animation.gif)</span></span>
+<span id="cb23-996"><a href="#cb23-996" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb23-997"><a href="#cb23-997" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-998"><a href="#cb23-998" aria-hidden="true" tabindex="-1"></a>(Tabla o gráfica de resutlados)</span>
+<span id="cb23-998"><a href="#cb23-998" aria-hidden="true" tabindex="-1"></a><span class="fu"># Resultados</span></span>
 <span id="cb23-999"><a href="#cb23-999" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-1000"><a href="#cb23-1000" aria-hidden="true" tabindex="-1"></a><span class="fu"># Conclusiones y comentarios</span></span>
+<span id="cb23-1000"><a href="#cb23-1000" aria-hidden="true" tabindex="-1"></a>Como se puede observar, en la mayoría de los casos de optimización para una unica corrida los puntos óptimos conergen a mínimos locales, lo que indica que los resultados óptimos pueden estar fuertemente influenciado por los valores iniciales de $x$ o las condiciones de inicio de los algoritmos. Por esta razón, para evaluar el rendimiento y el comportamiento de los algoritmos en un entorno más general, se realizarán múltiples ejecuciones. En cada corrida, los algoritmos partirán de valores iniciales distintos generados aleatoriamente. Con esto se verá cuanto tardan los algoritmos en mejorar la evaluación de la función objetivo y cuales pueden ser algunos comentarios particulares a realizar. Los resultados se presentaran para los casos de 2 y 3 dimensiones de las funciones.</span>
 <span id="cb23-1001"><a href="#cb23-1001" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-1002"><a href="#cb23-1002" aria-hidden="true" tabindex="-1"></a><span class="fu"># Discusión:</span></span>
+<span id="cb23-1002"><a href="#cb23-1002" aria-hidden="true" tabindex="-1"></a>(Tabla o gráfica de resutlados)</span>
 <span id="cb23-1003"><a href="#cb23-1003" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-1004"><a href="#cb23-1004" aria-hidden="true" tabindex="-1"></a>Reflexione sobre los siguientes puntos: - ¿Qué aportaron los métodos de **descenso por gradiente** y qué aportaron los **métodos heurísticos**? - Para responder a esta pregunta, considere: - El **valor final** de la función objetivo. - El **número de evaluaciones** de la función objetivo. - Es posible que se requiera realizar **varias corridas** de los algoritmos para obtener conclusiones significativas.</span>
+<span id="cb23-1004"><a href="#cb23-1004" aria-hidden="true" tabindex="-1"></a><span class="fu"># Conclusiones y comentarios</span></span>
+<span id="cb23-1005"><a href="#cb23-1005" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-1006"><a href="#cb23-1006" aria-hidden="true" tabindex="-1"></a><span class="fu"># Discusión</span></span>
+<span id="cb23-1007"><a href="#cb23-1007" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-1008"><a href="#cb23-1008" aria-hidden="true" tabindex="-1"></a>Reflexione sobre los siguientes puntos: - ¿Qué aportaron los métodos de **descenso por gradiente** y qué aportaron los **métodos heurísticos**? - Para responder a esta pregunta, considere: - El **valor final** de la función objetivo. - El **número de evaluaciones** de la función objetivo. - Es posible que se requiera realizar **varias corridas** de los algoritmos para obtener conclusiones significativas.</span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

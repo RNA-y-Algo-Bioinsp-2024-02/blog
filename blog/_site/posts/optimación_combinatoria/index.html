@@ -59,7 +59,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -312,11 +332,11 @@ window.Quarto = {
 <p><em>Mapa de México.</em> <img src="images/mapa_mexico.jpg" class="img-fluid" alt="Mapa de México"> <em>Nota.</em> El mapa representa cada una de las ciudades capitales del país. Adaptado de <em>Fondo plano de mapa de méxico</em> [Ilustración], por Freepik, 2024, Freepik (<a href="https://www.freepik.es/vector-gratis/mapa-mexico)." class="uri">https://www.freepik.es/vector-gratis/mapa-mexico).</a> Licencia gratuita.</p>
 <section id="distancias-y-tiempo-de-conducción" class="level4" data-number="1.2.1.1">
 <h4 data-number="1.2.1.1" class="anchored" data-anchor-id="distancias-y-tiempo-de-conducción"><span class="header-section-number">1.2.1.1</span> Distancias y tiempo de conducción</h4>
-<p>La tabla de distancias y tiempo de conducción entre las ciudades fue obtenida a través del sitio web <span class="citation" data-cites="mejoresrutas2024">(<a href="#ref-mejoresrutas2024" role="doc-biblioref"><strong>mejoresrutas2024?</strong></a>)</span>, diseñado especialmente para el cálculo y planeación de viajes a lo largo de todo el país. Dicho recurso online permite obtener información como distancias, tiempo de conducción y otros valores asociados entre dos ciudades ingresando el nombre de cada una de ellas.</p>
+<p>La tabla de distancias y tiempo de conducción entre las ciudades fue obtenida a través del sitio web <span class="citation" data-cites="mejoresrutas2024">Mejores Rutas (<a href="#ref-mejoresrutas2024" role="doc-biblioref">2024b</a>)</span>, diseñado especialmente para el cálculo y planeación de viajes a lo largo de todo el país. Dicho recurso online permite obtener información como distancias, tiempo de conducción y otros valores asociados entre dos ciudades ingresando el nombre de cada una de ellas.</p>
 </section>
 <section id="peajes" class="level4" data-number="1.2.1.2">
 <h4 data-number="1.2.1.2" class="anchored" data-anchor-id="peajes"><span class="header-section-number">1.2.1.2</span> Peajes</h4>
-<p>Para obtener la información de los peajes, fue utilizado el mismo sitio web <span class="citation" data-cites="mejoresrutas2024">(<a href="#ref-mejoresrutas2024" role="doc-biblioref"><strong>mejoresrutas2024?</strong></a>)</span>, el cual también contiene datos relacionados con el costo actual de los peajes que se encuentran entre las ciudades donde se realiza la consulta.</p>
+<p>Para obtener la información de los peajes, fue utilizado el mismo sitio web <span class="citation" data-cites="mejoresrutas2024">Mejores Rutas (<a href="#ref-mejoresrutas2024" role="doc-biblioref">2024b</a>)</span>, el cual también contiene datos relacionados con el costo actual de los peajes que se encuentran entre las ciudades donde se realiza la consulta.</p>
 <p>Debido al gran número de combinaciones posibles, se programó un bot en Python empleando la librería <em>Beautiful Soup</em>, lo que permitió automatizar la extracción de la información anteriormente mencionada. En el repositorio en GitHub es posible encontrar el archivo con el código para llevar a cabo esta tarea.</p>
 </section>
 </section>
@@ -325,12 +345,12 @@ window.Quarto = {
 <p>En la siguiente sección se definen los gastos que deben ser consultados, entre los cuales se encuentran el salario del vendedor, el modelo de automóvil a utilizar y su correspondiente gasto de combustible.</p>
 <section id="salario-del-vendedor" class="level4" data-number="1.2.2.1">
 <h4 data-number="1.2.2.1" class="anchored" data-anchor-id="salario-del-vendedor"><span class="header-section-number">1.2.2.1</span> Salario del vendedor</h4>
-<p>Para definir el salario del vendedor, se toma como referencia el salario minimo en México, que actualmente se encuentra en 248,93 pesos diarios según la <span class="citation" data-cites="conasami2024">(<a href="#ref-conasami2024" role="doc-biblioref"><strong>conasami2024?</strong></a>)</span>; por lo tanto, para una jornada de 8 horas, el salario mínimo por hora es de 31,12 aproximadamente. Dicho esto, se decide establecer un salario de 35 pesos mexicanos por hora para el vendedor del presente ejercicio.</p>
+<p>Para definir el salario del vendedor, se toma como referencia el salario minimo en México, que actualmente se encuentra en 248,93 pesos diarios según la <span class="citation" data-cites="conasami2024">Comisión Nacional de los Salarios Mínimos (CONASAMI) (<a href="#ref-conasami2024" role="doc-biblioref">2024</a>)</span>; por lo tanto, para una jornada de 8 horas, el salario mínimo por hora es de 31,12 aproximadamente. Dicho esto, se decide establecer un salario de 35 pesos mexicanos por hora para el vendedor del presente ejercicio.</p>
 </section>
 <section id="modelo-del-carro-y-gasto-en-gasolina" class="level4" data-number="1.2.2.2">
 <h4 data-number="1.2.2.2" class="anchored" data-anchor-id="modelo-del-carro-y-gasto-en-gasolina"><span class="header-section-number">1.2.2.2</span> Modelo del carro y gasto en gasolina</h4>
-<p>De acuerdo con <span class="citation" data-cites="elpais2024">(<a href="#ref-elpais2024" role="doc-biblioref"><strong>elpais2024?</strong></a>)</span>, el modelo de automóvil más vendido actualmente en México es el Nissan Versa, por lo que se ha considerado conveniente seleccionarlo como medio de transporte a utilizar por parte del vendedor. Esto permitirá hacer una estimación más justa del costo total de realizar la ruta por los 32 estados mexicanos en el contexto de dicho país.</p>
-<p>Adicionalmente, es importante considerar que el rendimiento promedio de este modelo en carreteras es de 25 kilómetros por litro de acuerdo con información proporcionada por <span class="citation" data-cites="nissanversarendimiento2023">(<a href="#ref-nissanversarendimiento2023" role="doc-biblioref"><strong>nissanversarendimiento2023?</strong></a>)</span> y que el tipo de gasolina que utiliza es la comúnmente denominada como “Gasolina Magna” en México la cual, al día 14 de noviembre, tiene un precio promedio de 23.96 pesos mexicanos por litro según <span class="citation" data-cites="gasolinamx2024">(<a href="#ref-gasolinamx2024" role="doc-biblioref"><strong>gasolinamx2024?</strong></a>)</span>.</p>
+<p>De acuerdo con <span class="citation" data-cites="elpais2024">El País (<a href="#ref-elpais2024" role="doc-biblioref">2024</a>)</span>, el modelo de automóvil más vendido actualmente en México es el Nissan Versa, por lo que se ha considerado conveniente seleccionarlo como medio de transporte a utilizar por parte del vendedor. Esto permitirá hacer una estimación más justa del costo total de realizar la ruta por los 32 estados mexicanos en el contexto de dicho país.</p>
+<p>Adicionalmente, es importante considerar que el rendimiento promedio de este modelo en carreteras es de 25 kilómetros por litro de acuerdo con información proporcionada por <span class="citation" data-cites="nissanversarendimiento2023">Redacción De Cero a 100 (<a href="#ref-nissanversarendimiento2023" role="doc-biblioref">2023</a>)</span> y que el tipo de gasolina que utiliza es la comúnmente denominada como “Gasolina Magna” en México la cual, al día 14 de noviembre, tiene un precio promedio de 23.96 pesos mexicanos por litro según <span class="citation" data-cites="gasolinamx2024">GasolinaMX.com (<a href="#ref-gasolinamx2024" role="doc-biblioref">2024</a>)</span>.</p>
 </section>
 <section id="transformaciones" class="level4" data-number="1.2.2.3">
 <h4 data-number="1.2.2.3" class="anchored" data-anchor-id="transformaciones"><span class="header-section-number">1.2.2.3</span> Transformaciones</h4>
@@ -363,7 +383,7 @@ window.Quarto = {
 <p>A continuación, se procede con la utilización de los algoritmos propuestos para este caso: Colonia de Hormigas y Algoritmos Genéticos, con el fin de responder a la actividad planteada al principio del presente ejercicio, esto es, hallar la ruta óptima para el recorrido del vendedor a través de los 32 estados de México.</p>
 <section id="colonia-de-hormigas" class="level4" data-number="1.2.3.1">
 <h4 data-number="1.2.3.1" class="anchored" data-anchor-id="colonia-de-hormigas"><span class="header-section-number">1.2.3.1</span> Colonia de Hormigas</h4>
-<p>Considerando la información recolectada en <span class="citation" data-cites="acowikipedia2024">(<a href="#ref-acowikipedia2024" role="doc-biblioref"><strong>acowikipedia2024?</strong></a>)</span> y <span class="citation" data-cites="acobook2018">(<a href="#ref-acobook2018" role="doc-biblioref"><strong>acobook2018?</strong></a>)</span> y lo presentado en la primera sección del trabajo, puede decirse que los <strong>algoritmos de colonia de hormigas (Ant Colony Optimization, ACO)</strong> son una técnica de optimización basada en la inteligencia colectiva observada en las colonias de hormigas naturales. Fueron inspirados en el comportamiento de las hormigas en la naturaleza para resolver problemas complejos de optimización combinatoria, en esta segunda parte del trabajo profundizaremos más en sus hiperparámetros claves los cuales son:</p>
+<p>Considerando la información recolectada en <span class="citation" data-cites="acowikipedia2024">Wikipedia (<a href="#ref-acowikipedia2024" role="doc-biblioref">2024b</a>)</span> y <span class="citation" data-cites="acobook2018">Dorigo and Stützle (<a href="#ref-acobook2018" role="doc-biblioref">2018</a>)</span> y lo presentado en la primera sección del trabajo, puede decirse que los <strong>algoritmos de colonia de hormigas (Ant Colony Optimization, ACO)</strong> son una técnica de optimización basada en la inteligencia colectiva observada en las colonias de hormigas naturales. Fueron inspirados en el comportamiento de las hormigas en la naturaleza para resolver problemas complejos de optimización combinatoria, en esta segunda parte del trabajo profundizaremos más en sus hiperparámetros claves los cuales son:</p>
 <ul>
 <li><p><strong>Cantidad de hormigas:</strong> Cantidad de hormigas que participarán en cada iteración de la búsqueda de soluciones. Influye en la capacidad del algoritmo de explorar diferentes soluciones de manera simultánea. En este caso se utilizarán 32 hormigas, es decir, igual al número de estados en México.</p></li>
 <li><p><strong>Alpha</strong>: Controla la influencia de la feromona en la probabilidad de que una hormiga elija ese camino. A medida que el valor aumenta, las hormigas son más propensas a seguir caminos con más feromona. Aquí se utilizará un valor de 1 para otorgar una influencia moderada de las feromonas depositadas.</p></li>
@@ -387,14 +407,14 @@ window.Quarto = {
 </div>
 <p><strong>Figura 4.</strong></p>
 <p><em>Forma realista del camino óptimo encontrado mediante el uso del algoritmo de Colonia de Hormigas.</em> <img src="images/imagen2.png" class="img-fluid" alt="Forma realista del camino óptimo encontrado mediante el uso del algoritmo de Colonia de Hormigas"> <em>Nota.</em> El gráfico muestra las carreteras que deberían seguirse para completar el recorrido propuesto, sin embargo, algunos aspectos siguen siendo siendo interesantes. Elaboración propia.</p>
-<p>Como se mencionó anteriormente, de esta forma se obtiene una ruta óptima más realista. No obstante, llama la atención que, en ciertas secciones, la ruta implica cruzar cuerpos de agua. Al investigar las razones de este comportamiento, se descubrió que para conectar algunos estados del país como Baja California Sur y Sinaloa, la opción de tomar un ferri es considerada la más conveniente según servicios de planificación de trayectos como <span class="citation" data-cites="mejoresrutasferri2024">(<a href="#ref-mejoresrutasferri2024" role="doc-biblioref"><strong>mejoresrutasferri2024?</strong></a>)</span> y <span class="citation" data-cites="bajaferries2024">(<a href="#ref-bajaferries2024" role="doc-biblioref"><strong>bajaferries2024?</strong></a>)</span>.</p>
+<p>Como se mencionó anteriormente, de esta forma se obtiene una ruta óptima más realista. No obstante, llama la atención que, en ciertas secciones, la ruta implica cruzar cuerpos de agua. Al investigar las razones de este comportamiento, se descubrió que para conectar algunos estados del país como Baja California Sur y Sinaloa, la opción de tomar un ferri es considerada la más conveniente según servicios de planificación de trayectos como <span class="citation" data-cites="mejoresrutasferri2024">Mejores Rutas (<a href="#ref-mejoresrutasferri2024" role="doc-biblioref">2024a</a>)</span> y <span class="citation" data-cites="bajaferries2024">Baja Ferries (<a href="#ref-bajaferries2024" role="doc-biblioref">2024</a>)</span>.</p>
 <p>Dado que la matriz de costos actual no considera el valor asociado al uso del ferri ni los gastos asociados al transporte del vehículo para continuar posteriormente el recorrido, se propone un análisis de los siguientes escenarios:</p>
 <ol type="1">
 <li><p>Incluir el costo del ferri en la matriz de costos y evaluar la ruta resultante.</p></li>
 <li><p>Realizar el viaje completamente por tierra, excluyendo los estados que se alcanzan únicamente utilizando el ferri.</p></li>
 </ol>
 <p><strong>Primer escenario</strong></p>
-<p>Se consultó el valor del tiquete de ferri para una persona adulta y el costo del transporte de un automóvil, encontrando que el más económico para un adulto es de <strong>1,460 pesos mexicanos</strong>, mientras que el transporte del automóvil tiene un valor de <strong>5,480 pesos mexicanos</strong> según <span class="citation" data-cites="debate2023">(<a href="#ref-debate2023" role="doc-biblioref"><strong>debate2023?</strong></a>)</span>.</p>
+<p>Se consultó el valor del tiquete de ferri para una persona adulta y el costo del transporte de un automóvil, encontrando que el más económico para un adulto es de <strong>1,460 pesos mexicanos</strong>, mientras que el transporte del automóvil tiene un valor de <strong>5,480 pesos mexicanos</strong> según <span class="citation" data-cites="debate2023">Debate (<a href="#ref-debate2023" role="doc-biblioref">2023</a>)</span>.</p>
 <p>Estos costos fueron utilizados como parámetros para el algoritmo de colonia de hormigas, llegando a que, como se observa en la Figura 5, el algoritmo sigue alcanzando un mínimo de manera relativamente rápida.</p>
 <p><strong>Figura 5.</strong></p>
 <p><em>Evolución de la función costo del algoritmo de Colonia de Hormigas teniendo en cuenta al ferri.</em> <img src="images/costos-aco-segunda.png" class="img-fluid" alt="Evolución de la función costo del algoritmo de Colonia de Hormigas teniendo en cuenta al ferri"> <em>Nota.</em> Es interesante notar que, a pesar del incremento en el costo de moverse entre dos estados (debido al ferri), el algoritmo logró encontrar una ruta más barata que la hallada originalmente. Esto sugiere que en la primera solución encontrada el algoritmo podría haberse quedado atascado en un mínimo local debido a la falta de iteraciones. Elaboración propia.</p>
@@ -418,7 +438,7 @@ window.Quarto = {
 </section>
 <section id="algoritmo-genético" class="level4" data-number="1.2.3.2">
 <h4 data-number="1.2.3.2" class="anchored" data-anchor-id="algoritmo-genético"><span class="header-section-number">1.2.3.2</span> Algoritmo genético</h4>
-<p>De acuerdo con información proporcionada por <span class="citation" data-cites="tesisga2009">(<a href="#ref-tesisga2009" role="doc-biblioref"><strong>tesisga2009?</strong></a>)</span> y encontrada en <span class="citation" data-cites="gawikipedia2024">(<a href="#ref-gawikipedia2024" role="doc-biblioref"><strong>gawikipedia2024?</strong></a>)</span>, y como se explico en la primera sección del trabajo, puede decirse que los <strong>algoritmos genéticos (Genetic Algorithms, GA)</strong> son una técnica de optimización inspirada en los principios de la selección natural y la evolución biológica. Los GA buscan soluciones óptimas mediante la creación, evaluación y modificación de una población de individuos, representando posibles soluciones a un problema dado. La evolución de la población se realiza mediante operadores genéticos como la mutación y en esta sección profundizaremos más en sus hiperparámetros clave, los cuales son:</p>
+<p>De acuerdo con información proporcionada por <span class="citation" data-cites="tesisga2009">José Ángel Fernández Prieto (<a href="#ref-tesisga2009" role="doc-biblioref">2029</a>)</span> y encontrada en <span class="citation" data-cites="gawikipedia2024">Wikipedia (<a href="#ref-gawikipedia2024" role="doc-biblioref">2024a</a>)</span>, y como se explico en la primera sección del trabajo, puede decirse que los <strong>algoritmos genéticos (Genetic Algorithms, GA)</strong> son una técnica de optimización inspirada en los principios de la selección natural y la evolución biológica. Los GA buscan soluciones óptimas mediante la creación, evaluación y modificación de una población de individuos, representando posibles soluciones a un problema dado. La evolución de la población se realiza mediante operadores genéticos como la mutación y en esta sección profundizaremos más en sus hiperparámetros clave, los cuales son:</p>
 <ul>
 <li><p><strong>Tamaño de la población</strong>: Define el número de individuos en cada generación. Un tamaño de población más grande permite una mejor exploración del espacio de soluciones, pero también aumenta el tiempo de cómputo. En este caso, se utilizará una población de 100 individuos, lo que proporciona un equilibrio adecuado entre diversidad y eficiencia computacional.</p></li>
 <li><p><strong>Número de generaciones</strong>: Especifica cuántas veces se evolucionará la población mediante el proceso de selección, cruce y mutación; se consideran adecuadas un total de 200 generaciones para permitir al algoritmo explorar el espacio de búsqueda y converger hacia una solución óptima o cercana al óptimo.</p></li>
@@ -485,11 +505,49 @@ window.Quarto = {
 
 <!-- -->
 
+
 </section>
 </section>
 </section>
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-bajaferries2024" class="csl-entry" role="listitem">
+Baja Ferries. 2024. <span>“Rutas y Horarios.”</span> 2024. <a href="https://www.bajaferries.com.mx/rutas_horario">https://www.bajaferries.com.mx/rutas_horario</a>.
+</div>
+<div id="ref-conasami2024" class="csl-entry" role="listitem">
+Comisión Nacional de los Salarios Mínimos (CONASAMI). 2024. <span>“Incremento a Los Salarios Mínimos Para 2024.”</span> <a href="https://www.gob.mx/conasami/articulos/incremento-a-los-salarios-minimos-para-2024">https://www.gob.mx/conasami/articulos/incremento-a-los-salarios-minimos-para-2024</a>.
+</div>
+<div id="ref-debate2023" class="csl-entry" role="listitem">
+Debate. 2023. <span>“¿Cuánto Cuesta Viajar a La Paz Desde Topolobampo? Estas Son Las Tarifas Del Buque Baja Ferries.”</span> <a href="https://www.debate.com.mx/sinaloa/losmochis/Cuanto-cuesta-viajar-a-La-Paz-desde-Topolobampo-Estas-son-las-tarifas-del-buque-Baja-Ferries-20230805-0071.html">https://www.debate.com.mx/sinaloa/losmochis/Cuanto-cuesta-viajar-a-La-Paz-desde-Topolobampo-Estas-son-las-tarifas-del-buque-Baja-Ferries-20230805-0071.html</a>.
+</div>
+<div id="ref-acobook2018" class="csl-entry" role="listitem">
+Dorigo, Marco, and Thomas Stützle. 2018. <span>“Ant Colony Optimization: Overview and Recent Advances.”</span> In, 311–51. <a href="https://doi.org/10.1007/978-3-319-91086-4_10">https://doi.org/10.1007/978-3-319-91086-4_10</a>.
+</div>
+<div id="ref-elpais2024" class="csl-entry" role="listitem">
+El País. 2024. <span>“Los Autos Más Vendidos En México En Lo Que Va de 2024.”</span> 2024. <a href="https://elpais.com/mexico/2024-09-20/los-autos-mas-vendidos-en-mexico-en-lo-que-va-de-2024.html">https://elpais.com/mexico/2024-09-20/los-autos-mas-vendidos-en-mexico-en-lo-que-va-de-2024.html</a>.
+</div>
+<div id="ref-gasolinamx2024" class="csl-entry" role="listitem">
+GasolinaMX.com. 2024. <span>“GASOLINA HOY - Precio México.”</span> 2024. <a href="https://www.gasolinamx.com/">https://www.gasolinamx.com/</a>.
+</div>
+<div id="ref-tesisga2009" class="csl-entry" role="listitem">
+José Ángel Fernández Prieto. 2029. <span>“Optimización Evolutiva de Los Parámetros de Control de Un Algoritmo Genético.”</span> Universidad de Alcalá. <a href="http://hdl.handle.net/10017/8029">http://hdl.handle.net/10017/8029</a>.
+</div>
+<div id="ref-mejoresrutasferri2024" class="csl-entry" role="listitem">
+Mejores Rutas. 2024a. <span>“Distancia de La Paz a Culiacán.”</span> 2024. <a href="https://mx.mejoresrutas.com/distancias/?from=La+Paz&amp;to=Culiac%C3%A1n&amp;v=&amp;sm=110&amp;so=90&amp;vh=c&amp;fc=8.00&amp;fp=25.54">https://mx.mejoresrutas.com/distancias/?from=La+Paz&amp;to=Culiac%C3%A1n&amp;v=&amp;sm=110&amp;so=90&amp;vh=c&amp;fc=8.00&amp;fp=25.54</a>.
+</div>
+<div id="ref-mejoresrutas2024" class="csl-entry" role="listitem">
+———. 2024b. <span>“Traza Tu Ruta: Calculador de Distancias Entre Ciudades.”</span> 2024. <a href="https://mx.mejoresrutas.com/">https://mx.mejoresrutas.com/</a>.
+</div>
+<div id="ref-nissanversarendimiento2023" class="csl-entry" role="listitem">
+Redacción De Cero a 100. 2023. <span>“¿Cuántos Kilómetros Por Litro Da El Nissan Versa 2024? Eficiencia Del Combustible de Este Sedán.”</span> 2023. <a href="https://www.deceroacien.com.mx/autos/2023/11/24/cuantos-kilometros-por-litro-da-el-nissan-versa-2024-eficiencia-del-combustible-de-este-sedan-9804.html">https://www.deceroacien.com.mx/autos/2023/11/24/cuantos-kilometros-por-litro-da-el-nissan-versa-2024-eficiencia-del-combustible-de-este-sedan-9804.html</a>.
+</div>
+<div id="ref-gawikipedia2024" class="csl-entry" role="listitem">
+Wikipedia. 2024a. <span>“Algoritmo Genético.”</span> 2024. <a href="https://es.wikipedia.org/wiki/Algoritmo_gen%C3%A9tico">https://es.wikipedia.org/wiki/Algoritmo_gen%C3%A9tico</a>.
+</div>
+<div id="ref-acowikipedia2024" class="csl-entry" role="listitem">
+———. 2024b. <span>“Ant Colony Optimization Algorithms.”</span> 2024. <a href="https://en.wikipedia.org/wiki/Ant_colony_optimization_algorithms">https://en.wikipedia.org/wiki/Ant_colony_optimization_algorithms</a>.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
