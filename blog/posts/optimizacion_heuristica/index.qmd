@@ -89,6 +89,7 @@ $$
 **Figura 1.**
 
 *Representación gráfica de la función de Rosenbrock.*
+
 ```{python}
 #| width: 100%
 #| height: auto
@@ -127,6 +128,7 @@ $$
 **Figura 2.**
 
 *Representación gráfica de la función de Rastrigin.*
+
 ```{python}
 # Función de Rastrigin
 def rastrigin(x):
@@ -152,6 +154,7 @@ $$
 **Figura 3.**
 
 *Representación gráfica de la función de Schwefel.*
+
 ```{python}
 # Función de Schwefel
 def schwefel(x):
@@ -228,6 +231,7 @@ $$
 **Figura 5.**
 
 *Representación gráfica de la función de Goldstein-Price.*
+
 ```{python}
 # Función Goldstein-Price
 def goldstein_price(x):
@@ -299,6 +303,7 @@ donde:
 -   $\nabla f(x_t)$ es el gradiente de la función en $x_t$
 
 El gradiente $\nabla f$ es un vector que contiene las derivadas parciales respecto a cada variable, tal como se ilustra en la Ecuación 9: 
+
 $$
 \nabla f(x_1, x_2) = \begin{bmatrix} \frac{\partial f}{\partial x_1}, \frac{\partial f}{\partial x_2} \end{bmatrix} \tag{9}
 $$
@@ -383,9 +388,7 @@ $$
 
 **Figura 7.**
 
-*Aplicación del descenso del gradiente en la función de Rosenbrok.*
-![Aplicación del descenso del gradiente en la función de Rosenbrok](images/rosenbrock.gif)
-Elaboración propia.
+*Aplicación del descenso del gradiente en la función de Rosenbrok.* ![Aplicación del descenso del gradiente en la función de Rosenbrok](images/rosenbrock.gif) Elaboración propia.
 
 ### Función de Rastrigin
 
@@ -399,9 +402,7 @@ $$
 
 **Figura 8.**
 
-*Aplicación del descenso del gradiente en la función de Rastrigin.*
-![Aplicación del descenso del gradiente en la función de Rastrigin](images/rastrigin.gif)
-Elaboración propia.
+*Aplicación del descenso del gradiente en la función de Rastrigin.* ![Aplicación del descenso del gradiente en la función de Rastrigin](images/rastrigin.gif) Elaboración propia.
 
 ### Función de Schwefel
 
@@ -415,9 +416,7 @@ $$
 
 **Figura 9.**
 
-*Aplicación del descenso del gradiente en la función de Schwefel.*
-![Aplicación del descenso del gradiente en la función de Schwefel](images/schwefel.gif)
-Elaboración propia.
+*Aplicación del descenso del gradiente en la función de Schwefel.* ![Aplicación del descenso del gradiente en la función de Schwefel](images/schwefel.gif) Elaboración propia.
 
 ### Función de Griewank
 
@@ -431,9 +430,7 @@ $$
 
 **Figura 10.**
 
-*Aplicación del descenso del gradiente en la función de Griewank.*
-![Aplicación del descenso del gradiente en la función de Griewank](images/griewank.gif)
-Elaboración propia.
+*Aplicación del descenso del gradiente en la función de Griewank.* ![Aplicación del descenso del gradiente en la función de Griewank](images/griewank.gif) Elaboración propia.
 
 ### Función Goldstein-Price
 
@@ -450,9 +447,7 @@ $$
 
 **Figura 11.**
 
-*Aplicación del descenso del gradiente en la función de Goldstein-Price.*
-![Aplicación del descenso del gradiente en la función de Goldstein-Price](images/goldstein_price.gif)
-Elaboración propia.
+*Aplicación del descenso del gradiente en la función de Goldstein-Price.* ![Aplicación del descenso del gradiente en la función de Goldstein-Price](images/goldstein_price.gif) Elaboración propia.
 
 ### Función de las seis jorobas de camello
 
@@ -466,10 +461,7 @@ $$
 
 **Figura 12.**
 
-*Aplicación del descenso del gradiente en la función de las seis jorobas del camello.*
-![Aplicación del descenso del gradiente en la función de las seis jorobas del camello](images/camel_six_humps.gif)
-Elaboración propia.
-
+*Aplicación del descenso del gradiente en la función de las seis jorobas del camello.* ![Aplicación del descenso del gradiente en la función de las seis jorobas del camello](images/camel_six_humps.gif) Elaboración propia.
 :::
 
 El método del gradiente descendente puede imaginarse como una persona deslizándose por una colina representada por una función. El punto de inicio es el lugar desde donde comienza a deslizarse, y la tasa de aprendizaje actúa como la aceleración que controla la velocidad del deslizamiento en cada paso. Si esta aceleración es demasiado alta, puede ayudar a llegar más rápido al valle más bajo, pero también existe el riesgo de salir del camino o incluso terminar subiendo una colina debido a un impulso excesivo que sobrepasa el objetivo.
@@ -691,9 +683,7 @@ $$
 
 **Figura 13.**
 
-*Aplicación del algoritmo genético sobre la función de Rosenbrok.*
-![Aplicación del algoritmo genético sobre la función de Rosenbrok](images/Rosenbrock_population_animation.gif)
-Elaboración propia.
+*Aplicación del algoritmo genético sobre la función de Rosenbrok.* ![Aplicación del algoritmo genético sobre la función de Rosenbrok](images/Rosenbrock_population_animation.gif) Elaboración propia.
 
 ### Función de Rastrigin
 
@@ -703,9 +693,7 @@ $$
 
 **Figura 14.**
 
-*Aplicación del algoritmo genético sobre la función de Rastrigin.*
-![Aplicación del algoritmo genético sobre la función de Rastrigin](images/Rastrigin_population_animation.gif)
-Elaboración propia.
+*Aplicación del algoritmo genético sobre la función de Rastrigin.* ![Aplicación del algoritmo genético sobre la función de Rastrigin](images/Rastrigin_population_animation.gif) Elaboración propia.
 
 ### Función de Schwefel
 
@@ -715,9 +703,7 @@ $$
 
 **Figura 15.**
 
-*Aplicación del algoritmo genético sobre la función de Schwefel.*
-![Aplicación del algoritmo genético sobre la función de Schwefel](images/Schwefel_population_animation.gif)
-Elaboración propia.
+*Aplicación del algoritmo genético sobre la función de Schwefel.* ![Aplicación del algoritmo genético sobre la función de Schwefel](images/Schwefel_population_animation.gif) Elaboración propia.
 
 ### Función de Griewank
 
@@ -727,9 +713,7 @@ $$
 
 **Figura 16.**
 
-*Aplicación del algoritmo genético sobre la función de Griewank.*
-![Aplicación del algoritmo genético sobre la función de Griewank](images/Griewank_population_animation.gif)
-Elaboración propia.
+*Aplicación del algoritmo genético sobre la función de Griewank.* ![Aplicación del algoritmo genético sobre la función de Griewank](images/Griewank_population_animation.gif) Elaboración propia.
 
 ### Función Goldstein-Price
 
@@ -742,9 +726,7 @@ $$
 
 **Figura 17.**
 
-*Aplicación del algoritmo genético sobre la función de Goldstein-Price.*
-![Aplicación del algoritmo genético sobre la función de Goldstein-Price](images/Goldstein_Price_population_animation.gif)
-Elaboración propia.
+*Aplicación del algoritmo genético sobre la función de Goldstein-Price.* ![Aplicación del algoritmo genético sobre la función de Goldstein-Price](images/Goldstein_Price_population_animation.gif) Elaboración propia.
 
 ### Función de las seis jorobas de camello
 
@@ -754,10 +736,7 @@ $$
 
 **Figura 18.**
 
-*Aplicación del algoritmo genético sobre la función de las seis jorobas del camello.*
-![Aplicación del algoritmo genético sobre la función de las seis jorobas del camello](images/Camel_Six_Humps_population_animation.gif)
-Elaboración propia.
-
+*Aplicación del algoritmo genético sobre la función de las seis jorobas del camello.* ![Aplicación del algoritmo genético sobre la función de las seis jorobas del camello](images/Camel_Six_Humps_population_animation.gif) Elaboración propia.
 :::
 
 Los algoritmos genéticos convergen hacia soluciones aproximadas, aunque no garantizan alcanzar el óptimo global. Sin embargo, suelen mostrar una rápida convergencia en pocas generaciones. Estos algoritmos buscan equilibrar dos objetivos clave: **exploración**, que consiste en descubrir nuevas regiones del espacio de búsqueda, y **explotación**, enfocada en refinar y mejorar las soluciones existentes.
@@ -810,8 +789,7 @@ Además, su aceleración, que representa un cambio en la velocidad, está influe
 
 -   Atracción hacia la mejor posición global: Las partículas también se dirigen hacia la mejor ubicación encontrada por el grupo completo en el espacio de búsqueda (*pgbest*).
 
-*Ilustración del funcionamiento del algoritmo PSO.*
-![Ilustración del funcionamiento del algoritmo PSO](images/paste-1.png) 
+*Ilustración del funcionamiento del algoritmo PSO.* ![Ilustración del funcionamiento del algoritmo PSO](images/paste-1.png)
 
 Adaptado de @sancho_pso_image
 
@@ -885,9 +863,7 @@ $$
 
 **Figura 19.**
 
-*Aplicación de optimización de partículas sobre la función de Rosenbrock.*
-![Aplicación de optimización de partículas sobre la función de Rosenbrock](images/Rosenbrock_particulas_animation.gif)
-Elaboración propia.
+*Aplicación de optimización de partículas sobre la función de Rosenbrock.* ![Aplicación de optimización de partículas sobre la función de Rosenbrock](images/Rosenbrock_particulas_animation.gif) Elaboración propia.
 
 ### Función de Rastrigin
 
@@ -897,9 +873,7 @@ $$
 
 **Figura 20.**
 
-*Aplicación de optimización de partículas sobre la función de Rastrigin.*
-![Aplicación de optimización de partículas sobre la función de Rastrigin](images/Rastrigin_particulas_animation.gif)
-Elaboración propia.
+*Aplicación de optimización de partículas sobre la función de Rastrigin.* ![Aplicación de optimización de partículas sobre la función de Rastrigin](images/Rastrigin_particulas_animation.gif) Elaboración propia.
 
 ### Función de Schwefel
 
@@ -909,9 +883,7 @@ $$
 
 **Figura 21.**
 
-*Aplicación de optimización de partículas sobre la función de Schwefel.*
-![Aplicación de optimización de partículas sobre la función de Schwefel](images/Schwefel_particulas_animation.gif)
-Elaboración propia.
+*Aplicación de optimización de partículas sobre la función de Schwefel.* ![Aplicación de optimización de partículas sobre la función de Schwefel](images/Schwefel_particulas_animation.gif) Elaboración propia.
 
 ### Función de Griewank
 
@@ -921,9 +893,7 @@ $$
 
 **Figura 22.**
 
-*Aplicación de optimización de partículas sobre la función de Griewank.*
-![Aplicación de optimización de partículas sobre la función de Griewank](images/Griewank_particulas_animation.gif)
-Elaboración propia.
+*Aplicación de optimización de partículas sobre la función de Griewank.* ![Aplicación de optimización de partículas sobre la función de Griewank](images/Griewank_particulas_animation.gif) Elaboración propia.
 
 ### Función Goldstein-Price
 
@@ -936,9 +906,7 @@ $$
 
 **Figura 23.**
 
-*Aplicación de optimización de partículas sobre la función de Goldstein-Price.*
-![Aplicación de optimización de partículas sobre la función de Goldstein-Price](images/Goldstein_Price_particulas_animation.gif)
-Elaboración propia.
+*Aplicación de optimización de partículas sobre la función de Goldstein-Price.* ![Aplicación de optimización de partículas sobre la función de Goldstein-Price](images/Goldstein_Price_particulas_animation.gif) Elaboración propia.
 
 ### Función de las seis jorobas de camello
 
@@ -948,10 +916,7 @@ $$
 
 **Figura 24.**
 
-*Aplicación de optimización de partículas sobre la función de las seis jorobas del camello.*
-![Aplicación de optimización de partículas sobre la función de las seis jorobas del camello](images/Camel_Six_Humps_particulas_animation.gif)
-Elaboración propia.
-
+*Aplicación de optimización de partículas sobre la función de las seis jorobas del camello.* ![Aplicación de optimización de partículas sobre la función de las seis jorobas del camello](images/Camel_Six_Humps_particulas_animation.gif) Elaboración propia.
 :::
 
 ## Optimización diferencial
@@ -1099,9 +1064,7 @@ $$
 
 **Figura 25.**
 
-*Aplicación de optimización diferencial sobre la función de Rosenbrock.*
-![Aplicación de optimización diferencial sobre la función de Rosenbrock](images/Rosenbrock_diferential_evolution_animation.gif)
-Elaboración propia.
+*Aplicación de optimización diferencial sobre la función de Rosenbrock.* ![Aplicación de optimización diferencial sobre la función de Rosenbrock](images/Rosenbrock_diferential_evolution_animation.gif) Elaboración propia.
 
 ### Función de Rastrigin
 
@@ -1111,9 +1074,7 @@ $$
 
 **Figura 26.**
 
-*Aplicación de optimización diferencial sobre la función de Rastrigin.*
-![Aplicación de optimización diferencial sobre la función de Rastrigin](images/Rastrigin_diferential_evolution_animation.gif)
-Elaboración propia.
+*Aplicación de optimización diferencial sobre la función de Rastrigin.* ![Aplicación de optimización diferencial sobre la función de Rastrigin](images/Rastrigin_diferential_evolution_animation.gif) Elaboración propia.
 
 ### Función de Schwefel
 
@@ -1123,9 +1084,7 @@ $$
 
 **Figura 27.**
 
-*Aplicación de optimización diferencial sobre la función de Schwefel.*
-![Aplicación de optimización diferencial sobre la función de Schwefel](images/Schwefel_diferential_evolution_animation.gif)
-Elaboración propia.
+*Aplicación de optimización diferencial sobre la función de Schwefel.* ![Aplicación de optimización diferencial sobre la función de Schwefel](images/Schwefel_diferential_evolution_animation.gif) Elaboración propia.
 
 ### Función de Griewank
 
@@ -1135,9 +1094,7 @@ $$
 
 **Figura 28.**
 
-*Aplicación de optimización diferencial sobre la función de Griewank.*
-![Aplicación de optimización diferencial sobre la función de Griewank](images/Griewank_diferential_evolution_animation.gif)
-Elaboración propia.
+*Aplicación de optimización diferencial sobre la función de Griewank.* ![Aplicación de optimización diferencial sobre la función de Griewank](images/Griewank_diferential_evolution_animation.gif) Elaboración propia.
 
 ### Función Goldstein-Price
 
@@ -1147,9 +1104,7 @@ $$
 
 **Figura 29.**
 
-*Aplicación de optimización diferencial sobre la función de Goldstein-Price.*
-![Aplicación de optimización diferencial sobre la función de Goldstein-Price](images/Goldstein_Price_diferential_evolution_animation.gif)
-Elaboración propia.
+*Aplicación de optimización diferencial sobre la función de Goldstein-Price.* ![Aplicación de optimización diferencial sobre la función de Goldstein-Price](images/Goldstein_Price_diferential_evolution_animation.gif) Elaboración propia.
 
 ### Función de las seis jorobas de camello
 
@@ -1159,10 +1114,7 @@ $$
 
 **Figura 30.**
 
-*Aplicación de optimización diferencial sobre la función de las seis jorobas del camello.*
-![Aplicación de optimización diferencial sobre la función de las seis jorobas del camello](images/Camel_Six_Humps_diferential_evolution_animation.gif)
-Elaboración propia.
-
+*Aplicación de optimización diferencial sobre la función de las seis jorobas del camello.* ![Aplicación de optimización diferencial sobre la función de las seis jorobas del camello](images/Camel_Six_Humps_diferential_evolution_animation.gif) Elaboración propia.
 :::
 
 # Resultados
@@ -1175,11 +1127,11 @@ Como se puede observar, en la mayoría de los casos de optimización para una ú
 
 # Discusión
 
-Reflexione sobre los siguientes puntos: 
+Reflexione sobre los siguientes puntos:
 
-¿Qué aportaron los métodos de **descenso por gradiente** y qué aportaron los **métodos heurísticos**? Para responder a esta pregunta, considere: 
+¿Qué aportaron los métodos de **descenso por gradiente** y qué aportaron los **métodos heurísticos**? Para responder a esta pregunta, considere:
 
--   El **valor final** de la función objetivo. 
+-   El **valor final** de la función objetivo.
 -   El **número de evaluaciones** de la función objetivo.
 
 Es posible que se requiera realizar **varias corridas** de los algoritmos para obtener conclusiones significativas.
