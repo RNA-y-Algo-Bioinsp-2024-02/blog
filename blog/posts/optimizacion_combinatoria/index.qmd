@@ -10,7 +10,7 @@ author:
   - name: "Luis Andrés Altamar Romero"
   - name: "Catalina Restrepo Salgado"
   - name: "Tomás Rodríguez Taborda"
-date: "2024-11-15"
+date: "2024-11-29"
 categories: [optimización, métodos combinatorios, python]
 image: "image.jpg"
 bibliography: ref.bib

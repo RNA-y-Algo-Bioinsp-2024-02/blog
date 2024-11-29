@@ -10,7 +10,7 @@ author:
   - name: "Luis Andrés Altamar Romero"
   - name: "Catalina Restrepo Salgado"
   - name: "Tomás Rodríguez Taborda"
-date: "2024-11-15"
+date: "2024-11-29"
 categories: [optimización, métodos heurísticos, python]
 image: "image.jpg"
 bibliography: ref.bib
@@ -82,8 +82,13 @@ def plot_function(f, x1_range, x2_range, title="Function Plot", x1_point=None, x
 ::: panel-tabset
 ## Función de Rosenbrock
 
-$$f(\mathbf{x}) = \sum_{i=1}^{d-1} \left[ 100(x_{i+1} - x_i^2)^2 + (x_i - 1)^2 \right]$$
+$$
+f(\mathbf{x}) = \sum_{i=1}^{d-1} \left[ 100(x_{i+1} - x_i^2)^2 + (x_i - 1)^2 \right] \tag{1}
+$$
 
+**Figura 1.**
+
+*Representación gráfica de la función de Rosenbrock.*
 ```{python}
 #| width: 100%
 #| height: auto
@@ -101,16 +106,27 @@ plot_function(rosenbrock, x1_range=(-2.048, 2.048), x2_range=(-2.048, 2.048), ti
 
 ```
 
-En 2 dimensiones se puede definir como $$ f(x_1, x_2) = (a - x_1)^2 + b(x_2 - x_1^2)^2 $$
+Elaboración propia.
 
-La Función de Rosenbrock, también conocida como función del valle o del plátano, es ampliamente utilizada para evaluar algoritmos de optimización basados en gradientes. Esta función es unimodal y presenta su mínimo global en un valle parabólico estrecho, lo que facilita su localización. Sin embargo, segun @simonfraser_rosenbrock citando a @picheny2012benchmark convergencia hacia este mínimo puede ser desafiante debido a la naturaleza del valle.
+En 2 dimensiones se puede definir como se muestra en la Ecuación (2).
+
+$$ 
+f(x_1, x_2) = (a - x_1)^2 + b(x_2 - x_1^2)^2 \tag{2}
+$$
+
+La Función de Rosenbrock, también conocida como función del valle o del plátano, es ampliamente utilizada para evaluar algoritmos de optimización basados en gradientes. Esta función es unimodal y presenta su mínimo global en un valle parabólico estrecho, lo que facilita su localización. Sin embargo, según @simonfraser_rosenbrock citando a @picheny2012benchmark, la convergencia hacia este mínimo puede ser desafiante debido a la naturaleza del valle.
 
 La función se evalúa generalmente en el hipercubo $x_i \in [-5, 10]$ y tiene un mínimo global en $f(1,...,1) = 0$
 
 ## Función de Rastrigin
 
-$$f(\mathbf{x}) = 10d + \sum_{i=1}^{d} \left[ x_i^2 - 10 \cos(2\pi x_i) \right]$$
+$$
+f(\mathbf{x}) = 10d + \sum_{i=1}^{d} \left[ x_i^2 - 10 \cos(2\pi x_i) \right] \tag{3}
+$$
 
+**Figura 2.**
+
+*Representación gráfica de la función de Rastrigin.*
 ```{python}
 # Función de Rastrigin
 def rastrigin(x):
@@ -123,12 +139,19 @@ def rastrigin(x):
 plot_function(rastrigin, x1_range=(-5.12, 5.12), x2_range=(-5.12, 5.12), title="Función Rastrigin", x1_point=0, x2_point=0)
 ```
 
+Elaboración propia.
+
 Segun @simonfraser_rosenbrock, la función de Rastrigin tiene varios mínimos locales. Es altamente multimodal, pero las ubicaciones de los mínimos se distribuyen regularmente. La función generalmente se evalúa en el hipercubo $x_i \in [-5.12, 5.12]$ y su mínimo local se encuentra en $f(0,...,0)=0$.
 
 ## Función de Schwefel
 
-$$ f(\mathbf{x}) = 418.9829d - \sum_{i=1}^{d} x_i \sin(\sqrt{|x_i|}) $$
+$$ 
+f(\mathbf{x}) = 418.9829d - \sum_{i=1}^{d} x_i \sin(\sqrt{|x_i|}) \tag{4}
+$$
 
+**Figura 3.**
+
+*Representación gráfica de la función de Schwefel.*
 ```{python}
 # Función de Schwefel
 def schwefel(x):
@@ -141,11 +164,19 @@ def schwefel(x):
 plot_function(schwefel, x1_range=(-500, 500), x2_range=(-500, 500), title="Función Schwefel", x1_point=420.9687, x2_point=420.9687)
 ```
 
-Segun @simonfraser_rosenbrock La función de Schwefel es compleja, con muchos mínimos locales. Normalmente se evalua en el hipercubo $x_i \in [-500,500]$. Su minimo global está en $f(420.9687,...,420.9687)=0$
+Elaboración propia.
+
+Segun @simonfraser_rosenbrock La función de Schwefel es compleja, con muchos mínimos locales. Normalmente se evalpúa en el hipercubo $x_i \in [-500,500]$. Su minimo global está en $f(420.9687,...,420.9687)=0$
 
 ## Función de Griewank
 
-$$ f(\mathbf{x}) = 1 + \frac{1}{4000} \sum_{i=1}^{d} x_i^2 - \prod_{i=1}^{d} \cos\left(\frac{x_i}{\sqrt{i}}\right) $$
+$$ 
+f(\mathbf{x}) = 1 + \frac{1}{4000} \sum_{i=1}^{d} x_i^2 - \prod_{i=1}^{d} \cos\left(\frac{x_i}{\sqrt{i}}\right) \tag{5}
+$$
+
+**Figura 4.**
+
+*Representación gráfica de la función de Griewank.*
 
 ```{python}
 # Función de Griewank
@@ -181,6 +212,8 @@ plot_function(griewank, x1_range=(-600, 600), x2_range=(-600, 600), title="Funci
 
 ```
 
+Elaboración propia.
+
 Segun @simonfraser_rosenbrock la función de Griewank tiene muchos mínimos locales generalizados, que se distribuyen de forma regular. Lo que hace compleja su optimización al minimo global. Normalmente se evalua en el hipercubo $x_i \in [-600,600]$. Su minimo global está en $f(0,...,0)=0$
 
 ## Función Goldstein-Price
@@ -189,9 +222,12 @@ $$
 \begin{align}
 f(x_1, x_2) = & \left[1 + (x_1 + x_2 + 1)^2 (19 - 14x_1 + 3x_1^2 - 14x_2 + 6x_1x_2 + 3x_2^2)\right] \\
          & \left[30 + (2x_1 - 3x_2)^2 (18 - 32x_1 + 12x_1^2 + 48x_2 - 36x_1x_2 + 27x_2^2)\right]
-\end{align}
+\end{align} \tag{6}
 $$
 
+**Figura 5.**
+
+*Representación gráfica de la función de Goldstein-Price.*
 ```{python}
 # Función Goldstein-Price
 def goldstein_price(x):
@@ -207,11 +243,19 @@ def goldstein_price(x):
 plot_function(goldstein_price, x1_range=(-2, 2), x2_range=(-2, 2), title="Función Goldstein price", x1_point=0, x2_point=-1)
 ```
 
+Elaboración propia.
+
 La función Goldstein-Price es una función en 2 dimensiones y tiene varios mínimos locales. Segun @molga2005test, la función generalmente se evalúa en el cuadrado $x_1 \in [-2, 2]$ y $x_1 \in [-2, 2]$ . Su mínimo global es $f(0,-1) = 3$
 
 ## Función de las seis jorobas de camello
 
-$$ f(x_1, x_2) = \left(4 - 2.1x_1^2 + \frac{x_1^4}{3}\right)x_1^2 + x_1x_2 + \left(-4 + 4x_2^2\right)x_2^2 $$
+$$ 
+f(x_1, x_2) = \left(4 - 2.1x_1^2 + \frac{x_1^4}{3}\right)x_1^2 + x_1x_2 + \left(-4 + 4x_2^2\right)x_2^2 \tag{7}
+$$
+
+**Figura 6.**
+
+*Representación gráfica de la función de las seis jorobas del camello.*
 
 ```{python}
 # Función de las seis jorobas de camello
@@ -229,6 +273,8 @@ def camel_six_humps(x):
 plot_function(camel_six_humps, x1_range=(-2, 2), x2_range=(-1, 1), title="Función 6 jorobas de camello", x1_point=0.0898, x2_point=-0.7126, elev=30, azim=75 )
 ```
 
+Elaboración propia.
+
 La función de las seis jorobas de camello es una función en 2 dimensiones.Segun @molga2005test la función tiene seis mínimos locales, dos de los cuales son globales y recomienda evaluar la función en el rectángulo $x_1 \in [-3, 3], x_2 \in [-2, 2]$, donde los mínimos globales son $f(0.0898,-0.7126) = -1.0316$ y $f(-0.0898, 0.7126) = -1.0316$
 :::
 
@@ -238,9 +284,11 @@ La función de las seis jorobas de camello es una función en 2 dimensiones.Segu
 
 El descenso del gradiente es un algoritmo de optimización iterativo que busca encontrar el mínimo local de una función diferenciable. La idea principal es moverse en la dirección opuesta al gradiente de la función en cada punto, ya que el gradiente apunta en la dirección de máximo crecimiento.
 
-Segun [@bishop2006pattern], para una función $f(x)$, el algoritmo actualiza iterativamente el punto $x$ usando la regla:
+De acuerdo con @bishop2006pattern, para una función $f(x)$, el algoritmo actualiza iterativamente el punto $x$ usando la regla que se observa en la Ecuación 8.
 
-$$ x_{t+1} = x_t - \eta \nabla f(x_t) $$
+$$ 
+x_{t+1} = x_t - \eta \nabla f(x_t) \tag{8}
+$$
 
 donde:
 
@@ -250,13 +298,20 @@ donde:
 
 -   $\nabla f(x_t)$ es el gradiente de la función en $x_t$
 
-El gradiente $\nabla f$ es un vector que contiene las derivadas parciales respecto a cada variable: $$\nabla f(x_1, x_2) = \begin{bmatrix} \frac{\partial f}{\partial x_1}, \frac{\partial f}{\partial x_2} \end{bmatrix}$$
+El gradiente $\nabla f$ es un vector que contiene las derivadas parciales respecto a cada variable, tal como se ilustra en la Ecuación 9: 
+$$
+\nabla f(x_1, x_2) = \begin{bmatrix} \frac{\partial f}{\partial x_1}, \frac{\partial f}{\partial x_2} \end{bmatrix} \tag{9}
+$$
 
-El gradiente $\nabla f$ se puede aproximar numéricamente usando diferencias finitas. [@bishop2006pattern] plantean que, se puede mejorar consideramblemente la presición del método usando diferencias centrales simétricas. En este caso, para una función $f(x_1, x_2)$, las derivadas parciales se calculan como:
+El gradiente $\nabla f$ se puede aproximar numéricamente usando diferencias finitas. @bishop2006pattern plantean que, se puede mejorar consideramblemente la presición del método usando diferencias centrales simétricas. En este caso, para una función $f(x_1, x_2)$, las derivadas parciales se calculan como se muestra en las Ecuaciones 10 y 11.
 
-$$ \frac{\partial f}{\partial x_1} \approx \frac{f(x_1 + h, x_2) - f(x_1 - h, x_2)}{2h} $$
+$$ 
+\frac{\partial f}{\partial x_1} \approx \frac{f(x_1 + h, x_2) - f(x_1 - h, x_2)}{2h} \tag{10}
+$$
 
-$$ \frac{\partial f}{\partial x_2} \approx \frac{f(x_1, x_2 + h) - f(x_1, x_2 - h)}{2h} $$
+$$ 
+\frac{\partial f}{\partial x_2} \approx \frac{f(x_1, x_2 + h) - f(x_1, x_2 - h)}{2h} \tag{11}
+$$
 
 donde $h$ es un pequeño incremento (típicamente $10^{-7}$ o $10^{-8}$).
 
@@ -318,43 +373,67 @@ A continuación, se presentan las animaciones que ilustran la aplicación del de
 ::: panel-tabset
 ### Función de Rosenbrock
 
-$$f(\mathbf{x}) = \sum_{i=1}^{d-1} \left[ 100(x_{i+1} - x_i^2)^2 + (x_i - 1)^2 \right]$$
+$$
+f(\mathbf{x}) = \sum_{i=1}^{d-1} \left[ 100(x_{i+1} - x_i^2)^2 + (x_i - 1)^2 \right] \tag{1}
+$$
 
 | $x_{1_0}$ | $x_{2_0}$ | $\eta$ | $n$ |
 |-----------|-----------|--------|-----|
 | -1.5      | -1.7      | 0.001  | 30  |
 
-![](images/rosenbrock.gif)
+**Figura 7.**
+
+*Aplicación del descenso del gradiente en la función de Rosenbrok.*
+![Aplicación del descenso del gradiente en la función de Rosenbrok](images/rosenbrock.gif)
+Elaboración propia.
 
 ### Función de Rastrigin
 
-$$f(\mathbf{x}) = 10d + \sum_{i=1}^{d} \left[ x_i^2 - 10 \cos(2\pi x_i) \right]$$
+$$
+f(\mathbf{x}) = 10d + \sum_{i=1}^{d} \left[ x_i^2 - 10 \cos(2\pi x_i) \right] \tag{3}
+$$
 
 | $x_{1_0}$ | $x_{2_0}$ | $\eta$ | $n$ |
 |-----------|-----------|--------|-----|
 | -0.46     | 0.46      | 0.005  | 30  |
 
-![](images/rastrigin.gif)
+**Figura 8.**
+
+*Aplicación del descenso del gradiente en la función de Rastrigin.*
+![Aplicación del descenso del gradiente en la función de Rastrigin](images/rastrigin.gif)
+Elaboración propia.
 
 ### Función de Schwefel
 
-$$ f(\mathbf{x}) = 418.9829d - \sum_{i=1}^{d} x_i \sin(\sqrt{|x_i|}) $$
+$$ 
+f(\mathbf{x}) = 418.9829d - \sum_{i=1}^{d} x_i \sin(\sqrt{|x_i|}) \tag{4}
+$$
 
 | $x_{1_0}$ | $x_{2_0}$ | $\eta$ | $n$ |
 |-----------|-----------|--------|-----|
 | 310       | 310       | 0.8    | 30  |
 
-![](images/schwefel.gif)
+**Figura 9.**
+
+*Aplicación del descenso del gradiente en la función de Schwefel.*
+![Aplicación del descenso del gradiente en la función de Schwefel](images/schwefel.gif)
+Elaboración propia.
 
 ### Función de Griewank
 
-$$ f(\mathbf{x}) = 1 + \frac{1}{4000} \sum_{i=1}^{d} x_i^2 - \prod_{i=1}^{d} \cos\left(\frac{x_i}{\sqrt{i}}\right) $$
+$$ 
+f(\mathbf{x}) = 1 + \frac{1}{4000} \sum_{i=1}^{d} x_i^2 - \prod_{i=1}^{d} \cos\left(\frac{x_i}{\sqrt{i}}\right) \tag{5}
+$$
 
 | $x_{1_0}$ | $x_{2_0}$ | $\eta$ | $n$ |
 |-----------|-----------|--------|-----|
 | -500      | 500       | 70     | 33  |
 
-![](images/griewank.gif)
+**Figura 10.**
+
+*Aplicación del descenso del gradiente en la función de Griewank.*
+![Aplicación del descenso del gradiente en la función de Griewank](images/griewank.gif)
+Elaboración propia.
 
 ### Función Goldstein-Price
 
@@ -362,24 +441,35 @@ $$
 \begin{align}
 f(x_1, x_2) = & \left[1 + (x_1 + x_2 + 1)^2 (19 - 14x_1 + 3x_1^2 - 14x_2 + 6x_1x_2 + 3x_2^2)\right] \\
          & \left[30 + (2x_1 - 3x_2)^2 (18 - 32x_1 + 12x_1^2 + 48x_2 - 36x_1x_2 + 27x_2^2)\right]
-\end{align}
+\end{align} \tag{6}
 $$
 
 | $x_{1_0}$ | $x_{2_0}$ | $\eta$  | $n$ |
 |-----------|-----------|---------|-----|
 | 0.5       | -1.5      | 0.00005 | 50  |
 
-![](images/goldstein_price.gif)
+**Figura 11.**
+
+*Aplicación del descenso del gradiente en la función de Goldstein-Price.*
+![Aplicación del descenso del gradiente en la función de Goldstein-Price](images/goldstein_price.gif)
+Elaboración propia.
 
 ### Función de las seis jorobas de camello
 
-$$ f(x_1, x_2) = \left(4 - 2.1x_1^2 + \frac{x_1^4}{3}\right)x_1^2 + x_1x_2 + \left(-4 + 4x_2^2\right)x_2^2 $$
+$$ 
+f(x_1, x_2) = \left(4 - 2.1x_1^2 + \frac{x_1^4}{3}\right)x_1^2 + x_1x_2 + \left(-4 + 4x_2^2\right)x_2^2 \tag{7}
+$$
 
 | $x_{1_0}$ | $x_{2_0}$ | $\eta$ | $n$ |
 |-----------|-----------|--------|-----|
 | -1        | -1        | 0.015  | 33  |
 
-![](images/camel_six_humps.gif)
+**Figura 12.**
+
+*Aplicación del descenso del gradiente en la función de las seis jorobas del camello.*
+![Aplicación del descenso del gradiente en la función de las seis jorobas del camello](images/camel_six_humps.gif)
+Elaboración propia.
+
 :::
 
 El método del gradiente descendente puede imaginarse como una persona deslizándose por una colina representada por una función. El punto de inicio es el lugar desde donde comienza a deslizarse, y la tasa de aprendizaje actúa como la aceleración que controla la velocidad del deslizamiento en cada paso. Si esta aceleración es demasiado alta, puede ayudar a llegar más rápido al valle más bajo, pero también existe el riesgo de salir del camino o incluso terminar subiendo una colina debido a un impulso excesivo que sobrepasa el objetivo.
@@ -394,7 +484,7 @@ Para garantizar que este método sea eficiente, es importante considerar lo sigu
 
 ## Agoritmo genético
 
-Un algoritmo genético (GA) es un método heurístico de optimización inspirado en los principios de la **selección natural** y la **evolución biológica**, propuesto inicialmente por [@holland1975adaptation]. Este enfoque busca soluciones óptimas en un espacio de búsqueda utilizando una población de candidatos.
+Un algoritmo genético (GA) es un método heurístico de optimización inspirado en los principios de la **selección natural** y la **evolución biológica**, propuesto inicialmente por @holland1975adaptation. Este enfoque busca soluciones óptimas en un espacio de búsqueda utilizando una población de candidatos.
 
 ### Concepto General
 
@@ -410,20 +500,26 @@ El algoritmo genético simula el proceso evolutivo a través de las siguientes e
 
 Matemáticamente, en un problema de minimización, el objetivo es encontrar:
 
-$$ x^* = \arg\min_{x \in \mathbb{R}^n} f(x) $$
+$$ 
+x^* = \arg\min_{x \in \mathbb{R}^n} f(x) \tag{12}
+$$
 
 donde:
 
 -   $x$ representa un individuo en el espacio de búsqueda.
 -   $f(x)$ es la función objetivo que evalúa la calidad de $x$.
 
-Cada solución candidata se representa como un **individuo**, que puede ser un vector real o un cromosoma binario:
+Cada solución candidata se representa como un **individuo**, que puede ser un vector real o un cromosoma binario, tal como se ilustra en la Ecuación 13:
 
-$$x = (x_1, x_2, \ldots, x_n) \in \mathbb{R}^n$$
+$$
+x = (x_1, x_2, \ldots, x_n) \in \mathbb{R}^n \tag{13}
+$$
 
-La función objetivo mide qué tan buena es una solución:
+La función objetivo, mostrada en la Ecuación 14, mide qué tan buena es una solución.
 
-$$\text{Fitness}(x) = f(x)$$
+$$
+\text{Fitness}(x) = f(x) \tag{14}
+$$
 
 Para problemas de **minimización**, menor $f(x)$ implica mejor fitness.
 
@@ -433,9 +529,11 @@ Para problemas de **minimización**, menor $f(x)$ implica mejor fitness.
 
 **Inicialización de la Población**
 
-Se genera una población inicial de $P$ individuos de forma aleatoria dentro de un intervalo $[a, b]$ :
+Se genera una población inicial de $P$ individuos de forma aleatoria dentro de un intervalo $[a, b]$:
 
-$$x_{ij} \sim \text{U}(a, b), \quad \forall i \in \{1, 2, \ldots, P\}, \; j \in \{1, 2, \ldots, n\}$$
+$$
+x_{ij} \sim \text{U}(a, b), \quad \forall i \in \{1, 2, \ldots, P\}, \; j \in \{1, 2, \ldots, n\} \tag{15}
+$$
 
 donde:
 
@@ -451,9 +549,11 @@ def initialize_population(size, dim, bounds):
 
 **Evaluación del Fitness**
 
-Cada individuo de la población es evaluado usando la función objetivo:
+Cada individuo de la población es evaluado usando la función objetivo mostrada a continuación, en la Ecuación 16.
 
-$\text{Fitness}_i = f(x_i)$
+$$
+\text{Fitness}_i = f(x_i) \tag{16}
+$$
 
 ```{python}
 # Evaluar fitness
@@ -465,9 +565,11 @@ def evaluate_fitness(population,fitness_function):
 
 **Selección**
 
-Se seleccionan individuos para reproducirse basándose en su fitness. Un métodos comune es el método de torneo, donde primero se seleccionan $k$ individuos al azar y luego se elige al mejor de ellos(mejor fitness):
+Se seleccionan individuos para reproducirse basándose en su fitness. Un métodos común es el método de torneo, observado en la Ecuación 17, donde primero se seleccionan $k$ individuos al azar y luego se elige al mejor de ellos (quien tenga el mejor fitness):
 
-$$\text{Individuo seleccionado} = \arg\min_{j \in S} \text{Fitness}_j, \; S \subseteq \{1, \ldots, P\}, \; |S| = k$$
+$$
+\text{Individuo seleccionado} = \arg\min_{j \in S} \text{Fitness}_j, \; S \subseteq \{1, \ldots, P\}, \; |S| = k \tag{17}
+$$
 
 ```{python}
 # Selección por torneo
@@ -484,11 +586,15 @@ def tournament_selection(population, fitness, k=3):
 
 **Cruce (Recombinación)**
 
-Dos individuos (padres) se combinan para generar descendencia. Un método común es **punto de corte único**, donde: 1. Se Elegie un punto de cruce aleatorio $k$. 2. Se genera la descendencia mezclando las características de los padres.
+Dos individuos (padres) se combinan para generar descendencia. Un método común es **punto de corte único**, donde primero se elige un punto de cruce aleatorio $k$ y después se genera la descendencia mezclando las características de los padres, como se observa en las Ecuaciones 18 y 19.
 
-$$\text{Hijo 1} = (\text{Padre}_1[:k], \text{Padre}_2[k:])$$
+$$
+\text{Hijo 1} = (\text{Padre}_1[:k], \text{Padre}_2[k:]) \tag{18}
+$$
 
-$$\text{Hijo 2} = (\text{Padre}_2[:k], \text{Padre}_1[k:])$$
+$$
+\text{Hijo 2} = (\text{Padre}_2[:k], \text{Padre}_1[k:]) \tag{19}
+$$
 
 La probabilidad de realizar un cruce está determinada por $p_c$ (tasa de cruce).
 
@@ -509,7 +615,9 @@ def crossover(parent1, parent2, crossover_rate):
 
 Se introduce una variación genética al modificar aleatoriamente uno o más genes(variables) en un individuo(punto del plano) con probabilidad $p_m$:
 
-$$x_{ij} = x_{ij} + \Delta, \quad \Delta \sim \text{U}(-\delta, \delta)$$
+$$
+x_{ij} = x_{ij} + \Delta, \quad \Delta \sim \text{U}(-\delta, \delta) \tag{20}
+$$
 
 donde:
 
@@ -577,27 +685,51 @@ def genetic_algorithm(fitness_function, population_size, generations, mutation_r
 ::: panel-tabset
 ### Función de Rosenbrock
 
-$$f(\mathbf{x}) = \sum_{i=1}^{d-1} \left[ 100(x_{i+1} - x_i^2)^2 + (x_i - 1)^2 \right]$$
+$$
+f(\mathbf{x}) = \sum_{i=1}^{d-1} \left[ 100(x_{i+1} - x_i^2)^2 + (x_i - 1)^2 \right] \tag{1}
+$$
 
-![](images/Rosenbrock_population_animation.gif)
+**Figura 13.**
+
+*Aplicación del algoritmo genético sobre la función de Rosenbrok.*
+![Aplicación del algoritmo genético sobre la función de Rosenbrok](images/Rosenbrock_population_animation.gif)
+Elaboración propia.
 
 ### Función de Rastrigin
 
-$$f(\mathbf{x}) = 10d + \sum_{i=1}^{d} \left[ x_i^2 - 10 \cos(2\pi x_i) \right]$$
+$$
+f(\mathbf{x}) = 10d + \sum_{i=1}^{d} \left[ x_i^2 - 10 \cos(2\pi x_i) \right] \tag{3}
+$$
 
-![](images/Rastrigin_population_animation.gif)
+**Figura 14.**
+
+*Aplicación del algoritmo genético sobre la función de Rastrigin.*
+![Aplicación del algoritmo genético sobre la función de Rastrigin](images/Rastrigin_population_animation.gif)
+Elaboración propia.
 
 ### Función de Schwefel
 
-$$ f(\mathbf{x}) = 418.9829d - \sum_{i=1}^{d} x_i \sin(\sqrt{|x_i|}) $$
+$$ 
+f(\mathbf{x}) = 418.9829d - \sum_{i=1}^{d} x_i \sin(\sqrt{|x_i|}) \tag{4}
+$$
 
-![](images/Schwefel_population_animation.gif)
+**Figura 15.**
+
+*Aplicación del algoritmo genético sobre la función de Schwefel.*
+![Aplicación del algoritmo genético sobre la función de Schwefel](images/Schwefel_population_animation.gif)
+Elaboración propia.
 
 ### Función de Griewank
 
-$$ f(\mathbf{x}) = 1 + \frac{1}{4000} \sum_{i=1}^{d} x_i^2 - \prod_{i=1}^{d} \cos\left(\frac{x_i}{\sqrt{i}}\right) $$
+$$ 
+f(\mathbf{x}) = 1 + \frac{1}{4000} \sum_{i=1}^{d} x_i^2 - \prod_{i=1}^{d} \cos\left(\frac{x_i}{\sqrt{i}}\right) \tag{5}
+$$
 
-![](images/Griewank_population_animation.gif)
+**Figura 16.**
+
+*Aplicación del algoritmo genético sobre la función de Griewank.*
+![Aplicación del algoritmo genético sobre la función de Griewank](images/Griewank_population_animation.gif)
+Elaboración propia.
 
 ### Función Goldstein-Price
 
@@ -605,19 +737,30 @@ $$
 \begin{align}
 f(x_1, x_2) = & \left[1 + (x_1 + x_2 + 1)^2 (19 - 14x_1 + 3x_1^2 - 14x_2 + 6x_1x_2 + 3x_2^2)\right] \\
          & \left[30 + (2x_1 - 3x_2)^2 (18 - 32x_1 + 12x_1^2 + 48x_2 - 36x_1x_2 + 27x_2^2)\right]
-\end{align}
+\end{align} \tag{6}
 $$
 
-![](images/Goldstein_Price_population_animation.gif)
+**Figura 17.**
+
+*Aplicación del algoritmo genético sobre la función de Goldstein-Price.*
+![Aplicación del algoritmo genético sobre la función de Goldstein-Price](images/Goldstein_Price_population_animation.gif)
+Elaboración propia.
 
 ### Función de las seis jorobas de camello
 
-$$ f(x_1, x_2) = \left(4 - 2.1x_1^2 + \frac{x_1^4}{3}\right)x_1^2 + x_1x_2 + \left(-4 + 4x_2^2\right)x_2^2 $$
+$$ 
+f(x_1, x_2) = \left(4 - 2.1x_1^2 + \frac{x_1^4}{3}\right)x_1^2 + x_1x_2 + \left(-4 + 4x_2^2\right)x_2^2 \tag{7}
+$$
 
-![](images/Camel_Six_Humps_population_animation.gif)
+**Figura 18.**
+
+*Aplicación del algoritmo genético sobre la función de las seis jorobas del camello.*
+![Aplicación del algoritmo genético sobre la función de las seis jorobas del camello](images/Camel_Six_Humps_population_animation.gif)
+Elaboración propia.
+
 :::
 
-Los algoritmos genéticos convergen hacia soluciones aproximadas, aunque no garantizan alcanzar el óptimo global. Sin embargo, suelen mostrar una rápida convergencia en pocas generaciones. Estos algoritmos buscan equilibrar dos objetivos clave: **Exploración**, que consiste en descubrir nuevas regiones del espacio de búsqueda, y **Explotación**, enfocada en refinar y mejorar las soluciones existentes.
+Los algoritmos genéticos convergen hacia soluciones aproximadas, aunque no garantizan alcanzar el óptimo global. Sin embargo, suelen mostrar una rápida convergencia en pocas generaciones. Estos algoritmos buscan equilibrar dos objetivos clave: **exploración**, que consiste en descubrir nuevas regiones del espacio de búsqueda, y **explotación**, enfocada en refinar y mejorar las soluciones existentes.
 
 Para las simulaciones presentadas en los GIF, se utilizaron los siguientes parámetros: tamaño de población = 30, número de generaciones = 20, tasa de mutación = 0.5, y tasa de cruce = 0.5. El parámetro de mutación $\delta$ se ajusta según los límites de evaluación de las funciones objetivo, representando aproximadamente un 5% del rango de dichas funciones.
 
@@ -625,7 +768,7 @@ Para las simulaciones presentadas en los GIF, se utilizaron los siguientes pará
 
 Ventajas:
 
--   No requiere derivadas ni condiciones específicas en \$\$\$f(x)\$ .
+-   No requiere derivadas ni condiciones específicas en $f(x)$ .
 -   Es efectivo en espacios de búsqueda multimodales o no convexos.
 -   Adaptable a diversos problemas.
 
@@ -639,9 +782,9 @@ Desventajas:
 
 ### Concepto Básico y Analogía
 
-La Optimización por Enjambre de Partículas (PSO) es una técnica metaheurística inspirada en el comportamiento social de los animales, como los pájaros o los peces. En PSO, cada solución potencial al problema se representa como una partícula que se mueve en un espacio de búsqueda multidimensional. Cada partícula ajusta su posición y velocidad en cada iteración, basándose en su propia mejor posición encontrada (pBest) y la mejor posición encontrada por todo el enjambre (gBest). [@kennedy1995particle]
+De acuerdo con @kennedy1995particle, puede decirse que la Optimización por Enjambre de Partículas (PSO) es una técnica metaheurística inspirada en el comportamiento social de los animales, como los pájaros o los peces. En PSO, cada solución potencial al problema se representa como una partícula que se mueve en un espacio de búsqueda multidimensional. Cada partícula ajusta su posición y velocidad en cada iteración, basándose en su propia mejor posición encontrada (pBest) y la mejor posición encontrada por todo el enjambre (gBest).
 
-Los métodos PSO se atribuyen originalmente a los investigadores Kennedy, Eberhart​ y Shi. En un principio fueron concebidos para elaborar modelos de conductas sociales,​como el movimiento descrito por los organismos vivos en una bandada de aves o un banco de peces. Posteriormente el algoritmo se simplificó y se comprobó que era adecuado para problemas de optimización. [@kennedy1997particle]
+Los métodos PSO se atribuyen originalmente a los investigadores @kennedy1997particle. En un principio fueron concebidos para elaborar modelos de conductas sociales,​como el movimiento descrito por los organismos vivos en una bandada de aves o un banco de peces. Posteriormente el algoritmo se simplificó y se comprobó que era adecuado para problemas de optimización.
 
 **Funcionamiento de PSOz**
 
@@ -667,9 +810,10 @@ Además, su aceleración, que representa un cambio en la velocidad, está influe
 
 -   Atracción hacia la mejor posición global: Las partículas también se dirigen hacia la mejor ubicación encontrada por el grupo completo en el espacio de búsqueda (*pgbest*).
 
-![](images/paste-1.png)
+*Ilustración del funcionamiento del algoritmo PSO.*
+![Ilustración del funcionamiento del algoritmo PSO](images/paste-1.png) 
 
-[@sancho_pso_image]
+Adaptado de @sancho_pso_image
 
 ```{python}
 #| eval: false
@@ -735,27 +879,51 @@ Estas modificaciones resultaron en una mejora significativa en la estabilidad de
 ::: panel-tabset
 ### Función de Rosenbrock
 
-$$f(\mathbf{x}) = \sum_{i=1}^{d-1} \left[ 100(x_{i+1} - x_i^2)^2 + (x_i - 1)^2 \right]$$
+$$
+f(\mathbf{x}) = \sum_{i=1}^{d-1} \left[ 100(x_{i+1} - x_i^2)^2 + (x_i - 1)^2 \right] \tag{1}
+$$
 
-![](images/Rosenbrock_particulas_animation.gif)
+**Figura 19.**
+
+*Aplicación de optimización de partículas sobre la función de Rosenbrock.*
+![Aplicación de optimización de partículas sobre la función de Rosenbrock](images/Rosenbrock_particulas_animation.gif)
+Elaboración propia.
 
 ### Función de Rastrigin
 
-$$f(\mathbf{x}) = 10d + \sum_{i=1}^{d} \left[ x_i^2 - 10 \cos(2\pi x_i) \right]$$
+$$
+f(\mathbf{x}) = 10d + \sum_{i=1}^{d} \left[ x_i^2 - 10 \cos(2\pi x_i) \right] \tag{3}
+$$
 
-![](images/Rastrigin_particulas_animation.gif)
+**Figura 20.**
+
+*Aplicación de optimización de partículas sobre la función de Rastrigin.*
+![Aplicación de optimización de partículas sobre la función de Rastrigin](images/Rastrigin_particulas_animation.gif)
+Elaboración propia.
 
 ### Función de Schwefel
 
-$$ f(\mathbf{x}) = 418.9829d - \sum_{i=1}^{d} x_i \sin(\sqrt{|x_i|}) $$
+$$ 
+f(\mathbf{x}) = 418.9829d - \sum_{i=1}^{d} x_i \sin(\sqrt{|x_i|}) \tag{4}
+$$
 
-![](images/Schwefel_particulas_animation.gif)
+**Figura 21.**
+
+*Aplicación de optimización de partículas sobre la función de Schwefel.*
+![Aplicación de optimización de partículas sobre la función de Schwefel](images/Schwefel_particulas_animation.gif)
+Elaboración propia.
 
 ### Función de Griewank
 
-$$ f(\mathbf{x}) = 1 + \frac{1}{4000} \sum_{i=1}^{d} x_i^2 - \prod_{i=1}^{d} \cos\left(\frac{x_i}{\sqrt{i}}\right) $$
+$$ 
+f(\mathbf{x}) = 1 + \frac{1}{4000} \sum_{i=1}^{d} x_i^2 - \prod_{i=1}^{d} \cos\left(\frac{x_i}{\sqrt{i}}\right) \tag{5}
+$$
 
-![](images/Griewank_particulas_animation.gif)
+**Figura 22.**
+
+*Aplicación de optimización de partículas sobre la función de Griewank.*
+![Aplicación de optimización de partículas sobre la función de Griewank](images/Griewank_particulas_animation.gif)
+Elaboración propia.
 
 ### Función Goldstein-Price
 
@@ -763,16 +931,27 @@ $$
 \begin{align}
 f(x_1, x_2) = & \left[1 + (x_1 + x_2 + 1)^2 (19 - 14x_1 + 3x_1^2 - 14x_2 + 6x_1x_2 + 3x_2^2)\right] \\
          & \left[30 + (2x_1 - 3x_2)^2 (18 - 32x_1 + 12x_1^2 + 48x_2 - 36x_1x_2 + 27x_2^2)\right]
-\end{align}
+\end{align} \tag{6}
 $$
 
-![](images/Goldstein_Price_particulas_animation.gif)
+**Figura 23.**
+
+*Aplicación de optimización de partículas sobre la función de Goldstein-Price.*
+![Aplicación de optimización de partículas sobre la función de Goldstein-Price](images/Goldstein_Price_particulas_animation.gif)
+Elaboración propia.
 
 ### Función de las seis jorobas de camello
 
-$$ f(x_1, x_2) = \left(4 - 2.1x_1^2 + \frac{x_1^4}{3}\right)x_1^2 + x_1x_2 + \left(-4 + 4x_2^2\right)x_2^2 $$
+$$ 
+f(x_1, x_2) = \left(4 - 2.1x_1^2 + \frac{x_1^4}{3}\right)x_1^2 + x_1x_2 + \left(-4 + 4x_2^2\right)x_2^2 \tag{7}
+$$
 
-![](images/Camel_Six_Humps_particulas_animation.gif)
+**Figura 24.**
+
+*Aplicación de optimización de partículas sobre la función de las seis jorobas del camello.*
+![Aplicación de optimización de partículas sobre la función de las seis jorobas del camello](images/Camel_Six_Humps_particulas_animation.gif)
+Elaboración propia.
+
 :::
 
 ## Optimización diferencial
@@ -909,51 +1088,86 @@ def selection(self, population, trial_pop):
 
 -   **Criterio de parada**:
 
-    -   Se repiten los pasos 3 y 4 hasta que se cumpla un criterio de parada (número máximo de generaciones, mejora mínima en la función objetivo, etc.)
-
-        [@martinez2019evolucion]
+    -   Se repiten los pasos 3 y 4 hasta que se cumpla un criterio de parada (número máximo de generaciones, mejora mínima en la función objetivo, etc.), de acuerdo con @martinez2019evolucion.
 
 ::: panel-tabset
 ### Función de Rosenbrock
 
-$$f(\mathbf{x}) = \sum_{i=1}^{d-1} \left[ 100(x_{i+1} - x_i^2)^2 + (x_i - 1)^2 \right]$$
+$$
+f(\mathbf{x}) = \sum_{i=1}^{d-1} \left[ 100(x_{i+1} - x_i^2)^2 + (x_i - 1)^2 \right] \tag{1}
+$$
 
-![](images/Rosenbrock_diferential_evolution_animation.gif)
+**Figura 25.**
+
+*Aplicación de optimización diferencial sobre la función de Rosenbrock.*
+![Aplicación de optimización diferencial sobre la función de Rosenbrock](images/Rosenbrock_diferential_evolution_animation.gif)
+Elaboración propia.
 
 ### Función de Rastrigin
 
-$$f(\mathbf{x}) = 10d + \sum_{i=1}^{d} \left[ x_i^2 - 10 \cos(2\pi x_i) \right]$$
+$$
+f(\mathbf{x}) = 10d + \sum_{i=1}^{d} \left[ x_i^2 - 10 \cos(2\pi x_i) \right] \tag{3}
+$$
 
-![](images/Rastrigin_diferential_evolution_animation.gif)
+**Figura 26.**
+
+*Aplicación de optimización diferencial sobre la función de Rastrigin.*
+![Aplicación de optimización diferencial sobre la función de Rastrigin](images/Rastrigin_diferential_evolution_animation.gif)
+Elaboración propia.
 
 ### Función de Schwefel
 
-$$ f(\mathbf{x}) = 418.9829d - \sum_{i=1}^{d} x_i \sin(\sqrt{|x_i|}) $$
+$$ 
+f(\mathbf{x}) = 418.9829d - \sum_{i=1}^{d} x_i \sin(\sqrt{|x_i|}) \tag{4}
+$$
 
-![](images/Schwefel_diferential_evolution_animation.gif)
+**Figura 27.**
+
+*Aplicación de optimización diferencial sobre la función de Schwefel.*
+![Aplicación de optimización diferencial sobre la función de Schwefel](images/Schwefel_diferential_evolution_animation.gif)
+Elaboración propia.
 
 ### Función de Griewank
 
-$$ f(\mathbf{x}) = 1 + \frac{1}{4000} \sum_{i=1}^{d} x_i^2 - \prod_{i=1}^{d} \cos\left(\frac{x_i}{\sqrt{i}}\right) $$
+$$ 
+f(\mathbf{x}) = 1 + \frac{1}{4000} \sum_{i=1}^{d} x_i^2 - \prod_{i=1}^{d} \cos\left(\frac{x_i}{\sqrt{i}}\right) \tag{5}
+$$
 
-![](images/Griewank_diferential_evolution_animation.gif)
+**Figura 28.**
+
+*Aplicación de optimización diferencial sobre la función de Griewank.*
+![Aplicación de optimización diferencial sobre la función de Griewank](images/Griewank_diferential_evolution_animation.gif)
+Elaboración propia.
 
 ### Función Goldstein-Price
 
-$$ \begin{align} f(x_1, x_2) = & \left[1 + (x_1 + x_2 + 1)^2 (19 - 14x_1 + 3x_1^2 - 14x_2 + 6x_1x_2 + 3x_2^2)\right] \\          & \left[30 + (2x_1 - 3x_2)^2 (18 - 32x_1 + 12x_1^2 + 48x_2 - 36x_1x_2 + 27x_2^2)\right] \end{align} $$
+$$ 
+\begin{align} f(x_1, x_2) = & \left[1 + (x_1 + x_2 + 1)^2 (19 - 14x_1 + 3x_1^2 - 14x_2 + 6x_1x_2 + 3x_2^2)\right] \\          & \left[30 + (2x_1 - 3x_2)^2 (18 - 32x_1 + 12x_1^2 + 48x_2 - 36x_1x_2 + 27x_2^2)\right] \end{align} \tag{6}
+$$
 
-![](images/Goldstein_Price_diferential_evolution_animation.gif)
+**Figura 29.**
+
+*Aplicación de optimización diferencial sobre la función de Goldstein-Price.*
+![Aplicación de optimización diferencial sobre la función de Goldstein-Price](images/Goldstein_Price_diferential_evolution_animation.gif)
+Elaboración propia.
 
 ### Función de las seis jorobas de camello
 
-$$ f(x_1, x_2) = \left(4 - 2.1x_1^2 + \frac{x_1^4}{3}\right)x_1^2 + x_1x_2 + \left(-4 + 4x_2^2\right)x_2^2 $$
+$$ 
+f(x_1, x_2) = \left(4 - 2.1x_1^2 + \frac{x_1^4}{3}\right)x_1^2 + x_1x_2 + \left(-4 + 4x_2^2\right)x_2^2 \tag{7}
+$$
 
-![](images/Camel_Six_Humps_diferential_evolution_animation.gif)
+**Figura 30.**
+
+*Aplicación de optimización diferencial sobre la función de las seis jorobas del camello.*
+![Aplicación de optimización diferencial sobre la función de las seis jorobas del camello](images/Camel_Six_Humps_diferential_evolution_animation.gif)
+Elaboración propia.
+
 :::
 
 # Resultados
 
-Como se puede observar, en la mayoría de los casos de optimización para una unica corrida los puntos óptimos conergen a mínimos locales, lo que indica que los resultados óptimos pueden estar fuertemente influenciado por los valores iniciales de $x$ o las condiciones de inicio de los algoritmos. Por esta razón, para evaluar el rendimiento y el comportamiento de los algoritmos en un entorno más general, se realizarán múltiples ejecuciones. En cada corrida, los algoritmos partirán de valores iniciales distintos generados aleatoriamente. Con esto se verá cuanto tardan los algoritmos en mejorar la evaluación de la función objetivo y cuales pueden ser algunos comentarios particulares a realizar. Los resultados se presentaran para los casos de 2 y 3 dimensiones de las funciones.
+Como se puede observar, en la mayoría de los casos de optimización para una única corrida los puntos óptimos conergen a mínimos locales, lo que indica que los resultados óptimos pueden estar fuertemente influenciados por los valores iniciales de $x$ o las condiciones de inicio de los algoritmos. Por esta razón, para evaluar el rendimiento y el comportamiento de los algoritmos en un entorno más general, se realizarán múltiples ejecuciones. En cada corrida, los algoritmos partirán de valores iniciales distintos generados aleatoriamente. Con esto se verá cuánto tardan los algoritmos en mejorar la evaluación de la función objetivo y cuáles pueden ser algunos comentarios particulares a realizar. Los resultados se presentarán para los casos de 2 y 3 dimensiones de las funciones.
 
 (Tabla o gráfica de resutlados)
 
@@ -961,4 +1175,11 @@ Como se puede observar, en la mayoría de los casos de optimización para una un
 
 # Discusión
 
-Reflexione sobre los siguientes puntos: - ¿Qué aportaron los métodos de **descenso por gradiente** y qué aportaron los **métodos heurísticos**? - Para responder a esta pregunta, considere: - El **valor final** de la función objetivo. - El **número de evaluaciones** de la función objetivo. - Es posible que se requiera realizar **varias corridas** de los algoritmos para obtener conclusiones significativas.
+Reflexione sobre los siguientes puntos: 
+
+¿Qué aportaron los métodos de **descenso por gradiente** y qué aportaron los **métodos heurísticos**? Para responder a esta pregunta, considere: 
+
+-   El **valor final** de la función objetivo. 
+-   El **número de evaluaciones** de la función objetivo.
+
+Es posible que se requiera realizar **varias corridas** de los algoritmos para obtener conclusiones significativas.

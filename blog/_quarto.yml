@@ -7,7 +7,7 @@ website:
     right:
       - about.qmd
       - icon: github
-        href: https://github.com/
+        href: https://github.com/RNA-y-Algo-Bioinsp-2024-02/blog
 
 format:
   html:
