@@ -302,7 +302,7 @@ donde:
 
 -   $\nabla f(x_t)$ es el gradiente de la función en $x_t$
 
-El gradiente $\nabla f$ es un vector que contiene las derivadas parciales respecto a cada variable, tal como se ilustra en la Ecuación 9: 
+El gradiente $\nabla f$ es un vector que contiene las derivadas parciales respecto a cada variable, tal como se ilustra en la Ecuación 9:
 
 $$
 \nabla f(x_1, x_2) = \begin{bmatrix} \frac{\partial f}{\partial x_1}, \frac{\partial f}{\partial x_2} \end{bmatrix} \tag{9}
@@ -1119,19 +1119,42 @@ $$
 
 # Resultados
 
-Como se puede observar, en la mayoría de los casos de optimización para una única corrida los puntos óptimos conergen a mínimos locales, lo que indica que los resultados óptimos pueden estar fuertemente influenciados por los valores iniciales de $x$ o las condiciones de inicio de los algoritmos. Por esta razón, para evaluar el rendimiento y el comportamiento de los algoritmos en un entorno más general, se realizarán múltiples ejecuciones. En cada corrida, los algoritmos partirán de valores iniciales distintos generados aleatoriamente. Con esto se verá cuánto tardan los algoritmos en mejorar la evaluación de la función objetivo y cuáles pueden ser algunos comentarios particulares a realizar. Los resultados se presentarán para los casos de 2 y 3 dimensiones de las funciones.
+Como se puede observar, en la mayoría de los casos de optimización para una única corrida los puntos óptimos conergen a mínimos locales, lo que indica que los resultados óptimos pueden estar fuertemente influenciados por los valores iniciales de $x$ o las condiciones de inicio de los algoritmos. Por esta razón, para evaluar el rendimiento y el comportamiento de los algoritmos en un entorno más general, se realizarán múltiples ejecuciones. En cada corrida, los algoritmos partirán de valores iniciales distintos generados aleatoriamente. Para evaluar el rendimiento de los métodos de optimización desarrollados, se harán 20 corridas para cada función, y se tomará para cada uno el tiempo de ejecución y el mejor fitness encontrado hasta el momento.
 
-(Tabla o gráfica de resutlados)
+#### Gráficos de mejor fitness para los diferentes métodos
+
+Para cada función se realizó un gráfico de comparación de mejor fitness de cada método para cada corrida, dándo el siguiente resultado
+
+![](images/rendimiento_funciones.png){fig-align="center"}
+
+y en cuanto a los tiempos, de obtuvieron los siguientes resultados generales
+
+![](images/paste-2.png)
 
 # Conclusiones y comentarios
 
+## 1. Eficiencia Computacional (Tiempo de Ejecución)
+
+-   **Gradiente Descendente**: Es consistentemente el método más rápido, obtuvo tiempos de ejecución de entre 0.003 a 0.008 segundos, es extremadamente rápido en comparación pero potencialmente menos preciso
+
+-   **Enjambre de Partículas**: Tiene tiempos de ejecución moderados de 0.07 a 0.27 segundos, tiene una sobrecarga computacional ligeramente mayor que Gradiente Descendente y presenta buen equilibrio entre velocidad y exploración
+
+-   **Evolución Diferencial**: Tiene un rendimiento más lento con tiempos de ejecución de entre 0.8 y 1.9 segundos, consume más tiempo significativamente, lo que sugiere operaciones de mutación y cruce más complejas
+
+-   **Algoritmo Genético**: Posee un rendimiento similar a Enjembre de Partículas con tiempos de ejecución de entre: 0.07 y 0.14 segundos, es más eficiente que Evolución Diferencial, lo que sugiere requisitos computacionales moderados
+
+## 2. Rendimiento de Optimización
+
+En el análisis del rendimiento de optimización, se observaron variaciones significativas entre los diferentes algoritmos según la función de prueba. En funciones como Rosenbrock y Rastrigin, el Enjambre de Partículas y la Evolución Diferencial mostraron un rendimiento superior, logrando valores de error casi cero, mientras que el Algoritmo Genético tuvo resultados moderados y el Gradiente Descendente mostró mayor dificultad. En contraste, para funciones como Goldstein-Price y Camellos de Seis Jorobas, casi todos los métodos convergieron de manera similar cerca del óptimo conocido, sugiriendo que la efectividad de cada algoritmo depende crucialmente de la estructura y complejidad de la función objetivo.
+
+## Conclusión
+
+El rendimiento de los algoritmos de optimización es altamente dependiente del contexto. Mientras que Enjambre de Partículas y Evolución Diferencial mostraron un rendimiento robusto en la mayoría de las funciones, la mejor elección depende de los desafíos específicos de optimización.
+
 # Discusión
 
-Reflexione sobre los siguientes puntos:
+-   Los algoritmos de optimización presentan rendimientos distintos según la complejidad de las funciones, con métodos estocásticos como Enjambre de Partículas y Evolución Diferencial mostrando mayor capacidad de exploración y adaptabilidad en espacios de búsqueda complejos.
 
-¿Qué aportaron los métodos de **descenso por gradiente** y qué aportaron los **métodos heurísticos**? Para responder a esta pregunta, considere:
+-   Los métodos heurísticos (Enjambre de Partículas, Evolución Diferencial y Algoritmo Genético) demostraron una superior capacidad para explorar y optimizar funciones complejas, logrando errores casi cero en algunas funciones, mientras que el Descenso por Gradiente, aunque extremadamente rápido, mostró limitaciones significativas en funciones no convexas aunque resultados cercanos a los otros métodos en funciones mas simples, revelando que no existe un algoritmo universalmente óptimo y que la elección del método depende críticamente de las características específicas del problema de optimización.
 
--   El **valor final** de la función objetivo.
--   El **número de evaluaciones** de la función objetivo.
-
-Es posible que se requiera realizar **varias corridas** de los algoritmos para obtener conclusiones significativas.
+-   Se observa también en las gráficas, sobretodo para los métodos heurísticos, que entre más corridas se hagan, mejores resultadospodría ir consiguiendo , esto debido al factor aleatorio presente en éstos métodos
