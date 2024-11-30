@@ -290,10 +290,12 @@ En concordancia con lo anterior, es posible encontrar en las Figuras 20 y 21 una
 
 **Figura 20**
 
-*Soluciones obtenidas mediante el algoritmo de colonia de hormigas para la optimización de la ruta en las carreteras identificadas.*
-![Las tres rutas encontradas mediante el algoritmo de colonia de hormigas](soluciones_colonia_hormigas.gif)
-*Nota.* Esta animación muestra las variaciones en las rutas óptimas propuestas por el algoritmo de colonia de hormigas para los tres escenarios que fueron analizados durante el desarrollo del presente ejercicio. Elaboración propia.
+*Soluciones obtenidas mediante el algoritmo de colonia de hormigas para la optimización de la ruta en las carreteras identificadas.* ![Las tres rutas encontradas mediante el algoritmo de colonia de hormigas](soluciones_colonia_hormigas.gif) *Nota.* Esta animación muestra las variaciones en las rutas óptimas propuestas por el algoritmo de colonia de hormigas para los tres escenarios que fueron analizados durante el desarrollo del presente ejercicio. Elaboración propia.
 
-*Soluciones obtenidas mediante el algoritmo genético para la optimización de la ruta en las carreteras identificadas.*
-![Las tres rutas encontradas mediante el algoritmo genético](soluciones_genetico.gif)
-*Nota.* Igualmente, en esta animación se muestran las diferentes rutas óptimas propuestas por el algoritmo genético para los tres escenarios que fueron analizados durante el desarrollo del presente ejercicio. Elaboración propia.
+*Soluciones obtenidas mediante el algoritmo genético para la optimización de la ruta en las carreteras identificadas.* ![Las tres rutas encontradas mediante el algoritmo genético](soluciones_genetico.gif) *Nota.* Igualmente, en esta animación se muestran las diferentes rutas óptimas propuestas por el algoritmo genético para los tres escenarios que fueron analizados durante el desarrollo del presente ejercicio. Elaboración propia.
+
+## Contribuciones individuales
+
+Las contribuciones realizadas por cada uno de los integrantes del equipo en el desarrollo de los ejercicios correspondientes a **Optimización Heurística** y **Optimización Combinatoria** se muestran en el siguiente video.
+
+{{< video https://youtu.be/b65OmTkDGsI >}}
