@@ -255,8 +255,16 @@ window.Quarto = {
   </ul></li>
   <li><a href="#optimización-diferencial" id="toc-optimización-diferencial" class="nav-link" data-scroll-target="#optimización-diferencial"><span class="header-section-number">2.4</span> Optimización diferencial</a></li>
   </ul></li>
-  <li><a href="#resultados" id="toc-resultados" class="nav-link" data-scroll-target="#resultados"><span class="header-section-number">3</span> Resultados</a></li>
-  <li><a href="#conclusiones-y-comentarios" id="toc-conclusiones-y-comentarios" class="nav-link" data-scroll-target="#conclusiones-y-comentarios"><span class="header-section-number">4</span> Conclusiones y comentarios</a></li>
+  <li><a href="#resultados" id="toc-resultados" class="nav-link" data-scroll-target="#resultados"><span class="header-section-number">3</span> Resultados</a>
+  <ul class="collapse">
+  <li><a href="#análisis-de-mejor-fitness-para-los-diferentes-métodos" id="toc-análisis-de-mejor-fitness-para-los-diferentes-métodos" class="nav-link" data-scroll-target="#análisis-de-mejor-fitness-para-los-diferentes-métodos"><span class="header-section-number">3.1</span> Análisis de mejor fitness para los diferentes métodos</a></li>
+  </ul></li>
+  <li><a href="#conclusiones-y-comentarios" id="toc-conclusiones-y-comentarios" class="nav-link" data-scroll-target="#conclusiones-y-comentarios"><span class="header-section-number">4</span> Conclusiones y comentarios</a>
+  <ul class="collapse">
+  <li><a href="#eficiencia-computacional-tiempo-de-ejecución" id="toc-eficiencia-computacional-tiempo-de-ejecución" class="nav-link" data-scroll-target="#eficiencia-computacional-tiempo-de-ejecución"><span class="header-section-number">4.1</span> Eficiencia computacional (tiempo de ejecución)</a></li>
+  <li><a href="#rendimiento-de-optimización" id="toc-rendimiento-de-optimización" class="nav-link" data-scroll-target="#rendimiento-de-optimización"><span class="header-section-number">4.2</span> Rendimiento de Optimización</a></li>
+  <li><a href="#conclusión" id="toc-conclusión" class="nav-link" data-scroll-target="#conclusión"><span class="header-section-number">4.3</span> Conclusión</a></li>
+  </ul></li>
   <li><a href="#discusión" id="toc-discusión" class="nav-link" data-scroll-target="#discusión"><span class="header-section-number">5</span> Discusión</a></li>
   </ul>
 </nav>
@@ -572,7 +580,8 @@ x_{t+1} = x_t - \eta \nabla f(x_t) \tag{8}
 <li><p><span class="math inline">\(\eta\)</span> es la tasa de aprendizaje</p></li>
 <li><p><span class="math inline">\(\nabla f(x_t)\)</span> es el gradiente de la función en <span class="math inline">\(x_t\)</span></p></li>
 </ul>
-<p>El gradiente <span class="math inline">\(\nabla f\)</span> es un vector que contiene las derivadas parciales respecto a cada variable, tal como se ilustra en la Ecuación 9: <span class="math display">\[
+<p>El gradiente <span class="math inline">\(\nabla f\)</span> es un vector que contiene las derivadas parciales respecto a cada variable, tal como se ilustra en la Ecuación 9:</p>
+<p><span class="math display">\[
 \nabla f(x_1, x_2) = \begin{bmatrix} \frac{\partial f}{\partial x_1}, \frac{\partial f}{\partial x_2} \end{bmatrix} \tag{9}
 \]</span></p>
 <p>El gradiente <span class="math inline">\(\nabla f\)</span> se puede aproximar numéricamente usando diferencias finitas. <span class="citation" data-cites="bishop2006pattern">Bishop (<a href="#ref-bishop2006pattern" role="doc-biblioref">2006</a>)</span> plantean que, se puede mejorar consideramblemente la presición del método usando diferencias centrales simétricas. En este caso, para una función <span class="math inline">\(f(x_1, x_2)\)</span>, las derivadas parciales se calculan como se muestra en las Ecuaciones 10 y 11.</p>
@@ -1388,21 +1397,45 @@ f(x_1, x_2) = \left(4 - 2.1x_1^2 + \frac{x_1^4}{3}\right)x_1^2 + x_1x_2 + \left(
 </section>
 <section id="resultados" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> Resultados</h1>
-<p>Como se puede observar, en la mayoría de los casos de optimización para una única corrida los puntos óptimos conergen a mínimos locales, lo que indica que los resultados óptimos pueden estar fuertemente influenciados por los valores iniciales de <span class="math inline">\(x\)</span> o las condiciones de inicio de los algoritmos. Por esta razón, para evaluar el rendimiento y el comportamiento de los algoritmos en un entorno más general, se realizarán múltiples ejecuciones. En cada corrida, los algoritmos partirán de valores iniciales distintos generados aleatoriamente. Con esto se verá cuánto tardan los algoritmos en mejorar la evaluación de la función objetivo y cuáles pueden ser algunos comentarios particulares a realizar. Los resultados se presentarán para los casos de 2 y 3 dimensiones de las funciones.</p>
-<p>(Tabla o gráfica de resutlados)</p>
+<p>Como se puede observar, en la mayoría de los casos de optimización para una única corrida los puntos óptimos conergen a mínimos locales, lo que indica que los resultados óptimos pueden estar fuertemente influenciados por los valores iniciales de <span class="math inline">\(x\)</span> o las condiciones de inicio de los algoritmos. Por esta razón, para evaluar el rendimiento y el comportamiento de los algoritmos en un entorno más general, se realizarán múltiples ejecuciones.</p>
+<p>En cada corrida, los algoritmos partirán de valores iniciales distintos generados aleatoriamente. Para evaluar el rendimiento de los métodos de optimización desarrollados, se harán 20 corridas para cada funció y se tomará para cada uno el tiempo de ejecución y el mejor fitness encontrado hasta el momento.</p>
+<section id="análisis-de-mejor-fitness-para-los-diferentes-métodos" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="análisis-de-mejor-fitness-para-los-diferentes-métodos"><span class="header-section-number">3.1</span> Análisis de mejor fitness para los diferentes métodos</h2>
+<p>Para cada función se realizó un gráfico de comparación de mejor fitness para cada corrida en cada uno de los métodos utilizados, originando el conjunto de resultados que se pueden observar en la Figura 31, como se muestra a continuación.</p>
+<p><strong>Figura 31.</strong></p>
+<p><em>Rendimiento de las funciones, en función de las corridas y los métodos de optimización.</em> <img src="images/rendimiento_funciones.png" class="img-fluid quarto-figure quarto-figure-center" alt="Rendimiento de las funciones, en función de las corridas y los métodos de optimización"> <em>Nota.</em> Es posible hacer una comparación tanto a nivel de corridas como al respecto de los métodos empleados anteriormente, con lo cual se llega a las conclusiones enunciadas más adelante. Elaboración propia.</p>
+<p>Finalmente, en la Figura 32 se pueden observar los resultados generales obtenidos en cuanto a los tiempos de ejecución de cada uno de los algoritmos utilizados.</p>
+<p><strong>Figura 32.</strong></p>
+<p><em>Tiempo promedio de ejecución de cada método de optimización ejecutado.</em> <img src="images/paste-2.png" class="img-fluid" alt="Tiempo promedio de ejecución de cada método de optimización ejecutado"> Elaboración propia.</p>
+</section>
 </section>
 <section id="conclusiones-y-comentarios" class="level1" data-number="4">
 <h1 data-number="4"><span class="header-section-number">4</span> Conclusiones y comentarios</h1>
+<section id="eficiencia-computacional-tiempo-de-ejecución" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="eficiencia-computacional-tiempo-de-ejecución"><span class="header-section-number">4.1</span> Eficiencia computacional (tiempo de ejecución)</h2>
+<ul>
+<li><p><strong>Gradiente Descendente</strong>: Es consistentemente el método más rápido, pues obtuvo tiempos de ejecución de entre 0.003 a 0.008 segundos, siendo extremadamente rápido en comparación con los demás pero potencialmente menos preciso.</p></li>
+<li><p><strong>Enjambre de Partículas</strong>: Tiene tiempos de ejecución moderados, de 0.07 a 0.27 segundos, con una sobrecarga computacional ligeramente mayor que Gradiente Descendente y presenta buen equilibrio entre velocidad y exploración.</p></li>
+<li><p><strong>Evolución Diferencial</strong>: Tiene un rendimiento más lento con tiempos de ejecución de entre 0.8 y 1.9 segundos y consume significativamente más tiempo, lo que sugiere la utilización de operaciones de mutación y cruce más complejas.</p></li>
+<li><p><strong>Algoritmo Genético</strong>: Posee un rendimiento similar a Enjambre de Partículas con tiempos de ejecución de entre 0.07 y 0.14 segundos, es más eficiente que Evolución Diferencial, lo que sugiere la necesidad de requisitos computacionales moderados.</p></li>
+</ul>
+</section>
+<section id="rendimiento-de-optimización" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="rendimiento-de-optimización"><span class="header-section-number">4.2</span> Rendimiento de Optimización</h2>
+<p>En el análisis del rendimiento de optimización, se observaron variaciones significativas entre los diferentes algoritmos según la función de prueba. En funciones como Rosenbrock y Rastrigin, el Enjambre de Partículas y la Evolución Diferencial mostraron un rendimiento superior, logrando valores de error casi cero, mientras que el Algoritmo Genético tuvo resultados moderados y el Gradiente Descendente mostró mayor dificultad. En contraste, para funciones como Goldstein-Price y Camellos de Seis Jorobas, casi todos los métodos convergieron de manera similar cerca del óptimo conocido, sugiriendo que la efectividad de cada algoritmo depende crucialmente de la estructura y complejidad de la función objetivo.</p>
+</section>
+<section id="conclusión" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="conclusión"><span class="header-section-number">4.3</span> Conclusión</h2>
+<p>El rendimiento de los algoritmos de optimización es altamente dependiente del contexto. Mientras que Enjambre de Partículas y Evolución Diferencial mostraron un rendimiento robusto en la mayoría de las funciones, la mejor elección depende de los desafíos específicos de optimización.</p>
+</section>
 </section>
 <section id="discusión" class="level1" data-number="5">
 <h1 data-number="5"><span class="header-section-number">5</span> Discusión</h1>
-<p>Reflexione sobre los siguientes puntos:</p>
-<p>¿Qué aportaron los métodos de <strong>descenso por gradiente</strong> y qué aportaron los <strong>métodos heurísticos</strong>? Para responder a esta pregunta, considere:</p>
 <ul>
-<li>El <strong>valor final</strong> de la función objetivo.</li>
-<li>El <strong>número de evaluaciones</strong> de la función objetivo.</li>
+<li><p>Los algoritmos de optimización presentan rendimientos distintos según la complejidad de las funciones, con métodos estocásticos como Enjambre de Partículas y Evolución Diferencial mostrando mayor capacidad de exploración y adaptabilidad en espacios de búsqueda complejos.</p></li>
+<li><p>Los métodos heurísticos (Enjambre de Partículas, Evolución Diferencial y Algoritmo Genético) demostraron una superior capacidad para explorar y optimizar funciones complejas, logrando errores casi cero en algunas funciones, mientras que el Descenso por Gradiente, aunque extremadamente rápido, mostró limitaciones significativas en funciones no convexas aunque resultados cercanos a los otros métodos en funciones mas simples, revelando que no existe un algoritmo universalmente óptimo y que la elección del método depende críticamente de las características específicas del problema de optimización.</p></li>
+<li><p>Se observa también, de acuerdo con lo mostrado en la Figura 31, que entre más corridas se hagan, los métodos heurísticos de optimización podrían ir consiguiendo mejores resultados, considerando el factor aleatorio presente en cada uno de ellos.</p></li>
 </ul>
-<p>Es posible que se requiera realizar <strong>varias corridas</strong> de los algoritmos para obtener conclusiones significativas.</p>
 
 
 <!-- -->
@@ -2364,7 +2397,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb23-318"><a href="#cb23-318" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-319"><a href="#cb23-319" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>$\nabla f(x_t)$ es el gradiente de la función en $x_t$</span>
 <span id="cb23-320"><a href="#cb23-320" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-321"><a href="#cb23-321" aria-hidden="true" tabindex="-1"></a>El gradiente $\nabla f$ es un vector que contiene las derivadas parciales respecto a cada variable, tal como se ilustra en la Ecuación 9: </span>
+<span id="cb23-321"><a href="#cb23-321" aria-hidden="true" tabindex="-1"></a>El gradiente $\nabla f$ es un vector que contiene las derivadas parciales respecto a cada variable, tal como se ilustra en la Ecuación 9:</span>
 <span id="cb23-322"><a href="#cb23-322" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-323"><a href="#cb23-323" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb23-324"><a href="#cb23-324" aria-hidden="true" tabindex="-1"></a>\nabla f(x_1, x_2) = \begin{bmatrix} \frac{\partial f}{\partial x_1}, \frac{\partial f}{\partial x_2} \end{bmatrix} \tag{9}</span>
@@ -3181,22 +3214,55 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb23-1163"><a href="#cb23-1163" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-1164"><a href="#cb23-1164" aria-hidden="true" tabindex="-1"></a><span class="fu"># Resultados</span></span>
 <span id="cb23-1165"><a href="#cb23-1165" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-1166"><a href="#cb23-1166" aria-hidden="true" tabindex="-1"></a>Como se puede observar, en la mayoría de los casos de optimización para una única corrida los puntos óptimos conergen a mínimos locales, lo que indica que los resultados óptimos pueden estar fuertemente influenciados por los valores iniciales de $x$ o las condiciones de inicio de los algoritmos. Por esta razón, para evaluar el rendimiento y el comportamiento de los algoritmos en un entorno más general, se realizarán múltiples ejecuciones. En cada corrida, los algoritmos partirán de valores iniciales distintos generados aleatoriamente. Con esto se verá cuánto tardan los algoritmos en mejorar la evaluación de la función objetivo y cuáles pueden ser algunos comentarios particulares a realizar. Los resultados se presentarán para los casos de 2 y 3 dimensiones de las funciones.</span>
+<span id="cb23-1166"><a href="#cb23-1166" aria-hidden="true" tabindex="-1"></a>Como se puede observar, en la mayoría de los casos de optimización para una única corrida los puntos óptimos conergen a mínimos locales, lo que indica que los resultados óptimos pueden estar fuertemente influenciados por los valores iniciales de $x$ o las condiciones de inicio de los algoritmos. Por esta razón, para evaluar el rendimiento y el comportamiento de los algoritmos en un entorno más general, se realizarán múltiples ejecuciones. </span>
 <span id="cb23-1167"><a href="#cb23-1167" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-1168"><a href="#cb23-1168" aria-hidden="true" tabindex="-1"></a>(Tabla o gráfica de resutlados)</span>
+<span id="cb23-1168"><a href="#cb23-1168" aria-hidden="true" tabindex="-1"></a>En cada corrida, los algoritmos partirán de valores iniciales distintos generados aleatoriamente. Para evaluar el rendimiento de los métodos de optimización desarrollados, se harán 20 corridas para cada funció y se tomará para cada uno el tiempo de ejecución y el mejor fitness encontrado hasta el momento.</span>
 <span id="cb23-1169"><a href="#cb23-1169" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-1170"><a href="#cb23-1170" aria-hidden="true" tabindex="-1"></a><span class="fu"># Conclusiones y comentarios</span></span>
+<span id="cb23-1170"><a href="#cb23-1170" aria-hidden="true" tabindex="-1"></a><span class="fu">## Análisis de mejor fitness para los diferentes métodos</span></span>
 <span id="cb23-1171"><a href="#cb23-1171" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-1172"><a href="#cb23-1172" aria-hidden="true" tabindex="-1"></a><span class="fu"># Discusión</span></span>
+<span id="cb23-1172"><a href="#cb23-1172" aria-hidden="true" tabindex="-1"></a>Para cada función se realizó un gráfico de comparación de mejor fitness para cada corrida en cada uno de los métodos utilizados, originando el conjunto de resultados que se pueden observar en la Figura 31, como se muestra a continuación.</span>
 <span id="cb23-1173"><a href="#cb23-1173" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-1174"><a href="#cb23-1174" aria-hidden="true" tabindex="-1"></a>Reflexione sobre los siguientes puntos:</span>
+<span id="cb23-1174"><a href="#cb23-1174" aria-hidden="true" tabindex="-1"></a>**Figura 31.**</span>
 <span id="cb23-1175"><a href="#cb23-1175" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-1176"><a href="#cb23-1176" aria-hidden="true" tabindex="-1"></a>¿Qué aportaron los métodos de **descenso por gradiente** y qué aportaron los **métodos heurísticos**? Para responder a esta pregunta, considere:</span>
-<span id="cb23-1177"><a href="#cb23-1177" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-1178"><a href="#cb23-1178" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>El **valor final** de la función objetivo.</span>
-<span id="cb23-1179"><a href="#cb23-1179" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>El **número de evaluaciones** de la función objetivo.</span>
-<span id="cb23-1180"><a href="#cb23-1180" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-1181"><a href="#cb23-1181" aria-hidden="true" tabindex="-1"></a>Es posible que se requiera realizar **varias corridas** de los algoritmos para obtener conclusiones significativas.</span>
+<span id="cb23-1176"><a href="#cb23-1176" aria-hidden="true" tabindex="-1"></a>*Rendimiento de las funciones, en función de las corridas y los métodos de optimización.*</span>
+<span id="cb23-1177"><a href="#cb23-1177" aria-hidden="true" tabindex="-1"></a><span class="al">![Rendimiento de las funciones, en función de las corridas y los métodos de optimización](images/rendimiento_funciones.png)</span>{fig-align="center"}</span>
+<span id="cb23-1178"><a href="#cb23-1178" aria-hidden="true" tabindex="-1"></a>*Nota.* Es posible hacer una comparación tanto a nivel de corridas como al respecto de los métodos empleados anteriormente, con lo cual se llega a las conclusiones enunciadas más adelante. Elaboración propia.</span>
+<span id="cb23-1179"><a href="#cb23-1179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-1180"><a href="#cb23-1180" aria-hidden="true" tabindex="-1"></a>Finalmente, en la Figura 32 se pueden observar los resultados generales obtenidos en cuanto a los tiempos de ejecución de cada uno de los algoritmos utilizados.</span>
+<span id="cb23-1181"><a href="#cb23-1181" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-1182"><a href="#cb23-1182" aria-hidden="true" tabindex="-1"></a>**Figura 32.**</span>
+<span id="cb23-1183"><a href="#cb23-1183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-1184"><a href="#cb23-1184" aria-hidden="true" tabindex="-1"></a>*Tiempo promedio de ejecución de cada método de optimización ejecutado.*</span>
+<span id="cb23-1185"><a href="#cb23-1185" aria-hidden="true" tabindex="-1"></a><span class="al">![Tiempo promedio de ejecución de cada método de optimización ejecutado](images/paste-2.png)</span></span>
+<span id="cb23-1186"><a href="#cb23-1186" aria-hidden="true" tabindex="-1"></a>Elaboración propia.</span>
+<span id="cb23-1187"><a href="#cb23-1187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-1188"><a href="#cb23-1188" aria-hidden="true" tabindex="-1"></a><span class="fu"># Conclusiones y comentarios</span></span>
+<span id="cb23-1189"><a href="#cb23-1189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-1190"><a href="#cb23-1190" aria-hidden="true" tabindex="-1"></a><span class="fu">## Eficiencia computacional (tiempo de ejecución)</span></span>
+<span id="cb23-1191"><a href="#cb23-1191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-1192"><a href="#cb23-1192" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Gradiente Descendente**: Es consistentemente el método más rápido, pues obtuvo tiempos de ejecución de entre 0.003 a 0.008 segundos, siendo extremadamente rápido en comparación con los demás pero potencialmente menos preciso.</span>
+<span id="cb23-1193"><a href="#cb23-1193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-1194"><a href="#cb23-1194" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Enjambre de Partículas**: Tiene tiempos de ejecución moderados, de 0.07 a 0.27 segundos, con una sobrecarga computacional ligeramente mayor que Gradiente Descendente y presenta buen equilibrio entre velocidad y exploración.</span>
+<span id="cb23-1195"><a href="#cb23-1195" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-1196"><a href="#cb23-1196" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Evolución Diferencial**: Tiene un rendimiento más lento con tiempos de ejecución de entre 0.8 y 1.9 segundos y consume significativamente más tiempo, lo que sugiere la utilización de operaciones de mutación y cruce más complejas.</span>
+<span id="cb23-1197"><a href="#cb23-1197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-1198"><a href="#cb23-1198" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Algoritmo Genético**: Posee un rendimiento similar a Enjambre de Partículas con tiempos de ejecución de entre 0.07 y 0.14 segundos, es más eficiente que Evolución Diferencial, lo que sugiere la necesidad de requisitos computacionales moderados.</span>
+<span id="cb23-1199"><a href="#cb23-1199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-1200"><a href="#cb23-1200" aria-hidden="true" tabindex="-1"></a><span class="fu">## Rendimiento de Optimización</span></span>
+<span id="cb23-1201"><a href="#cb23-1201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-1202"><a href="#cb23-1202" aria-hidden="true" tabindex="-1"></a>En el análisis del rendimiento de optimización, se observaron variaciones significativas entre los diferentes algoritmos según la función de prueba. En funciones como Rosenbrock y Rastrigin, el Enjambre de Partículas y la Evolución Diferencial mostraron un rendimiento superior, logrando valores de error casi cero, mientras que el Algoritmo Genético tuvo resultados moderados y el Gradiente Descendente mostró mayor dificultad. En contraste, para funciones como Goldstein-Price y Camellos de Seis Jorobas, casi todos los métodos convergieron de manera similar cerca del óptimo conocido, sugiriendo que la efectividad de cada algoritmo depende crucialmente de la estructura y complejidad de la función objetivo.</span>
+<span id="cb23-1203"><a href="#cb23-1203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-1204"><a href="#cb23-1204" aria-hidden="true" tabindex="-1"></a><span class="fu">## Conclusión</span></span>
+<span id="cb23-1205"><a href="#cb23-1205" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-1206"><a href="#cb23-1206" aria-hidden="true" tabindex="-1"></a>El rendimiento de los algoritmos de optimización es altamente dependiente del contexto. Mientras que Enjambre de Partículas y Evolución Diferencial mostraron un rendimiento robusto en la mayoría de las funciones, la mejor elección depende de los desafíos específicos de optimización.</span>
+<span id="cb23-1207"><a href="#cb23-1207" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-1208"><a href="#cb23-1208" aria-hidden="true" tabindex="-1"></a><span class="fu"># Discusión</span></span>
+<span id="cb23-1209"><a href="#cb23-1209" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-1210"><a href="#cb23-1210" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Los algoritmos de optimización presentan rendimientos distintos según la complejidad de las funciones, con métodos estocásticos como Enjambre de Partículas y Evolución Diferencial mostrando mayor capacidad de exploración y adaptabilidad en espacios de búsqueda complejos.</span>
+<span id="cb23-1211"><a href="#cb23-1211" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-1212"><a href="#cb23-1212" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Los métodos heurísticos (Enjambre de Partículas, Evolución Diferencial y Algoritmo Genético) demostraron una superior capacidad para explorar y optimizar funciones complejas, logrando errores casi cero en algunas funciones, mientras que el Descenso por Gradiente, aunque extremadamente rápido, mostró limitaciones significativas en funciones no convexas aunque resultados cercanos a los otros métodos en funciones mas simples, revelando que no existe un algoritmo universalmente óptimo y que la elección del método depende críticamente de las características específicas del problema de optimización.</span>
+<span id="cb23-1213"><a href="#cb23-1213" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-1214"><a href="#cb23-1214" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Se observa también, de acuerdo con lo mostrado en la Figura 31, que entre más corridas se hagan, los métodos heurísticos de optimización podrían ir consiguiendo mejores resultados, considerando el factor aleatorio presente en cada uno de ellos.</span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
