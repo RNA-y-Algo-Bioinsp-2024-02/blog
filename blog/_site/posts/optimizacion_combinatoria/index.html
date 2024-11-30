@@ -252,9 +252,10 @@ window.Quarto = {
   <li><a href="#extracción-de-datos" id="toc-extracción-de-datos" class="nav-link" data-scroll-target="#extracción-de-datos"><span class="header-section-number">1.2.1</span> Extracción de datos</a></li>
   <li><a href="#definición-de-gastos" id="toc-definición-de-gastos" class="nav-link" data-scroll-target="#definición-de-gastos"><span class="header-section-number">1.2.2</span> Definición de gastos</a></li>
   <li><a href="#ruta-óptima" id="toc-ruta-óptima" class="nav-link" data-scroll-target="#ruta-óptima"><span class="header-section-number">1.2.3</span> Ruta óptima</a></li>
-  <li><a href="#verificación-de-la-calidad-de-la-solución" id="toc-verificación-de-la-calidad-de-la-solución" class="nav-link" data-scroll-target="#verificación-de-la-calidad-de-la-solución"><span class="header-section-number">1.2.4</span> Verificación de la calidad de la solución</a></li>
+  <li><a href="#erificación-de-la-calidad-de-la-solución" id="toc-erificación-de-la-calidad-de-la-solución" class="nav-link" data-scroll-target="#erificación-de-la-calidad-de-la-solución"><span class="header-section-number">1.2.4</span> erificación de la calidad de la solución</a></li>
   <li><a href="#discusión-de-los-resultados" id="toc-discusión-de-los-resultados" class="nav-link" data-scroll-target="#discusión-de-los-resultados"><span class="header-section-number">1.2.5</span> Discusión de los resultados</a></li>
   </ul></li>
+  <li><a href="#contribuciones-individuales" id="toc-contribuciones-individuales" class="nav-link" data-scroll-target="#contribuciones-individuales"><span class="header-section-number">1.3</span> Contribuciones individuales</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -460,8 +461,8 @@ window.Quarto = {
 <p><em>Ruta óptima de carreteras encontrada mediante algoritmos genéticos teniendo en cuenta 31 de los estados de México.</em> <img src="images/imagen6_ga.png" class="img-fluid" alt="Ruta de carreteras encontrada mediante algoritmos genéticos teniendo en cuenta 31 de los estados de México"> <em>Nota.</em> Al observar las carreteras que debería recorrer esta solución, puede observarse que el vendedor terminaría pasando por los mismos caminos varias veces, ya que deben darse varios recorridos de manera repetida por la necesidad de conectar algunos territorios de los 31 estados sin contemplar la opción del viaje en ferri. Elaboración propia.</p>
 </section>
 </section>
-<section id="verificación-de-la-calidad-de-la-solución" class="level3" data-number="1.2.4">
-<h3 data-number="1.2.4" class="anchored" data-anchor-id="verificación-de-la-calidad-de-la-solución"><span class="header-section-number">1.2.4</span> Verificación de la calidad de la solución</h3>
+<section id="erificación-de-la-calidad-de-la-solución" class="level3" data-number="1.2.4">
+<h3 data-number="1.2.4" class="anchored" data-anchor-id="erificación-de-la-calidad-de-la-solución"><span class="header-section-number">1.2.4</span> erificación de la calidad de la solución</h3>
 <p>Es importante evaluar qué tan buena es la solución alcanzada. Métodos exhaustivos como la fuerza bruta, que permiten comprobar cuál es la mejor solución entre todas las posibles, resultan computacionalmente inviables en este caso. Aprovechando que disponemos de un gran número de iteraciones y tres diferentes escenarios que nos permiten variar las condiciones del problema, podemos concluir que la solución obtenida es, al menos, razonablemente buena.</p>
 <p>Además, es relevante analizar el comportamiento de las funciones de costo. En todos los escenarios se observa que el costo se reduce significativamente al principio y luego comienza a fluctuar alrededor de una media estable. Esto indica que el algoritmo está convergiendo hacia esos valores. A partir de este comportamiento, seleccionamos la solución con el menor costo como la mejor alternativa.</p>
 <p>En general, las funciones de costo tienden a estabilizarse dentro de un rango limitado de valores. Este patrón nos permite confiar en que las soluciones obtenidas se encuentran entre las mejores posibles, considerando las limitaciones inherentes a los métodos no determinísticos.</p>
@@ -470,28 +471,21 @@ window.Quarto = {
 <h3 data-number="1.2.5" class="anchored" data-anchor-id="discusión-de-los-resultados"><span class="header-section-number">1.2.5</span> Discusión de los resultados</h3>
 <p>Los resultados obtenidos al aplicar el Algoritmo de Colonia de Hormigas y el Algoritmo Genético en tres situaciones diferentes permiten destacar las fortalezas y diferencias de cada uno. Por un lado, el Algoritmo de Colonia de Hormigas logra encontrar una solución más económica y en un menor número de iteraciones en comparación con el Algoritmo Genético. Por lo tanto, en esta evaluación específica, dicho algoritmo puede considerarse más eficiente para resolver el problema en esta situación particular.</p>
 <p>No obstante, es importante señalar que la elección del algoritmo adecuado depende en gran medida de la naturaleza del problema. Incluso para un mismo problema, diferentes enfoques pueden llevar a variaciones significativas en los resultados, como se observó en este análisis. Aunque en este caso el Algoritmo de Colonia de Hormigas demostró ser más eficiente que el Algoritmo Genético, esta ventaja es altamente circunstancial y no necesariamente aplicable a todos los contextos. Esto refuerza la importancia de adaptar la metodología a las características específicas del problema a resolver.</p>
-<p>En la figura 20 y 21 podemos encontrar las soluciones encontradas con algoritmo de colonia de hormigas y algoritmo genético.</p>
+<p>En concordancia con lo anterior, es posible encontrar en las Figuras 20 y 21 una compilación de las soluciones encontradas con el algoritmo de colonia de hormigas y el algoritmo genético.</p>
 <p><strong>Figura 20</strong></p>
-<p>Las tres soluciones obtenidas mediante el algoritmo de colonia de hormigas para la optimización de la ruta en las carreteras identificadas son las siguientes:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="soluciones_colonia_hormigas.gif" class="img-fluid figure-img"></p>
-<figcaption>Las 3 rutas encontradas mediante el algoritmo de colonia de hormigas</figcaption>
-</figure>
-</div>
-<p>Las tres soluciones obtenidas mediante el algoritmo genético para la optimización de la ruta en las carreteras identificadas son las siguientes:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="soluciones_genetico.gif" class="img-fluid figure-img"></p>
-<figcaption>Las 3 rutas encontradas mediante el algoritmo genético</figcaption>
-</figure>
-</div>
+<p><em>Soluciones obtenidas mediante el algoritmo de colonia de hormigas para la optimización de la ruta en las carreteras identificadas.</em> <img src="soluciones_colonia_hormigas.gif" class="img-fluid" alt="Las tres rutas encontradas mediante el algoritmo de colonia de hormigas"> <em>Nota.</em> Esta animación muestra las variaciones en las rutas óptimas propuestas por el algoritmo de colonia de hormigas para los tres escenarios que fueron analizados durante el desarrollo del presente ejercicio. Elaboración propia.</p>
+<p><em>Soluciones obtenidas mediante el algoritmo genético para la optimización de la ruta en las carreteras identificadas.</em> <img src="soluciones_genetico.gif" class="img-fluid" alt="Las tres rutas encontradas mediante el algoritmo genético"> <em>Nota.</em> Igualmente, en esta animación se muestran las diferentes rutas óptimas propuestas por el algoritmo genético para los tres escenarios que fueron analizados durante el desarrollo del presente ejercicio. Elaboración propia.</p>
+</section>
+</section>
+<section id="contribuciones-individuales" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="contribuciones-individuales"><span class="header-section-number">1.3</span> Contribuciones individuales</h2>
+<p>Las contribuciones realizadas por cada uno de los integrantes del equipo en el desarrollo de los ejercicios correspondientes a <strong>Optimización Heurística</strong> y <strong>Optimización Combinatoria</strong> se muestran en el siguiente video.</p>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/b65OmTkDGsI" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
 
 
 <!-- -->
 
 
-</section>
 </section>
 </section>
 
@@ -1203,7 +1197,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>**Figura 1.**</span>
 <span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>*Mapa de México.* ![Mapa de México](images/mapa_mexico.jpg) Adaptado de *Fondo plano de mapa de México* <span class="co">[</span><span class="ot">Ilustración</span><span class="co">]</span>, por Freepik, 2024 (https://www.freepik.es/vector-gratis/mapa-mexico). Licencia gratuita.</span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>*Mapa de México.* ![Mapa de México](images/mapa_mexico.jpg) Adaptado de *Fondo plano de mapa de México* <span class="sc">\[</span>Ilustración<span class="sc">\]</span>, por Freepik, 2024 (https://www.freepik.es/vector-gratis/mapa-mexico). Licencia gratuita.</span>
 <span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Distancias y tiempo de conducción</span></span>
 <span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a></span>
@@ -1419,7 +1413,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb2-274"><a href="#cb2-274" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-275"><a href="#cb2-275" aria-hidden="true" tabindex="-1"></a>*Ruta óptima de carreteras encontrada mediante algoritmos genéticos teniendo en cuenta 31 de los estados de México.* ![Ruta de carreteras encontrada mediante algoritmos genéticos teniendo en cuenta 31 de los estados de México](images/imagen6_ga.png) *Nota.* Al observar las carreteras que debería recorrer esta solución, puede observarse que el vendedor terminaría pasando por los mismos caminos varias veces, ya que deben darse varios recorridos de manera repetida por la necesidad de conectar algunos territorios de los 31 estados sin contemplar la opción del viaje en ferri. Elaboración propia.</span>
 <span id="cb2-276"><a href="#cb2-276" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-277"><a href="#cb2-277" aria-hidden="true" tabindex="-1"></a><span class="fu">### Verificación de la calidad de la solución</span></span>
+<span id="cb2-277"><a href="#cb2-277" aria-hidden="true" tabindex="-1"></a><span class="fu">### erificación de la calidad de la solución</span></span>
 <span id="cb2-278"><a href="#cb2-278" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-279"><a href="#cb2-279" aria-hidden="true" tabindex="-1"></a>Es importante evaluar qué tan buena es la solución alcanzada. Métodos exhaustivos como la fuerza bruta, que permiten comprobar cuál es la mejor solución entre todas las posibles, resultan computacionalmente inviables en este caso. Aprovechando que disponemos de un gran número de iteraciones y tres diferentes escenarios que nos permiten variar las condiciones del problema, podemos concluir que la solución obtenida es, al menos, razonablemente buena.</span>
 <span id="cb2-280"><a href="#cb2-280" aria-hidden="true" tabindex="-1"></a></span>
@@ -1433,17 +1427,19 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb2-288"><a href="#cb2-288" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-289"><a href="#cb2-289" aria-hidden="true" tabindex="-1"></a>No obstante, es importante señalar que la elección del algoritmo adecuado depende en gran medida de la naturaleza del problema. Incluso para un mismo problema, diferentes enfoques pueden llevar a variaciones significativas en los resultados, como se observó en este análisis. Aunque en este caso el Algoritmo de Colonia de Hormigas demostró ser más eficiente que el Algoritmo Genético, esta ventaja es altamente circunstancial y no necesariamente aplicable a todos los contextos. Esto refuerza la importancia de adaptar la metodología a las características específicas del problema a resolver.</span>
 <span id="cb2-290"><a href="#cb2-290" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-291"><a href="#cb2-291" aria-hidden="true" tabindex="-1"></a>En la figura 20 y 21 podemos encontrar las soluciones encontradas con algoritmo de colonia de hormigas y algoritmo genético.</span>
+<span id="cb2-291"><a href="#cb2-291" aria-hidden="true" tabindex="-1"></a>En concordancia con lo anterior, es posible encontrar en las Figuras 20 y 21 una compilación de las soluciones encontradas con el algoritmo de colonia de hormigas y el algoritmo genético.</span>
 <span id="cb2-292"><a href="#cb2-292" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-293"><a href="#cb2-293" aria-hidden="true" tabindex="-1"></a>**Figura 20**</span>
 <span id="cb2-294"><a href="#cb2-294" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-295"><a href="#cb2-295" aria-hidden="true" tabindex="-1"></a>Las tres soluciones obtenidas mediante el algoritmo de colonia de hormigas para la optimización de la ruta en las carreteras identificadas son las siguientes:</span>
+<span id="cb2-295"><a href="#cb2-295" aria-hidden="true" tabindex="-1"></a>*Soluciones obtenidas mediante el algoritmo de colonia de hormigas para la optimización de la ruta en las carreteras identificadas.* ![Las tres rutas encontradas mediante el algoritmo de colonia de hormigas](soluciones_colonia_hormigas.gif) *Nota.* Esta animación muestra las variaciones en las rutas óptimas propuestas por el algoritmo de colonia de hormigas para los tres escenarios que fueron analizados durante el desarrollo del presente ejercicio. Elaboración propia.</span>
 <span id="cb2-296"><a href="#cb2-296" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-297"><a href="#cb2-297" aria-hidden="true" tabindex="-1"></a><span class="al">![Las 3 rutas encontradas mediante el algoritmo de colonia de hormigas](soluciones_colonia_hormigas.gif)</span></span>
+<span id="cb2-297"><a href="#cb2-297" aria-hidden="true" tabindex="-1"></a>*Soluciones obtenidas mediante el algoritmo genético para la optimización de la ruta en las carreteras identificadas.* ![Las tres rutas encontradas mediante el algoritmo genético](soluciones_genetico.gif) *Nota.* Igualmente, en esta animación se muestran las diferentes rutas óptimas propuestas por el algoritmo genético para los tres escenarios que fueron analizados durante el desarrollo del presente ejercicio. Elaboración propia.</span>
 <span id="cb2-298"><a href="#cb2-298" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-299"><a href="#cb2-299" aria-hidden="true" tabindex="-1"></a>Las tres soluciones obtenidas mediante el algoritmo genético para la optimización de la ruta en las carreteras identificadas son las siguientes:</span>
+<span id="cb2-299"><a href="#cb2-299" aria-hidden="true" tabindex="-1"></a><span class="fu">## Contribuciones individuales</span></span>
 <span id="cb2-300"><a href="#cb2-300" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-301"><a href="#cb2-301" aria-hidden="true" tabindex="-1"></a><span class="al">![Las 3 rutas encontradas mediante el algoritmo genético](soluciones_genetico.gif)</span></span>
+<span id="cb2-301"><a href="#cb2-301" aria-hidden="true" tabindex="-1"></a>Las contribuciones realizadas por cada uno de los integrantes del equipo en el desarrollo de los ejercicios correspondientes a **Optimización Heurística** y **Optimización Combinatoria** se muestran en el siguiente video.</span>
+<span id="cb2-302"><a href="#cb2-302" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-303"><a href="#cb2-303" aria-hidden="true" tabindex="-1"></a>{{&lt; video https://youtu.be/b65OmTkDGsI &gt;}}</span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
