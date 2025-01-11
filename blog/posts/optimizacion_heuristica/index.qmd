@@ -1119,7 +1119,7 @@ $$
 
 # Resultados
 
-Como se puede observar, en la mayoría de los casos de optimización para una única corrida los puntos óptimos conergen a mínimos locales, lo que indica que los resultados óptimos pueden estar fuertemente influenciados por los valores iniciales de $x$ o las condiciones de inicio de los algoritmos. Por esta razón, para evaluar el rendimiento y el comportamiento de los algoritmos en un entorno más general, se realizarán múltiples ejecuciones. 
+Como se puede observar, en la mayoría de los casos de optimización para una única corrida los puntos óptimos conergen a mínimos locales, lo que indica que los resultados óptimos pueden estar fuertemente influenciados por los valores iniciales de $x$ o las condiciones de inicio de los algoritmos. Por esta razón, para evaluar el rendimiento y el comportamiento de los algoritmos en un entorno más general, se realizarán múltiples ejecuciones.
 
 En cada corrida, los algoritmos partirán de valores iniciales distintos generados aleatoriamente. Para evaluar el rendimiento de los métodos de optimización desarrollados, se harán 20 corridas para cada funció y se tomará para cada uno el tiempo de ejecución y el mejor fitness encontrado hasta el momento.
 
@@ -1129,17 +1129,13 @@ Para cada función se realizó un gráfico de comparación de mejor fitness para
 
 **Figura 31.**
 
-*Rendimiento de las funciones, en función de las corridas y los métodos de optimización.*
-![Rendimiento de las funciones, en función de las corridas y los métodos de optimización](images/rendimiento_funciones.png){fig-align="center"}
-*Nota.* Es posible hacer una comparación tanto a nivel de corridas como al respecto de los métodos empleados anteriormente, con lo cual se llega a las conclusiones enunciadas más adelante. Elaboración propia.
+*Rendimiento de las funciones, en función de las corridas y los métodos de optimización.* ![Rendimiento de las funciones, en función de las corridas y los métodos de optimización](images/rendimiento_funciones.png){fig-align="center"} *Nota.* Es posible hacer una comparación tanto a nivel de corridas como al respecto de los métodos empleados anteriormente, con lo cual se llega a las conclusiones enunciadas más adelante. Elaboración propia.
 
 Finalmente, en la Figura 32 se pueden observar los resultados generales obtenidos en cuanto a los tiempos de ejecución de cada uno de los algoritmos utilizados.
 
 **Figura 32.**
 
-*Tiempo promedio de ejecución de cada método de optimización ejecutado.*
-![Tiempo promedio de ejecución de cada método de optimización ejecutado](images/paste-2.png)
-Elaboración propia.
+*Tiempo promedio de ejecución de cada método de optimización ejecutado.* ![Tiempo promedio de ejecución de cada método de optimización ejecutado](images/paste-2.png) Elaboración propia.
 
 # Conclusiones y comentarios
 
