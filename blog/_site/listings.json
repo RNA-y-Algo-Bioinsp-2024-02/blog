@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/modelos-riesgo-credito/index.html",
       "/posts/optimizacion_combinatoria/index.html",
       "/posts/optimizacion_heuristica/index.html",
       "/posts/welcome/index.html"

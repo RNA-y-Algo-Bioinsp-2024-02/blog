@@ -280,7 +280,7 @@ window.Quarto = {
 
 
 
-<div id="460b91a8" class="cell" data-execution_count="2">
+<div id="87b55aa1" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -300,7 +300,7 @@ window.Quarto = {
 <section id="funciones-a-optimizar" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Funciones a optimizar</h1>
 <p>Se seleccionaron seis funciones comúnmente empleadas para evaluar métodos de optimización, debido a sus características particulares. Estas funciones presentan desafíos como la existencia de un mínimo global acompañado de múltiples mínimos locales, así como valles que pueden dificultar la convergencia de los algoritmos. A continuación, se describen dichas funciones, incluyendo su forma funcional generalizada para <span class="math inline">\(d\)</span> dimensiones, su representación gráfica en 2 dimensiones, el valor del mínimo global, una breve descripción de cada función y el rango de evaluación sugerido por diversos autores. Las gráficas fueron generadas a partir de la funcion <code>plot_function()</code> que se muestra en la pestaña de <code>Code</code> sugerida.</p>
-<div id="d265d6d1" class="cell" data-execution_count="3">
+<div id="d1c65b24" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_function(f, x1_range, x2_range, title<span class="op">=</span><span class="st">"Function Plot"</span>, x1_point<span class="op">=</span><span class="va">None</span>, x2_point<span class="op">=</span><span class="va">None</span>, elev<span class="op">=</span><span class="dv">30</span>, azim<span class="op">=</span><span class="dv">45</span> ):</span>
@@ -351,7 +351,7 @@ f(\mathbf{x}) = \sum_{i=1}^{d-1} \left[ 100(x_{i+1} - x_i^2)^2 + (x_i - 1)^2 \ri
 \]</span></p>
 <p><strong>Figura 1.</strong></p>
 <p><em>Representación gráfica de la función de Rosenbrock.</em></p>
-<div id="467e14e1" class="cell" height="auto" width="100%" data-execution_count="4">
+<div id="9b397aa6" class="cell" height="auto" width="100%" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Función de Rosenbrock</span></span>
@@ -387,7 +387,7 @@ f(\mathbf{x}) = 10d + \sum_{i=1}^{d} \left[ x_i^2 - 10 \cos(2\pi x_i) \right] \t
 \]</span></p>
 <p><strong>Figura 2.</strong></p>
 <p><em>Representación gráfica de la función de Rastrigin.</em></p>
-<div id="1dc795da" class="cell" data-execution_count="5">
+<div id="f72f7eb1" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Función de Rastrigin</span></span>
@@ -417,7 +417,7 @@ f(\mathbf{x}) = 418.9829d - \sum_{i=1}^{d} x_i \sin(\sqrt{|x_i|}) \tag{4}
 \]</span></p>
 <p><strong>Figura 3.</strong></p>
 <p><em>Representación gráfica de la función de Schwefel.</em></p>
-<div id="0e675663" class="cell" data-execution_count="6">
+<div id="3f7219b1" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Función de Schwefel</span></span>
@@ -447,7 +447,7 @@ f(\mathbf{x}) = 1 + \frac{1}{4000} \sum_{i=1}^{d} x_i^2 - \prod_{i=1}^{d} \cos\l
 \]</span></p>
 <p><strong>Figura 4.</strong></p>
 <p><em>Representación gráfica de la función de Griewank.</em></p>
-<div id="9f23f916" class="cell" data-execution_count="7">
+<div id="0def16a8" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Función de Griewank</span></span>
@@ -501,7 +501,7 @@ f(x_1, x_2) = &amp; \left[1 + (x_1 + x_2 + 1)^2 (19 - 14x_1 + 3x_1^2 - 14x_2 + 6
 \]</span></p>
 <p><strong>Figura 5.</strong></p>
 <p><em>Representación gráfica de la función de Goldstein-Price.</em></p>
-<div id="8bac86ca" class="cell" data-execution_count="8">
+<div id="f42dcc27" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Función Goldstein-Price</span></span>
@@ -534,7 +534,7 @@ f(x_1, x_2) = \left(4 - 2.1x_1^2 + \frac{x_1^4}{3}\right)x_1^2 + x_1x_2 + \left(
 \]</span></p>
 <p><strong>Figura 6.</strong></p>
 <p><em>Representación gráfica de la función de las seis jorobas del camello.</em></p>
-<div id="ecc4df05" class="cell" data-execution_count="9">
+<div id="77453a3b" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Función de las seis jorobas de camello</span></span>
@@ -592,7 +592,7 @@ x_{t+1} = x_t - \eta \nabla f(x_t) \tag{8}
 \frac{\partial f}{\partial x_2} \approx \frac{f(x_1, x_2 + h) - f(x_1, x_2 - h)}{2h} \tag{11}
 \]</span></p>
 <p>donde <span class="math inline">\(h\)</span> es un pequeño incremento (típicamente <span class="math inline">\(10^{-7}\)</span> o <span class="math inline">\(10^{-8}\)</span>).</p>
-<div id="bc052e36" class="cell" data-execution_count="10">
+<div id="654ddf98" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> partial_derivative(x0, func, i, h, <span class="op">*</span>args):</span>
@@ -856,7 +856,7 @@ x_{ij} \sim \text{U}(a, b), \quad \forall i \in \{1, 2, \ldots, P\}, \; j \in \{
 <ul>
 <li><span class="math inline">\(x_{ij}\)</span> es la <span class="math inline">\(j-ésima\)</span> coordenada del <span class="math inline">\(i-ésimo\)</span> individuo.</li>
 </ul>
-<div id="e31afafa" class="cell" data-execution_count="11">
+<div id="809802a2" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Inicializar población</span></span>
@@ -870,7 +870,7 @@ x_{ij} \sim \text{U}(a, b), \quad \forall i \in \{1, 2, \ldots, P\}, \; j \in \{
 <p><span class="math display">\[
 \text{Fitness}_i = f(x_i) \tag{16}
 \]</span></p>
-<div id="559a158b" class="cell" data-execution_count="12">
+<div id="8efdb1af" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Evaluar fitness</span></span>
@@ -884,7 +884,7 @@ x_{ij} \sim \text{U}(a, b), \quad \forall i \in \{1, 2, \ldots, P\}, \; j \in \{
 <p><span class="math display">\[
 \text{Individuo seleccionado} = \arg\min_{j \in S} \text{Fitness}_j, \; S \subseteq \{1, \ldots, P\}, \; |S| = k \tag{17}
 \]</span></p>
-<div id="028b99c5" class="cell" data-execution_count="13">
+<div id="da65c9b8" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Selección por torneo</span></span>
@@ -907,7 +907,7 @@ x_{ij} \sim \text{U}(a, b), \quad \forall i \in \{1, 2, \ldots, P\}, \; j \in \{
 \text{Hijo 2} = (\text{Padre}_2[:k], \text{Padre}_1[k:]) \tag{19}
 \]</span></p>
 <p>La probabilidad de realizar un cruce está determinada por <span class="math inline">\(p_c\)</span> (tasa de cruce).</p>
-<div id="d96bf086" class="cell" data-execution_count="14">
+<div id="ee7fccae" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cruce</span></span>
@@ -930,7 +930,7 @@ x_{ij} = x_{ij} + \Delta, \quad \Delta \sim \text{U}(-\delta, \delta) \tag{20}
 <li><span class="math inline">\(\Delta\)</span> es una perturbación aleatoria.</li>
 <li><span class="math inline">\(x_{ij}\)</span> se restringe a los límites del problema.</li>
 </ul>
-<div id="7dde67cd" class="cell" data-execution_count="15">
+<div id="707b8f1c" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mutación</span></span>
@@ -945,7 +945,7 @@ x_{ij} = x_{ij} + \Delta, \quad \Delta \sim \text{U}(-\delta, \delta) \tag{20}
 <hr>
 <p><strong>Evaluación y Sustitución</strong></p>
 <p>La nueva población es evaluada, y mediante el uso de elitismo, es posible conservar a los mejores individuos. El algoritmo continúa iterando con esta población actualizada, mejorando progresivamente la optimización de la función objetivo al incrementar el fitness general de la población.</p>
-<div id="3a8bbea3" class="cell" data-execution_count="16">
+<div id="568d1b90" class="cell" data-execution_count="15">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Algoritmo completo</span></span>
@@ -1065,7 +1065,7 @@ f(x_1, x_2) = \left(4 - 2.1x_1^2 + \frac{x_1^4}{3}\right)x_1^2 + x_1x_2 + \left(
 <p>Los métodos PSO se atribuyen originalmente a los investigadores <span class="citation" data-cites="kennedy1997particle">Kennedy (<a href="#ref-kennedy1997particle" role="doc-biblioref">1997</a>)</span>. En un principio fueron concebidos para elaborar modelos de conductas sociales,​como el movimiento descrito por los organismos vivos en una bandada de aves o un banco de peces. Posteriormente el algoritmo se simplificó y se comprobó que era adecuado para problemas de optimización.</p>
 <p><strong>Funcionamiento de PSOz</strong></p>
 <p>En el algoritmo PSO (Particle Swarm Optimization), cada partícula, que representa un individuo, posee una posición <em>p</em>⃗&nbsp; ​ dentro del espacio de búsqueda y una velocidad <em>v</em>⃗&nbsp;que determina su desplazamiento. Estas partículas, al igual que objetos en un entorno físico, cuentan con una inercia <em>w</em>, la cual conserva su movimiento en la dirección previamente seguida.</p>
-<div id="ecef50a3" class="cell" data-execution_count="17">
+<div id="eae2dfe5" class="cell" data-execution_count="16">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="va">self</span>.positions <span class="op">=</span> np.random.uniform(</span>
@@ -1087,7 +1087,7 @@ f(x_1, x_2) = \left(4 - 2.1x_1^2 + \frac{x_1^4}{3}\right)x_1^2 + x_1x_2 + \left(
 </ul>
 <p><em>Ilustración del funcionamiento del algoritmo PSO.</em> <img src="images/paste-1.png" class="img-fluid" alt="Ilustración del funcionamiento del algoritmo PSO"></p>
 <p>Adaptado de <span class="citation" data-cites="sancho_pso_image">Sancho Caparrini (<a href="#ref-sancho_pso_image" role="doc-biblioref">2024</a>)</span></p>
-<div id="6515efa3" class="cell" data-execution_count="18">
+<div id="33895991" class="cell" data-execution_count="17">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> iteration <span class="kw">in</span> <span class="bu">range</span>(<span class="va">self</span>.max_iter):</span>
@@ -1125,7 +1125,7 @@ f(x_1, x_2) = \left(4 - 2.1x_1^2 + \frac{x_1^4}{3}\right)x_1^2 + x_1x_2 + \left(
 <p>El algoritmo se detiene cuando se alcanza un número máximo de iteraciones, o cuando la mejora en la función objetivo es menor a un umbral predefinido.</p>
 <p>Al implementar el algoritmo, se presentó un comportamiento oscilatorio donde las partículas convergían inicialmente pero luego se dispersaban de manera repentina. El análisis reveló cuatro posibles causas: velocidades excesivas de las partículas, coeficientes de aprendizaje mal ajustados, peso de inercia estático y ausencia de un mecanismo de estabilización.</p>
 <p>La solución implementada aborda estos problemas mediante cuatro modificaciones: Se &nbsp;limitó la velocidad máxima al 10% del espacio de búsqueda para evitar saltos excesivos, se optimizaron los coeficientes cognitivo y social a un valor de 2.0 para balancear exploración y explotación, se implementó un peso de inercia dinámico que decrece linealmente de 0.9 a 0.4 durante la optimización y se añadió un factor de constricción calculado a partir de los coeficientes de aprendizaje para garantizar convergencia matemática.</p>
-<div id="ff9caf05" class="cell" data-execution_count="19">
+<div id="e66678ff" class="cell" data-execution_count="18">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Control de Velocidad Máxima</span></span>
@@ -1210,7 +1210,7 @@ f(x_1, x_2) = \left(4 - 2.1x_1^2 + \frac{x_1^4}{3}\right)x_1^2 + x_1x_2 + \left(
 <li><p>Cada individuo es un vector que representa un punto en el espacio de búsqueda.</p></li>
 </ul></li>
 </ul>
-<div id="881817cb" class="cell" data-execution_count="20">
+<div id="b60d2ac9" class="cell" data-execution_count="19">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> initialize_population(<span class="va">self</span>):</span>
@@ -1243,7 +1243,7 @@ f(x_1, x_2) = \left(4 - 2.1x_1^2 + \frac{x_1^4}{3}\right)x_1^2 + x_1x_2 + \left(
 <li><strong>Mutación:</strong> Se crea un vector mutante sumando a un individuo objetivo una diferencia escalada entre otros dos individuos de la población.</li>
 </ul></li>
 </ul>
-<div id="252c6934" class="cell" data-execution_count="21">
+<div id="9548d32b" class="cell" data-execution_count="20">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mutation(<span class="va">self</span>, population):</span>
@@ -1283,7 +1283,7 @@ f(x_1, x_2) = \left(4 - 2.1x_1^2 + \frac{x_1^4}{3}\right)x_1^2 + x_1x_2 + \left(
 <ul>
 <li><strong>Cruce:</strong> Se crea un vector de prueba combinando el vector mutante y el individuo objetivo mediante un operador de cruce.</li>
 </ul>
-<div id="2acdebb2" class="cell" data-execution_count="22">
+<div id="5c0b2792" class="cell" data-execution_count="21">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> crossover(<span class="va">self</span>, population, mutation_pop):</span>
@@ -1315,7 +1315,7 @@ f(x_1, x_2) = \left(4 - 2.1x_1^2 + \frac{x_1^4}{3}\right)x_1^2 + x_1x_2 + \left(
 <ul>
 <li><strong>Selección:</strong> Se compara el valor de la función objetivo del vector de prueba con el del individuo objetivo. El mejor de los dos se selecciona para la siguiente generación.</li>
 </ul>
-<div id="9b84a3c8" class="cell" data-execution_count="23">
+<div id="aa86ff36" class="cell" data-execution_count="22">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> selection(<span class="va">self</span>, population, trial_pop):</span>

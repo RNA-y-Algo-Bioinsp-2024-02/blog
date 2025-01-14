@@ -1,0 +1,70 @@
+---
+title: "Modelos de riesgo de crédito con Redes Neuronales Artificiales"
+format: 
+  html:
+    fig-width: 8
+    fig-height: 6
+    number-sections: true
+author:
+  - name: "Julián Castaño Pineda"
+  - name: "Luis Andrés Altamar Romero"
+  - name: "Catalina Restrepo Salgado"
+  - name: "Tomás Rodríguez Taborda"
+date: "2025-01-23"
+categories: [redes neuronales artificiales, desarrollo web, python]
+image: "image.jpg"
+bibliography: ref.bib
+execute:
+  cache: true
+---
+
+# Introducción a la evaluación y gestión del riesgo de crédito
+
+De acuerdo con información encontrada en el sitio web @financionario2025 y, en concordancia con lo dicho por @financestrategists2023, el riesgo de crédito se define como una medida empleada para dimensionar el riesgo (en términos de probabilidad) de que un prestatario incumpla con el pago de una obligación financiera o el reembolso del dinero correspondiente a un préstamo.
+
+En este sentido, es posible notar que una correcta evaluación y gestión del riesgo de crédito es de vital importancia en las actividades relacionadas con el préstamo y la inversión, pues ayudan a que las entidades financieras puedan mantener su estabilidad, a la misma vez que se proyectan como instituciones de confianza ante las entidades estatales, sus socios y clientes. Adicionalmente, el riesgo de crédito suele tenerse en cuenta como un criterio a la hora de aprobar o definir las condiciones de un préstamo, solicitando garantías de respaldo al prestatario o ajustando la tasa de interés de acuerdo con estos resultados.
+
+Sabiendo lo anterior, puede decirse que, tanto para las instituciones financieras como para quienes solicitan estos servicios, el riesgo de crédito es un factor de incertidumbre que influye en la toma de decisiones relacionada con la admisión de préstamos y otros productos financieros, entendiendo incertidumbre como "la falta de (...) certeza o de un conocimiento seguro respecto de una determinada situación", según @significadode2023.
+
+## Delimitaciones del problema y metodología
+
+Considerando entonces la importancia del estudio del riesgo de crédito y sus implicaciones en las decisiones que toman las instituciones financieran que invierten y otorgan préstamos, así como las consecuencias que estas decisiones acarrean sobre las personas que los solicitas, se decide abordar esta cuestión a partir desde el punto de vista de los conocimientos adquiridos en el curso. Esto, pues la evaluación del riesgo de crédito involucra tareas como las que se enuncian a continuación:
+
+* **Manejo de grandes volúmenes de datos:** las entidades financieras o estatales poseen un amplio registro de información sobre los clientes que acceden a estos servicios, tales como sus comportamientos de pago y datos demográficos.
+
+* **Identificación de patrones no evidentes:** la probabilidad de incumplimiento de un cliente con sus pagos no siempre tendrá una relación lineal con las características que se conocen acerca de su persona, por lo que pueden necesitarse técnicas de mayor complejidad para descubrir los patrones o relaciones que lo explican.
+
+* **Toma de decisiones basadas en riesgo**: correspondiente al objetivo final de la presente actividad, se es importante realizar una clasificación de los clientes según su nivel de riesgo de crédito, asignando un puntaje que permita evaluar cualitativa y cuantitativamente las solicitudes de préstamo.
+
+Dicho esto, puede verse que la elaboración de una herramienta que permita una evaluación adecuada del riesgo de crédito sería altamente beneficiosa no solo para las entidades financieras, que contarían con un medio de conocer mejor a sus posibles clientes, sino también para estos últimos, pues tendrían la oportunidad de conocer con antelación las posibilidades de que su crédito sea aprobado así como las variables que influirían en esa decisión. 
+
+Para tal fin se desarrollará una aplicación web que permitirá responder a la pregunta: *¿cuál es el puntaje de riesgo de crédito de un posible prestatario?* a través de la utilización de un modelo de Redes Neuronales Artificiales entrenado sobre un amplio conjunto de datos en este contexto. El dataset a emplear, titulado **Credit Risk Analysis** y proporcionado por @r_g__2021 será tratado con la siguiente metodología y posteriormente evaluado, como podrá verse más adelante.
+
+**Metodología**
+
+1. Análisis descriptivo e hipótesis del conjunto de datos.
+2. Planteamiento y evaluación de modelos.
+3. Conclusiones y aprendizajes a partir del modelo.
+4. Planteamiento de un caso de uso.
+
+A continuación se da inicio al desarrollo de la actividad, la cual será complementada con todos los recursos empleados y productos resultantes de dicho ejercicio. 
+
+## Análisis descriptivo e hipótesis del conjunto de datos
+
+## Planteamiento y evaluación de modelos
+
+### Modelo de baja complejidad
+
+### Modelo de Redes Neuronales Artificiales
+
+## Conclusiones y aprendizajes a partir del modelo
+
+## Caso de uso
+
+# Aplicación web
+
+# Video publicitario
+
+## Contribuciones individuales
+
+Las contribuciones realizadas por cada uno de los integrantes del equipo en el desarrollo de los ejercicios correspondientes a **Modelos de riesgo de crédito con Redes Neuronales Artificiales** se muestran en el siguiente video.
