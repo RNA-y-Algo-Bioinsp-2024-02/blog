@@ -20,7 +20,7 @@ execute:
 
 # Introducción a la evaluación y gestión del riesgo de crédito
 
-De acuerdo con información encontrada en el sitio web @financionario2025 y, en concordancia con lo dicho por @financestrategists2023, el riesgo de crédito se define como una medida empleada para dimensionar el riesgo (en términos de probabilidad) de que un prestatario incumpla con el pago de una obligación financiera o el reembolso del dinero correspondiente a un préstamo.
+El riesgo de crédito, de acuerdo con información encontrada en el sitio web @financionario2025 y, en concordancia con lo dicho por @financestrategists2023, se define como una medida empleada para dimensionar el riesgo (en términos de probabilidad) de que un prestatario incumpla con el pago de una obligación financiera o el reembolso del dinero correspondiente a un préstamo.
 
 En este sentido, es posible notar que una correcta evaluación y gestión del riesgo de crédito es de vital importancia en las actividades relacionadas con el préstamo y la inversión, pues ayudan a que las entidades financieras puedan mantener su estabilidad, a la misma vez que se proyectan como instituciones de confianza ante las entidades estatales, sus socios y clientes. Adicionalmente, el riesgo de crédito suele tenerse en cuenta como un criterio a la hora de aprobar o definir las condiciones de un préstamo, solicitando garantías de respaldo al prestatario o ajustando la tasa de interés de acuerdo con estos resultados.
 
@@ -38,7 +38,7 @@ Considerando entonces la importancia del estudio del riesgo de crédito y sus im
 
 Dicho esto, puede verse que la elaboración de una herramienta que permita una evaluación adecuada del riesgo de crédito sería altamente beneficiosa no solo para las entidades financieras, que contarían con un medio de conocer mejor a sus posibles clientes, sino también para estos últimos, pues tendrían la oportunidad de conocer con antelación las posibilidades de que su crédito sea aprobado así como las variables que influirían en esa decisión. 
 
-Para tal fin se desarrollará una aplicación web que permitirá responder a la pregunta: *¿cuál es el puntaje de riesgo de crédito de un posible prestatario?* a través de la utilización de un modelo de Redes Neuronales Artificiales entrenado sobre un amplio conjunto de datos en este contexto. El dataset a emplear, titulado **Credit Risk Analysis** y proporcionado por @r_g__2021 será tratado con la siguiente metodología y posteriormente evaluado, como podrá verse más adelante.
+Para tal fin se desarrollará una aplicación web que permitirá responder a la pregunta: *¿cuál es el puntaje de riesgo de crédito de un posible prestatario?* a través de la utilización de un modelo de redes neuronales artificiales entrenado sobre un amplio conjunto de datos en este contexto. El dataset a emplear, titulado **Credit Risk Analysis** y proporcionado por @r_g__2021 será tratado con la siguiente metodología y posteriormente evaluado, como podrá verse más adelante.
 
 **Metodología**
 
@@ -56,6 +56,62 @@ A continuación se da inicio al desarrollo de la actividad, la cual será comple
 ### Modelo de baja complejidad
 
 ### Modelo de Redes Neuronales Artificiales
+
+Las redes neuronales artificiales son modelos computacionales agrupados dentro del *machine learning*, con los cuales se busca simular el comportamiento del cerebro humano, de acuerdo con @unirrna2021 y @ibmrna2025. Su funcionamiento imita el procedimiento con el que trabajan en conjunto las neuronas biológicas para aprender de la información que reciben desde el exterior o por parte de otras neuronas.
+
+Gracias a su comportamiento, basado en la utilización de datos de entrenamiento para mejorar paulatinamente la precisión de sus resultados, las redes neuronales permiten la realización de tareas que no se podían automatizar en otro tipo de modelos, lo que ha llevado al desarrollo de avances significativos en el área de la inteligencia artificial e impactando de forma directa a las personas e industrias. 
+
+Considerando lo dicho anteriormente, es posible ver que las redes neuronales artificiales son una gran alternativa a la hora de enfrentar tareas relacionadas con el aprendizaje a partir de un conjunto de datos, encontrando patrones que puedan explicar el comportamiento de estos últimos respecto de alguna variable objetivo, con la finalidad de tomar una decisión después del entendimiento de dicho fenómeno. En este sentido, será utilizada una red neuronal para mejorar el resultado obtenido con el modelo de baja complejidad en el presente ejercicio. 
+
+#### Arquitectura de una red neuronal artificial
+
+Las redes neuronales están compuestas por un conjunto de nodos, que vendrían siendo las neuronas artificiales, repartidos en capas que pertenecen a alguna de las siguientes tres categorías, con información obtenida de @cloudflare y @paroledevs:
+
+* **Capa de entrada:** esta capa tiene conexión con el "mundo exterior" a la red neuronal artificial, recibiendo los datos iniciales que serán procesados por ella.
+
+* **Capa de salida:** esta capa proporciona el resultado del procesamiento realizado por la red neuronal, comúnmente como una predicción o una clasificación (lo cual se ve internamente en términos de probabilidad).
+
+* **Capas ocultas:** una o más capas que se encuentran entre las dos mencionadas anteriormente, realizando el procesamiento y extracción de características de los datos. Este análisis se realiza de menor a mayor profundidad, pues cada capa extrae los patrones más significativos de los datos que recibió como entrada y los envía a una capa superior para que sean vistos con más detalle.
+
+Ahora bien, es conveniente conocer los elementos que componen a cada uno de los nodos que interactúan en las capas anteriormente mencionadas, pues de esta manera será posible comprender la importancia del correcto diseño de la arquitectura de una red neuronal artificial. De acuerdo con @franciscopalaciorna, estos elementos son:
+
+**Entrada:** los datos que recibe la neurona artificial del exterior o de otras neuronas, se representa como un vector $x = (x_1, x_2, ..., x_n)$.
+
+**Pesos sinápticos:** representan los factores de importancia $w_{ij}$ que se le asignan a las entradas que cada neurona recibió de su anterior compañera. Son valores numéricos que se modifican durante el entrenamiento del modelo y poseen una vital importancia en el desempeño de este mismo frente al conjunto de datos del que está aprendiendo.
+
+**Regla de propagación:** una operación que se aplica de forma primordial a los datos de entrada y los pesos para calcular el posible valor de la salida de la neurona artificial; generalmente es una suma ponderada pero también pueden ser otras clases de operaciones.
+
+**Función de activación:** el valor obtenido con la regla de propagación se procesa con a través de esta función, a fin de obtener el verdadero resultado de salida de la neurona. Existe una gran variedad de funciones que se eligen de acuerdo con el objetivo de entrenamiento de la red neuronal artificial, entre las cuales se encuentran las siguientes:
+
+* Identidad.
+* Escalón.
+* Lineal a tramos.
+* Sigmoide.
+* Gaussiana.
+* Sinusoidal.
+
+**Salida:** resultado $y_i$ del procedimiento aplicado sobre los datos de entrada.
+
+Teniendo en cuenta las particularidades de la arquitectura de las redes neuronales artificiales, a continuación se detallan algunos tipos diferentes de modelos, clasificados según su diseño, así como sus correspondientes aplicaciones en diferentes campos de la academia y la industria.
+
+#### Tipos de redes neuronales artificiales
+
+* **Redes neuronales artificiales perceptrón:** tienen la arquitectura más sencilla, compuesta por nodos con una única función de activación, suelen utilizarse para tareas de clasificación binaria.
+
+* **Redes neuronales artificiales multicapa:** su arquitectura está conformada por capas de neuronas artificiales interconectadas y son utilizadas para tareas más complejas como toma de decisiones y clasificación multiclase.
+
+* **Redes neuronales artificiales convolucionales:** estas redes están especialmente diseñadas para realizar tareas relacionadas con el reconocimiento de imágenes, pues utilizan filtros convolucionales para identificar patrones y características especiales en cada pixel.
+
+* **Redes neuronales artificiales recurrentes:** suelen ser empleadas para tareas como reconocimiento de voz, traducción automática y generación de texto por su capacidad para procesar datos secuenciales, donde toda la información está relacionada entre sí y posee un contexto común para explicarse.
+
+#### Aplicaciones de las redes neuronales artificiales
+
+Algunas de las aplicaciones de las redes neuronales en la actualidad incluyen las siguientes:
+
+* **Reconocimiento de imágenes:** las redes neuronales pueden ser utilizadas para identificar personas y objetos en imágenes y videos.
+* **Procesamiento del lenguaje natural:** las redes neuronales pueden utilizarse en tareas de comprensión del lenguaje como la traducción automática, la generación de texto y el reconocimiento de voz.
+* **Toma de decisiones:** las redes neuronales pueden ser herramientas de ayuda para la toma de decisiones en situaciones complejas tales como el análisis financiero, que es el caso del presente ejercicio y el diagnóstico médico, entre otras.
+* **Sistemas de recomendación:** las redes neuronales pueden ser empleadas para generar recomendaciones personalizadas con base en las preferencias del usuario en diferentes plataformas de streaming, comercio electrónico y redes sociales. @profedigital
 
 ## Conclusiones y aprendizajes a partir del modelo
 
