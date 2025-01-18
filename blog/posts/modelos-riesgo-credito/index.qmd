@@ -152,6 +152,8 @@ Este teorema establece que:
 
 Lo anterior significa que las funciones de activación no lineales son esenciales para que las redes neuronales puedan aproximar funciones complejas. Si bien el teorema garantiza que una sola capa oculta con suficientes neuronas puede aproximar cualquier función continua en un conjunto compacto, en la práctica, aumentar el número de capas suele ser más eficiente para modelar problemas complejos.
 
+![Ilustración de los resultados obtenidos mediantes funciones no lineales comparadas con las funciones lineales.](no_linealidad.png)
+
 #### Arquitectura de una red neuronal artificial
 
 Las redes neuronales están compuestas por un conjunto de nodos, que vendrían siendo las neuronas artificiales, repartidos en capas que pertenecen a alguna de las siguientes tres categorías, con información obtenida de @cloudflare y @paroledevs:
@@ -170,7 +172,7 @@ Ahora bien, es conveniente conocer los elementos que componen a cada uno de los 
 
 **Regla de propagación:** una operación que se aplica de forma primordial a los datos de entrada y los pesos para calcular el posible valor de la salida de la neurona artificial; generalmente es una suma ponderada pero también pueden ser otras clases de operaciones.
 
-**Función de activación:** el valor obtenido con la regla de propagación se procesa con a través de esta función, a fin de obtener el verdadero resultado de salida de la neurona. Existe una gran variedad de funciones que se eligen de acuerdo con el objetivo de entrenamiento de la red neuronal artificial, entre las cuales se encuentran las siguientes:
+**Función de activación capa de entrada:** el valor obtenido con la regla de propagación se procesa con a través de esta función, a fin de obtener el verdadero resultado de salida de la neurona. Existe una gran variedad de funciones que se eligen de acuerdo con el objetivo de entrenamiento de la red neuronal artificial, entre las cuales se encuentran las siguientes:
 
 -   Identidad.
 
@@ -201,6 +203,40 @@ x & \text{si } 0 < x \leq 1 \\
 
 **Salida:** resultado $y_i$ del procedimiento aplicado sobre los datos de entrada.
 
+**Función de activación capa de salida:**
+
+-   Softmax: Permite convertir un conjunto de valores en probabilidades que suman 1, su principal uso se encuentra en problemas de clasificación multiclase.
+
+$$
+\text{Softmax}(z_i) = \frac{e^{z_i}}{\sum_{j=1}^{n} e^{z_j}}
+$$
+
+-   Cross-entropy: Mide la diferencia entre las predicciones $\hat{y_i}$ y la real $y$, para el caso de clasificación lo hace de la siguiente manera:
+
+$$
+\text{Cross-Entropy Loss} = - \sum_{i=1}^{n} y_i \log(\hat{y}_i)
+$$
+
+-   Sparse Cross-Entropy Loss : Es una variante de Cross-Entropy que no requiere codificación one-hot, sino que trabaja directamente con índices de las clases verdaderas.
+
+$$
+\text{Sparse Cross-Entropy Loss} = - \log(\hat{y}_{c})
+$$
+
+-   Focal loss: Es una extensión de Cross-Entropy que aplica un factor de penalización para enfocarse más en ejemplos mal clasificados. Es especialmente útil para casos de datasets desbalanceados.
+
+
+$$
+\text{Focal Loss} = - \alpha_t (1 - p_t)^\gamma \log(p_t)
+$$
+
+Donde: 
+$$
+p_t = \hat{y}_c
+$$
+
+**Función de pérdida:**
+
 Teniendo en cuenta las particularidades de la arquitectura de las redes neuronales artificiales, a continuación se detallan algunos tipos diferentes de modelos, clasificados según su diseño, así como sus correspondientes aplicaciones en diferentes campos de la academia y la industria.
 
 #### Tipos de redes neuronales artificiales
@@ -222,7 +258,47 @@ Algunas de las aplicaciones de las redes neuronales en la actualidad incluyen la
 -   **Toma de decisiones:** las redes neuronales pueden ser herramientas de ayuda para la toma de decisiones en situaciones complejas tales como el análisis financiero, que es el caso del presente ejercicio y el diagnóstico médico, entre otras.
 -   **Sistemas de recomendación:** las redes neuronales pueden ser empleadas para generar recomendaciones personalizadas con base en las preferencias del usuario en diferentes plataformas de streaming, comercio electrónico y redes sociales. @profedigital
 
+## Construcción del Modelo de Aprendizaje Automático
+
+### Preprocesamiento
+
+Después de haber jugado con el dataset en la sección anterior para los análisis descriptivos y exploratorios, pasamos a realizar el pre procesamiento de los datos necesario para que la arquitectura de la red neuronal sea capaz de recibirlos y además ayudar a mejorar su rendimiento. Iniciamos dividiendo el conjunto de datos en entrenamiento, validación y test para evitar cualquier tipo de data leakage durante el preprocesamiento.
+
+#### Codificación de variables categóricas
+
+Utilizamos tres estrategias para la clasificación de las variables categóricas según su naturaleza
+
+1.  Ordinal Encoder: Esta técnica se aplicó cuando las variables categóricas presentaban un orden natural. La codificación numérica asignada reflejaba este orden, asegurando que los valores fueran representativos de su jerarquía inherente.
+
+2.  Label Encoder: Se empleó en variables categóricas binarias. Este enfoque evitó imponer un orden ficticio entre los valores, lo que podría generar sesgos al interpretar una relación inexistente entre las categorías.
+
+3.  One Hot Encoding: Diseñada para variables categóricas sin un orden natural y con más de dos niveles. Cada categoría fue representada mediante un vector binario, donde un valor de 1 indica pertenencia a una categoría específica y e asigna 0 a las demás. Se prestó especial atención al número de niveles en cada variable. En casos con muchas categorías, esta técnica podría haber generado una matriz de alta dimensionalidad, aumentando los requerimientos computacionales y complicando el entrenamiento de la red neuronal. Para evitar estos problemas, se evaluó cuidadosamente la viabilidad de aplicar este método en cada caso.
+
+#### Imputación de datos faltantes
+
+La técnica de imputación de datos faltantes elegidas fue Iterative Imputer para las variables numéricas debido a que muestra mejores capacidades en manejar relaciones complejas que otros métodos de imputación como lo son la media o similares, gracias a que considera todo el dataset de manera conjunta en lugar de una sola columna. Para el caso de variables catgóricas se utilizo la imputación mediante mediana.
+
+#### Estandarización
+
+Utilizamos Standar Scaler
+
+#### Balanceo de clases
+
+### Diseño y Arquitectura
+
+#### Pesos de las clases
+
+#### Función de pérdida
+
+#### Callbacks
+
+#### Capas
+
 ## Conclusiones y aprendizajes a partir del modelo
+
+#### **Reporte de clasificación**
+
+**Matriz de confusión**
 
 ## Caso de uso
 

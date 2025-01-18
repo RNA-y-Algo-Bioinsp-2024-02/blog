@@ -248,8 +248,13 @@ window.Quarto = {
   <li><a href="#modelo-de-baja-complejidad" id="toc-modelo-de-baja-complejidad" class="nav-link" data-scroll-target="#modelo-de-baja-complejidad"><span class="header-section-number">1.3.1</span> Modelo de baja complejidad</a></li>
   <li><a href="#modelo-de-redes-neuronales-artificiales" id="toc-modelo-de-redes-neuronales-artificiales" class="nav-link" data-scroll-target="#modelo-de-redes-neuronales-artificiales"><span class="header-section-number">1.3.2</span> Modelo de Redes Neuronales Artificiales</a></li>
   </ul></li>
-  <li><a href="#conclusiones-y-aprendizajes-a-partir-del-modelo" id="toc-conclusiones-y-aprendizajes-a-partir-del-modelo" class="nav-link" data-scroll-target="#conclusiones-y-aprendizajes-a-partir-del-modelo"><span class="header-section-number">1.4</span> Conclusiones y aprendizajes a partir del modelo</a></li>
-  <li><a href="#caso-de-uso" id="toc-caso-de-uso" class="nav-link" data-scroll-target="#caso-de-uso"><span class="header-section-number">1.5</span> Caso de uso</a></li>
+  <li><a href="#construcción-del-modelo-de-aprendizaje-automático" id="toc-construcción-del-modelo-de-aprendizaje-automático" class="nav-link" data-scroll-target="#construcción-del-modelo-de-aprendizaje-automático"><span class="header-section-number">1.4</span> Construcción del Modelo de Aprendizaje Automático</a>
+  <ul class="collapse">
+  <li><a href="#preprocesamiento" id="toc-preprocesamiento" class="nav-link" data-scroll-target="#preprocesamiento"><span class="header-section-number">1.4.1</span> Preprocesamiento</a></li>
+  <li><a href="#diseño-y-arquitectura" id="toc-diseño-y-arquitectura" class="nav-link" data-scroll-target="#diseño-y-arquitectura"><span class="header-section-number">1.4.2</span> Diseño y Arquitectura</a></li>
+  </ul></li>
+  <li><a href="#conclusiones-y-aprendizajes-a-partir-del-modelo" id="toc-conclusiones-y-aprendizajes-a-partir-del-modelo" class="nav-link" data-scroll-target="#conclusiones-y-aprendizajes-a-partir-del-modelo"><span class="header-section-number">1.5</span> Conclusiones y aprendizajes a partir del modelo</a></li>
+  <li><a href="#caso-de-uso" id="toc-caso-de-uso" class="nav-link" data-scroll-target="#caso-de-uso"><span class="header-section-number">1.6</span> Caso de uso</a></li>
   </ul></li>
   <li><a href="#aplicación-web" id="toc-aplicación-web" class="nav-link" data-scroll-target="#aplicación-web"><span class="header-section-number">2</span> Aplicación web</a></li>
   <li><a href="#video-publicitario" id="toc-video-publicitario" class="nav-link" data-scroll-target="#video-publicitario"><span class="header-section-number">3</span> Video publicitario</a>
@@ -370,6 +375,12 @@ C = \frac{1}{\lambda} \tag{7}
 <p>Este teorema establece que:</p>
 <p>“Cualquier función continua definida en un conjunto compacto puede ser aproximada arbitrariamente bien por una red neuronal feedforward con una sola capa oculta y un número suficiente de neuronas, utilizando funciones de activación no lineales”</p>
 <p>Lo anterior significa que las funciones de activación no lineales son esenciales para que las redes neuronales puedan aproximar funciones complejas. Si bien el teorema garantiza que una sola capa oculta con suficientes neuronas puede aproximar cualquier función continua en un conjunto compacto, en la práctica, aumentar el número de capas suele ser más eficiente para modelar problemas complejos.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="no_linealidad.png" class="img-fluid figure-img"></p>
+<figcaption>Ilustración de los resultados obtenidos mediantes funciones no lineales comparadas con las funciones lineales.</figcaption>
+</figure>
+</div>
 </section>
 <section id="arquitectura-de-una-red-neuronal-artificial" class="level4" data-number="1.3.2.2">
 <h4 data-number="1.3.2.2" class="anchored" data-anchor-id="arquitectura-de-una-red-neuronal-artificial"><span class="header-section-number">1.3.2.2</span> Arquitectura de una red neuronal artificial</h4>
@@ -383,7 +394,7 @@ C = \frac{1}{\lambda} \tag{7}
 <p><strong>Entrada:</strong> los datos que recibe la neurona artificial del exterior o de otras neuronas, se representa como un vector <span class="math inline">\(x = (x_1, x_2, ..., x_n)\)</span>.</p>
 <p><strong>Pesos sinápticos:</strong> representan los factores de importancia <span class="math inline">\(w_{ij}\)</span> que se le asignan a las entradas que cada neurona recibió de su anterior compañera. Son valores numéricos que se modifican durante el entrenamiento del modelo y poseen una vital importancia en el desempeño de este mismo frente al conjunto de datos del que está aprendiendo.</p>
 <p><strong>Regla de propagación:</strong> una operación que se aplica de forma primordial a los datos de entrada y los pesos para calcular el posible valor de la salida de la neurona artificial; generalmente es una suma ponderada pero también pueden ser otras clases de operaciones.</p>
-<p><strong>Función de activación:</strong> el valor obtenido con la regla de propagación se procesa con a través de esta función, a fin de obtener el verdadero resultado de salida de la neurona. Existe una gran variedad de funciones que se eligen de acuerdo con el objetivo de entrenamiento de la red neuronal artificial, entre las cuales se encuentran las siguientes:</p>
+<p><strong>Función de activación capa de entrada:</strong> el valor obtenido con la regla de propagación se procesa con a través de esta función, a fin de obtener el verdadero resultado de salida de la neurona. Existe una gran variedad de funciones que se eligen de acuerdo con el objetivo de entrenamiento de la red neuronal artificial, entre las cuales se encuentran las siguientes:</p>
 <ul>
 <li>Identidad.</li>
 </ul>
@@ -411,6 +422,35 @@ x &amp; \text{si } 0 &lt; x \leq 1 \\
 <li><p>Sinusoidal. La función sinusoidal genera una salida oscilatoria basada en una onda sinusoidal: <span class="math display">\[ f(x) = \sin(x) \]</span></p></li>
 </ul>
 <p><strong>Salida:</strong> resultado <span class="math inline">\(y_i\)</span> del procedimiento aplicado sobre los datos de entrada.</p>
+<p><strong>Función de activación capa de salida:</strong></p>
+<ul>
+<li>Softmax: Permite convertir un conjunto de valores en probabilidades que suman 1, su principal uso se encuentra en problemas de clasificación multiclase.</li>
+</ul>
+<p><span class="math display">\[
+\text{Softmax}(z_i) = \frac{e^{z_i}}{\sum_{j=1}^{n} e^{z_j}}
+\]</span></p>
+<ul>
+<li>Cross-entropy: Mide la diferencia entre las predicciones <span class="math inline">\(\hat{y_i}\)</span> y la real <span class="math inline">\(y\)</span>, para el caso de clasificación lo hace de la siguiente manera:</li>
+</ul>
+<p><span class="math display">\[
+\text{Cross-Entropy Loss} = - \sum_{i=1}^{n} y_i \log(\hat{y}_i)
+\]</span></p>
+<ul>
+<li>Sparse Cross-Entropy Loss : Es una variante de Cross-Entropy que no requiere codificación one-hot, sino que trabaja directamente con índices de las clases verdaderas.</li>
+</ul>
+<p><span class="math display">\[
+\text{Sparse Cross-Entropy Loss} = - \log(\hat{y}_{c})
+\]</span></p>
+<ul>
+<li>Focal loss: Es una extensión de Cross-Entropy que aplica un factor de penalización para enfocarse más en ejemplos mal clasificados. Es especialmente útil para casos de datasets desbalanceados.</li>
+</ul>
+<p><span class="math display">\[
+\text{Focal Loss} = - \alpha_t (1 - p_t)^\gamma \log(p_t)
+\]</span></p>
+<p><span class="math display">\[
+p_t = \hat{y}_c
+\]</span></p>
+<p><strong>Función de pérdida:</strong></p>
 <p>Teniendo en cuenta las particularidades de la arquitectura de las redes neuronales artificiales, a continuación se detallan algunos tipos diferentes de modelos, clasificados según su diseño, así como sus correspondientes aplicaciones en diferentes campos de la academia y la industria.</p>
 </section>
 <section id="tipos-de-redes-neuronales-artificiales" class="level4" data-number="1.3.2.3">
@@ -434,11 +474,57 @@ x &amp; \text{si } 0 &lt; x \leq 1 \\
 </section>
 </section>
 </section>
-<section id="conclusiones-y-aprendizajes-a-partir-del-modelo" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="conclusiones-y-aprendizajes-a-partir-del-modelo"><span class="header-section-number">1.4</span> Conclusiones y aprendizajes a partir del modelo</h2>
+<section id="construcción-del-modelo-de-aprendizaje-automático" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="construcción-del-modelo-de-aprendizaje-automático"><span class="header-section-number">1.4</span> Construcción del Modelo de Aprendizaje Automático</h2>
+<section id="preprocesamiento" class="level3" data-number="1.4.1">
+<h3 data-number="1.4.1" class="anchored" data-anchor-id="preprocesamiento"><span class="header-section-number">1.4.1</span> Preprocesamiento</h3>
+<p>Después de haber jugado con el dataset en la sección anterior para los análisis descriptivos y exploratorios, pasamos a realizar el pre procesamiento de los datos necesario para que la arquitectura de la red neuronal sea capaz de recibirlos y además ayudar a mejorar su rendimiento. Iniciamos dividiendo el conjunto de datos en entrenamiento, validación y test para evitar cualquier tipo de data leakage durante el preprocesamiento.</p>
+<section id="codificación-de-variables-categóricas" class="level4" data-number="1.4.1.1">
+<h4 data-number="1.4.1.1" class="anchored" data-anchor-id="codificación-de-variables-categóricas"><span class="header-section-number">1.4.1.1</span> Codificación de variables categóricas</h4>
+<p>Utilizamos tres estrategias para la clasificación de las variables categóricas según su naturaleza</p>
+<ol type="1">
+<li><p>Ordinal Encoder: Esta técnica se aplicó cuando las variables categóricas presentaban un orden natural. La codificación numérica asignada reflejaba este orden, asegurando que los valores fueran representativos de su jerarquía inherente.</p></li>
+<li><p>Label Encoder: Se empleó en variables categóricas binarias. Este enfoque evitó imponer un orden ficticio entre los valores, lo que podría generar sesgos al interpretar una relación inexistente entre las categorías.</p></li>
+<li><p>One Hot Encoding: Diseñada para variables categóricas sin un orden natural y con más de dos niveles. Cada categoría fue representada mediante un vector binario, donde un valor de 1 indica pertenencia a una categoría específica y e asigna 0 a las demás. Se prestó especial atención al número de niveles en cada variable. En casos con muchas categorías, esta técnica podría haber generado una matriz de alta dimensionalidad, aumentando los requerimientos computacionales y complicando el entrenamiento de la red neuronal. Para evitar estos problemas, se evaluó cuidadosamente la viabilidad de aplicar este método en cada caso.</p></li>
+</ol>
 </section>
-<section id="caso-de-uso" class="level2" data-number="1.5">
-<h2 data-number="1.5" class="anchored" data-anchor-id="caso-de-uso"><span class="header-section-number">1.5</span> Caso de uso</h2>
+<section id="imputación-de-datos-faltantes" class="level4" data-number="1.4.1.2">
+<h4 data-number="1.4.1.2" class="anchored" data-anchor-id="imputación-de-datos-faltantes"><span class="header-section-number">1.4.1.2</span> Imputación de datos faltantes</h4>
+<p>La técnica de imputación de datos faltantes elegidas fue Iterative Imputer para las variables numéricas debido a que muestra mejores capacidades en manejar relaciones complejas que otros métodos de imputación como lo son la media o similares, gracias a que considera todo el dataset de manera conjunta en lugar de una sola columna. Para el caso de variables catgóricas se utilizo la imputación mediante mediana.</p>
+</section>
+<section id="estandarización" class="level4" data-number="1.4.1.3">
+<h4 data-number="1.4.1.3" class="anchored" data-anchor-id="estandarización"><span class="header-section-number">1.4.1.3</span> Estandarización</h4>
+<p>Utilizamos Standar Scaler</p>
+</section>
+<section id="balanceo-de-clases" class="level4" data-number="1.4.1.4">
+<h4 data-number="1.4.1.4" class="anchored" data-anchor-id="balanceo-de-clases"><span class="header-section-number">1.4.1.4</span> Balanceo de clases</h4>
+</section>
+</section>
+<section id="diseño-y-arquitectura" class="level3" data-number="1.4.2">
+<h3 data-number="1.4.2" class="anchored" data-anchor-id="diseño-y-arquitectura"><span class="header-section-number">1.4.2</span> Diseño y Arquitectura</h3>
+<section id="pesos-de-las-clases" class="level4" data-number="1.4.2.1">
+<h4 data-number="1.4.2.1" class="anchored" data-anchor-id="pesos-de-las-clases"><span class="header-section-number">1.4.2.1</span> Pesos de las clases</h4>
+</section>
+<section id="función-de-pérdida" class="level4" data-number="1.4.2.2">
+<h4 data-number="1.4.2.2" class="anchored" data-anchor-id="función-de-pérdida"><span class="header-section-number">1.4.2.2</span> Función de pérdida</h4>
+</section>
+<section id="callbacks" class="level4" data-number="1.4.2.3">
+<h4 data-number="1.4.2.3" class="anchored" data-anchor-id="callbacks"><span class="header-section-number">1.4.2.3</span> Callbacks</h4>
+</section>
+<section id="capas" class="level4" data-number="1.4.2.4">
+<h4 data-number="1.4.2.4" class="anchored" data-anchor-id="capas"><span class="header-section-number">1.4.2.4</span> Capas</h4>
+</section>
+</section>
+</section>
+<section id="conclusiones-y-aprendizajes-a-partir-del-modelo" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="conclusiones-y-aprendizajes-a-partir-del-modelo"><span class="header-section-number">1.5</span> Conclusiones y aprendizajes a partir del modelo</h2>
+<section id="reporte-de-clasificación" class="level4" data-number="1.5.0.1">
+<h4 data-number="1.5.0.1" class="anchored" data-anchor-id="reporte-de-clasificación"><span class="header-section-number">1.5.0.1</span> <strong>Reporte de clasificación</strong></h4>
+<p><strong>Matriz de confusión</strong></p>
+</section>
+</section>
+<section id="caso-de-uso" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="caso-de-uso"><span class="header-section-number">1.6</span> Caso de uso</h2>
 </section>
 </section>
 <section id="aplicación-web" class="level1" data-number="2">
@@ -1256,87 +1342,162 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-152"><a href="#cb1-152" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-153"><a href="#cb1-153" aria-hidden="true" tabindex="-1"></a>Lo anterior significa que las funciones de activación no lineales son esenciales para que las redes neuronales puedan aproximar funciones complejas. Si bien el teorema garantiza que una sola capa oculta con suficientes neuronas puede aproximar cualquier función continua en un conjunto compacto, en la práctica, aumentar el número de capas suele ser más eficiente para modelar problemas complejos.</span>
 <span id="cb1-154"><a href="#cb1-154" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-155"><a href="#cb1-155" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Arquitectura de una red neuronal artificial</span></span>
+<span id="cb1-155"><a href="#cb1-155" aria-hidden="true" tabindex="-1"></a><span class="al">![Ilustración de los resultados obtenidos mediantes funciones no lineales comparadas con las funciones lineales.](no_linealidad.png)</span></span>
 <span id="cb1-156"><a href="#cb1-156" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-157"><a href="#cb1-157" aria-hidden="true" tabindex="-1"></a>Las redes neuronales están compuestas por un conjunto de nodos, que vendrían siendo las neuronas artificiales, repartidos en capas que pertenecen a alguna de las siguientes tres categorías, con información obtenida de @cloudflare y @paroledevs:</span>
+<span id="cb1-157"><a href="#cb1-157" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Arquitectura de una red neuronal artificial</span></span>
 <span id="cb1-158"><a href="#cb1-158" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-159"><a href="#cb1-159" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Capa de entrada:** esta capa tiene conexión con el "mundo exterior" a la red neuronal artificial, recibiendo los datos iniciales que serán procesados por ella.</span>
+<span id="cb1-159"><a href="#cb1-159" aria-hidden="true" tabindex="-1"></a>Las redes neuronales están compuestas por un conjunto de nodos, que vendrían siendo las neuronas artificiales, repartidos en capas que pertenecen a alguna de las siguientes tres categorías, con información obtenida de @cloudflare y @paroledevs:</span>
 <span id="cb1-160"><a href="#cb1-160" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-161"><a href="#cb1-161" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Capa de salida:** esta capa proporciona el resultado del procesamiento realizado por la red neuronal, comúnmente como una predicción o una clasificación (lo cual se ve internamente en términos de probabilidad).</span>
+<span id="cb1-161"><a href="#cb1-161" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Capa de entrada:** esta capa tiene conexión con el "mundo exterior" a la red neuronal artificial, recibiendo los datos iniciales que serán procesados por ella.</span>
 <span id="cb1-162"><a href="#cb1-162" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-163"><a href="#cb1-163" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Capas ocultas:** una o más capas que se encuentran entre las dos mencionadas anteriormente, realizando el procesamiento y extracción de características de los datos. Este análisis se realiza de menor a mayor profundidad, pues cada capa extrae los patrones más significativos de los datos que recibió como entrada y los envía a una capa superior para que sean vistos con más detalle.</span>
+<span id="cb1-163"><a href="#cb1-163" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Capa de salida:** esta capa proporciona el resultado del procesamiento realizado por la red neuronal, comúnmente como una predicción o una clasificación (lo cual se ve internamente en términos de probabilidad).</span>
 <span id="cb1-164"><a href="#cb1-164" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-165"><a href="#cb1-165" aria-hidden="true" tabindex="-1"></a>Ahora bien, es conveniente conocer los elementos que componen a cada uno de los nodos que interactúan en las capas anteriormente mencionadas, pues de esta manera será posible comprender la importancia del correcto diseño de la arquitectura de una red neuronal artificial. De acuerdo con @franciscopalaciorna, estos elementos son:</span>
+<span id="cb1-165"><a href="#cb1-165" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Capas ocultas:** una o más capas que se encuentran entre las dos mencionadas anteriormente, realizando el procesamiento y extracción de características de los datos. Este análisis se realiza de menor a mayor profundidad, pues cada capa extrae los patrones más significativos de los datos que recibió como entrada y los envía a una capa superior para que sean vistos con más detalle.</span>
 <span id="cb1-166"><a href="#cb1-166" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-167"><a href="#cb1-167" aria-hidden="true" tabindex="-1"></a>**Entrada:** los datos que recibe la neurona artificial del exterior o de otras neuronas, se representa como un vector $x = (x_1, x_2, ..., x_n)$.</span>
+<span id="cb1-167"><a href="#cb1-167" aria-hidden="true" tabindex="-1"></a>Ahora bien, es conveniente conocer los elementos que componen a cada uno de los nodos que interactúan en las capas anteriormente mencionadas, pues de esta manera será posible comprender la importancia del correcto diseño de la arquitectura de una red neuronal artificial. De acuerdo con @franciscopalaciorna, estos elementos son:</span>
 <span id="cb1-168"><a href="#cb1-168" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-169"><a href="#cb1-169" aria-hidden="true" tabindex="-1"></a>**Pesos sinápticos:** representan los factores de importancia $w_{ij}$ que se le asignan a las entradas que cada neurona recibió de su anterior compañera. Son valores numéricos que se modifican durante el entrenamiento del modelo y poseen una vital importancia en el desempeño de este mismo frente al conjunto de datos del que está aprendiendo.</span>
+<span id="cb1-169"><a href="#cb1-169" aria-hidden="true" tabindex="-1"></a>**Entrada:** los datos que recibe la neurona artificial del exterior o de otras neuronas, se representa como un vector $x = (x_1, x_2, ..., x_n)$.</span>
 <span id="cb1-170"><a href="#cb1-170" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-171"><a href="#cb1-171" aria-hidden="true" tabindex="-1"></a>**Regla de propagación:** una operación que se aplica de forma primordial a los datos de entrada y los pesos para calcular el posible valor de la salida de la neurona artificial; generalmente es una suma ponderada pero también pueden ser otras clases de operaciones.</span>
+<span id="cb1-171"><a href="#cb1-171" aria-hidden="true" tabindex="-1"></a>**Pesos sinápticos:** representan los factores de importancia $w_{ij}$ que se le asignan a las entradas que cada neurona recibió de su anterior compañera. Son valores numéricos que se modifican durante el entrenamiento del modelo y poseen una vital importancia en el desempeño de este mismo frente al conjunto de datos del que está aprendiendo.</span>
 <span id="cb1-172"><a href="#cb1-172" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-173"><a href="#cb1-173" aria-hidden="true" tabindex="-1"></a>**Función de activación:** el valor obtenido con la regla de propagación se procesa con a través de esta función, a fin de obtener el verdadero resultado de salida de la neurona. Existe una gran variedad de funciones que se eligen de acuerdo con el objetivo de entrenamiento de la red neuronal artificial, entre las cuales se encuentran las siguientes:</span>
+<span id="cb1-173"><a href="#cb1-173" aria-hidden="true" tabindex="-1"></a>**Regla de propagación:** una operación que se aplica de forma primordial a los datos de entrada y los pesos para calcular el posible valor de la salida de la neurona artificial; generalmente es una suma ponderada pero también pueden ser otras clases de operaciones.</span>
 <span id="cb1-174"><a href="#cb1-174" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-175"><a href="#cb1-175" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Identidad.</span>
+<span id="cb1-175"><a href="#cb1-175" aria-hidden="true" tabindex="-1"></a>**Función de activación capa de entrada:** el valor obtenido con la regla de propagación se procesa con a través de esta función, a fin de obtener el verdadero resultado de salida de la neurona. Existe una gran variedad de funciones que se eligen de acuerdo con el objetivo de entrenamiento de la red neuronal artificial, entre las cuales se encuentran las siguientes:</span>
 <span id="cb1-176"><a href="#cb1-176" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-177"><a href="#cb1-177" aria-hidden="true" tabindex="-1"></a>La función de identidad es una función lineal que devuelve el mismo valor de entrada como salida: $$ f(x) = x $$</span>
+<span id="cb1-177"><a href="#cb1-177" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Identidad.</span>
 <span id="cb1-178"><a href="#cb1-178" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-179"><a href="#cb1-179" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Escalón.</span>
+<span id="cb1-179"><a href="#cb1-179" aria-hidden="true" tabindex="-1"></a>La función de identidad es una función lineal que devuelve el mismo valor de entrada como salida: $$ f(x) = x $$</span>
 <span id="cb1-180"><a href="#cb1-180" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-181"><a href="#cb1-181" aria-hidden="true" tabindex="-1"></a>La función de escalón devuelve un valor binario dependiendo de si la entrada supera un umbral ( \theta ): $$ f(x) = </span>
-<span id="cb1-182"><a href="#cb1-182" aria-hidden="true" tabindex="-1"></a>\begin{cases} </span>
-<span id="cb1-183"><a href="#cb1-183" aria-hidden="true" tabindex="-1"></a>1 &amp; \text{si } x \geq \theta <span class="sc">\\</span> </span>
-<span id="cb1-184"><a href="#cb1-184" aria-hidden="true" tabindex="-1"></a>0 &amp; \text{si } x &lt; \theta </span>
-<span id="cb1-185"><a href="#cb1-185" aria-hidden="true" tabindex="-1"></a>\end{cases} $$</span>
-<span id="cb1-186"><a href="#cb1-186" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-187"><a href="#cb1-187" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Lineal a tramos.</span>
+<span id="cb1-181"><a href="#cb1-181" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Escalón.</span>
+<span id="cb1-182"><a href="#cb1-182" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-183"><a href="#cb1-183" aria-hidden="true" tabindex="-1"></a>La función de escalón devuelve un valor binario dependiendo de si la entrada supera un umbral ( \theta ): $$ f(x) = </span>
+<span id="cb1-184"><a href="#cb1-184" aria-hidden="true" tabindex="-1"></a>\begin{cases} </span>
+<span id="cb1-185"><a href="#cb1-185" aria-hidden="true" tabindex="-1"></a>1 &amp; \text{si } x \geq \theta <span class="sc">\\</span> </span>
+<span id="cb1-186"><a href="#cb1-186" aria-hidden="true" tabindex="-1"></a>0 &amp; \text{si } x &lt; \theta </span>
+<span id="cb1-187"><a href="#cb1-187" aria-hidden="true" tabindex="-1"></a>\end{cases} $$</span>
 <span id="cb1-188"><a href="#cb1-188" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-189"><a href="#cb1-189" aria-hidden="true" tabindex="-1"></a>La función lineal a tramos aplica una transformación lineal dentro de un rango específico: $$ f(x) = </span>
-<span id="cb1-190"><a href="#cb1-190" aria-hidden="true" tabindex="-1"></a>\begin{cases} </span>
-<span id="cb1-191"><a href="#cb1-191" aria-hidden="true" tabindex="-1"></a>0 &amp; \text{si } x \leq 0 <span class="sc">\\</span> </span>
-<span id="cb1-192"><a href="#cb1-192" aria-hidden="true" tabindex="-1"></a>x &amp; \text{si } 0 &lt; x \leq 1 <span class="sc">\\</span> </span>
-<span id="cb1-193"><a href="#cb1-193" aria-hidden="true" tabindex="-1"></a>1 &amp; \text{si } x &gt; 1 </span>
-<span id="cb1-194"><a href="#cb1-194" aria-hidden="true" tabindex="-1"></a>\end{cases} $$</span>
-<span id="cb1-195"><a href="#cb1-195" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-196"><a href="#cb1-196" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Sigmoide. La función sigmoide suaviza la salida en un rango entre 0 y 1: $$ f(x) = \frac{1}{1 + e^{-x}} $$</span>
+<span id="cb1-189"><a href="#cb1-189" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Lineal a tramos.</span>
+<span id="cb1-190"><a href="#cb1-190" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-191"><a href="#cb1-191" aria-hidden="true" tabindex="-1"></a>La función lineal a tramos aplica una transformación lineal dentro de un rango específico: $$ f(x) = </span>
+<span id="cb1-192"><a href="#cb1-192" aria-hidden="true" tabindex="-1"></a>\begin{cases} </span>
+<span id="cb1-193"><a href="#cb1-193" aria-hidden="true" tabindex="-1"></a>0 &amp; \text{si } x \leq 0 <span class="sc">\\</span> </span>
+<span id="cb1-194"><a href="#cb1-194" aria-hidden="true" tabindex="-1"></a>x &amp; \text{si } 0 &lt; x \leq 1 <span class="sc">\\</span> </span>
+<span id="cb1-195"><a href="#cb1-195" aria-hidden="true" tabindex="-1"></a>1 &amp; \text{si } x &gt; 1 </span>
+<span id="cb1-196"><a href="#cb1-196" aria-hidden="true" tabindex="-1"></a>\end{cases} $$</span>
 <span id="cb1-197"><a href="#cb1-197" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-198"><a href="#cb1-198" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Gaussiana. La función gaussiana calcula una salida basada en la forma de una campana, con una media (\mu) y desviación estándar (\sigma): $$ f(x) = e^{-\frac{(x - \mu)^2}{2\sigma^2}} $$</span>
+<span id="cb1-198"><a href="#cb1-198" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Sigmoide. La función sigmoide suaviza la salida en un rango entre 0 y 1: $$ f(x) = \frac{1}{1 + e^{-x}} $$</span>
 <span id="cb1-199"><a href="#cb1-199" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-200"><a href="#cb1-200" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Sinusoidal. La función sinusoidal genera una salida oscilatoria basada en una onda sinusoidal: $$ f(x) = \sin(x) $$</span>
+<span id="cb1-200"><a href="#cb1-200" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Gaussiana. La función gaussiana calcula una salida basada en la forma de una campana, con una media (\mu) y desviación estándar (\sigma): $$ f(x) = e^{-\frac{(x - \mu)^2}{2\sigma^2}} $$</span>
 <span id="cb1-201"><a href="#cb1-201" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-202"><a href="#cb1-202" aria-hidden="true" tabindex="-1"></a>**Salida:** resultado $y_i$ del procedimiento aplicado sobre los datos de entrada.</span>
+<span id="cb1-202"><a href="#cb1-202" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Sinusoidal. La función sinusoidal genera una salida oscilatoria basada en una onda sinusoidal: $$ f(x) = \sin(x) $$</span>
 <span id="cb1-203"><a href="#cb1-203" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-204"><a href="#cb1-204" aria-hidden="true" tabindex="-1"></a>Teniendo en cuenta las particularidades de la arquitectura de las redes neuronales artificiales, a continuación se detallan algunos tipos diferentes de modelos, clasificados según su diseño, así como sus correspondientes aplicaciones en diferentes campos de la academia y la industria.</span>
+<span id="cb1-204"><a href="#cb1-204" aria-hidden="true" tabindex="-1"></a>**Salida:** resultado $y_i$ del procedimiento aplicado sobre los datos de entrada.</span>
 <span id="cb1-205"><a href="#cb1-205" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-206"><a href="#cb1-206" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Tipos de redes neuronales artificiales</span></span>
+<span id="cb1-206"><a href="#cb1-206" aria-hidden="true" tabindex="-1"></a>**Función de activación capa de salida:**</span>
 <span id="cb1-207"><a href="#cb1-207" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-208"><a href="#cb1-208" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Redes neuronales artificiales perceptrón:** tienen la arquitectura más sencilla, compuesta por nodos con una única función de activación, suelen utilizarse para tareas de clasificación binaria.</span>
+<span id="cb1-208"><a href="#cb1-208" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Softmax: Permite convertir un conjunto de valores en probabilidades que suman 1, su principal uso se encuentra en problemas de clasificación multiclase.</span>
 <span id="cb1-209"><a href="#cb1-209" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-210"><a href="#cb1-210" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Redes neuronales artificiales multicapa:** su arquitectura está conformada por capas de neuronas artificiales interconectadas y son utilizadas para tareas más complejas como toma de decisiones y clasificación multiclase.</span>
-<span id="cb1-211"><a href="#cb1-211" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-212"><a href="#cb1-212" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Redes neuronales artificiales convolucionales:** estas redes están especialmente diseñadas para realizar tareas relacionadas con el reconocimiento de imágenes, pues utilizan filtros convolucionales para identificar patrones y características especiales en cada pixel.</span>
+<span id="cb1-210"><a href="#cb1-210" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-211"><a href="#cb1-211" aria-hidden="true" tabindex="-1"></a>\text{Softmax}(z_i) = \frac{e^{z_i}}{\sum_{j=1}^{n} e^{z_j}}</span>
+<span id="cb1-212"><a href="#cb1-212" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-213"><a href="#cb1-213" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-214"><a href="#cb1-214" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Redes neuronales artificiales recurrentes:** suelen ser empleadas para tareas como reconocimiento de voz, traducción automática y generación de texto por su capacidad para procesar datos secuenciales, donde toda la información está relacionada entre sí y posee un contexto común para explicarse.</span>
+<span id="cb1-214"><a href="#cb1-214" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Cross-entropy: Mide la diferencia entre las predicciones $\hat{y_i}$ y la real $y$, para el caso de clasificación lo hace de la siguiente manera:</span>
 <span id="cb1-215"><a href="#cb1-215" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-216"><a href="#cb1-216" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Aplicaciones de las redes neuronales artificiales</span></span>
-<span id="cb1-217"><a href="#cb1-217" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-218"><a href="#cb1-218" aria-hidden="true" tabindex="-1"></a>Algunas de las aplicaciones de las redes neuronales en la actualidad incluyen las siguientes:</span>
+<span id="cb1-216"><a href="#cb1-216" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-217"><a href="#cb1-217" aria-hidden="true" tabindex="-1"></a>\text{Cross-Entropy Loss} = - \sum_{i=1}^{n} y_i \log(\hat{y}_i)</span>
+<span id="cb1-218"><a href="#cb1-218" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-219"><a href="#cb1-219" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-220"><a href="#cb1-220" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Reconocimiento de imágenes:** las redes neuronales pueden ser utilizadas para identificar personas y objetos en imágenes y videos.</span>
-<span id="cb1-221"><a href="#cb1-221" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Procesamiento del lenguaje natural:** las redes neuronales pueden utilizarse en tareas de comprensión del lenguaje como la traducción automática, la generación de texto y el reconocimiento de voz.</span>
-<span id="cb1-222"><a href="#cb1-222" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Toma de decisiones:** las redes neuronales pueden ser herramientas de ayuda para la toma de decisiones en situaciones complejas tales como el análisis financiero, que es el caso del presente ejercicio y el diagnóstico médico, entre otras.</span>
-<span id="cb1-223"><a href="#cb1-223" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Sistemas de recomendación:** las redes neuronales pueden ser empleadas para generar recomendaciones personalizadas con base en las preferencias del usuario en diferentes plataformas de streaming, comercio electrónico y redes sociales. @profedigital</span>
-<span id="cb1-224"><a href="#cb1-224" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-225"><a href="#cb1-225" aria-hidden="true" tabindex="-1"></a><span class="fu">## Conclusiones y aprendizajes a partir del modelo</span></span>
-<span id="cb1-226"><a href="#cb1-226" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-227"><a href="#cb1-227" aria-hidden="true" tabindex="-1"></a><span class="fu">## Caso de uso</span></span>
+<span id="cb1-220"><a href="#cb1-220" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Sparse Cross-Entropy Loss : Es una variante de Cross-Entropy que no requiere codificación one-hot, sino que trabaja directamente con índices de las clases verdaderas.</span>
+<span id="cb1-221"><a href="#cb1-221" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-222"><a href="#cb1-222" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-223"><a href="#cb1-223" aria-hidden="true" tabindex="-1"></a>\text{Sparse Cross-Entropy Loss} = - \log(\hat{y}_{c})</span>
+<span id="cb1-224"><a href="#cb1-224" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-225"><a href="#cb1-225" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-226"><a href="#cb1-226" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Focal loss: Es una extensión de Cross-Entropy que aplica un factor de penalización para enfocarse más en ejemplos mal clasificados. Es especialmente útil para casos de datasets desbalanceados.</span>
+<span id="cb1-227"><a href="#cb1-227" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-228"><a href="#cb1-228" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-229"><a href="#cb1-229" aria-hidden="true" tabindex="-1"></a><span class="fu"># Aplicación web</span></span>
-<span id="cb1-230"><a href="#cb1-230" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-231"><a href="#cb1-231" aria-hidden="true" tabindex="-1"></a><span class="fu"># Video publicitario</span></span>
+<span id="cb1-229"><a href="#cb1-229" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-230"><a href="#cb1-230" aria-hidden="true" tabindex="-1"></a>\text{Focal Loss} = - \alpha_t (1 - p_t)^\gamma \log(p_t)</span>
+<span id="cb1-231"><a href="#cb1-231" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-232"><a href="#cb1-232" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-233"><a href="#cb1-233" aria-hidden="true" tabindex="-1"></a><span class="fu">## Contribuciones individuales</span></span>
-<span id="cb1-234"><a href="#cb1-234" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-235"><a href="#cb1-235" aria-hidden="true" tabindex="-1"></a>Las contribuciones realizadas por cada uno de los integrantes del equipo en el desarrollo de los ejercicios correspondientes a **Modelos de riesgo de crédito con Redes Neuronales Artificiales** se muestran en el siguiente video.</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<span id="cb1-233"><a href="#cb1-233" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-234"><a href="#cb1-234" aria-hidden="true" tabindex="-1"></a>p_t = \hat{y}_c</span>
+<span id="cb1-235"><a href="#cb1-235" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-236"><a href="#cb1-236" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-237"><a href="#cb1-237" aria-hidden="true" tabindex="-1"></a>**Función de pérdida:**</span>
+<span id="cb1-238"><a href="#cb1-238" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-239"><a href="#cb1-239" aria-hidden="true" tabindex="-1"></a>Teniendo en cuenta las particularidades de la arquitectura de las redes neuronales artificiales, a continuación se detallan algunos tipos diferentes de modelos, clasificados según su diseño, así como sus correspondientes aplicaciones en diferentes campos de la academia y la industria.</span>
+<span id="cb1-240"><a href="#cb1-240" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-241"><a href="#cb1-241" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Tipos de redes neuronales artificiales</span></span>
+<span id="cb1-242"><a href="#cb1-242" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-243"><a href="#cb1-243" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Redes neuronales artificiales perceptrón:** tienen la arquitectura más sencilla, compuesta por nodos con una única función de activación, suelen utilizarse para tareas de clasificación binaria.</span>
+<span id="cb1-244"><a href="#cb1-244" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-245"><a href="#cb1-245" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Redes neuronales artificiales multicapa:** su arquitectura está conformada por capas de neuronas artificiales interconectadas y son utilizadas para tareas más complejas como toma de decisiones y clasificación multiclase.</span>
+<span id="cb1-246"><a href="#cb1-246" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-247"><a href="#cb1-247" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Redes neuronales artificiales convolucionales:** estas redes están especialmente diseñadas para realizar tareas relacionadas con el reconocimiento de imágenes, pues utilizan filtros convolucionales para identificar patrones y características especiales en cada pixel.</span>
+<span id="cb1-248"><a href="#cb1-248" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-249"><a href="#cb1-249" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Redes neuronales artificiales recurrentes:** suelen ser empleadas para tareas como reconocimiento de voz, traducción automática y generación de texto por su capacidad para procesar datos secuenciales, donde toda la información está relacionada entre sí y posee un contexto común para explicarse.</span>
+<span id="cb1-250"><a href="#cb1-250" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-251"><a href="#cb1-251" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Aplicaciones de las redes neuronales artificiales</span></span>
+<span id="cb1-252"><a href="#cb1-252" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-253"><a href="#cb1-253" aria-hidden="true" tabindex="-1"></a>Algunas de las aplicaciones de las redes neuronales en la actualidad incluyen las siguientes:</span>
+<span id="cb1-254"><a href="#cb1-254" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-255"><a href="#cb1-255" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Reconocimiento de imágenes:** las redes neuronales pueden ser utilizadas para identificar personas y objetos en imágenes y videos.</span>
+<span id="cb1-256"><a href="#cb1-256" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Procesamiento del lenguaje natural:** las redes neuronales pueden utilizarse en tareas de comprensión del lenguaje como la traducción automática, la generación de texto y el reconocimiento de voz.</span>
+<span id="cb1-257"><a href="#cb1-257" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Toma de decisiones:** las redes neuronales pueden ser herramientas de ayuda para la toma de decisiones en situaciones complejas tales como el análisis financiero, que es el caso del presente ejercicio y el diagnóstico médico, entre otras.</span>
+<span id="cb1-258"><a href="#cb1-258" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Sistemas de recomendación:** las redes neuronales pueden ser empleadas para generar recomendaciones personalizadas con base en las preferencias del usuario en diferentes plataformas de streaming, comercio electrónico y redes sociales. @profedigital</span>
+<span id="cb1-259"><a href="#cb1-259" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-260"><a href="#cb1-260" aria-hidden="true" tabindex="-1"></a><span class="fu">## Construcción del Modelo de Aprendizaje Automático</span></span>
+<span id="cb1-261"><a href="#cb1-261" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-262"><a href="#cb1-262" aria-hidden="true" tabindex="-1"></a><span class="fu">### Preprocesamiento</span></span>
+<span id="cb1-263"><a href="#cb1-263" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-264"><a href="#cb1-264" aria-hidden="true" tabindex="-1"></a>Después de haber jugado con el dataset en la sección anterior para los análisis descriptivos y exploratorios, pasamos a realizar el pre procesamiento de los datos necesario para que la arquitectura de la red neuronal sea capaz de recibirlos y además ayudar a mejorar su rendimiento. Iniciamos dividiendo el conjunto de datos en entrenamiento, validación y test para evitar cualquier tipo de data leakage durante el preprocesamiento.</span>
+<span id="cb1-265"><a href="#cb1-265" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-266"><a href="#cb1-266" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Codificación de variables categóricas</span></span>
+<span id="cb1-267"><a href="#cb1-267" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-268"><a href="#cb1-268" aria-hidden="true" tabindex="-1"></a>Utilizamos tres estrategias para la clasificación de las variables categóricas según su naturaleza</span>
+<span id="cb1-269"><a href="#cb1-269" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-270"><a href="#cb1-270" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Ordinal Encoder: Esta técnica se aplicó cuando las variables categóricas presentaban un orden natural. La codificación numérica asignada reflejaba este orden, asegurando que los valores fueran representativos de su jerarquía inherente.</span>
+<span id="cb1-271"><a href="#cb1-271" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-272"><a href="#cb1-272" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Label Encoder: Se empleó en variables categóricas binarias. Este enfoque evitó imponer un orden ficticio entre los valores, lo que podría generar sesgos al interpretar una relación inexistente entre las categorías.</span>
+<span id="cb1-273"><a href="#cb1-273" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-274"><a href="#cb1-274" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>One Hot Encoding: Diseñada para variables categóricas sin un orden natural y con más de dos niveles. Cada categoría fue representada mediante un vector binario, donde un valor de 1 indica pertenencia a una categoría específica y e asigna 0 a las demás. Se prestó especial atención al número de niveles en cada variable. En casos con muchas categorías, esta técnica podría haber generado una matriz de alta dimensionalidad, aumentando los requerimientos computacionales y complicando el entrenamiento de la red neuronal. Para evitar estos problemas, se evaluó cuidadosamente la viabilidad de aplicar este método en cada caso.</span>
+<span id="cb1-275"><a href="#cb1-275" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-276"><a href="#cb1-276" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Imputación de datos faltantes</span></span>
+<span id="cb1-277"><a href="#cb1-277" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-278"><a href="#cb1-278" aria-hidden="true" tabindex="-1"></a>La técnica de imputación de datos faltantes elegidas fue Iterative Imputer para las variables numéricas debido a que muestra mejores capacidades en manejar relaciones complejas que otros métodos de imputación como lo son la media o similares, gracias a que considera todo el dataset de manera conjunta en lugar de una sola columna. Para el caso de variables catgóricas se utilizo la imputación mediante mediana.</span>
+<span id="cb1-279"><a href="#cb1-279" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-280"><a href="#cb1-280" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Estandarización</span></span>
+<span id="cb1-281"><a href="#cb1-281" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-282"><a href="#cb1-282" aria-hidden="true" tabindex="-1"></a>Utilizamos Standar Scaler</span>
+<span id="cb1-283"><a href="#cb1-283" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-284"><a href="#cb1-284" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Balanceo de clases</span></span>
+<span id="cb1-285"><a href="#cb1-285" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-286"><a href="#cb1-286" aria-hidden="true" tabindex="-1"></a><span class="fu">### Diseño y Arquitectura</span></span>
+<span id="cb1-287"><a href="#cb1-287" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-288"><a href="#cb1-288" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Pesos de las clases</span></span>
+<span id="cb1-289"><a href="#cb1-289" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-290"><a href="#cb1-290" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Función de pérdida</span></span>
+<span id="cb1-291"><a href="#cb1-291" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-292"><a href="#cb1-292" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Callbacks</span></span>
+<span id="cb1-293"><a href="#cb1-293" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-294"><a href="#cb1-294" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Capas</span></span>
+<span id="cb1-295"><a href="#cb1-295" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-296"><a href="#cb1-296" aria-hidden="true" tabindex="-1"></a><span class="fu">## Conclusiones y aprendizajes a partir del modelo</span></span>
+<span id="cb1-297"><a href="#cb1-297" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-298"><a href="#cb1-298" aria-hidden="true" tabindex="-1"></a><span class="fu">#### **Reporte de clasificación**</span></span>
+<span id="cb1-299"><a href="#cb1-299" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-300"><a href="#cb1-300" aria-hidden="true" tabindex="-1"></a>**Matriz de confusión**</span>
+<span id="cb1-301"><a href="#cb1-301" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-302"><a href="#cb1-302" aria-hidden="true" tabindex="-1"></a><span class="fu">## Caso de uso</span></span>
+<span id="cb1-303"><a href="#cb1-303" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-304"><a href="#cb1-304" aria-hidden="true" tabindex="-1"></a><span class="fu"># Aplicación web</span></span>
+<span id="cb1-305"><a href="#cb1-305" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-306"><a href="#cb1-306" aria-hidden="true" tabindex="-1"></a><span class="fu"># Video publicitario</span></span>
+<span id="cb1-307"><a href="#cb1-307" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-308"><a href="#cb1-308" aria-hidden="true" tabindex="-1"></a><span class="fu">## Contribuciones individuales</span></span>
+<span id="cb1-309"><a href="#cb1-309" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-310"><a href="#cb1-310" aria-hidden="true" tabindex="-1"></a>Las contribuciones realizadas por cada uno de los integrantes del equipo en el desarrollo de los ejercicios correspondientes a **Modelos de riesgo de crédito con Redes Neuronales Artificiales** se muestran en el siguiente video.</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 
