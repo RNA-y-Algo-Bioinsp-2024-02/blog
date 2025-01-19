@@ -225,13 +225,11 @@ $$
 
 -   Focal loss: Es una extensión de Cross-Entropy que aplica un factor de penalización para enfocarse más en ejemplos mal clasificados. Es especialmente útil para casos de datasets desbalanceados.
 
-
 $$
 \text{Focal Loss} = - \alpha_t (1 - p_t)^\gamma \log(p_t)
 $$
 
-Donde: 
-$$
+Donde: $$
 p_t = \hat{y}_c
 $$
 
@@ -282,8 +280,8 @@ Utilizamos **StandardScaler** debido a que normaliza las características centra
 
 Esto previene problemas como:
 
-- **Gradiente explosivo**: Valores extremos en las entradas producen gradientes excesivamente grandes, causando desbordamientos numéricos y actualizaciones erráticas de pesos.
-- **Gradiente desvaneciente**: Gradientes extremadamente pequeños ralentizan la convergencia, dificultando el aprendizaje efectivo.
+-   **Gradiente explosivo**: Valores extremos en las entradas producen gradientes excesivamente grandes, causando desbordamientos numéricos y actualizaciones erráticas de pesos.
+-   **Gradiente desvaneciente**: Gradientes extremadamente pequeños ralentizan la convergencia, dificultando el aprendizaje efectivo.
 
 La fórmula utilizada por **StandardScaler** es:
 
@@ -293,20 +291,21 @@ $$
 
 donde:
 
-- $X$: Valor original.
-- $u$: Media de los datos.
-- $sigma$: Desviación estándar de los datos.
+-   $X$: Valor original.
+-   $u$: Media de los datos.
+-   $sigma$: Desviación estándar de los datos.
 
 Este método asegura que las características tengan una varianza de 1 y estén centradas en 0, permitiendo que funciones de activación como **sigmoid** y **tanh** operen eficientemente.
 
 #### Balanceo de clases
 
+El análisis descriptivo mostró que la variable respuesta del dataset está altamente desbalanceada, lo cual representa un reto significativo al crear el modelo. Un modelo entrenado en estas condiciones puede tender a predecir únicamente la clase mayoritaria, generando métricas como el **accuracy** con valores engañosamente altos, pero sin reflejar una verdadera capacidad predictiva. Para abordar este problema, utilizaremos las siguientes técnicas:
 
-El análisis descriptivo mostró que la variable respuesta del dataset está altamente desbalanceada, lo cual representa un reto significativo al crear el modelo. Un modelo entrenado en estas condiciones puede tender a predecir únicamente la clase mayoritaria, generando métricas como el **accuracy** con valores engañosamente altos, pero sin reflejar una 
-verdadera capacidad predictiva. Para abordar este problema, utilizaremos las siguientes técnicas:
+-   **Sobremuestreo y Submuestreo**: Esta estrategia combina el aumento de las clases minoritarias mediante sobremuestreo y la reducción de las clases mayoritarias mediante submuestreo. El objetivo es equilibrar la cantidad de datos entre las clases, incentivando al modelo a aprender las características de todas las clases y mejorando sus métricas al minimizar la función de pérdida. Esto fue utilizado para el modelo con todas las clases.
 
-- **Sobremuestreo y Submuestreo**: Esta estrategia combina el aumento de las clases minoritarias mediante sobremuestreo y la reducción de las clases mayoritarias mediante submuestreo. El objetivo es equilibrar la cantidad de datos entre las clases, incentivando al modelo a aprender las características de todas las clases y mejorando sus métricas al 
-- minimizar la función de pérdida.
+![Ilustración del funcionamiento de las técnicas de sobremuestreo y submuestreo. Tomado de (https://www.datasciencecentral.com/handling-imbalanced-data-sets-in-supervised-learning-using-family/)](muestreo.png)
+
+-   **Agrupamiento de las clases**: En esta estrategia agrupamos algunas de las clases con una menor cantidad de datos, esto debido a que como se verá más adelante son clases que tienen tan pocos datos que predecirlas es altamente complejo, y que pone en evidencia además las limitaciones de técnicas de sobremuestreo y submuestreo en la presencia de clases altamente desbalanceadas.
 
 ### Diseño y Arquitectura
 
@@ -314,86 +313,87 @@ verdadera capacidad predictiva. Para abordar este problema, utilizaremos las sig
 
 Dado el desbalance de la variable objetivo, utilizaremos métricas diseñadas para proporcionar una evaluación más equitativa del modelo:
 
-- **F1-Score Macro**: A diferencia de métricas como el **accuracy**, que tienden a favorecer la clase mayoritaria en datasets desbalanceados, el **F1-Score Macro** asigna igual importancia a todas las clases, independientemente del número de muestras. Esto nos brinda una evaluación más realista del desempeño del modelo.
+-   **F1-Score Macro**: A diferencia de métricas como el **accuracy**, que tienden a favorecer la clase mayoritaria en datasets desbalanceados, el **F1-Score Macro** asigna igual importancia a todas las clases, independientemente del número de muestras. Esto nos brinda una evaluación más realista del desempeño del modelo.
 
 #### Función de pérdida
 
 Para abordar el desbalance de clases durante el entrenamiento, utilizaremos técnicas como:
 
-- **Focal Loss**: Esta función de pérdida está diseñada específicamente para problemas de clasificación desbalanceados. Su objetivo es priorizar las clases minoritarias al reducir la importancia de las predicciones correctamente clasificadas para las clases mayoritarias. Esto ayuda al modelo a concentrarse más en aprender las características de las clases menos representadas.
+-   **Focal Loss**: Esta función de pérdida está diseñada específicamente para problemas de clasificación desbalanceados. Su objetivo es priorizar las clases minoritarias al reducir la importancia de las predicciones correctamente clasificadas para las clases mayoritarias. Esto ayuda al modelo a concentrarse más en aprender las características de las clases menos representadas.
 
-- **Pesos de las Clases**: En algunos casos, asignar pesos inversamente proporcionales al tamaño de cada clase en la función de pérdida puede ser una estrategia complementaria para equilibrar la importancia de las clases en el modelo.
+-   **Pesos de las Clases**: En algunos casos, asignar pesos inversamente proporcionales al tamaño de cada clase en la función de pérdida puede ser una estrategia complementaria para equilibrar la importancia de las clases en el modelo.
 
 #### Callbacks
 
-- **Early Stopping**: Permite reducir los tiempos de entrenamiento al monitorear una métrica, y dado un parámetro de paciencia que indica cuantas Epoch esperar, detiene el entrenamiento si la mejora después de cumplida la paciencia no es lo suficientemente significativa para justificar seguir entrenando.
-- **Reduce Learning Rate on Plateu**: Ayuda a mantener la capacidad de mejora durante el entrenamiento, los cálculos del gradiente, que dependen de la tasa de aprendizaje pueden no ser capaces de llegar al mínimo de la función de pérdida, por lo que este callback reduce la tasa de entrenamiento si para una cantidad de Epochs dada, no ha habida una mejoría en los resultados, esto permite tener un aprendizaje con capacidad de mejoría a través de las Epochs.
+-   **Early Stopping**: Permite reducir los tiempos de entrenamiento al monitorear una métrica, y dado un parámetro de paciencia que indica cuantas Epoch esperar, detiene el entrenamiento si la mejora después de cumplida la paciencia no es lo suficientemente significativa para justificar seguir entrenando.
+-   **Reduce Learning Rate on Plateu**: Ayuda a mantener la capacidad de mejora durante el entrenamiento, los cálculos del gradiente, que dependen de la tasa de aprendizaje pueden no ser capaces de llegar al mínimo de la función de pérdida, por lo que este callback reduce la tasa de entrenamiento si para una cantidad de Epochs dada, no ha habida una mejoría en los resultados, esto permite tener un aprendizaje con capacidad de mejoría a través de las Epochs.
 
 #### Capas
 
 Las capas definidas en el modelo fueron las siguiente:
 
 ##### **1. Capa de Entrada**
-- **Input(shape=(X_train_bal.shape[1],))**:  
-  - Define el tamaño de la entrada, igual al número de características en el dataset balanceado $X_{train\_bal}$.  
-  - Es la capa inicial que recibe los datos de entrada para ser procesados por las siguientes capas.  
 
----
+-   **Input(shape=(X_train_bal.shape\[1\],))**:
+    -   Define el tamaño de la entrada, igual al número de características en el dataset balanceado $X_{train\_bal}$.\
+    -   Es la capa inicial que recibe los datos de entrada para ser procesados por las siguientes capas.
+
+------------------------------------------------------------------------
 
 ##### **2. Primera Capa Oculta**
-- **Dense(128, activation='relu', kernel_regularizer=l2(1e-4))**:  
-  - Contiene 128 neuronas con activación ReLU, que introduce no linealidades y permite al modelo aprender patrones complejos.  
-  - Utiliza un regularizador $L_2$ con un valor de $1 \times 10^{-4}$ para prevenir el sobreajuste al penalizar pesos grandes.  
-- **BatchNormalization()**:  
-  - Normaliza la salida de la capa densa para estabilizar el entrenamiento y acelerar la convergencia.  
-- **Dropout(0.2)**:  
-  - Desactiva aleatoriamente el 20% de las neuronas durante el entrenamiento para mejorar la generalización y reducir el riesgo de sobreajuste.  
 
----
+-   **Dense(128, activation='relu', kernel_regularizer=l2(1e-4))**:
+    -   Contiene 128 neuronas con activación ReLU, que introduce no linealidades y permite al modelo aprender patrones complejos.\
+    -   Utiliza un regularizador $L_2$ con un valor de $1 \times 10^{-4}$ para prevenir el sobreajuste al penalizar pesos grandes.\
+-   **BatchNormalization()**:
+    -   Normaliza la salida de la capa densa para estabilizar el entrenamiento y acelerar la convergencia.\
+-   **Dropout(0.2)**:
+    -   Desactiva aleatoriamente el 20% de las neuronas durante el entrenamiento para mejorar la generalización y reducir el riesgo de sobreajuste.
+
+------------------------------------------------------------------------
 
 ##### **3. Segunda Capa Oculta**
-- **Dense(64, activation='relu', kernel_regularizer=l2(1e-4))**:  
-  - Reduce el número de neuronas a 64 para aprender características más específicas.  
-  - Conserva el mismo esquema de regularización $L_2$ y activación ReLU.  
-- **BatchNormalization()**:  
-  - Asegura que las distribuciones de activaciones estén centradas durante el entrenamiento.  
-- **Dropout(0.2)**:  
-  - Mantiene el mismo porcentaje de desactivación que la capa anterior para seguir controlando el sobreajuste.  
 
----
+-   **Dense(64, activation='relu', kernel_regularizer=l2(1e-4))**:
+    -   Reduce el número de neuronas a 64 para aprender características más específicas.\
+    -   Conserva el mismo esquema de regularización $L_2$ y activación ReLU.\
+-   **BatchNormalization()**:
+    -   Asegura que las distribuciones de activaciones estén centradas durante el entrenamiento.\
+-   **Dropout(0.2)**:
+    -   Mantiene el mismo porcentaje de desactivación que la capa anterior para seguir controlando el sobreajuste.
+
+------------------------------------------------------------------------
 
 ##### **4. Tercera Capa Oculta**
-- **Dense(32, activation='relu', kernel_regularizer=l2(1e-4))**:  
-  - Reduce aún más el número de neuronas a 32, capturando características específicas de alto nivel.  
-  - Sigue utilizando activación ReLU y regularización $L_2$.  
-- **BatchNormalization()**:  
-  - Continua normalizando las activaciones para estabilizar el aprendizaje.  
-- **Dropout(0.2)**:  
-  - Permite que el modelo siga generalizando bien al reducir el riesgo de sobreajuste.  
 
----
+-   **Dense(32, activation='relu', kernel_regularizer=l2(1e-4))**:
+    -   Reduce aún más el número de neuronas a 32, capturando características específicas de alto nivel.\
+    -   Sigue utilizando activación ReLU y regularización $L_2$.\
+-   **BatchNormalization()**:
+    -   Continua normalizando las activaciones para estabilizar el aprendizaje.\
+-   **Dropout(0.2)**:
+    -   Permite que el modelo siga generalizando bien al reducir el riesgo de sobreajuste.
+
+------------------------------------------------------------------------
 
 ##### **5. Capa de Salida**
-- **Dense(num_classes, activation='softmax')**:  
-  - Contiene $num_{classes}$ neuronas, donde cada neurona representa una clase de la variable objetivo.  
-  - Usa la activación Softmax para calcular probabilidades de pertenencia para cada clase, asegurando que la suma de las probabilidades sea igual a 1.  
 
----
+-   **Dense(num_classes, activation='softmax')**:
+    -   Contiene $num_{classes}$ neuronas, donde cada neurona representa una clase de la variable objetivo.\
+    -   Usa la activación Softmax para calcular probabilidades de pertenencia para cada clase, asegurando que la suma de las probabilidades sea igual a 1.
+
+------------------------------------------------------------------------
 
 #### **Justificación del Diseño**
 
-1. **Regularización y Generalización**:  
-   - La regularización $L_2$ y Dropout en cada capa oculta ayudan a prevenir el sobreajuste, especialmente relevante dado el desbalance inicial del dataset.  
-
-2. **Normalización y Estabilidad**:  
-   - BatchNormalization estabiliza el aprendizaje al controlar las distribuciones de activaciones en cada capa, acelerando la convergencia.  
-
-3. **Arquitectura Progresiva**:  
-   - La reducción progresiva de neuronas en las capas ocultas (128 → 64 → 32) permite al modelo capturar primero características generales y luego refinarlas a características específicas.  
-
-4. **Capacidad para Multiclase**:  
-   - La capa de salida con Softmax asegura que el modelo sea adecuado para problemas de clasificación multiclase, produciendo distribuciones de probabilidad por clase.  
-
+1.  **Regularización y Generalización**:
+    -   La regularización $L_2$ y Dropout en cada capa oculta ayudan a prevenir el sobreajuste, especialmente relevante dado el desbalance inicial del dataset.
+2.  **Normalización y Estabilidad**:
+    -   BatchNormalization estabiliza el aprendizaje al controlar las distribuciones de activaciones en cada capa, acelerando la convergencia.
+3.  **Arquitectura Progresiva**:
+    -   La reducción progresiva de neuronas en las capas ocultas (128 → 64 → 32) permite al modelo capturar primero características generales y luego refinarlas a características específicas.
+4.  **Capacidad para Multiclase**:
+    -   La capa de salida con Softmax asegura que el modelo sea adecuado para problemas de clasificación multiclase, produciendo distribuciones de probabilidad por clase.
 
 ## Conclusiones y aprendizajes a partir del modelo
 
@@ -402,12 +402,14 @@ Las capas definidas en el modelo fueron las siguiente:
 #### **Matriz de confusión**
 
 ## Puesta en producción del modelo
+
 Debido a la naturaleza del proyecto, tareas como lo son la monitoría del modelo se dejan como futuras mejorías, nos centraremos específicamente en dos.
 
 ### Creación de la API
 
-### Despliegue del modelo
+Se utilizó el framework de FastAPI [@fastapi] para convertir el modelo una API que pudiera realizar predicciones pasandole la información de cada usuario. En el GitHub se encuentra el archivo con el código necesario para lograr este resultado.
 
+### Despliegue del modelo
 
 ## Caso de uso
 
