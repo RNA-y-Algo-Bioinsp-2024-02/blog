@@ -235,11 +235,9 @@ $$
 p_t = \hat{y}_c
 $$
 
-**Función de pérdida:**
+#### Tipos de redes neuronales artificiales
 
 Teniendo en cuenta las particularidades de la arquitectura de las redes neuronales artificiales, a continuación se detallan algunos tipos diferentes de modelos, clasificados según su diseño, así como sus correspondientes aplicaciones en diferentes campos de la academia y la industria.
-
-#### Tipos de redes neuronales artificiales
 
 -   **Redes neuronales artificiales perceptrón:** tienen la arquitectura más sencilla, compuesta por nodos con una única función de activación, suelen utilizarse para tareas de clasificación binaria.
 
@@ -333,56 +331,68 @@ Para abordar el desbalance de clases durante el entrenamiento, utilizaremos téc
 
 #### Capas
 
+Las capas definidas en el modelo fueron las siguiente:
+
 ##### **1. Capa de Entrada**
-- **Input(shape=(X_train_bal.shape[1],))**: 
-  - Define el tamaño de la entrada, igual al número de características en el dataset balanceado $X_{\text{train\_bal}}$.
-  - Es la capa inicial que recibe los datos de entrada para ser procesados por las siguientes capas.
+- **Input(shape=(X_train_bal.shape[1],))**:  
+  - Define el tamaño de la entrada, igual al número de características en el dataset balanceado $X_{train\_bal}$.  
+  - Es la capa inicial que recibe los datos de entrada para ser procesados por las siguientes capas.  
+
+---
 
 ##### **2. Primera Capa Oculta**
-- **Dense(128, activation='relu', kernel_regularizer=l2(1e-4))**:
-  - Contiene 128 neuronas con activación ReLU, que introduce no linealidades y permite al modelo aprender patrones complejos.
-  - Se usa un regularizador $L_2$ con un valor de $1 \times 10^{-4}$ para prevenir el sobreajuste al penalizar pesos grandes.
-- **BatchNormalization()**:
-  - Normaliza la salida de la capa densa para estabilizar el entrenamiento y acelerar la convergencia.
-- **Dropout(0.2)**:
-  - Desactiva aleatoriamente el 20% de las neuronas durante el entrenamiento para mejorar la generalización y reducir el riesgo de sobreajuste.
+- **Dense(128, activation='relu', kernel_regularizer=l2(1e-4))**:  
+  - Contiene 128 neuronas con activación ReLU, que introduce no linealidades y permite al modelo aprender patrones complejos.  
+  - Utiliza un regularizador $L_2$ con un valor de $1 \times 10^{-4}$ para prevenir el sobreajuste al penalizar pesos grandes.  
+- **BatchNormalization()**:  
+  - Normaliza la salida de la capa densa para estabilizar el entrenamiento y acelerar la convergencia.  
+- **Dropout(0.2)**:  
+  - Desactiva aleatoriamente el 20% de las neuronas durante el entrenamiento para mejorar la generalización y reducir el riesgo de sobreajuste.  
+
+---
 
 ##### **3. Segunda Capa Oculta**
-- **Dense(64, activation='relu', kernel_regularizer=l2(1e-4))**:
-  - Reduce el número de neuronas a 64 para aprender características más específicas.
-  - Conserva el mismo esquema de regularización $L_2$ y activación ReLU.
-- **BatchNormalization()**:
-  - Asegura que las distribuciones de activaciones estén centradas durante el entrenamiento.
-- **Dropout(0.2)**:
-  - Mantiene el mismo porcentaje de desactivación que la capa anterior para seguir controlando el sobreajuste.
+- **Dense(64, activation='relu', kernel_regularizer=l2(1e-4))**:  
+  - Reduce el número de neuronas a 64 para aprender características más específicas.  
+  - Conserva el mismo esquema de regularización $L_2$ y activación ReLU.  
+- **BatchNormalization()**:  
+  - Asegura que las distribuciones de activaciones estén centradas durante el entrenamiento.  
+- **Dropout(0.2)**:  
+  - Mantiene el mismo porcentaje de desactivación que la capa anterior para seguir controlando el sobreajuste.  
+
+---
 
 ##### **4. Tercera Capa Oculta**
-- **Dense(32, activation='relu', kernel_regularizer=l2(1e-4))**:
-  - Reduce aún más el número de neuronas a 32, capturando características específicas de alto nivel.
-  - Sigue utilizando activación ReLU y regularización $L_2$.
-- **BatchNormalization()**:
-  - Continua normalizando las activaciones para estabilizar el aprendizaje.
-- **Dropout(0.2)**:
-  - Permite que el modelo siga generalizando bien al reducir el riesgo de sobreajuste.
+- **Dense(32, activation='relu', kernel_regularizer=l2(1e-4))**:  
+  - Reduce aún más el número de neuronas a 32, capturando características específicas de alto nivel.  
+  - Sigue utilizando activación ReLU y regularización $L_2$.  
+- **BatchNormalization()**:  
+  - Continua normalizando las activaciones para estabilizar el aprendizaje.  
+- **Dropout(0.2)**:  
+  - Permite que el modelo siga generalizando bien al reducir el riesgo de sobreajuste.  
+
+---
 
 ##### **5. Capa de Salida**
-- **Dense(num_classes, activation='softmax')**:
-  - Contiene $num_{classes}$ neuronas, donde cada neurona representa una clase de la variable objetivo.
-  - Usa la activación Softmax para calcular probabilidades de pertenencia para cada clase, asegurando que la suma de las probabilidades sea igual a 1.
+- **Dense(num_classes, activation='softmax')**:  
+  - Contiene $num_{classes}$ neuronas, donde cada neurona representa una clase de la variable objetivo.  
+  - Usa la activación Softmax para calcular probabilidades de pertenencia para cada clase, asegurando que la suma de las probabilidades sea igual a 1.  
+
+---
 
 #### **Justificación del Diseño**
 
-1. **Regularización y Generalización**:
-   - La regularización $L_2$ y Dropout en cada capa oculta ayudan a prevenir el sobreajuste, especialmente relevante dado el desbalance inicial del dataset.
+1. **Regularización y Generalización**:  
+   - La regularización $L_2$ y Dropout en cada capa oculta ayudan a prevenir el sobreajuste, especialmente relevante dado el desbalance inicial del dataset.  
 
-2. **Normalización y Estabilidad**:
-   - BatchNormalization estabiliza el aprendizaje al controlar las distribuciones de activaciones en cada capa, acelerando la convergencia.
+2. **Normalización y Estabilidad**:  
+   - BatchNormalization estabiliza el aprendizaje al controlar las distribuciones de activaciones en cada capa, acelerando la convergencia.  
 
-3. **Arquitectura Progresiva**:
-   - La reducción progresiva de neuronas en las capas ocultas (128 → 64 → 32) permite al modelo capturar primero características generales y luego refinarlas a características específicas.
+3. **Arquitectura Progresiva**:  
+   - La reducción progresiva de neuronas en las capas ocultas (128 → 64 → 32) permite al modelo capturar primero características generales y luego refinarlas a características específicas.  
 
-4. **Capacidad para Multiclase**:
-   - La capa de salida con Softmax asegura que el modelo sea adecuado para problemas de clasificación multiclase, produciendo distribuciones de probabilidad por clase.
+4. **Capacidad para Multiclase**:  
+   - La capa de salida con Softmax asegura que el modelo sea adecuado para problemas de clasificación multiclase, produciendo distribuciones de probabilidad por clase.  
 
 
 ## Conclusiones y aprendizajes a partir del modelo

@@ -254,7 +254,12 @@ window.Quarto = {
   <li><a href="#diseño-y-arquitectura" id="toc-diseño-y-arquitectura" class="nav-link" data-scroll-target="#diseño-y-arquitectura"><span class="header-section-number">1.4.2</span> Diseño y Arquitectura</a></li>
   </ul></li>
   <li><a href="#conclusiones-y-aprendizajes-a-partir-del-modelo" id="toc-conclusiones-y-aprendizajes-a-partir-del-modelo" class="nav-link" data-scroll-target="#conclusiones-y-aprendizajes-a-partir-del-modelo"><span class="header-section-number">1.5</span> Conclusiones y aprendizajes a partir del modelo</a></li>
-  <li><a href="#caso-de-uso" id="toc-caso-de-uso" class="nav-link" data-scroll-target="#caso-de-uso"><span class="header-section-number">1.6</span> Caso de uso</a></li>
+  <li><a href="#puesta-en-producción-del-modelo" id="toc-puesta-en-producción-del-modelo" class="nav-link" data-scroll-target="#puesta-en-producción-del-modelo"><span class="header-section-number">1.6</span> Puesta en producción del modelo</a>
+  <ul class="collapse">
+  <li><a href="#creación-de-la-api" id="toc-creación-de-la-api" class="nav-link" data-scroll-target="#creación-de-la-api"><span class="header-section-number">1.6.1</span> Creación de la API</a></li>
+  <li><a href="#despliegue-del-modelo" id="toc-despliegue-del-modelo" class="nav-link" data-scroll-target="#despliegue-del-modelo"><span class="header-section-number">1.6.2</span> Despliegue del modelo</a></li>
+  </ul></li>
+  <li><a href="#caso-de-uso" id="toc-caso-de-uso" class="nav-link" data-scroll-target="#caso-de-uso"><span class="header-section-number">1.7</span> Caso de uso</a></li>
   </ul></li>
   <li><a href="#aplicación-web" id="toc-aplicación-web" class="nav-link" data-scroll-target="#aplicación-web"><span class="header-section-number">2</span> Aplicación web</a></li>
   <li><a href="#video-publicitario" id="toc-video-publicitario" class="nav-link" data-scroll-target="#video-publicitario"><span class="header-section-number">3</span> Video publicitario</a>
@@ -450,11 +455,10 @@ x &amp; \text{si } 0 &lt; x \leq 1 \\
 <p>Donde: <span class="math display">\[
 p_t = \hat{y}_c
 \]</span></p>
-<p><strong>Función de pérdida:</strong></p>
-<p>Teniendo en cuenta las particularidades de la arquitectura de las redes neuronales artificiales, a continuación se detallan algunos tipos diferentes de modelos, clasificados según su diseño, así como sus correspondientes aplicaciones en diferentes campos de la academia y la industria.</p>
 </section>
 <section id="tipos-de-redes-neuronales-artificiales" class="level4" data-number="1.3.2.3">
 <h4 data-number="1.3.2.3" class="anchored" data-anchor-id="tipos-de-redes-neuronales-artificiales"><span class="header-section-number">1.3.2.3</span> Tipos de redes neuronales artificiales</h4>
+<p>Teniendo en cuenta las particularidades de la arquitectura de las redes neuronales artificiales, a continuación se detallan algunos tipos diferentes de modelos, clasificados según su diseño, así como sus correspondientes aplicaciones en diferentes campos de la academia y la industria.</p>
 <ul>
 <li><p><strong>Redes neuronales artificiales perceptrón:</strong> tienen la arquitectura más sencilla, compuesta por nodos con una única función de activación, suelen utilizarse para tareas de clasificación binaria.</p></li>
 <li><p><strong>Redes neuronales artificiales multicapa:</strong> su arquitectura está conformada por capas de neuronas artificiales interconectadas y son utilizadas para tareas más complejas como toma de decisiones y clasificación multiclase.</p></li>
@@ -506,29 +510,159 @@ X' = \frac{X - \mu}{\sigma}
 \]</span></p>
 <p>donde:</p>
 <ul>
-<li>(X): Valor original.</li>
-<li>(): Media de los datos.</li>
-<li>(): Desviación estándar de los datos.</li>
+<li><span class="math inline">\(X\)</span>: Valor original.</li>
+<li><span class="math inline">\(u\)</span>: Media de los datos.</li>
+<li><span class="math inline">\(sigma\)</span>: Desviación estándar de los datos.</li>
 </ul>
 <p>Este método asegura que las características tengan una varianza de 1 y estén centradas en 0, permitiendo que funciones de activación como <strong>sigmoid</strong> y <strong>tanh</strong> operen eficientemente.</p>
 </section>
 <section id="balanceo-de-clases" class="level4" data-number="1.4.1.4">
 <h4 data-number="1.4.1.4" class="anchored" data-anchor-id="balanceo-de-clases"><span class="header-section-number">1.4.1.4</span> Balanceo de clases</h4>
+<p>El análisis descriptivo mostró que la variable respuesta del dataset está altamente desbalanceada, lo cual representa un reto significativo al crear el modelo. Un modelo entrenado en estas condiciones puede tender a predecir únicamente la clase mayoritaria, generando métricas como el <strong>accuracy</strong> con valores engañosamente altos, pero sin reflejar una verdadera capacidad predictiva. Para abordar este problema, utilizaremos las siguientes técnicas:</p>
+<ul>
+<li><strong>Sobremuestreo y Submuestreo</strong>: Esta estrategia combina el aumento de las clases minoritarias mediante sobremuestreo y la reducción de las clases mayoritarias mediante submuestreo. El objetivo es equilibrar la cantidad de datos entre las clases, incentivando al modelo a aprender las características de todas las clases y mejorando sus métricas al</li>
+<li>minimizar la función de pérdida.</li>
+</ul>
 </section>
 </section>
 <section id="diseño-y-arquitectura" class="level3" data-number="1.4.2">
 <h3 data-number="1.4.2" class="anchored" data-anchor-id="diseño-y-arquitectura"><span class="header-section-number">1.4.2</span> Diseño y Arquitectura</h3>
-<section id="pesos-de-las-clases" class="level4" data-number="1.4.2.1">
-<h4 data-number="1.4.2.1" class="anchored" data-anchor-id="pesos-de-las-clases"><span class="header-section-number">1.4.2.1</span> Pesos de las clases</h4>
+<section id="evaluación-del-modelo" class="level4" data-number="1.4.2.1">
+<h4 data-number="1.4.2.1" class="anchored" data-anchor-id="evaluación-del-modelo"><span class="header-section-number">1.4.2.1</span> Evaluación del modelo</h4>
+<p>Dado el desbalance de la variable objetivo, utilizaremos métricas diseñadas para proporcionar una evaluación más equitativa del modelo:</p>
+<ul>
+<li><strong>F1-Score Macro</strong>: A diferencia de métricas como el <strong>accuracy</strong>, que tienden a favorecer la clase mayoritaria en datasets desbalanceados, el <strong>F1-Score Macro</strong> asigna igual importancia a todas las clases, independientemente del número de muestras. Esto nos brinda una evaluación más realista del desempeño del modelo.</li>
+</ul>
 </section>
 <section id="función-de-pérdida" class="level4" data-number="1.4.2.2">
 <h4 data-number="1.4.2.2" class="anchored" data-anchor-id="función-de-pérdida"><span class="header-section-number">1.4.2.2</span> Función de pérdida</h4>
+<p>Para abordar el desbalance de clases durante el entrenamiento, utilizaremos técnicas como:</p>
+<ul>
+<li><p><strong>Focal Loss</strong>: Esta función de pérdida está diseñada específicamente para problemas de clasificación desbalanceados. Su objetivo es priorizar las clases minoritarias al reducir la importancia de las predicciones correctamente clasificadas para las clases mayoritarias. Esto ayuda al modelo a concentrarse más en aprender las características de las clases menos representadas.</p></li>
+<li><p><strong>Pesos de las Clases</strong>: En algunos casos, asignar pesos inversamente proporcionales al tamaño de cada clase en la función de pérdida puede ser una estrategia complementaria para equilibrar la importancia de las clases en el modelo.</p></li>
+</ul>
 </section>
 <section id="callbacks" class="level4" data-number="1.4.2.3">
 <h4 data-number="1.4.2.3" class="anchored" data-anchor-id="callbacks"><span class="header-section-number">1.4.2.3</span> Callbacks</h4>
+<ul>
+<li><strong>Early Stopping</strong>: Permite reducir los tiempos de entrenamiento al monitorear una métrica, y dado un parámetro de paciencia que indica cuantas Epoch esperar, detiene el entrenamiento si la mejora después de cumplida la paciencia no es lo suficientemente significativa para justificar seguir entrenando.</li>
+<li><strong>Reduce Learning Rate on Plateu</strong>: Ayuda a mantener la capacidad de mejora durante el entrenamiento, los cálculos del gradiente, que dependen de la tasa de aprendizaje pueden no ser capaces de llegar al mínimo de la función de pérdida, por lo que este callback reduce la tasa de entrenamiento si para una cantidad de Epochs dada, no ha habida una mejoría en los resultados, esto permite tener un aprendizaje con capacidad de mejoría a través de las Epochs.</li>
+</ul>
 </section>
 <section id="capas" class="level4" data-number="1.4.2.4">
 <h4 data-number="1.4.2.4" class="anchored" data-anchor-id="capas"><span class="header-section-number">1.4.2.4</span> Capas</h4>
+<p>Las capas definidas en el modelo fueron las siguiente:</p>
+<section id="capa-de-entrada" class="level5" data-number="1.4.2.4.1">
+<h5 data-number="1.4.2.4.1" class="anchored" data-anchor-id="capa-de-entrada"><span class="header-section-number">1.4.2.4.1</span> <strong>1. Capa de Entrada</strong></h5>
+<ul>
+<li><strong>Input(shape=(X_train_bal.shape[1],))</strong>:
+<ul>
+<li>Define el tamaño de la entrada, igual al número de características en el dataset balanceado <span class="math inline">\(X_{train\_bal}\)</span>.<br>
+</li>
+<li>Es la capa inicial que recibe los datos de entrada para ser procesados por las siguientes capas.</li>
+</ul></li>
+</ul>
+<hr>
+</section>
+<section id="primera-capa-oculta" class="level5" data-number="1.4.2.4.2">
+<h5 data-number="1.4.2.4.2" class="anchored" data-anchor-id="primera-capa-oculta"><span class="header-section-number">1.4.2.4.2</span> <strong>2. Primera Capa Oculta</strong></h5>
+<ul>
+<li><strong>Dense(128, activation=‘relu’, kernel_regularizer=l2(1e-4))</strong>:
+<ul>
+<li>Contiene 128 neuronas con activación ReLU, que introduce no linealidades y permite al modelo aprender patrones complejos.<br>
+</li>
+<li>Utiliza un regularizador <span class="math inline">\(L_2\)</span> con un valor de <span class="math inline">\(1 \times 10^{-4}\)</span> para prevenir el sobreajuste al penalizar pesos grandes.<br>
+</li>
+</ul></li>
+<li><strong>BatchNormalization()</strong>:
+<ul>
+<li>Normaliza la salida de la capa densa para estabilizar el entrenamiento y acelerar la convergencia.<br>
+</li>
+</ul></li>
+<li><strong>Dropout(0.2)</strong>:
+<ul>
+<li>Desactiva aleatoriamente el 20% de las neuronas durante el entrenamiento para mejorar la generalización y reducir el riesgo de sobreajuste.</li>
+</ul></li>
+</ul>
+<hr>
+</section>
+<section id="segunda-capa-oculta" class="level5" data-number="1.4.2.4.3">
+<h5 data-number="1.4.2.4.3" class="anchored" data-anchor-id="segunda-capa-oculta"><span class="header-section-number">1.4.2.4.3</span> <strong>3. Segunda Capa Oculta</strong></h5>
+<ul>
+<li><strong>Dense(64, activation=‘relu’, kernel_regularizer=l2(1e-4))</strong>:
+<ul>
+<li>Reduce el número de neuronas a 64 para aprender características más específicas.<br>
+</li>
+<li>Conserva el mismo esquema de regularización <span class="math inline">\(L_2\)</span> y activación ReLU.<br>
+</li>
+</ul></li>
+<li><strong>BatchNormalization()</strong>:
+<ul>
+<li>Asegura que las distribuciones de activaciones estén centradas durante el entrenamiento.<br>
+</li>
+</ul></li>
+<li><strong>Dropout(0.2)</strong>:
+<ul>
+<li>Mantiene el mismo porcentaje de desactivación que la capa anterior para seguir controlando el sobreajuste.</li>
+</ul></li>
+</ul>
+<hr>
+</section>
+<section id="tercera-capa-oculta" class="level5" data-number="1.4.2.4.4">
+<h5 data-number="1.4.2.4.4" class="anchored" data-anchor-id="tercera-capa-oculta"><span class="header-section-number">1.4.2.4.4</span> <strong>4. Tercera Capa Oculta</strong></h5>
+<ul>
+<li><strong>Dense(32, activation=‘relu’, kernel_regularizer=l2(1e-4))</strong>:
+<ul>
+<li>Reduce aún más el número de neuronas a 32, capturando características específicas de alto nivel.<br>
+</li>
+<li>Sigue utilizando activación ReLU y regularización <span class="math inline">\(L_2\)</span>.<br>
+</li>
+</ul></li>
+<li><strong>BatchNormalization()</strong>:
+<ul>
+<li>Continua normalizando las activaciones para estabilizar el aprendizaje.<br>
+</li>
+</ul></li>
+<li><strong>Dropout(0.2)</strong>:
+<ul>
+<li>Permite que el modelo siga generalizando bien al reducir el riesgo de sobreajuste.</li>
+</ul></li>
+</ul>
+<hr>
+</section>
+<section id="capa-de-salida" class="level5" data-number="1.4.2.4.5">
+<h5 data-number="1.4.2.4.5" class="anchored" data-anchor-id="capa-de-salida"><span class="header-section-number">1.4.2.4.5</span> <strong>5. Capa de Salida</strong></h5>
+<ul>
+<li><strong>Dense(num_classes, activation=‘softmax’)</strong>:
+<ul>
+<li>Contiene <span class="math inline">\(num_{classes}\)</span> neuronas, donde cada neurona representa una clase de la variable objetivo.<br>
+</li>
+<li>Usa la activación Softmax para calcular probabilidades de pertenencia para cada clase, asegurando que la suma de las probabilidades sea igual a 1.</li>
+</ul></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="justificación-del-diseño" class="level4" data-number="1.4.2.5">
+<h4 data-number="1.4.2.5" class="anchored" data-anchor-id="justificación-del-diseño"><span class="header-section-number">1.4.2.5</span> <strong>Justificación del Diseño</strong></h4>
+<ol type="1">
+<li><strong>Regularización y Generalización</strong>:
+<ul>
+<li>La regularización <span class="math inline">\(L_2\)</span> y Dropout en cada capa oculta ayudan a prevenir el sobreajuste, especialmente relevante dado el desbalance inicial del dataset.</li>
+</ul></li>
+<li><strong>Normalización y Estabilidad</strong>:
+<ul>
+<li>BatchNormalization estabiliza el aprendizaje al controlar las distribuciones de activaciones en cada capa, acelerando la convergencia.</li>
+</ul></li>
+<li><strong>Arquitectura Progresiva</strong>:
+<ul>
+<li>La reducción progresiva de neuronas en las capas ocultas (128 → 64 → 32) permite al modelo capturar primero características generales y luego refinarlas a características específicas.</li>
+</ul></li>
+<li><strong>Capacidad para Multiclase</strong>:
+<ul>
+<li>La capa de salida con Softmax asegura que el modelo sea adecuado para problemas de clasificación multiclase, produciendo distribuciones de probabilidad por clase.</li>
+</ul></li>
+</ol>
 </section>
 </section>
 </section>
@@ -536,11 +670,23 @@ X' = \frac{X - \mu}{\sigma}
 <h2 data-number="1.5" class="anchored" data-anchor-id="conclusiones-y-aprendizajes-a-partir-del-modelo"><span class="header-section-number">1.5</span> Conclusiones y aprendizajes a partir del modelo</h2>
 <section id="reporte-de-clasificación" class="level4" data-number="1.5.0.1">
 <h4 data-number="1.5.0.1" class="anchored" data-anchor-id="reporte-de-clasificación"><span class="header-section-number">1.5.0.1</span> <strong>Reporte de clasificación</strong></h4>
-<p><strong>Matriz de confusión</strong></p>
+</section>
+<section id="matriz-de-confusión" class="level4" data-number="1.5.0.2">
+<h4 data-number="1.5.0.2" class="anchored" data-anchor-id="matriz-de-confusión"><span class="header-section-number">1.5.0.2</span> <strong>Matriz de confusión</strong></h4>
 </section>
 </section>
-<section id="caso-de-uso" class="level2" data-number="1.6">
-<h2 data-number="1.6" class="anchored" data-anchor-id="caso-de-uso"><span class="header-section-number">1.6</span> Caso de uso</h2>
+<section id="puesta-en-producción-del-modelo" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="puesta-en-producción-del-modelo"><span class="header-section-number">1.6</span> Puesta en producción del modelo</h2>
+<p>Debido a la naturaleza del proyecto, tareas como lo son la monitoría del modelo se dejan como futuras mejorías, nos centraremos específicamente en dos.</p>
+<section id="creación-de-la-api" class="level3" data-number="1.6.1">
+<h3 data-number="1.6.1" class="anchored" data-anchor-id="creación-de-la-api"><span class="header-section-number">1.6.1</span> Creación de la API</h3>
+</section>
+<section id="despliegue-del-modelo" class="level3" data-number="1.6.2">
+<h3 data-number="1.6.2" class="anchored" data-anchor-id="despliegue-del-modelo"><span class="header-section-number">1.6.2</span> Despliegue del modelo</h3>
+</section>
+</section>
+<section id="caso-de-uso" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="caso-de-uso"><span class="header-section-number">1.7</span> Caso de uso</h2>
 </section>
 </section>
 <section id="aplicación-web" class="level1" data-number="2">
@@ -1441,99 +1587,189 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-235"><a href="#cb1-235" aria-hidden="true" tabindex="-1"></a>p_t = \hat{y}_c</span>
 <span id="cb1-236"><a href="#cb1-236" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-237"><a href="#cb1-237" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-238"><a href="#cb1-238" aria-hidden="true" tabindex="-1"></a>**Función de pérdida:**</span>
+<span id="cb1-238"><a href="#cb1-238" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Tipos de redes neuronales artificiales</span></span>
 <span id="cb1-239"><a href="#cb1-239" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-240"><a href="#cb1-240" aria-hidden="true" tabindex="-1"></a>Teniendo en cuenta las particularidades de la arquitectura de las redes neuronales artificiales, a continuación se detallan algunos tipos diferentes de modelos, clasificados según su diseño, así como sus correspondientes aplicaciones en diferentes campos de la academia y la industria.</span>
 <span id="cb1-241"><a href="#cb1-241" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-242"><a href="#cb1-242" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Tipos de redes neuronales artificiales</span></span>
+<span id="cb1-242"><a href="#cb1-242" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Redes neuronales artificiales perceptrón:** tienen la arquitectura más sencilla, compuesta por nodos con una única función de activación, suelen utilizarse para tareas de clasificación binaria.</span>
 <span id="cb1-243"><a href="#cb1-243" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-244"><a href="#cb1-244" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Redes neuronales artificiales perceptrón:** tienen la arquitectura más sencilla, compuesta por nodos con una única función de activación, suelen utilizarse para tareas de clasificación binaria.</span>
+<span id="cb1-244"><a href="#cb1-244" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Redes neuronales artificiales multicapa:** su arquitectura está conformada por capas de neuronas artificiales interconectadas y son utilizadas para tareas más complejas como toma de decisiones y clasificación multiclase.</span>
 <span id="cb1-245"><a href="#cb1-245" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-246"><a href="#cb1-246" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Redes neuronales artificiales multicapa:** su arquitectura está conformada por capas de neuronas artificiales interconectadas y son utilizadas para tareas más complejas como toma de decisiones y clasificación multiclase.</span>
+<span id="cb1-246"><a href="#cb1-246" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Redes neuronales artificiales convolucionales:** estas redes están especialmente diseñadas para realizar tareas relacionadas con el reconocimiento de imágenes, pues utilizan filtros convolucionales para identificar patrones y características especiales en cada pixel.</span>
 <span id="cb1-247"><a href="#cb1-247" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-248"><a href="#cb1-248" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Redes neuronales artificiales convolucionales:** estas redes están especialmente diseñadas para realizar tareas relacionadas con el reconocimiento de imágenes, pues utilizan filtros convolucionales para identificar patrones y características especiales en cada pixel.</span>
+<span id="cb1-248"><a href="#cb1-248" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Redes neuronales artificiales recurrentes:** suelen ser empleadas para tareas como reconocimiento de voz, traducción automática y generación de texto por su capacidad para procesar datos secuenciales, donde toda la información está relacionada entre sí y posee un contexto común para explicarse.</span>
 <span id="cb1-249"><a href="#cb1-249" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-250"><a href="#cb1-250" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Redes neuronales artificiales recurrentes:** suelen ser empleadas para tareas como reconocimiento de voz, traducción automática y generación de texto por su capacidad para procesar datos secuenciales, donde toda la información está relacionada entre sí y posee un contexto común para explicarse.</span>
+<span id="cb1-250"><a href="#cb1-250" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Aplicaciones de las redes neuronales artificiales</span></span>
 <span id="cb1-251"><a href="#cb1-251" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-252"><a href="#cb1-252" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Aplicaciones de las redes neuronales artificiales</span></span>
+<span id="cb1-252"><a href="#cb1-252" aria-hidden="true" tabindex="-1"></a>Algunas de las aplicaciones de las redes neuronales en la actualidad incluyen las siguientes:</span>
 <span id="cb1-253"><a href="#cb1-253" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-254"><a href="#cb1-254" aria-hidden="true" tabindex="-1"></a>Algunas de las aplicaciones de las redes neuronales en la actualidad incluyen las siguientes:</span>
-<span id="cb1-255"><a href="#cb1-255" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-256"><a href="#cb1-256" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Reconocimiento de imágenes:** las redes neuronales pueden ser utilizadas para identificar personas y objetos en imágenes y videos.</span>
-<span id="cb1-257"><a href="#cb1-257" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Procesamiento del lenguaje natural:** las redes neuronales pueden utilizarse en tareas de comprensión del lenguaje como la traducción automática, la generación de texto y el reconocimiento de voz.</span>
-<span id="cb1-258"><a href="#cb1-258" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Toma de decisiones:** las redes neuronales pueden ser herramientas de ayuda para la toma de decisiones en situaciones complejas tales como el análisis financiero, que es el caso del presente ejercicio y el diagnóstico médico, entre otras.</span>
-<span id="cb1-259"><a href="#cb1-259" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Sistemas de recomendación:** las redes neuronales pueden ser empleadas para generar recomendaciones personalizadas con base en las preferencias del usuario en diferentes plataformas de streaming, comercio electrónico y redes sociales. @profedigital</span>
+<span id="cb1-254"><a href="#cb1-254" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Reconocimiento de imágenes:** las redes neuronales pueden ser utilizadas para identificar personas y objetos en imágenes y videos.</span>
+<span id="cb1-255"><a href="#cb1-255" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Procesamiento del lenguaje natural:** las redes neuronales pueden utilizarse en tareas de comprensión del lenguaje como la traducción automática, la generación de texto y el reconocimiento de voz.</span>
+<span id="cb1-256"><a href="#cb1-256" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Toma de decisiones:** las redes neuronales pueden ser herramientas de ayuda para la toma de decisiones en situaciones complejas tales como el análisis financiero, que es el caso del presente ejercicio y el diagnóstico médico, entre otras.</span>
+<span id="cb1-257"><a href="#cb1-257" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Sistemas de recomendación:** las redes neuronales pueden ser empleadas para generar recomendaciones personalizadas con base en las preferencias del usuario en diferentes plataformas de streaming, comercio electrónico y redes sociales. @profedigital</span>
+<span id="cb1-258"><a href="#cb1-258" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-259"><a href="#cb1-259" aria-hidden="true" tabindex="-1"></a><span class="fu">## Construcción del Modelo de Aprendizaje Automático</span></span>
 <span id="cb1-260"><a href="#cb1-260" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-261"><a href="#cb1-261" aria-hidden="true" tabindex="-1"></a><span class="fu">## Construcción del Modelo de Aprendizaje Automático</span></span>
+<span id="cb1-261"><a href="#cb1-261" aria-hidden="true" tabindex="-1"></a><span class="fu">### Preprocesamiento</span></span>
 <span id="cb1-262"><a href="#cb1-262" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-263"><a href="#cb1-263" aria-hidden="true" tabindex="-1"></a><span class="fu">### Preprocesamiento</span></span>
+<span id="cb1-263"><a href="#cb1-263" aria-hidden="true" tabindex="-1"></a>Después de haber jugado con el dataset en la sección anterior para los análisis descriptivos y exploratorios, pasamos a realizar el pre procesamiento de los datos necesario para que la arquitectura de la red neuronal sea capaz de recibirlos y además ayudar a mejorar su rendimiento. Iniciamos dividiendo el conjunto de datos en entrenamiento, validación y test para evitar cualquier tipo de data leakage durante el preprocesamiento.</span>
 <span id="cb1-264"><a href="#cb1-264" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-265"><a href="#cb1-265" aria-hidden="true" tabindex="-1"></a>Después de haber jugado con el dataset en la sección anterior para los análisis descriptivos y exploratorios, pasamos a realizar el pre procesamiento de los datos necesario para que la arquitectura de la red neuronal sea capaz de recibirlos y además ayudar a mejorar su rendimiento. Iniciamos dividiendo el conjunto de datos en entrenamiento, validación y test para evitar cualquier tipo de data leakage durante el preprocesamiento.</span>
+<span id="cb1-265"><a href="#cb1-265" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Codificación de variables categóricas</span></span>
 <span id="cb1-266"><a href="#cb1-266" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-267"><a href="#cb1-267" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Codificación de variables categóricas</span></span>
+<span id="cb1-267"><a href="#cb1-267" aria-hidden="true" tabindex="-1"></a>Utilizamos tres estrategias para la clasificación de las variables categóricas según su naturaleza</span>
 <span id="cb1-268"><a href="#cb1-268" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-269"><a href="#cb1-269" aria-hidden="true" tabindex="-1"></a>Utilizamos tres estrategias para la clasificación de las variables categóricas según su naturaleza</span>
+<span id="cb1-269"><a href="#cb1-269" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Ordinal Encoder: Esta técnica se aplicó cuando las variables categóricas presentaban un orden natural. La codificación numérica asignada reflejaba este orden, asegurando que los valores fueran representativos de su jerarquía inherente.</span>
 <span id="cb1-270"><a href="#cb1-270" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-271"><a href="#cb1-271" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Ordinal Encoder: Esta técnica se aplicó cuando las variables categóricas presentaban un orden natural. La codificación numérica asignada reflejaba este orden, asegurando que los valores fueran representativos de su jerarquía inherente.</span>
+<span id="cb1-271"><a href="#cb1-271" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Label Encoder: Se empleó en variables categóricas binarias. Este enfoque evitó imponer un orden ficticio entre los valores, lo que podría generar sesgos al interpretar una relación inexistente entre las categorías.</span>
 <span id="cb1-272"><a href="#cb1-272" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-273"><a href="#cb1-273" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Label Encoder: Se empleó en variables categóricas binarias. Este enfoque evitó imponer un orden ficticio entre los valores, lo que podría generar sesgos al interpretar una relación inexistente entre las categorías.</span>
+<span id="cb1-273"><a href="#cb1-273" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>One Hot Encoding: Diseñada para variables categóricas sin un orden natural y con más de dos niveles. Cada categoría fue representada mediante un vector binario, donde un valor de 1 indica pertenencia a una categoría específica y e asigna 0 a las demás. Se prestó especial atención al número de niveles en cada variable. En casos con muchas categorías, esta técnica podría haber generado una matriz de alta dimensionalidad, aumentando los requerimientos computacionales y complicando el entrenamiento de la red neuronal. Para evitar estos problemas, se evaluó cuidadosamente la viabilidad de aplicar este método en cada caso.</span>
 <span id="cb1-274"><a href="#cb1-274" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-275"><a href="#cb1-275" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>One Hot Encoding: Diseñada para variables categóricas sin un orden natural y con más de dos niveles. Cada categoría fue representada mediante un vector binario, donde un valor de 1 indica pertenencia a una categoría específica y e asigna 0 a las demás. Se prestó especial atención al número de niveles en cada variable. En casos con muchas categorías, esta técnica podría haber generado una matriz de alta dimensionalidad, aumentando los requerimientos computacionales y complicando el entrenamiento de la red neuronal. Para evitar estos problemas, se evaluó cuidadosamente la viabilidad de aplicar este método en cada caso.</span>
+<span id="cb1-275"><a href="#cb1-275" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Imputación de datos faltantes</span></span>
 <span id="cb1-276"><a href="#cb1-276" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-277"><a href="#cb1-277" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Imputación de datos faltantes</span></span>
+<span id="cb1-277"><a href="#cb1-277" aria-hidden="true" tabindex="-1"></a>La técnica de imputación de datos faltantes elegidas fue Iterative Imputer para las variables numéricas debido a que muestra mejores capacidades en manejar relaciones complejas que otros métodos de imputación como lo son la media o similares, gracias a que considera todo el dataset de manera conjunta en lugar de una sola columna. Para el caso de variables catgóricas se utilizo la imputación mediante mediana.</span>
 <span id="cb1-278"><a href="#cb1-278" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-279"><a href="#cb1-279" aria-hidden="true" tabindex="-1"></a>La técnica de imputación de datos faltantes elegidas fue Iterative Imputer para las variables numéricas debido a que muestra mejores capacidades en manejar relaciones complejas que otros métodos de imputación como lo son la media o similares, gracias a que considera todo el dataset de manera conjunta en lugar de una sola columna. Para el caso de variables catgóricas se utilizo la imputación mediante mediana.</span>
+<span id="cb1-279"><a href="#cb1-279" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Estandarización</span></span>
 <span id="cb1-280"><a href="#cb1-280" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-281"><a href="#cb1-281" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Estandarización</span></span>
+<span id="cb1-281"><a href="#cb1-281" aria-hidden="true" tabindex="-1"></a>Utilizamos **StandardScaler** debido a que normaliza las características centrando su media en 0 y escalando según la desviación estándar, lo cual es crucial en redes neuronales para garantizar estabilidad numérica y mejorar la eficiencia del entrenamiento.</span>
 <span id="cb1-282"><a href="#cb1-282" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-283"><a href="#cb1-283" aria-hidden="true" tabindex="-1"></a>Utilizamos **StandardScaler** debido a que normaliza las características centrando su media en 0 y escalando según la desviación estándar, lo cual es crucial en redes neuronales para garantizar estabilidad numérica y mejorar la eficiencia del entrenamiento.</span>
+<span id="cb1-283"><a href="#cb1-283" aria-hidden="true" tabindex="-1"></a>Esto previene problemas como:</span>
 <span id="cb1-284"><a href="#cb1-284" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-285"><a href="#cb1-285" aria-hidden="true" tabindex="-1"></a>Esto previene problemas como:</span>
-<span id="cb1-286"><a href="#cb1-286" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-287"><a href="#cb1-287" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Gradiente explosivo**: Valores extremos en las entradas producen gradientes excesivamente grandes, causando desbordamientos numéricos y actualizaciones erráticas de pesos.</span>
-<span id="cb1-288"><a href="#cb1-288" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Gradiente desvaneciente**: Gradientes extremadamente pequeños ralentizan la convergencia, dificultando el aprendizaje efectivo.</span>
+<span id="cb1-285"><a href="#cb1-285" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Gradiente explosivo**: Valores extremos en las entradas producen gradientes excesivamente grandes, causando desbordamientos numéricos y actualizaciones erráticas de pesos.</span>
+<span id="cb1-286"><a href="#cb1-286" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Gradiente desvaneciente**: Gradientes extremadamente pequeños ralentizan la convergencia, dificultando el aprendizaje efectivo.</span>
+<span id="cb1-287"><a href="#cb1-287" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-288"><a href="#cb1-288" aria-hidden="true" tabindex="-1"></a>La fórmula utilizada por **StandardScaler** es:</span>
 <span id="cb1-289"><a href="#cb1-289" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-290"><a href="#cb1-290" aria-hidden="true" tabindex="-1"></a>La fórmula utilizada por **StandardScaler** es:</span>
-<span id="cb1-291"><a href="#cb1-291" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-290"><a href="#cb1-290" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-291"><a href="#cb1-291" aria-hidden="true" tabindex="-1"></a>X' = \frac{X - \mu}{\sigma}</span>
 <span id="cb1-292"><a href="#cb1-292" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-293"><a href="#cb1-293" aria-hidden="true" tabindex="-1"></a>X' = \frac{X - \mu}{\sigma}</span>
-<span id="cb1-294"><a href="#cb1-294" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-293"><a href="#cb1-293" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-294"><a href="#cb1-294" aria-hidden="true" tabindex="-1"></a>donde:</span>
 <span id="cb1-295"><a href="#cb1-295" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-296"><a href="#cb1-296" aria-hidden="true" tabindex="-1"></a>donde:</span>
-<span id="cb1-297"><a href="#cb1-297" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-298"><a href="#cb1-298" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="sc">\(</span>X<span class="sc">\)</span>: Valor original.</span>
-<span id="cb1-299"><a href="#cb1-299" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="sc">\(</span>\mu<span class="sc">\)</span>: Media de los datos.</span>
-<span id="cb1-300"><a href="#cb1-300" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="sc">\(</span>\sigma<span class="sc">\)</span>: Desviación estándar de los datos.</span>
+<span id="cb1-296"><a href="#cb1-296" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$X$: Valor original.</span>
+<span id="cb1-297"><a href="#cb1-297" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$u$: Media de los datos.</span>
+<span id="cb1-298"><a href="#cb1-298" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$sigma$: Desviación estándar de los datos.</span>
+<span id="cb1-299"><a href="#cb1-299" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-300"><a href="#cb1-300" aria-hidden="true" tabindex="-1"></a>Este método asegura que las características tengan una varianza de 1 y estén centradas en 0, permitiendo que funciones de activación como **sigmoid** y **tanh** operen eficientemente.</span>
 <span id="cb1-301"><a href="#cb1-301" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-302"><a href="#cb1-302" aria-hidden="true" tabindex="-1"></a>Este método asegura que las características tengan una varianza de 1 y estén centradas en 0, permitiendo que funciones de activación como **sigmoid** y **tanh** operen eficientemente.</span>
+<span id="cb1-302"><a href="#cb1-302" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Balanceo de clases</span></span>
 <span id="cb1-303"><a href="#cb1-303" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-304"><a href="#cb1-304" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Balanceo de clases</span></span>
-<span id="cb1-305"><a href="#cb1-305" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-306"><a href="#cb1-306" aria-hidden="true" tabindex="-1"></a><span class="fu">### Diseño y Arquitectura</span></span>
+<span id="cb1-304"><a href="#cb1-304" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-305"><a href="#cb1-305" aria-hidden="true" tabindex="-1"></a>El análisis descriptivo mostró que la variable respuesta del dataset está altamente desbalanceada, lo cual representa un reto significativo al crear el modelo. Un modelo entrenado en estas condiciones puede tender a predecir únicamente la clase mayoritaria, generando métricas como el **accuracy** con valores engañosamente altos, pero sin reflejar una </span>
+<span id="cb1-306"><a href="#cb1-306" aria-hidden="true" tabindex="-1"></a>verdadera capacidad predictiva. Para abordar este problema, utilizaremos las siguientes técnicas:</span>
 <span id="cb1-307"><a href="#cb1-307" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-308"><a href="#cb1-308" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Pesos de las clases</span></span>
-<span id="cb1-309"><a href="#cb1-309" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-310"><a href="#cb1-310" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Función de pérdida</span></span>
-<span id="cb1-311"><a href="#cb1-311" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-312"><a href="#cb1-312" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Callbacks</span></span>
-<span id="cb1-313"><a href="#cb1-313" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-314"><a href="#cb1-314" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Capas</span></span>
-<span id="cb1-315"><a href="#cb1-315" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-316"><a href="#cb1-316" aria-hidden="true" tabindex="-1"></a><span class="fu">## Conclusiones y aprendizajes a partir del modelo</span></span>
-<span id="cb1-317"><a href="#cb1-317" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-318"><a href="#cb1-318" aria-hidden="true" tabindex="-1"></a><span class="fu">#### **Reporte de clasificación**</span></span>
-<span id="cb1-319"><a href="#cb1-319" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-320"><a href="#cb1-320" aria-hidden="true" tabindex="-1"></a>**Matriz de confusión**</span>
-<span id="cb1-321"><a href="#cb1-321" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-322"><a href="#cb1-322" aria-hidden="true" tabindex="-1"></a><span class="fu">## Caso de uso</span></span>
-<span id="cb1-323"><a href="#cb1-323" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-324"><a href="#cb1-324" aria-hidden="true" tabindex="-1"></a><span class="fu"># Aplicación web</span></span>
-<span id="cb1-325"><a href="#cb1-325" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-326"><a href="#cb1-326" aria-hidden="true" tabindex="-1"></a><span class="fu"># Video publicitario</span></span>
-<span id="cb1-327"><a href="#cb1-327" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-328"><a href="#cb1-328" aria-hidden="true" tabindex="-1"></a><span class="fu">## Contribuciones individuales</span></span>
-<span id="cb1-329"><a href="#cb1-329" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-330"><a href="#cb1-330" aria-hidden="true" tabindex="-1"></a>Las contribuciones realizadas por cada uno de los integrantes del equipo en el desarrollo de los ejercicios correspondientes a **Modelos de riesgo de crédito con Redes Neuronales Artificiales** se muestran en el siguiente video.</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<span id="cb1-308"><a href="#cb1-308" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Sobremuestreo y Submuestreo**: Esta estrategia combina el aumento de las clases minoritarias mediante sobremuestreo y la reducción de las clases mayoritarias mediante submuestreo. El objetivo es equilibrar la cantidad de datos entre las clases, incentivando al modelo a aprender las características de todas las clases y mejorando sus métricas al </span>
+<span id="cb1-309"><a href="#cb1-309" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>minimizar la función de pérdida.</span>
+<span id="cb1-310"><a href="#cb1-310" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-311"><a href="#cb1-311" aria-hidden="true" tabindex="-1"></a><span class="fu">### Diseño y Arquitectura</span></span>
+<span id="cb1-312"><a href="#cb1-312" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-313"><a href="#cb1-313" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Evaluación del modelo</span></span>
+<span id="cb1-314"><a href="#cb1-314" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-315"><a href="#cb1-315" aria-hidden="true" tabindex="-1"></a>Dado el desbalance de la variable objetivo, utilizaremos métricas diseñadas para proporcionar una evaluación más equitativa del modelo:</span>
+<span id="cb1-316"><a href="#cb1-316" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-317"><a href="#cb1-317" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**F1-Score Macro**: A diferencia de métricas como el **accuracy**, que tienden a favorecer la clase mayoritaria en datasets desbalanceados, el **F1-Score Macro** asigna igual importancia a todas las clases, independientemente del número de muestras. Esto nos brinda una evaluación más realista del desempeño del modelo.</span>
+<span id="cb1-318"><a href="#cb1-318" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-319"><a href="#cb1-319" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Función de pérdida</span></span>
+<span id="cb1-320"><a href="#cb1-320" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-321"><a href="#cb1-321" aria-hidden="true" tabindex="-1"></a>Para abordar el desbalance de clases durante el entrenamiento, utilizaremos técnicas como:</span>
+<span id="cb1-322"><a href="#cb1-322" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-323"><a href="#cb1-323" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Focal Loss**: Esta función de pérdida está diseñada específicamente para problemas de clasificación desbalanceados. Su objetivo es priorizar las clases minoritarias al reducir la importancia de las predicciones correctamente clasificadas para las clases mayoritarias. Esto ayuda al modelo a concentrarse más en aprender las características de las clases menos representadas.</span>
+<span id="cb1-324"><a href="#cb1-324" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-325"><a href="#cb1-325" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Pesos de las Clases**: En algunos casos, asignar pesos inversamente proporcionales al tamaño de cada clase en la función de pérdida puede ser una estrategia complementaria para equilibrar la importancia de las clases en el modelo.</span>
+<span id="cb1-326"><a href="#cb1-326" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-327"><a href="#cb1-327" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Callbacks</span></span>
+<span id="cb1-328"><a href="#cb1-328" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-329"><a href="#cb1-329" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Early Stopping**: Permite reducir los tiempos de entrenamiento al monitorear una métrica, y dado un parámetro de paciencia que indica cuantas Epoch esperar, detiene el entrenamiento si la mejora después de cumplida la paciencia no es lo suficientemente significativa para justificar seguir entrenando.</span>
+<span id="cb1-330"><a href="#cb1-330" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Reduce Learning Rate on Plateu**: Ayuda a mantener la capacidad de mejora durante el entrenamiento, los cálculos del gradiente, que dependen de la tasa de aprendizaje pueden no ser capaces de llegar al mínimo de la función de pérdida, por lo que este callback reduce la tasa de entrenamiento si para una cantidad de Epochs dada, no ha habida una mejoría en los resultados, esto permite tener un aprendizaje con capacidad de mejoría a través de las Epochs.</span>
+<span id="cb1-331"><a href="#cb1-331" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-332"><a href="#cb1-332" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Capas</span></span>
+<span id="cb1-333"><a href="#cb1-333" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-334"><a href="#cb1-334" aria-hidden="true" tabindex="-1"></a>Las capas definidas en el modelo fueron las siguiente:</span>
+<span id="cb1-335"><a href="#cb1-335" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-336"><a href="#cb1-336" aria-hidden="true" tabindex="-1"></a><span class="fu">##### **1. Capa de Entrada**</span></span>
+<span id="cb1-337"><a href="#cb1-337" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Input(shape=(X_train_bal.shape[1],))**:  </span>
+<span id="cb1-338"><a href="#cb1-338" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Define el tamaño de la entrada, igual al número de características en el dataset balanceado $X_{train<span class="sc">\_</span>bal}$.  </span>
+<span id="cb1-339"><a href="#cb1-339" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Es la capa inicial que recibe los datos de entrada para ser procesados por las siguientes capas.  </span>
+<span id="cb1-340"><a href="#cb1-340" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-341"><a href="#cb1-341" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb1-342"><a href="#cb1-342" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-343"><a href="#cb1-343" aria-hidden="true" tabindex="-1"></a><span class="fu">##### **2. Primera Capa Oculta**</span></span>
+<span id="cb1-344"><a href="#cb1-344" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Dense(128, activation='relu', kernel_regularizer=l2(1e-4))**:  </span>
+<span id="cb1-345"><a href="#cb1-345" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Contiene 128 neuronas con activación ReLU, que introduce no linealidades y permite al modelo aprender patrones complejos.  </span>
+<span id="cb1-346"><a href="#cb1-346" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Utiliza un regularizador $L_2$ con un valor de $1 \times 10^{-4}$ para prevenir el sobreajuste al penalizar pesos grandes.  </span>
+<span id="cb1-347"><a href="#cb1-347" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**BatchNormalization()**:  </span>
+<span id="cb1-348"><a href="#cb1-348" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Normaliza la salida de la capa densa para estabilizar el entrenamiento y acelerar la convergencia.  </span>
+<span id="cb1-349"><a href="#cb1-349" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Dropout(0.2)**:  </span>
+<span id="cb1-350"><a href="#cb1-350" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Desactiva aleatoriamente el 20% de las neuronas durante el entrenamiento para mejorar la generalización y reducir el riesgo de sobreajuste.  </span>
+<span id="cb1-351"><a href="#cb1-351" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-352"><a href="#cb1-352" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb1-353"><a href="#cb1-353" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-354"><a href="#cb1-354" aria-hidden="true" tabindex="-1"></a><span class="fu">##### **3. Segunda Capa Oculta**</span></span>
+<span id="cb1-355"><a href="#cb1-355" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Dense(64, activation='relu', kernel_regularizer=l2(1e-4))**:  </span>
+<span id="cb1-356"><a href="#cb1-356" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Reduce el número de neuronas a 64 para aprender características más específicas.  </span>
+<span id="cb1-357"><a href="#cb1-357" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Conserva el mismo esquema de regularización $L_2$ y activación ReLU.  </span>
+<span id="cb1-358"><a href="#cb1-358" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**BatchNormalization()**:  </span>
+<span id="cb1-359"><a href="#cb1-359" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Asegura que las distribuciones de activaciones estén centradas durante el entrenamiento.  </span>
+<span id="cb1-360"><a href="#cb1-360" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Dropout(0.2)**:  </span>
+<span id="cb1-361"><a href="#cb1-361" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Mantiene el mismo porcentaje de desactivación que la capa anterior para seguir controlando el sobreajuste.  </span>
+<span id="cb1-362"><a href="#cb1-362" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-363"><a href="#cb1-363" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb1-364"><a href="#cb1-364" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-365"><a href="#cb1-365" aria-hidden="true" tabindex="-1"></a><span class="fu">##### **4. Tercera Capa Oculta**</span></span>
+<span id="cb1-366"><a href="#cb1-366" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Dense(32, activation='relu', kernel_regularizer=l2(1e-4))**:  </span>
+<span id="cb1-367"><a href="#cb1-367" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Reduce aún más el número de neuronas a 32, capturando características específicas de alto nivel.  </span>
+<span id="cb1-368"><a href="#cb1-368" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Sigue utilizando activación ReLU y regularización $L_2$.  </span>
+<span id="cb1-369"><a href="#cb1-369" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**BatchNormalization()**:  </span>
+<span id="cb1-370"><a href="#cb1-370" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Continua normalizando las activaciones para estabilizar el aprendizaje.  </span>
+<span id="cb1-371"><a href="#cb1-371" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Dropout(0.2)**:  </span>
+<span id="cb1-372"><a href="#cb1-372" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Permite que el modelo siga generalizando bien al reducir el riesgo de sobreajuste.  </span>
+<span id="cb1-373"><a href="#cb1-373" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-374"><a href="#cb1-374" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb1-375"><a href="#cb1-375" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-376"><a href="#cb1-376" aria-hidden="true" tabindex="-1"></a><span class="fu">##### **5. Capa de Salida**</span></span>
+<span id="cb1-377"><a href="#cb1-377" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Dense(num_classes, activation='softmax')**:  </span>
+<span id="cb1-378"><a href="#cb1-378" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Contiene $num_{classes}$ neuronas, donde cada neurona representa una clase de la variable objetivo.  </span>
+<span id="cb1-379"><a href="#cb1-379" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Usa la activación Softmax para calcular probabilidades de pertenencia para cada clase, asegurando que la suma de las probabilidades sea igual a 1.  </span>
+<span id="cb1-380"><a href="#cb1-380" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-381"><a href="#cb1-381" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb1-382"><a href="#cb1-382" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-383"><a href="#cb1-383" aria-hidden="true" tabindex="-1"></a><span class="fu">#### **Justificación del Diseño**</span></span>
+<span id="cb1-384"><a href="#cb1-384" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-385"><a href="#cb1-385" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Regularización y Generalización**:  </span>
+<span id="cb1-386"><a href="#cb1-386" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>La regularización $L_2$ y Dropout en cada capa oculta ayudan a prevenir el sobreajuste, especialmente relevante dado el desbalance inicial del dataset.  </span>
+<span id="cb1-387"><a href="#cb1-387" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-388"><a href="#cb1-388" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Normalización y Estabilidad**:  </span>
+<span id="cb1-389"><a href="#cb1-389" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>BatchNormalization estabiliza el aprendizaje al controlar las distribuciones de activaciones en cada capa, acelerando la convergencia.  </span>
+<span id="cb1-390"><a href="#cb1-390" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-391"><a href="#cb1-391" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Arquitectura Progresiva**:  </span>
+<span id="cb1-392"><a href="#cb1-392" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>La reducción progresiva de neuronas en las capas ocultas (128 → 64 → 32) permite al modelo capturar primero características generales y luego refinarlas a características específicas.  </span>
+<span id="cb1-393"><a href="#cb1-393" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-394"><a href="#cb1-394" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>**Capacidad para Multiclase**:  </span>
+<span id="cb1-395"><a href="#cb1-395" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>La capa de salida con Softmax asegura que el modelo sea adecuado para problemas de clasificación multiclase, produciendo distribuciones de probabilidad por clase.  </span>
+<span id="cb1-396"><a href="#cb1-396" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-397"><a href="#cb1-397" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-398"><a href="#cb1-398" aria-hidden="true" tabindex="-1"></a><span class="fu">## Conclusiones y aprendizajes a partir del modelo</span></span>
+<span id="cb1-399"><a href="#cb1-399" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-400"><a href="#cb1-400" aria-hidden="true" tabindex="-1"></a><span class="fu">#### **Reporte de clasificación**</span></span>
+<span id="cb1-401"><a href="#cb1-401" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-402"><a href="#cb1-402" aria-hidden="true" tabindex="-1"></a><span class="fu">#### **Matriz de confusión**</span></span>
+<span id="cb1-403"><a href="#cb1-403" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-404"><a href="#cb1-404" aria-hidden="true" tabindex="-1"></a><span class="fu">## Puesta en producción del modelo</span></span>
+<span id="cb1-405"><a href="#cb1-405" aria-hidden="true" tabindex="-1"></a>Debido a la naturaleza del proyecto, tareas como lo son la monitoría del modelo se dejan como futuras mejorías, nos centraremos específicamente en dos.</span>
+<span id="cb1-406"><a href="#cb1-406" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-407"><a href="#cb1-407" aria-hidden="true" tabindex="-1"></a><span class="fu">### Creación de la API</span></span>
+<span id="cb1-408"><a href="#cb1-408" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-409"><a href="#cb1-409" aria-hidden="true" tabindex="-1"></a><span class="fu">### Despliegue del modelo</span></span>
+<span id="cb1-410"><a href="#cb1-410" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-411"><a href="#cb1-411" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-412"><a href="#cb1-412" aria-hidden="true" tabindex="-1"></a><span class="fu">## Caso de uso</span></span>
+<span id="cb1-413"><a href="#cb1-413" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-414"><a href="#cb1-414" aria-hidden="true" tabindex="-1"></a><span class="fu"># Aplicación web</span></span>
+<span id="cb1-415"><a href="#cb1-415" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-416"><a href="#cb1-416" aria-hidden="true" tabindex="-1"></a><span class="fu"># Video publicitario</span></span>
+<span id="cb1-417"><a href="#cb1-417" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-418"><a href="#cb1-418" aria-hidden="true" tabindex="-1"></a><span class="fu">## Contribuciones individuales</span></span>
+<span id="cb1-419"><a href="#cb1-419" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-420"><a href="#cb1-420" aria-hidden="true" tabindex="-1"></a>Las contribuciones realizadas por cada uno de los integrantes del equipo en el desarrollo de los ejercicios correspondientes a **Modelos de riesgo de crédito con Redes Neuronales Artificiales** se muestran en el siguiente video.</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 
