@@ -256,6 +256,10 @@ Algunas de las aplicaciones de las redes neuronales en la actualidad incluyen la
 
 ## Construcción del Modelo de Aprendizaje Automático
 
+::: figure
+{{< video video.mp4 >}} La conexión entre las diferentes neuronas permite aprendizaje de patrones complejos. Tomado de Sora OpenAI
+:::
+
 ### Preprocesamiento
 
 Después de haber jugado con el dataset en la sección anterior para los análisis descriptivos y exploratorios, pasamos a realizar el pre procesamiento de los datos necesario para que la arquitectura de la red neuronal sea capaz de recibirlos y además ayudar a mejorar su rendimiento. Iniciamos dividiendo el conjunto de datos en entrenamiento, validación y test para evitar cualquier tipo de data leakage durante el preprocesamiento.
@@ -270,7 +274,7 @@ Utilizamos tres estrategias para la clasificación de las variables categóricas
 
 3.  One Hot Encoding: Diseñada para variables categóricas sin un orden natural y con más de dos niveles. Cada categoría fue representada mediante un vector binario, donde un valor de 1 indica pertenencia a una categoría específica y e asigna 0 a las demás. Se prestó especial atención al número de niveles en cada variable. En casos con muchas categorías, esta técnica podría haber generado una matriz de alta dimensionalidad, aumentando los requerimientos computacionales y complicando el entrenamiento de la red neuronal. Para evitar estos problemas, se evaluó cuidadosamente la viabilidad de aplicar este método en cada caso.
 
-#### Imputación de datos faltantes
+#### Selección de características
 
 La técnica de imputación de datos faltantes elegidas fue Iterative Imputer para las variables numéricas debido a que muestra mejores capacidades en manejar relaciones complejas que otros métodos de imputación como lo son la media o similares, gracias a que considera todo el dataset de manera conjunta en lugar de una sola columna. Para el caso de variables catgóricas se utilizo la imputación mediante mediana.
 
@@ -332,74 +336,62 @@ Para abordar el desbalance de clases durante el entrenamiento, utilizaremos téc
 
 Las capas definidas en el modelo fueron las siguiente:
 
-##### **1. Capa de Entrada**
+1.  Capa de entrada
 
--   **Input(shape=(X_train_bal.shape\[1\],))**:
-    -   Define el tamaño de la entrada, igual al número de características en el dataset balanceado $X_{train\_bal}$.\
-    -   Es la capa inicial que recibe los datos de entrada para ser procesados por las siguientes capas.
+    Define el tamaño de entrada , el cual corresponde al numero de características con el dataset ya balanceado, para recibir los datos que serán procesados en las siguientes capas.
 
-------------------------------------------------------------------------
+2.  Primera Capa Oculta
 
-##### **2. Primera Capa Oculta**
+    Esta capa contiene 128 neuronas con una activación ReLU, que introduce no linealidades y permite que el modelo aprenda patrones complejos. Se utiliza la regularización $L_2$ con un valor de $1 \times 10^{-4}$ para evitar el sobreajuste, penalizando pesos grandes. Se utiliza BatchNormalization() para mantener un entrenamiento estable. Se sigue utilizando un valor de desactivación del 20% para reducir la posibilidad de sobreajuste mediante Dropout().
 
--   **Dense(128, activation='relu', kernel_regularizer=l2(1e-4))**:
-    -   Contiene 128 neuronas con activación ReLU, que introduce no linealidades y permite al modelo aprender patrones complejos.\
-    -   Utiliza un regularizador $L_2$ con un valor de $1 \times 10^{-4}$ para prevenir el sobreajuste al penalizar pesos grandes.\
--   **BatchNormalization()**:
-    -   Normaliza la salida de la capa densa para estabilizar el entrenamiento y acelerar la convergencia.\
--   **Dropout(0.2)**:
-    -   Desactiva aleatoriamente el 20% de las neuronas durante el entrenamiento para mejorar la generalización y reducir el riesgo de sobreajuste.
+3.  Segunda Capa Oculta
 
-------------------------------------------------------------------------
+    La cantidad de neuronas se reduce a 64, permitiendo que el modelo capture características más detalladas y específicas. Se mantiene la normalización y el dropout con los mismos parámetros de la capa anterior.
 
-##### **3. Segunda Capa Oculta**
+4.  Tercera Capa Oculta
 
--   **Dense(64, activation='relu', kernel_regularizer=l2(1e-4))**:
-    -   Reduce el número de neuronas a 64 para aprender características más específicas.\
-    -   Conserva el mismo esquema de regularización $L_2$ y activación ReLU.\
--   **BatchNormalization()**:
-    -   Asegura que las distribuciones de activaciones estén centradas durante el entrenamiento.\
--   **Dropout(0.2)**:
-    -   Mantiene el mismo porcentaje de desactivación que la capa anterior para seguir controlando el sobreajuste.
+    La cantidad de neuronas se reduce a 64, permitiendo que el modelo capture características más detalladas y específicas. Se mantiene la normalización y el dropout con los mismos parámetros de la primera capa oculta.
 
-------------------------------------------------------------------------
+5.  Capa de Salida
 
-##### **4. Tercera Capa Oculta**
-
--   **Dense(32, activation='relu', kernel_regularizer=l2(1e-4))**:
-    -   Reduce aún más el número de neuronas a 32, capturando características específicas de alto nivel.\
-    -   Sigue utilizando activación ReLU y regularización $L_2$.\
--   **BatchNormalization()**:
-    -   Continua normalizando las activaciones para estabilizar el aprendizaje.\
--   **Dropout(0.2)**:
-    -   Permite que el modelo siga generalizando bien al reducir el riesgo de sobreajuste.
-
-------------------------------------------------------------------------
-
-##### **5. Capa de Salida**
-
--   **Dense(num_classes, activation='softmax')**:
-    -   Contiene $num_{classes}$ neuronas, donde cada neurona representa una clase de la variable objetivo.\
-    -   Usa la activación Softmax para calcular probabilidades de pertenencia para cada clase, asegurando que la suma de las probabilidades sea igual a 1.
-
-------------------------------------------------------------------------
-
-#### **Justificación del Diseño**
-
-1.  **Regularización y Generalización**:
-    -   La regularización $L_2$ y Dropout en cada capa oculta ayudan a prevenir el sobreajuste, especialmente relevante dado el desbalance inicial del dataset.
-2.  **Normalización y Estabilidad**:
-    -   BatchNormalization estabiliza el aprendizaje al controlar las distribuciones de activaciones en cada capa, acelerando la convergencia.
-3.  **Arquitectura Progresiva**:
-    -   La reducción progresiva de neuronas en las capas ocultas (128 → 64 → 32) permite al modelo capturar primero características generales y luego refinarlas a características específicas.
-4.  **Capacidad para Multiclase**:
-    -   La capa de salida con Softmax asegura que el modelo sea adecuado para problemas de clasificación multiclase, produciendo distribuciones de probabilidad por clase.
+    Esta capa tiene una neurona por cada clase del problema de clasificación multiclase. La activación Softmax convierte las salidas en probabilidades, asegurando que la suma de las probabilidades sea igual a 1, lo que es esencial para clasificación multiclase.
 
 ## Conclusiones y aprendizajes a partir del modelo
 
+Los resultados que se mostrarán a continuación muestran que el desarrollo del modelo fue un problema retador, tanto por el alto volumen de datos, como por el desbalanceo de las clases, par de factores que al juntarse dificultan el problema, sin embargo, fue posible darle un tratamiento correcto para obtener una buena solución al problema.
+
+#### Evolución de las métricas
+
+Se evidencia como la función de pérdida va disminuyendo a lo largo de los epochs, con lo cual vamos obteniendo un accuracy mucho más alto.
+
+![Evolución de las métricas obtenidas por el modelo a través de los Epochs](metricas.png)
+
+Finalmente se ha de observar que en el entrenamiento los resultados son muy estables mostrando una convergencia, mientras que en la validación tiende a fluctuar, pero mostrando buenos resultados a pesar de las flucutaciones, ya que ninguna es extrema.
+
 #### **Reporte de clasificación**
 
+A continuación se muestra una visión mucho más clara de los resultados obtenidos por el modelo para el conjunto de test, ya que en los problemas multiclase ver solo la métrica global calculada por el modelo puede llegar a ser engañoso. Aquí se evidencia como la clase que presenta más dificultades para el modelo fue la clase Default.
+
+| **Clase**        | **Precision** | **Recall** | **F1-score** | **Support** |
+|------------------|---------------|------------|--------------|-------------|
+| **Charged Off**  | 0.3007        | 0.6792     | 0.4168       | 9158        |
+| **Current**      | 0.9734        | 0.5820     | 0.7284       | 120122      |
+| **Default**      | 0.0575        | 0.6568     | 0.1057       | 4382        |
+| **Fully Paid**   | 0.9924        | 0.7341     | 0.8439       | 42111       |
+| **Issued**       | 0.4544        | 0.9988     | 0.6247       | 1703        |
+| **Accuracy**     | \-            | \-         | 0.6289       | 177476      |
+| **Macro avg**    | 0.5557        | 0.7302     | 0.5439       | 177476      |
+| **Weighted avg** | 0.9156        | 0.6289     | 0.7234       | 177476      |
+
+**F1-score macro: 0.5439**
+
+**Recall macro: 0.7302**
+
 #### **Matriz de confusión**
+
+Aquí se observan cuantos datos de cada clase fueron clasificados correctamente en la diagonal principal de la matriz de confusión. Se observan las dificultades que tuvo el modelo, pero también su claridad para predecir algunas de las clases en el problema.
+
+![Matriz de confusión obtenida al evaluar el conjunto de test en el modelo](matriz_de_confusion.png)
 
 ## Puesta en producción del modelo
 
