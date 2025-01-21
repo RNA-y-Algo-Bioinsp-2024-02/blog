@@ -60,82 +60,6 @@ A continuación se da inicio al desarrollo de la actividad, la cual será comple
 
 ## Planteamiento y evaluación de modelos
 
-### Modelo de baja complejidad
-
-La regresión logística es un algoritmo que a pesar de tener la palabra regresión en su nombre, esta pensado para la clasificación binaria, es posible además extender para problemas multiclase a través de la regresión logística multinomial. La salida que se obtiene de este algoritmo es un número entre 0 y 1 que representa la probabilidad de pertenecer a una clase, la suma de la probabilidad de todas las clases debe dar 1, y la clase con la mayor probabilidad es aquella donde la observación será clasificada.
-
-Las probabilidades son calculadas de la siguiente manera:
-
-$$
-P(y = c \mid X) = \frac{e^{\beta_{c0} + \beta_{c1}X_1 + \dots + \beta_{cn}X_n}}{\sum_{k=1}^{C} e^{\beta_{k0} + \beta_{k1}X_1 + \dots + \beta_{kn}X_n}}  \tag{1}
-$$
-
-La expresión anterior es además posible de simplificar para introducir la función softmax la cual también será usada en la sección de redes neuronales, para ello escribimos la combinación lineal de las variables $X$ de la siguiente manera:
-
-$$
-z_c = \beta_{c0} + \beta_{c1}X_1 + \dots + \beta_{cn}X_n  \tag{2}
-$$
-
-Con lo cual la ecuación 1 queda de la siguiente manera:
-
-$$
-P(y = c \mid X)=\frac{e^{z_c}}{\sum_{k=1}^{C} e^{z_k}} \tag{3}
-$$
-
-La clase a la que pertenecerá la observación según el modelo de regresión logística multinomial esta dado por:
-
-$$
-\hat{y} = \arg\max_c \, P(y = c \mid X) \tag{4}
-$$
-
-A diferencia de otros algoritmos de aprendizaje automático, no cuenta con la misma cantidad de hiperparámetros que algoritmos como Random Forest o Support Vector Machines. La librería de Scikit-Learn permite ajustar el método y la fuerza de la regularización.
-
-*Tipos de regularización*
-
--   **L1 (Lasso)**: Penaliza la suma de los valores absolutos de los coeficientes:
-
-    $$
-    \|\beta\|_1 = \sum_{i=1}^n |\beta_i| \tag{5}
-    $$
-
-    Esto lleva algunos coeficientes a cero, permitiendo la selección de características.
-
--   **L2 (Ridge)**: Penaliza la suma de los cuadrados de los coeficientes:
-
-    $$
-    \|\beta\|_2^2 = \sum_{i=1}^n \beta_i^2 \tag{6}
-    $$
-
-    Esto evita que los coeficientes crezcan demasiado grandes, ayudando a reducir el sobreajuste.
-
-*Fuerza de la regularización*
-
-Controla la fuerza de la regularización de forma inversamente proporcional
-
-$$
-C = \frac{1}{\lambda} \tag{7}
-$$
-
--   Un valor grande de $C$ implica **menos regularización** (modelo más flexible).
-
--   Un valor pequeño de $C$ implica **más regularización** (modelo más restringido).
-
-**Ventajas**
-
-El modelo de regresión logístico presenta las siguientes ventajas:
-
-1.  Interpretabilidad: Los coeficientes $\beta$ permiten una interpretación clara del impacto de cada variable sobre la probabilidad de pertenecer a una clase en específico.
-
-2.  Fácil implementación: No requiere ajustes avanzados para su implementación.
-
-3.  Grados de certeza: Debido a que proporciona las probabilidades de pertenecer a cada clase, permite evaluar el grado de certeza sobre la pertenencia del dato a cada una de ellas.
-
-**Desventajas**
-
-1.  Relaciones no lineales: La regresión logística esta pensada para relaciones lineales, por lo que si se buscan modelar relaciones no lineales requiere la introducción de términos polinómicos.
-
-2.   Independencia de alternativas irrelevantes: El modelo asume que la relación entre dos clases no cambia si se introduce una nueva clase, lo que no siempre es realista.
-
 ### Modelo de Redes Neuronales Artificiales
 
 Las redes neuronales artificiales son modelos computacionales agrupados dentro del *machine learning*, con los cuales se busca simular el comportamiento del cerebro humano, de acuerdo con @unirrna2021 y @ibmrna2025. Su funcionamiento imita el procedimiento con el que trabajan en conjunto las neuronas biológicas para aprender de la información que reciben desde el exterior o por parte de otras neuronas.
@@ -305,7 +229,16 @@ Este método asegura que las características tengan una varianza de 1 y estén 
 
 El análisis descriptivo mostró que la variable respuesta del dataset está altamente desbalanceada, lo cual representa un reto significativo al crear el modelo. Un modelo entrenado en estas condiciones puede tender a predecir únicamente la clase mayoritaria, generando métricas como el **accuracy** con valores engañosamente altos, pero sin reflejar una verdadera capacidad predictiva. Para abordar este problema, utilizaremos las siguientes técnicas:
 
--   **Sobremuestreo y Submuestreo**: Esta estrategia combina el aumento de las clases minoritarias mediante sobremuestreo y la reducción de las clases mayoritarias mediante submuestreo. El objetivo es equilibrar la cantidad de datos entre las clases, incentivando al modelo a aprender las características de todas las clases y mejorando sus métricas al minimizar la función de pérdida. Esto fue utilizado para el modelo con todas las clases.
+-   **Sobremuestreo y Submuestreo**: Esta estrategia combina el aumento de las clases minoritarias mediante sobremuestreo y la reducción de las clases mayoritarias mediante submuestreo. El objetivo es equilibrar la cantidad de datos entre las clases, incentivando al modelo a aprender las características de todas las clases y mejorando sus métricas al minimizar la función de pérdida. Esto fue utilizado para todas las clases en el entrenamiento y el valor final para cada clase fue el siguiente:
+    -   Current: 150.000
+
+    -   Fully Paid: 125.700
+
+    -   Charged Off: 50.000
+
+    -   Default: 50.000
+
+    -   Issued: 50.000
 
 ![Ilustración del funcionamiento de las técnicas de sobremuestreo y submuestreo. Tomado de (https://www.datasciencecentral.com/handling-imbalanced-data-sets-in-supervised-learning-using-family/)](muestreo.png)
 
@@ -313,13 +246,55 @@ El análisis descriptivo mostró que la variable respuesta del dataset está alt
 
 ### Diseño y Arquitectura
 
-#### Evaluación del modelo
+Todo lo descrito a continuación fue implementado mediante Tensorflow.
+
+#### Modelo simple
+
+##### Evaluación del modelo
+
+Utilizaremos la métrica más simple posible, que es la que toma Tensorflow por defecto, el accuracy.
+
+**Función de pérdida**
+
+La función de pérdida a elegir, es sparse categorical cross entropy, la cual esta pensada para problemas de clasificación multiclase donde la variable esta codificada mediante Ordinal o Label Encoder, no mediante One Hot Encoding (para este caso usar sparse cross entropy)
+
+##### Capas
+
+1.  Capa de entrada La capa de entrada está definida para recibir un número de características igual a la dimensión de los datos en el conjunto balanceado.
+
+2.  Primera Capa Oculta
+
+    Contiene 32 neuronas con activación ReLU, lo que permite que el modelo aprenda patrones no lineales en los datos. Además se agrego regularización $L_2$ para evitar el sobreajuste, y un dropout del 20% para reducir la posibilidad de sobreajuste.
+
+3.  Capa de Salida
+
+    La capa de salida contiene tantas neuronas como clases en el problema, se utiliza la función de activación softmax para convertir las salidas en probabilidades.
+
+##### Resultados del modelo de baja complejidad
+
+**Evolución de las métricas**
+
+![Evolución de las métricas a través de los epochs.](metricas_baja.png)
+
+Podemos ver como el modelo tiene durante el entrenamiento una función de pérdida muy alta, y un accuracy que en vez de incrementar va disminuyendo y empieza muy alto (más adelante profundizaremos en los motivos por los que pasa esto)
+
+**Reporte de clasificación**
+
+**Matriz de confusión**
+
+![Matriz de confusón del modelo de baja complejidad.](matriz_de_confusion_baja.png)
+
+Podemos ver dificultades para predecir clases como Fully Paid. Predice bien clases como Charged Off y Current.
+
+#### Modelo con mayor complejidad
+
+##### Evaluación del modelo
 
 Dado el desbalance de la variable objetivo, utilizaremos métricas diseñadas para proporcionar una evaluación más equitativa del modelo:
 
 -   **F1-Score Macro**: A diferencia de métricas como el **accuracy**, que tienden a favorecer la clase mayoritaria en datasets desbalanceados, el **F1-Score Macro** asigna igual importancia a todas las clases, independientemente del número de muestras. Esto nos brinda una evaluación más realista del desempeño del modelo.
 
-#### Función de pérdida
+##### Función de pérdida
 
 Para abordar el desbalance de clases durante el entrenamiento, utilizaremos técnicas como:
 
@@ -327,12 +302,12 @@ Para abordar el desbalance de clases durante el entrenamiento, utilizaremos téc
 
 -   **Pesos de las Clases**: En algunos casos, asignar pesos inversamente proporcionales al tamaño de cada clase en la función de pérdida puede ser una estrategia complementaria para equilibrar la importancia de las clases en el modelo.
 
-#### Callbacks
+##### Callbacks
 
 -   **Early Stopping**: Permite reducir los tiempos de entrenamiento al monitorear una métrica, y dado un parámetro de paciencia que indica cuantas Epoch esperar, detiene el entrenamiento si la mejora después de cumplida la paciencia no es lo suficientemente significativa para justificar seguir entrenando.
 -   **Reduce Learning Rate on Plateu**: Ayuda a mantener la capacidad de mejora durante el entrenamiento, los cálculos del gradiente, que dependen de la tasa de aprendizaje pueden no ser capaces de llegar al mínimo de la función de pérdida, por lo que este callback reduce la tasa de entrenamiento si para una cantidad de Epochs dada, no ha habida una mejoría en los resultados, esto permite tener un aprendizaje con capacidad de mejoría a través de las Epochs.
 
-#### Capas
+##### Capas
 
 Las capas definidas en el modelo fueron las siguiente:
 
@@ -356,11 +331,9 @@ Las capas definidas en el modelo fueron las siguiente:
 
     Esta capa tiene una neurona por cada clase del problema de clasificación multiclase. La activación Softmax convierte las salidas en probabilidades, asegurando que la suma de las probabilidades sea igual a 1, lo que es esencial para clasificación multiclase.
 
-## Conclusiones y aprendizajes a partir del modelo
+##### Resultados del modelo
 
-Los resultados que se mostrarán a continuación muestran que el desarrollo del modelo fue un problema retador, tanto por el alto volumen de datos, como por el desbalanceo de las clases, par de factores que al juntarse dificultan el problema, sin embargo, fue posible darle un tratamiento correcto para obtener una buena solución al problema.
-
-#### Evolución de las métricas
+**Evolución de las métricas**
 
 Se evidencia como la función de pérdida va disminuyendo a lo largo de los epochs, con lo cual vamos obteniendo un accuracy mucho más alto.
 
@@ -372,26 +345,89 @@ Finalmente se ha de observar que en el entrenamiento los resultados son muy esta
 
 A continuación se muestra una visión mucho más clara de los resultados obtenidos por el modelo para el conjunto de test, ya que en los problemas multiclase ver solo la métrica global calculada por el modelo puede llegar a ser engañoso. Aquí se evidencia como la clase que presenta más dificultades para el modelo fue la clase Default.
 
-| **Clase**        | **Precision** | **Recall** | **F1-score** | **Support** |
-|------------------|---------------|------------|--------------|-------------|
-| **Charged Off**  | 0.3007        | 0.6792     | 0.4168       | 9158        |
-| **Current**      | 0.9734        | 0.5820     | 0.7284       | 120122      |
-| **Default**      | 0.0575        | 0.6568     | 0.1057       | 4382        |
-| **Fully Paid**   | 0.9924        | 0.7341     | 0.8439       | 42111       |
-| **Issued**       | 0.4544        | 0.9988     | 0.6247       | 1703        |
-| **Accuracy**     | \-            | \-         | 0.6289       | 177476      |
-| **Macro avg**    | 0.5557        | 0.7302     | 0.5439       | 177476      |
-| **Weighted avg** | 0.9156        | 0.6289     | 0.7234       | 177476      |
-
 **F1-score macro: 0.5439**
 
 **Recall macro: 0.7302**
 
-#### **Matriz de confusión**
+| **Clase**        | **Precision** | **Recall** | **F1-score** | **Support** |
+|------------------|---------------|------------|--------------|-------------|
+| **Charged Off**  | 0.3117        | 0.6172     | 0.4142       | 9158        |
+| **Current**      | 0.9466        | 0.9471     | 0.9468       | 120122      |
+| **Default**      | 0.1646        | 0.1490     | 0.1564       | 4382        |
+| **Fully Paid**   | 0.9846        | 0.7334     | 0.8406       | 42111       |
+| **Issued**       | 0.4362        | 0.9789     | 0.6034       | 1703        |
+| **Accuracy**     | \-            | \-         | 0.8600       | 177476      |
+| **Macro avg**    | 0.5687        | 0.6851     | 0.5923       | 177476      |
+| **Weighted avg** | 0.8986        | 0.8600     | 0.8713       | 177476      |
+
+``
+**Matriz de confusión**
 
 Aquí se observan cuantos datos de cada clase fueron clasificados correctamente en la diagonal principal de la matriz de confusión. Se observan las dificultades que tuvo el modelo, pero también su claridad para predecir algunas de las clases en el problema.
 
 ![Matriz de confusión obtenida al evaluar el conjunto de test en el modelo](matriz_de_confusion.png)
+
+Como mejoras a futuro se puede pensar en mejorar el modelo teniendo una mayor cantidad de datos para las clases más difíciles de clasificar junto con una mayor recopilación de información del banco que apunte a las características de estas personas.
+
+## Conclusiones y aprendizajes a partir de los modelos
+
+Podemos ver como se evidencia el problema de utilizar métricas como accuracy en lugar del f1-score cuando los datos se encuentran desbalanceados, resaltando la importancia de hacer un análisis exploratorio del dataset.
+
+Los resultados que se mostrarán a continuación muestran que el desarrollo del modelo fue un problema retador, tanto por el alto volumen de datos, como por el desbalanceo de las clases, par de factores que al juntarse dificultan el problema, sin embargo, fue posible darle un tratamiento correcto para obtener una buena solución al problema. 
+
+#### Pesos del modelo
+
+Después de entrenar el modelo podemos ver cuales son las características más relevantes bajo los paramétros que maximizan la capacidad predictiva del modelo. Debemos tener en cuenta además que debido a que cada capa se concentra en diferentes tipos de patrones, mas simples o complejos, el peso de las características va variando a lo largo del entrenamiento en cada una de ellas. A continuación miraremos para cada capa:
+
+**Primera Capa**
+
+\- **`home_ownership_OWN`**: El prestatario es propietario de su vivienda.
+
+\- **`funded_amnt`**: La cantidad desembolsada del préstamo hasta el momento.
+
+\- **`total_rec_int`**: El interés total recibido.
+
+**Segunda capa**
+
+\- **`revol_util`**: Cantidad de crédito que el prestatario está utilizando en relación con todo el crédito disponible.
+
+-   **`int_rate`**: Tasa de interés del préstamo.
+
+\- **`tot_cur_bal`**: Balance total actual de todas las cuentas del prestatario.
+
+-   **`total_pymnt`**: Pagos totales recibidos hasta la fecha para la cantidad total financiada.
+
+**Tercera capa**
+
+\- **`int_rate`**: Tasa de interés del préstamo.
+
+\- **`dti`**: Porcentaje del ingreso mensual del prestatario destinado al pago de deudas.
+
+\- **`grade_encoded`**: Grado asignado al préstamo por LC.
+
+\- **`installment`**: Pago mensual que debe realizar el prestatario.
+
+\- **`total_rev_hi_lim`**: Límite máximo de crédito disponible en líneas de crédito revolvente.
+
+**Cuarta Capa**
+
+\- **`total_rec_prncp`**: Capital total recibido hasta el momento.
+
+\- **`revol_util`**: Cantidad de crédito que el prestatario está utilizando en relación con todo el crédito disponible.
+
+\- **`tot_cur_bal`**: Balance total actual de todas las cuentas del prestatario.
+
+\- **`home_ownership_OWN`**: El prestatario es propietario de su vivienda.
+
+**Quinta capa**
+
+\- **`tot_cur_bal`**: Balance total actual de todas las cuentas del prestatario.
+
+\- **`total_rec_prncp`**: Capital total recibido hasta la fecha.
+
+\- **`emp_length_encoded`**: Codificación de la longitud del empleo.
+
+\- **`total_rec_late_fee`**: Tarifas por pagos tardíos acumuladas hasta la fecha.
 
 ## Puesta en producción del modelo
 
@@ -403,7 +439,25 @@ Se utilizó el framework de FastAPI [@fastapi] para convertir el modelo una API 
 
 ### Despliegue del modelo
 
+Se utilizo la página de computación en la nube conocida como Render para desplegar el modelo. Esta plataforma fue elegida por su simplicidad para realizar la tarea además de brindar recursos gratuitos para esta tarea.
+
+Para lograr lo anterior se pueden encontrar los siguientes archivosnecesarios para el despliegue en el repositorio desde donde se desplego [Repositorio despliegue del modelo](https://github.com/RNA-y-Algo-Bioinsp-2024-02/model_credit_risk)
+
+-   Dockerfile: Describe como construir la imagen de tal manera que contenga todas las dependencias necesarias define el puerto de ejecución de la API.
+
+-   requirements.txt: Contiene los nombres y las versiones de todos los paquetes necesarios para ejecutar la API.
+
+-   app.py: Archivo con la API creada utilizando FastAPI que define los parámetros necesarios para llamar la API y obtener predicciones con el modelo entrenado.
+
+Además se agregó un workflow con GitHub Actions para automatizar el despliegue del modelo a la última versión en Render, lo cual es el inicio del monitoreo necesario para el modelo como un agregado que se puede profundizar más en el futuro.
+
 ## Caso de uso
+
+A continuación mostraremos un caso de uso de como el uso del modelo a través de la aplicación web puede traer beneficios al banco en la toma de decisiones y darle claridad a los usuarios en cuanto a los motivos por los que se toman decisiones con sus préstamos, como lo son la venta de carteras o similares.
+
+**Caso del banco**
+
+**Caso del usuario**
 
 # Aplicación web
 
