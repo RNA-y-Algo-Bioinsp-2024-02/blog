@@ -256,7 +256,7 @@ Utilizaremos la métrica más simple posible, que es la que toma Tensorflow por 
 
 **Función de pérdida**
 
-La función de pérdida a elegir, es sparse categorical cross entropy, la cual esta pensada para problemas de clasificación multiclase donde la variable esta codificada mediante Ordinal o Label Encoder, no mediante One Hot Encoding (para este caso usar sparse cross entropy)
+La función de pérdida a elegir, es sparse categorical cross entropy, la cual esta pensada para problemas de clasificación multiclase donde la variable esta codificada mediante Ordinal o Label Encoder, no mediante One Hot Encoding (para este caso usar sparse cross entropy).
 
 ##### Capas
 
