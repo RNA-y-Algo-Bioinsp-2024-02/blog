@@ -27,11 +27,13 @@ execute:
 
 El riesgo de crédito, de acuerdo con información encontrada en el sitio web @financionario2025 y, en concordancia con lo dicho por @financestrategists2023, se define como una medida empleada para dimensionar el riesgo (en términos de probabilidad) de que un prestatario incumpla con el pago de una obligación financiera o el reembolso del dinero correspondiente a un préstamo.
 
-En este sentido, es posible notar que una correcta evaluación y gestión del riesgo de crédito es de vital importancia en las actividades relacionadas con el préstamo y la inversión, pues ayudan a que las entidades financieras puedan mantener su estabilidad, a la misma vez que se proyectan como instituciones de confianza ante las entidades estatales, sus socios y clientes. Adicionalmente, el riesgo de crédito suele tenerse en cuenta como un criterio a la hora de aprobar o definir las condiciones de un préstamo, solicitando garantías de respaldo al prestatario o ajustando la tasa de interés de acuerdo con estos resultados.
+En este sentido, es posible notar que una correcta evaluación y gestión del riesgo de crédito es de vital importancia en las actividades relacionadas con el préstamo y la inversión, pues ayudan a que las entidades financieras puedan mantener su estabilidad, a la misma vez que se proyectan como instituciones de confianza ante las entidades estatales, sus socios y clientes. Adicionalmente, el riesgo de crédito suele tenerse en cuenta como un criterio a la hora de aprobar o definir las condiciones de un préstamo, solicitando garantías de respaldo al prestatario o ajustando la tasa de interés de acuerdo con estos resultados; la Figura 1 puede considerarse una imagen ilustrativa de las condiciones óptimas de crédito asignadas a un prestatario de acuerdo con su evaluación positiva del riesgo de crédito. 
+
+**Figura 1.**
+
+*Crédito y ahorro.* ![Crédito y ahorro](imagen_credito.jpg) Adaptado de Ilustración del plan de ahorro de los empleados dibujada a mano \[Ilustración\], por Freepik, 2024 (https://www.freepik.es/vector-gratis/ilustracion-plan-ahorro-empleados-dibujada-mano_87161866.htm#fromView=search&page=1&position=11&uuid=e54defbf-b176-455c-82c3-276ae1b3c634&new_detail=true). Licencia gratuita.
 
 Sabiendo lo anterior, puede decirse que, tanto para las instituciones financieras como para quienes solicitan estos servicios, el riesgo de crédito es un factor de incertidumbre que influye en la toma de decisiones relacionada con la admisión de préstamos y otros productos financieros, entendiendo incertidumbre como "la falta de (...) certeza o de un conocimiento seguro respecto de una determinada situación", según @significadode2023.
-
-![Adaptado de Ilustración del plan de ahorro de los empleados dibujada a mano\[Ilustración\], por Freepik, 2024 (https://www.freepik.es/vector-gratis/ilustracion-plan-ahorro-empleados-dibujada-mano_87161866.htm#fromView=search&page=1&position=11&uuid=e54defbf-b176-455c-82c3-276ae1b3c634&new_detail=true). Licencia gratuita.](imagen_credito.jpg)
 
 ## Delimitaciones del problema y metodología
 
@@ -74,9 +76,12 @@ Este teorema establece que:
 
 "Cualquier función continua definida en un conjunto compacto puede ser aproximada arbitrariamente bien por una red neuronal feedforward con una sola capa oculta y un número suficiente de neuronas, utilizando funciones de activación no lineales"
 
-Lo anterior significa que las funciones de activación no lineales son esenciales para que las redes neuronales puedan aproximar funciones complejas. Si bien el teorema garantiza que una sola capa oculta con suficientes neuronas puede aproximar cualquier función continua en un conjunto compacto, en la práctica, aumentar el número de capas suele ser más eficiente para modelar problemas complejos.
+Lo anterior significa que las funciones de activación no lineales son esenciales para que las redes neuronales puedan aproximar funciones complejas, como se puede observar en la Figura 2. Si bien el teorema garantiza que una sola capa oculta con suficientes neuronas puede aproximar cualquier función continua en un conjunto compacto, en la práctica, aumentar el número de capas suele ser más eficiente para modelar problemas complejos.
 
-![Ilustración de los resultados obtenidos mediantes funciones no lineales comparadas con las funciones lineales.](no_linealidad.png)
+**Figura 2.**
+
+*Comparación entre resultados obtenidos mediante funciones lineales y no lineales.* 
+![Funciones lineales vs funciones no lineales](no_linealidad.png) *Nota.* La gráfica muestra un comparativo entre los resultados obtenidos al aproximar una función a través de una función lineal y de una serie de funciones no lineales, observando que estas últimas permiten una aproximación mucho mejor en comparación con su contraparte lineal.
 
 #### Arquitectura de una red neuronal artificial
 
@@ -98,64 +103,79 @@ Ahora bien, es conveniente conocer los elementos que componen a cada uno de los 
 
 **Función de activación capa de entrada:** el valor obtenido con la regla de propagación se procesa con a través de esta función, a fin de obtener el verdadero resultado de salida de la neurona. Existe una gran variedad de funciones que se eligen de acuerdo con el objetivo de entrenamiento de la red neuronal artificial, entre las cuales se encuentran las siguientes:
 
--   Identidad.
+-   **Identidad:** la función identidad es una función lineal que devuelve el mismo valor de entrada como salida, como se observa en la Ecuación (1): 
 
-La función de identidad es una función lineal que devuelve el mismo valor de entrada como salida: $$ f(x) = x $$
+$$
+ f(x) = x \tag{1} 
+$$
 
--   Escalón.
+-   **Escalón:** la función escalón devuelve un valor binario dependiendo de si la entrada supera un umbral $\theta$, según lo visto en la Ecuación (2): 
 
-La función de escalón devuelve un valor binario dependiendo de si la entrada supera un umbral ( \theta ): $$ f(x) = 
+$$ 
+f(x) = 
 \begin{cases} 
 1 & \text{si } x \geq \theta \\ 
 0 & \text{si } x < \theta 
-\end{cases} $$
+\end{cases} \tag{2}
+$$
 
--   Lineal a tramos.
+-   **Lineal a tramos:** la función lineal a tramos aplica una transformación lineal dentro de un rango específico, de acuerdo con la Ecuación (3): 
 
-La función lineal a tramos aplica una transformación lineal dentro de un rango específico: $$ f(x) = 
+$$ f(x) = 
 \begin{cases} 
 0 & \text{si } x \leq 0 \\ 
 x & \text{si } 0 < x \leq 1 \\ 
 1 & \text{si } x > 1 
-\end{cases} $$
+\end{cases} \tag{3}
+$$
 
--   Sigmoide. La función sigmoide suaviza la salida en un rango entre 0 y 1: $$ f(x) = \frac{1}{1 + e^{-x}} $$
+-   **Sigmoide:** la función sigmoide suaviza la salida en un rango entre 0 y 1, aplicando la expresión definida en la Ecuación (4):
 
--   Gaussiana. La función gaussiana calcula una salida basada en la forma de una campana, con una media (\mu) y desviación estándar (\sigma): $$ f(x) = e^{-\frac{(x - \mu)^2}{2\sigma^2}} $$
+$$ 
+f(x) = \frac{1}{1 + e^{-x}} \tag{4}
+$$
 
--   Sinusoidal. La función sinusoidal genera una salida oscilatoria basada en una onda sinusoidal: $$ f(x) = \sin(x) $$
+-   **Gaussiana** la función gaussiana calcula una salida basada en la forma de una campana, con media $\mu$ y desviación estándar $\sigma$, como se puede ver en la Ecuación (5): 
+
+$$ 
+f(x) = e^{-\frac{(x - \mu)^2}{2\sigma^2}} \tag{5}
+$$
+
+-   **Sinusoidal:** la función sinusoidal genera una salida oscilatoria basada en una onda sinusoidal, es decir, la expresión dada en la Ecuación (6): 
+
+$$ 
+f(x) = \sin(x) \tag{6}
+$$
 
 **Salida:** resultado $y_i$ del procedimiento aplicado sobre los datos de entrada.
 
 **Función de activación capa de salida:**
 
--   Softmax: Permite convertir un conjunto de valores en probabilidades que suman 1, su principal uso se encuentra en problemas de clasificación multiclase.
+-   **Softmax:** permite convertir un conjunto de valores en probabilidades que suman 1. Se encuentra definida en la Ecuación (6) y su principal uso se encuentra en problemas de clasificación multiclase.
 
 $$
-\text{Softmax}(z_i) = \frac{e^{z_i}}{\sum_{j=1}^{n} e^{z_j}}
+\text{Softmax}(z_i) = \frac{e^{z_i}}{\sum_{j=1}^{n} e^{z_j}} \tag{6}
 $$
 
--   Cross-entropy: Mide la diferencia entre las predicciones $\hat{y_i}$ y la real $y$, para el caso de clasificación lo hace de la siguiente manera:
+-   **Cross-entropy:** mide la diferencia entre las predicciones $\hat{y_i}$ y la real $y$, para el caso de clasificación lo hace de la manera en que está definido en la Ecuación (7).
 
 $$
-\text{Cross-Entropy Loss} = - \sum_{i=1}^{n} y_i \log(\hat{y}_i)
+\text{Cross-Entropy Loss} = - \sum_{i=1}^{n} y_i \log(\hat{y}_i) \tag{7}
 $$
 
--   Sparse Cross-Entropy Loss : Es una variante de Cross-Entropy que no requiere codificación one-hot, sino que trabaja directamente con índices de las clases verdaderas.
+-   **Sparse Cross-Entropy Loss** es una variante de *Cross-Entropy* que no requiere codificación *one-hot*, sino que trabaja directamente con índices de las clases verdaderas, como se observa en la Ecuación (8).
 
 $$
-\text{Sparse Cross-Entropy Loss} = - \log(\hat{y}_{c})
+\text{Sparse Cross-Entropy Loss} = - \log(\hat{y}_{c}) \tag{8}
 $$
 
--   Focal loss: Es una extensión de Cross-Entropy que aplica un factor de penalización para enfocarse más en ejemplos mal clasificados. Es especialmente útil para casos de datasets desbalanceados.
+-   **Focal loss:** es una extensión de *Cross-Entropy* que aplica un factor de penalización para enfocarse más en ejemplos mal clasificados, de acuerdo con la Ecuación (9). Es especialmente útil para casos de datasets desbalanceados.
 
 $$
-\text{Focal Loss} = - \alpha_t (1 - p_t)^\gamma \log(p_t)
+\text{Focal Loss} = - \alpha_t (1 - p_t)^\gamma \log(p_t) \tag{9}
 $$
 
-Donde: $$
-p_t = \hat{y}_c
-$$
+donde $ p_t = \hat{y}_c $
 
 #### Tipos de redes neuronales artificiales
 
@@ -180,44 +200,47 @@ Algunas de las aplicaciones de las redes neuronales en la actualidad incluyen la
 
 ## Construcción del Modelo de Aprendizaje Automático
 
-::: figure
-{{< video video.mp4 >}} La conexión entre las diferentes neuronas permite aprendizaje de patrones complejos. Tomado de Sora OpenAI
-:::
+Como podrá observarse detalladamente más adelante, la conexión entre las diferentes neuronas artificiales permite el aprendizaje de patrones complejos. El video presentado en la Figura 3 es una representación artística de este planteamiento.
+
+**Figura 3.**
+
+*Conexión entre las neuronas del modelo.*
+{{< video video.mp4 >}} Tomado de Sora OpenAI.
 
 ### Preprocesamiento
 
-Después de haber jugado con el dataset en la sección anterior para los análisis descriptivos y exploratorios, pasamos a realizar el pre procesamiento de los datos necesario para que la arquitectura de la red neuronal sea capaz de recibirlos y además ayudar a mejorar su rendimiento. Iniciamos dividiendo el conjunto de datos en entrenamiento, validación y test para evitar cualquier tipo de data leakage durante el preprocesamiento.
+Después de haber jugado con el dataset en la sección anterior para los análisis descriptivos y exploratorios, se continúa con la realización del preprocesamiento de los datos, necesario para que la arquitectura de la red neuronal sea capaz de recibirlos y además ayudar a mejorar su rendimiento. Como primer paso, se dividió el conjunto de datos en entrenamiento, validación y prueba para evitar cualquier tipo de *data leakage* durante el preprocesamiento.
 
 #### Codificación de variables categóricas
 
-Utilizamos tres estrategias para la clasificación de las variables categóricas según su naturaleza
+En total se emplearán tres estrategias para la clasificación de las variables categóricas según su naturaleza.
 
-1.  Ordinal Encoder: Esta técnica se aplicó cuando las variables categóricas presentaban un orden natural. La codificación numérica asignada reflejaba este orden, asegurando que los valores fueran representativos de su jerarquía inherente.
+1.  Ordinal Encoder: esta técnica se aplicó cuando las variables categóricas presentaban un orden natural. La codificación numérica asignada reflejaba este orden, asegurando que los valores fueran representativos de su jerarquía inherente.
 
-2.  Label Encoder: Se empleó en variables categóricas binarias. Este enfoque evitó imponer un orden ficticio entre los valores, lo que podría generar sesgos al interpretar una relación inexistente entre las categorías.
+2.  Label Encoder: se empleó en variables categóricas binarias. Este enfoque evitó imponer un orden ficticio entre los valores, lo que podría generar sesgos al interpretar una relación inexistente entre las categorías.
 
 3.  One Hot Encoding: Diseñada para variables categóricas sin un orden natural y con más de dos niveles. Cada categoría fue representada mediante un vector binario, donde un valor de 1 indica pertenencia a una categoría específica y e asigna 0 a las demás. Se prestó especial atención al número de niveles en cada variable. En casos con muchas categorías, esta técnica podría haber generado una matriz de alta dimensionalidad, aumentando los requerimientos computacionales y complicando el entrenamiento de la red neuronal. Para evitar estos problemas, se evaluó cuidadosamente la viabilidad de aplicar este método en cada caso.
 
 #### Selección de características
 
-La técnica de imputación de datos faltantes elegidas fue Iterative Imputer para las variables numéricas debido a que muestra mejores capacidades en manejar relaciones complejas que otros métodos de imputación como lo son la media o similares, gracias a que considera todo el dataset de manera conjunta en lugar de una sola columna. Para el caso de variables catgóricas se utilizo la imputación mediante mediana.
+La técnica de imputación de datos faltantes elegidas fue **Iterative Imputer** para las variables numéricas, debido a que muestra mejores capacidades en manejar relaciones complejas que otros métodos de imputación como lo son la media o similares, gracias a que considera todo el dataset de manera conjunta en lugar de una sola columna. Para el caso de las variables catgóricas, se utilizó la imputación mediante mediana.
 
 #### Estandarización
 
-Utilizamos **StandardScaler** debido a que normaliza las características centrando su media en 0 y escalando según la desviación estándar, lo cual es crucial en redes neuronales para garantizar estabilidad numérica y mejorar la eficiencia del entrenamiento.
+Fue utilizado el método **StandardScaler**, considerando que normaliza las características al cnetrar su media en 0 y escalando según la desviación estándar, lo cual es crucial en redes neuronales para garantizar estabilidad numérica y mejorar la eficiencia del entrenamiento.
 
 Esto previene problemas como:
 
--   **Gradiente explosivo**: Valores extremos en las entradas producen gradientes excesivamente grandes, causando desbordamientos numéricos y actualizaciones erráticas de pesos.
--   **Gradiente desvaneciente**: Gradientes extremadamente pequeños ralentizan la convergencia, dificultando el aprendizaje efectivo.
+-   **Gradiente explosivo**: valores extremos en las entradas producen gradientes excesivamente grandes, causando desbordamientos numéricos y actualizaciones erráticas de pesos.
+-   **Gradiente desvaneciente**: gradientes extremadamente pequeños ralentizan la convergencia, dificultando el aprendizaje efectivo.
 
-La fórmula utilizada por **StandardScaler** es:
+La fórmula utilizada por este método de escalamiento puede observarse en la Ecuación (10):
 
 $$
-X' = \frac{X - \mu}{\sigma}
+X' = \frac{X - \mu}{\sigma} \tag{10}
 $$
 
-donde:
+donde
 
 -   $X$: Valor original.
 -   $u$: Media de los datos.
@@ -227,9 +250,10 @@ Este método asegura que las características tengan una varianza de 1 y estén 
 
 #### Balanceo de clases
 
-El análisis descriptivo mostró que la variable respuesta del dataset está altamente desbalanceada, lo cual representa un reto significativo al crear el modelo. Un modelo entrenado en estas condiciones puede tender a predecir únicamente la clase mayoritaria, generando métricas como el **accuracy** con valores engañosamente altos, pero sin reflejar una verdadera capacidad predictiva. Para abordar este problema, utilizaremos las siguientes técnicas:
+El análisis descriptivo mostró que la variable respuesta del dataset está altamente desbalanceada, lo cual representa un reto significativo al crear el modelo. Un modelo entrenado en estas condiciones puede tender a predecir únicamente la clase mayoritaria, generando métricas como el *accuracy* con valores engañosamente altos, pero sin reflejar una verdadera capacidad predictiva. Para abordar este problema, se emplearán las siguientes técnicas:
 
--   **Sobremuestreo y Submuestreo**: Esta estrategia combina el aumento de las clases minoritarias mediante sobremuestreo y la reducción de las clases mayoritarias mediante submuestreo. El objetivo es equilibrar la cantidad de datos entre las clases, incentivando al modelo a aprender las características de todas las clases y mejorando sus métricas al minimizar la función de pérdida. Esto fue utilizado para todas las clases en el entrenamiento y el valor final para cada clase fue el siguiente:
+-   **Sobremuestreo y Submuestreo**: esta estrategia, ilustrada en la Figura 4, combina el aumento de las clases minoritarias mediante sobremuestreo y la reducción de las clases mayoritarias mediante submuestreo. El objetivo es equilibrar la cantidad de datos entre las clases, incentivando al modelo a aprender las características de todas las clases y mejorando sus métricas al minimizar la función de pérdida. Esto fue utilizado para todas las clases en el entrenamiento y el valor final para cada clase fue el siguiente:
+
     -   Current: 150.000
 
     -   Fully Paid: 125.700
@@ -240,9 +264,11 @@ El análisis descriptivo mostró que la variable respuesta del dataset está alt
 
     -   Issued: 50.000
 
-![Ilustración del funcionamiento de las técnicas de sobremuestreo y submuestreo. Tomado de (https://www.datasciencecentral.com/handling-imbalanced-data-sets-in-supervised-learning-using-family/)](muestreo.png)
+**Figura 4.**
 
--   **Agrupamiento de las clases**: En esta estrategia agrupamos algunas de las clases con una menor cantidad de datos, esto debido a que como se verá más adelante son clases que tienen tan pocos datos que predecirlas es altamente complejo, y que pone en evidencia además las limitaciones de técnicas de sobremuestreo y submuestreo en la presencia de clases altamente desbalanceadas.
+*Ilustración del funcionamiento de las técnicas de sobremuestreo y submuestreo.* ![Ilustración del funcionamiento de las técnicas de sobremuestreo y submuestreo](muestreo.png) Tomado de *Handling imbalanced dataset in supervised learning using family of SMOTE algorithm*, por RohitWalimbe, 2017 (https://www.datasciencecentral.com/handling-imbalanced-data-sets-in-supervised-learning-using-family)
+
+-   **Agrupamiento de las clases**: en esta estrategia se agruparon algunas de las clases con una menor cantidad de datos, teniendo en cuenta que, como se verá más adelante, son clases que tienen tan pocos datos que predecirlas es altamente complejo; esto pone en evidencia las limitaciones de las técnicas de sobremuestreo y submuestreo en la presencia de clases altamente desbalanceadas.
 
 ### Diseño y Arquitectura
 
@@ -260,13 +286,15 @@ La función de pérdida a elegir, es sparse categorical cross entropy, la cual e
 
 ##### Capas
 
-1.  Capa de entrada La capa de entrada está definida para recibir un número de características igual a la dimensión de los datos en el conjunto balanceado.
+1.  **Capa de entrada.** 
 
-2.  Primera Capa Oculta
+    La capa de entrada está definida para recibir un número de características igual a la dimensión de los datos en el conjunto balanceado.
+
+2.  **Primera Capa Oculta.**
 
     Contiene 32 neuronas con activación ReLU, lo que permite que el modelo aprenda patrones no lineales en los datos. Además se agrego regularización $L_2$ para evitar el sobreajuste, y un dropout del 20% para reducir la posibilidad de sobreajuste.
 
-3.  Capa de Salida
+3.  **Capa de Salida.**
 
     La capa de salida contiene tantas neuronas como clases en el problema, se utiliza la función de activación softmax para convertir las salidas en probabilidades.
 
@@ -274,17 +302,22 @@ La función de pérdida a elegir, es sparse categorical cross entropy, la cual e
 
 **Evolución de las métricas**
 
-![Evolución de las métricas a través de los epochs.](metricas_baja.png)
+**Figura 5.**
 
-Podemos ver como el modelo tiene durante el entrenamiento una función de pérdida muy alta, y un accuracy que en vez de incrementar va disminuyendo y empieza muy alto (más adelante profundizaremos en los motivos por los que pasa esto)
+Es posible notar en la Figura 5 que, durante el entrenamiento, el modelo tiene una función de pérdida muy alta y una precisión que, en vez de incrementar, va disminuyendo en los datos de validación a pesar de que empieza en un valor muy alto. Los motivos por los cuales sucede esto serán abordados más adelante de una manera específica.
+
+*Evolución de las métricas del modelo a través de las épocas durante el proceso de entrenamiento.*
+![Evolución de las métricas del modelo a través de las épocas durante el proceso de entrenamiento.](metricas_baja.png) Elaboración propia.
 
 **Reporte de clasificación**
 
 **Matriz de confusión**
 
-![Matriz de confusón del modelo de baja complejidad.](matriz_de_confusion_baja.png)
+De acuerdo con la matriz de confusión observada en la Figura 6, se pueden notar ciertas dificultades para predecir clases como *Fully Paid*. Sin embargo, el modelo predice bien clases como *Charged Off* y *Current*.
 
-Podemos ver dificultades para predecir clases como Fully Paid. Predice bien clases como Charged Off y Current.
+**Figura 6.**
+
+*Matriz de confusión del modelo de baja complejidad.* ![Matriz de confusón del modelo de baja complejidad.](matriz_de_confusion_baja.png) Elaboración propia.
 
 #### Modelo con mayor complejidad
 
@@ -292,42 +325,43 @@ Podemos ver dificultades para predecir clases como Fully Paid. Predice bien clas
 
 Dado el desbalance de la variable objetivo, utilizaremos métricas diseñadas para proporcionar una evaluación más equitativa del modelo:
 
--   **F1-Score Macro**: A diferencia de métricas como el **accuracy**, que tienden a favorecer la clase mayoritaria en datasets desbalanceados, el **F1-Score Macro** asigna igual importancia a todas las clases, independientemente del número de muestras. Esto nos brinda una evaluación más realista del desempeño del modelo.
+-   **F1-Score Macro**: a diferencia de métricas como el **accuracy**, que tienden a favorecer la clase mayoritaria en datasets desbalanceados, el **F1-Score Macro** asigna igual importancia a todas las clases, independientemente del número de muestras. Esto nos brinda una evaluación más realista del desempeño del modelo.
 
 ##### Función de pérdida
 
 Para abordar el desbalance de clases durante el entrenamiento, utilizaremos técnicas como:
 
--   **Focal Loss**: Esta función de pérdida está diseñada específicamente para problemas de clasificación desbalanceados. Su objetivo es priorizar las clases minoritarias al reducir la importancia de las predicciones correctamente clasificadas para las clases mayoritarias. Esto ayuda al modelo a concentrarse más en aprender las características de las clases menos representadas.
+-   **Focal Loss:** esta función de pérdida está diseñada específicamente para problemas de clasificación desbalanceados. Su objetivo es priorizar las clases minoritarias al reducir la importancia de las predicciones correctamente clasificadas para las clases mayoritarias. Esto ayuda al modelo a concentrarse más en aprender las características de las clases menos representadas.
 
--   **Pesos de las Clases**: En algunos casos, asignar pesos inversamente proporcionales al tamaño de cada clase en la función de pérdida puede ser una estrategia complementaria para equilibrar la importancia de las clases en el modelo.
+-   **Pesos de las Clases:** en algunos casos, asignar pesos inversamente proporcionales al tamaño de cada clase en la función de pérdida puede ser una estrategia complementaria para equilibrar la importancia de las clases en el modelo.
 
 ##### Callbacks
 
--   **Early Stopping**: Permite reducir los tiempos de entrenamiento al monitorear una métrica, y dado un parámetro de paciencia que indica cuantas Epoch esperar, detiene el entrenamiento si la mejora después de cumplida la paciencia no es lo suficientemente significativa para justificar seguir entrenando.
--   **Reduce Learning Rate on Plateu**: Ayuda a mantener la capacidad de mejora durante el entrenamiento, los cálculos del gradiente, que dependen de la tasa de aprendizaje pueden no ser capaces de llegar al mínimo de la función de pérdida, por lo que este callback reduce la tasa de entrenamiento si para una cantidad de Epochs dada, no ha habida una mejoría en los resultados, esto permite tener un aprendizaje con capacidad de mejoría a través de las Epochs.
+-   **Early Stopping:** permite reducir los tiempos de entrenamiento al monitorear una métrica, y dado un parámetro de paciencia que indica cuantas Epoch esperar, detiene el entrenamiento si la mejora después de cumplida la paciencia no es lo suficientemente significativa para justificar seguir entrenando.
+
+-   **Reduce Learning Rate on Plateu:** ayuda a mantener la capacidad de mejora durante el entrenamiento, los cálculos del gradiente, que dependen de la tasa de aprendizaje pueden no ser capaces de llegar al mínimo de la función de pérdida, por lo que este callback reduce la tasa de entrenamiento si para una cantidad de Epochs dada, no ha habida una mejoría en los resultados, esto permite tener un aprendizaje con capacidad de mejoría a través de las Epochs.
 
 ##### Capas
 
 Las capas definidas en el modelo fueron las siguiente:
 
-1.  Capa de entrada
+1.  **Capa de entrada.**
 
     Define el tamaño de entrada , el cual corresponde al numero de características con el dataset ya balanceado, para recibir los datos que serán procesados en las siguientes capas.
 
-2.  Primera Capa Oculta
+2.  **Primera Capa Oculta.**
 
     Esta capa contiene 128 neuronas con una activación ReLU, que introduce no linealidades y permite que el modelo aprenda patrones complejos. Se utiliza la regularización $L_2$ con un valor de $1 \times 10^{-4}$ para evitar el sobreajuste, penalizando pesos grandes. Se utiliza BatchNormalization() para mantener un entrenamiento estable. Se sigue utilizando un valor de desactivación del 20% para reducir la posibilidad de sobreajuste mediante Dropout().
 
-3.  Segunda Capa Oculta
+3.  **Segunda Capa Oculta.**
 
     La cantidad de neuronas se reduce a 64, permitiendo que el modelo capture características más detalladas y específicas. Se mantiene la normalización y el dropout con los mismos parámetros de la capa anterior.
 
-4.  Tercera Capa Oculta
+4.  **Tercera Capa Oculta.**
 
     La cantidad de neuronas se reduce a 64, permitiendo que el modelo capture características más detalladas y específicas. Se mantiene la normalización y el dropout con los mismos parámetros de la primera capa oculta.
 
-5.  Capa de Salida
+5.  **Capa de Salida.**
 
     Esta capa tiene una neurona por cada clase del problema de clasificación multiclase. La activación Softmax convierte las salidas en probabilidades, asegurando que la suma de las probabilidades sea igual a 1, lo que es esencial para clasificación multiclase.
 
@@ -335,19 +369,21 @@ Las capas definidas en el modelo fueron las siguiente:
 
 **Evolución de las métricas**
 
-Se evidencia como la función de pérdida va disminuyendo a lo largo de los epochs, con lo cual vamos obteniendo un accuracy mucho más alto.
+En la Figura 6 se puede evidenciar cómo la función de pérdida va disminuyendo a lo largo de las épocas, con lo cual se va obteniendo un *accuracy* mucho más alto.
 
-![Evolución de las métricas obtenidas por el modelo a través de los Epochs](metricas.png)
+**Figura 6.**
+
+*Evolución de las métricas obtenidas por el modelo a través de las épocas.* ![Evolución de las métricas obtenidas por el modelo a través de las épocas](metricas.png) Elaboración propia.
 
 Finalmente se ha de observar que en el entrenamiento los resultados son muy estables mostrando una convergencia, mientras que en la validación tiende a fluctuar, pero mostrando buenos resultados a pesar de las flucutaciones, ya que ninguna es extrema.
 
 #### **Reporte de clasificación**
 
-A continuación se muestra una visión mucho más clara de los resultados obtenidos por el modelo para el conjunto de test, ya que en los problemas multiclase ver solo la métrica global calculada por el modelo puede llegar a ser engañoso. Aquí se evidencia como la clase que presenta más dificultades para el modelo fue la clase Default.
+A continuación se muestra una visión mucho más clara de los resultados obtenidos por el modelo para el conjunto de prueba, ya que en los problemas multiclase puede llegar a ser engañoso considerar solamente la métrica global calculada por el modelo. En los resultados mostrados por la Tabla 1, se evidencia que la clase *Default* es la que presenta más dificultades para el modelo.
 
-**F1-score macro: 0.5439**
+**Tabla 1.**
 
-**Recall macro: 0.7302**
+*Reporte de clasificación del modelo de mayor complejidad.*
 
 | **Clase**        | **Precision** | **Recall** | **F1-score** | **Support** |
 |------------------|---------------|------------|--------------|-------------|
@@ -360,24 +396,31 @@ A continuación se muestra una visión mucho más clara de los resultados obteni
 | **Macro avg**    | 0.5687        | 0.6851     | 0.5923       | 177476      |
 | **Weighted avg** | 0.8986        | 0.8600     | 0.8713       | 177476      |
 
-``
+**F1-score macro:** 0.5439
+
+**Recall macro:** 0.7302
+
+Elaboración propia.
+
 **Matriz de confusión**
 
-Aquí se observan cuantos datos de cada clase fueron clasificados correctamente en la diagonal principal de la matriz de confusión. Se observan las dificultades que tuvo el modelo, pero también su claridad para predecir algunas de las clases en el problema.
+Igualmente, en la Figura 7 se observan cuántos datos de cada clase fueron clasificados correctamente en la diagonal principal de la matriz de confusión. También se observan las dificultades que tuvo el modelo, así como su claridad para predecir algunas de las clases en el problema.
 
-![Matriz de confusión obtenida al evaluar el conjunto de test en el modelo](matriz_de_confusion.png)
+**Figura 7.**
 
-Como mejoras a futuro se puede pensar en mejorar el modelo teniendo una mayor cantidad de datos para las clases más difíciles de clasificar junto con una mayor recopilación de información del banco que apunte a las características de estas personas.
+*Matriz de confusión obtenida al evaluar el conjunto de prueba en el modelo.* ![Matriz de confusión obtenida al evaluar el conjunto de prueba en el modelo.](matriz_de_confusion.png) Elaboración propia.
+
+Como mejoras a futuro se consideraría enriquecer el modelo teniendo una mayor cantidad de datos para las clases más difíciles de clasificar, junto con una mayor recopilación de información del banco, que apunte a las características de estas personas.
 
 ## Conclusiones y aprendizajes a partir de los modelos
 
-Podemos ver como se evidencia el problema de utilizar métricas como accuracy en lugar del f1-score cuando los datos se encuentran desbalanceados, resaltando la importancia de hacer un análisis exploratorio del dataset.
+En este punto, se pone en evidencia el problema de utilizar métricas como *accuracy* en lugar del *f1-score* cuando los datos se encuentran desbalanceados, resaltando la importancia de hacer un análisis exploratorio del dataset.
 
-Los resultados que se mostrarán a continuación muestran que el desarrollo del modelo fue un problema retador, tanto por el alto volumen de datos, como por el desbalanceo de las clases, par de factores que al juntarse dificultan el problema, sin embargo, fue posible darle un tratamiento correcto para obtener una buena solución al problema. 
+Los resultados que se mostrarán a continuación muestran que el desarrollo del modelo fue un problema retador, tanto por el alto volumen de datos como por el desbalanceo de las clases, ambos factores que añaden dificultad al problema, sin embargo, fue posible darles un tratamiento correcto para obtener una mejor solución.
 
 #### Pesos del modelo
 
-Después de entrenar el modelo podemos ver cuales son las características más relevantes bajo los paramétros que maximizan la capacidad predictiva del modelo. Debemos tener en cuenta además que debido a que cada capa se concentra en diferentes tipos de patrones, mas simples o complejos, el peso de las características va variando a lo largo del entrenamiento en cada una de ellas. A continuación miraremos para cada capa:
+Después de entrenar el modelo se puede ver cuáles son las características más relevantes bajo los paramétros que maximizan la capacidad predictiva del modelo. Es importante tener en cuenta que cada capa se concentra en diferentes tipos de patrones, más simples o complejos, por lo que el peso de las características va variando a lo largo del entrenamiento en cada una de ellas. A continuación se observa el resultado obtenido para cada capa:
 
 **Primera Capa**
 
@@ -435,25 +478,25 @@ Debido a la naturaleza del proyecto, tareas como lo son la monitoría del modelo
 
 ### Creación de la API
 
-Se utilizó el framework de FastAPI [@fastapi] para convertir el modelo una API que pudiera realizar predicciones pasandole la información de cada usuario. En el GitHub se encuentra el archivo con el código necesario para lograr este resultado.
+Se utilizó el framework de Python llamado FastAPI @fastapi para convertir el modelo en una API que pudiera realizar predicciones de acuerdo con la información de cada usuario. En el repositorio de GitHub se encuentra el archivo con el código necesario para lograr este resultado.
 
 ### Despliegue del modelo
 
-Se utilizo la página de computación en la nube conocida como Render para desplegar el modelo. Esta plataforma fue elegida por su simplicidad para realizar la tarea además de brindar recursos gratuitos para esta tarea.
+Adicionalmente, se empleó Render como servicio de computación en la nube para desplegar el modelo. Esta plataforma fue elegida por su simplicidad para realizar la tarea además de la posibilidad que brinda de utilizar recursos gratuitos.
 
-Para lograr lo anterior se pueden encontrar los siguientes archivosnecesarios para el despliegue en el repositorio desde donde se desplego [Repositorio despliegue del modelo](https://github.com/RNA-y-Algo-Bioinsp-2024-02/model_credit_risk)
+Para observar el resultado se pueden consultar los siguientes archivos, necesarios para el despliegue en el repositorio desde donde se realizó dicha actividad: [Repositorio despliegue del modelo](https://github.com/RNA-y-Algo-Bioinsp-2024-02/model_credit_risk).
 
--   Dockerfile: Describe como construir la imagen de tal manera que contenga todas las dependencias necesarias define el puerto de ejecución de la API.
+-   **Dockerfile:** describe como construir la imagen de tal manera que contenga todas las dependencias necesarias define el puerto de ejecución de la API.
 
--   requirements.txt: Contiene los nombres y las versiones de todos los paquetes necesarios para ejecutar la API.
+-   **requirements.txt:** contiene los nombres y las versiones de todos los paquetes necesarios para ejecutar la API.
 
--   app.py: Archivo con la API creada utilizando FastAPI que define los parámetros necesarios para llamar la API y obtener predicciones con el modelo entrenado.
+-   **app.py:** archivo con la API creada utilizando FastAPI que define los parámetros necesarios para llamar la API y obtener predicciones con el modelo entrenado.
 
 Además se agregó un workflow con GitHub Actions para automatizar el despliegue del modelo a la última versión en Render, lo cual es el inicio del monitoreo necesario para el modelo como un agregado que se puede profundizar más en el futuro.
 
 ## Caso de uso
 
-A continuación mostraremos un caso de uso de como el uso del modelo a través de la aplicación web puede traer beneficios al banco en la toma de decisiones y darle claridad a los usuarios en cuanto a los motivos por los que se toman decisiones con sus préstamos, como lo son la venta de carteras o similares.
+A continuación se desarrollará un caso de uso que ejemplifica cómo el uso del modelo desplegado anteriormente a través de una aplicación web puede traer beneficios a las entidades bancarias en los procesos de toma de decisiones, así como darle una mayor claridad a los usuarios de estos servicios, en términos de cononocer los motivos por los cuales se toman ciertas decisiones respecto a sus préstamos o productos bancarios (como puede ser la venta de cartera o similares).
 
 **Caso del banco**
 
