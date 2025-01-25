@@ -2,6 +2,9 @@
 title: "Modelos de riesgo de crédito con Redes Neuronales Artificiales"
 format: 
   html:
+    toc: true
+    toc-width: 250px   # Ajusta el ancho de la ToC
+    main-container-width: 90%  # Incrementa el ancho del contenido principal
     fig-width: 8
     fig-height: 6
     number-sections: true
@@ -10,6 +13,7 @@ format:
       options:
         TeX:
           equationNumbers: { autoNumber: "AMS" }
+  
 author:
   - name: "Julián Castaño Pineda"
   - name: "Luis Andrés Altamar Romero"
@@ -27,7 +31,7 @@ execute:
 
 El riesgo de crédito, de acuerdo con información encontrada en el sitio web @financionario2025 y, en concordancia con lo dicho por @financestrategists2023, se define como una medida empleada para dimensionar el riesgo (en términos de probabilidad) de que un prestatario incumpla con el pago de una obligación financiera o el reembolso del dinero correspondiente a un préstamo.
 
-En este sentido, es posible notar que una correcta evaluación y gestión del riesgo de crédito es de vital importancia en las actividades relacionadas con el préstamo y la inversión, pues ayudan a que las entidades financieras puedan mantener su estabilidad, a la misma vez que se proyectan como instituciones de confianza ante las entidades estatales, sus socios y clientes. Adicionalmente, el riesgo de crédito suele tenerse en cuenta como un criterio a la hora de aprobar o definir las condiciones de un préstamo, solicitando garantías de respaldo al prestatario o ajustando la tasa de interés de acuerdo con estos resultados; la Figura 1 puede considerarse una imagen ilustrativa de las condiciones óptimas de crédito asignadas a un prestatario de acuerdo con su evaluación positiva del riesgo de crédito. 
+En este sentido, es posible notar que una correcta evaluación y gestión del riesgo de crédito es de vital importancia en las actividades relacionadas con el préstamo y la inversión, pues ayudan a que las entidades financieras puedan mantener su estabilidad, a la misma vez que se proyectan como instituciones de confianza ante las entidades estatales, sus socios y clientes. Adicionalmente, el riesgo de crédito suele tenerse en cuenta como un criterio a la hora de aprobar o definir las condiciones de un préstamo, solicitando garantías de respaldo al prestatario o ajustando la tasa de interés de acuerdo con estos resultados; la Figura 1 puede considerarse una imagen ilustrativa de las condiciones óptimas de crédito asignadas a un prestatario de acuerdo con su evaluación positiva del riesgo de crédito.
 
 **Figura 1.**
 
@@ -60,7 +64,96 @@ A continuación se da inicio al desarrollo de la actividad, la cual será comple
 
 ## Análisis descriptivo e hipótesis del conjunto de datos
 
-## Planteamiento y evaluación de modelos
+El análisis exploratorio de datos es una fase crítica para comprender la estructura, la calidad y la naturaleza de los datos, estableciendo las bases para el análisis posterior. Este proceso lo divideremos en varias etapas, comenzaremos con una exploración inicial de los datos, seguida de su manipulación y limpieza, y culminando con el análisis visual y la selección de características.
+
+### Entendiendo los datos
+
+El primer paso del análisis exploratorio será entender los datos en términos generales. Para ello: leeiemos la base datos e identificmos sus dimensiones que corresponden con 887379 filas y 74 columnas o variables.
+
+A continuación se muestra una gráfica que muestra la estructura de las variables asi como el porcentage de NA
+
+```{python}
+
+import pandas as pd
+from IPython.display import display, HTML
+
+pd.set_option('display.max_rows', None)
+pd.set_option('display.max_columns', None)
+def show_dataframe(df):
+    display(HTML(f"""
+    <div style="height: 300px; overflow: auto; border: 1px solid black;">
+        {df.to_html()}
+    </div>
+    """))
+
+
+# Leer el archivo Excel
+df = pd.read_excel("info_data.xlsx")
+
+show_dataframe(df)
+```
+
+Una vez entendida la estructura y consistencia de los datos, procedimos con una fase de análisis para su preparación y limpieza. Usando diccionarios de variables para interpretar el significado y contexto de cada una de las variables, se ha decidido eliminar las siguientes, ya que a priori consideramos que no aportan relevancia práctica o lógica al modelo. Estas variables son:
+
+-   **id**: Es un identificador único del crédito, por lo que no proporciona información adicional útil para el modelo.
+
+-   **member_id**: Al ser un identificador único del prestatario, tampoco añade valor informativo al análisis.
+
+-   **url**: Es un enlace único que no aporta información relevante para el modelo.
+
+-   **desc**: Es una descripción de las razones para solicitar el préstamo. Aunque podría contener información útil, su análisis requeriría técnicas de procesamiento de texto, lo cual está fuera del alcance inmediato.
+
+-   **title**: Representa el título del préstamo proporcionado por el prestatario. Debido a su alta diversidad y el gran número de categorías, no se considera relevante para este análisis.
+
+-   **recoveries**: Indica la cantidad de dinero recuperado en caso de incumplimiento (default). Al estar relacionada con eventos posteriores al interés del modelo, no puede ser una covariable válida y además proporcionaría información determinística, lo que no es deseable.
+
+-   **collection_recovery_fee**, **out_prncp** y **out_prncp_inv** al igual que la variable anterior, no se incluye por estar causada por eventos posteriores al interés del modelo.
+
+-   Las variables **next_pymnt_d**, **last_pymnt_d**, **earliest_cr_line**, **issue_d** y **last_credit_pull_d** corresponden a fechas registradas durante el proceso del préstamo. Dado que estas variables representan información recolectada después de la aprobación del préstamo, no se consideran relevantes para el análisis y pueden ser descartadas.
+
+-   Debido a la relación directa entre **grade** y **subgrade**, se opta por descartar **grade** y conservar **subgrade**, ya que esta última proporciona un nivel de detalle mayor y, por lo tanto, más información relevante para el análisis.
+
+
+-   **Depuración de variables**:  Adicionalmente, debido a la gran cantidad de variables con valores faltantes, se decidió eliminar aquellas que presentan más del 75% de datos faltantes. Con un porcentaje tan elevado, no es óptimo realizar imputaciones u otros procedimientos de recuperación de datos. Las variables que serán eliminadas son: mths_since_last_record, mths_since_last_major_derog, annual_inc_joint, dti_joint, verification_status_joint, open_acc_6m, open_il_6m, open_il_12m, open_il_24m, mths_since_rcnt_il, total_bal_il, il_util, open_rv_12m, open_rv_24m, max_bal_bc, all_util, inq_fi, total_cu_tl y inq_last_12m.
+
+### Análisis Visual y Tratamiento de NAs
+
+En esta fase, exploraremos las distribuciones y relaciones de los datos para detectar posibles problemas de los datos y necesidades de transformación: 
+- Analizaremos la distribución de las variables, evaluando si requieren transformaciones, como normalización o estandarización. 
+- Trataremos los valores faltantes restantes mediante técnicas de imputación que se ajusten al contexto de las variables.
+
+
+```{python}
+from IPython.core.display import HTML
+
+# Cargar el archivo HTML
+with open("sweetviz_report.html", "r", encoding="utf-8") as file:
+    html_content = file.read()
+
+# Mostrar el HTML en el notebook
+
+display(HTML(f"""
+<div style="
+    height: 500px;
+    overflow: auto;
+    border: 1px solid black;
+    margin: 0 auto; /* Centrar horizontalmente si es más estrecho */
+">
+    {html_content}
+</div>
+"""))
+```
+
+Dicho análisis nos da información adicional sobre el comportamiento de las variables por una parte se obreva que hay ciertas variables que se pueden omitir.
+
+- policy_code: Esta variable tiene un valor constante, lo que significa que no contribuye con variabilidad ni información al modelo.
+- pyment_plan: Esta variable solo tiene 2 niveles y uno de ellos tiene muy pocas observaciones, por lo que esta variable no daría mucha información al modelo.
+- emp_title: Esta variable puede ser descartada debido a la alta cantidad de categorías que presenta, lo que dificulta su utilidad y análisis en el modelo.
+- zip_code: Se descarta por la gran cantidad de niveles
+
+En general, las variables obtenidas presentan un balance adecuado. Sin embargo, es necesario imputar los valores faltantes de las siguientes variables: **emp_length, mths_since_last_delinq, revol_util, collections_12_mths_ex_med, tot_coll_amt, tot_cur_bal** y **total_rev_hi_lim**.
+
+Una vez completada la imputación, en las etapas siguientes se realizará una transformación de las variables numéricas para corregir el sesgo observado, mejorando así su distribución. Posteriormente, se aplicará un escalamiento a las variables numéricas y una codificación a las variables categóricas, preparando los datos para el modelado.
 
 ### Modelo de Redes Neuronales Artificiales
 
@@ -80,8 +173,7 @@ Lo anterior significa que las funciones de activación no lineales son esenciale
 
 **Figura 2.**
 
-*Comparación entre resultados obtenidos mediante funciones lineales y no lineales.* 
-![Funciones lineales vs funciones no lineales](no_linealidad.png) *Nota.* La gráfica muestra un comparativo entre los resultados obtenidos al aproximar una función a través de una función lineal y de una serie de funciones no lineales, observando que estas últimas permiten una aproximación mucho mejor en comparación con su contraparte lineal.
+*Comparación entre resultados obtenidos mediante funciones lineales y no lineales.* ![Funciones lineales vs funciones no lineales](no_linealidad.png) *Nota.* La gráfica muestra un comparativo entre los resultados obtenidos al aproximar una función a través de una función lineal y de una serie de funciones no lineales, observando que estas últimas permiten una aproximación mucho mejor en comparación con su contraparte lineal.
 
 #### Arquitectura de una red neuronal artificial
 
@@ -103,13 +195,13 @@ Ahora bien, es conveniente conocer los elementos que componen a cada uno de los 
 
 **Función de activación capa de entrada:** el valor obtenido con la regla de propagación se procesa con a través de esta función, a fin de obtener el verdadero resultado de salida de la neurona. Existe una gran variedad de funciones que se eligen de acuerdo con el objetivo de entrenamiento de la red neuronal artificial, entre las cuales se encuentran las siguientes:
 
--   **Identidad:** la función identidad es una función lineal que devuelve el mismo valor de entrada como salida, como se observa en la Ecuación (1): 
+-   **Identidad:** la función identidad es una función lineal que devuelve el mismo valor de entrada como salida, como se observa en la Ecuación (1):
 
 $$
  f(x) = x \tag{1} 
 $$
 
--   **Escalón:** la función escalón devuelve un valor binario dependiendo de si la entrada supera un umbral $\theta$, según lo visto en la Ecuación (2): 
+-   **Escalón:** la función escalón devuelve un valor binario dependiendo de si la entrada supera un umbral $\theta$, según lo visto en la Ecuación (2):
 
 $$ 
 f(x) = 
@@ -119,7 +211,7 @@ f(x) =
 \end{cases} \tag{2}
 $$
 
--   **Lineal a tramos:** la función lineal a tramos aplica una transformación lineal dentro de un rango específico, de acuerdo con la Ecuación (3): 
+-   **Lineal a tramos:** la función lineal a tramos aplica una transformación lineal dentro de un rango específico, de acuerdo con la Ecuación (3):
 
 $$ f(x) = 
 \begin{cases} 
@@ -135,13 +227,13 @@ $$
 f(x) = \frac{1}{1 + e^{-x}} \tag{4}
 $$
 
--   **Gaussiana** la función gaussiana calcula una salida basada en la forma de una campana, con media $\mu$ y desviación estándar $\sigma$, como se puede ver en la Ecuación (5): 
+-   **Gaussiana** la función gaussiana calcula una salida basada en la forma de una campana, con media $\mu$ y desviación estándar $\sigma$, como se puede ver en la Ecuación (5):
 
 $$ 
 f(x) = e^{-\frac{(x - \mu)^2}{2\sigma^2}} \tag{5}
 $$
 
--   **Sinusoidal:** la función sinusoidal genera una salida oscilatoria basada en una onda sinusoidal, es decir, la expresión dada en la Ecuación (6): 
+-   **Sinusoidal:** la función sinusoidal genera una salida oscilatoria basada en una onda sinusoidal, es decir, la expresión dada en la Ecuación (6):
 
 $$ 
 f(x) = \sin(x) \tag{6}
@@ -175,7 +267,7 @@ $$
 \text{Focal Loss} = - \alpha_t (1 - p_t)^\gamma \log(p_t) \tag{9}
 $$
 
-donde $ p_t = \hat{y}_c $
+donde \$ p_t = \hat{y}\_c \$
 
 #### Tipos de redes neuronales artificiales
 
@@ -204,8 +296,7 @@ Como podrá observarse detalladamente más adelante, la conexión entre las dife
 
 **Figura 3.**
 
-*Conexión entre las neuronas del modelo.*
-{{< video video.mp4 >}} Tomado de Sora OpenAI.
+*Conexión entre las neuronas del modelo.* {{< video video.mp4 >}} Tomado de Sora OpenAI.
 
 ### Preprocesamiento
 
@@ -286,7 +377,7 @@ La función de pérdida a elegir, es sparse categorical cross entropy, la cual e
 
 ##### Capas
 
-1.  **Capa de entrada.** 
+1.  **Capa de entrada.**
 
     La capa de entrada está definida para recibir un número de características igual a la dimensión de los datos en el conjunto balanceado.
 
@@ -306,8 +397,7 @@ La función de pérdida a elegir, es sparse categorical cross entropy, la cual e
 
 Es posible notar en la Figura 5 que, durante el entrenamiento, el modelo tiene una función de pérdida muy alta y una precisión que, en vez de incrementar, va disminuyendo en los datos de validación a pesar de que empieza en un valor muy alto. Los motivos por los cuales sucede esto serán abordados más adelante de una manera específica.
 
-*Evolución de las métricas del modelo a través de las épocas durante el proceso de entrenamiento.*
-![Evolución de las métricas del modelo a través de las épocas durante el proceso de entrenamiento.](metricas_baja.png) Elaboración propia.
+*Evolución de las métricas del modelo a través de las épocas durante el proceso de entrenamiento.* ![Evolución de las métricas del modelo a través de las épocas durante el proceso de entrenamiento.](metricas_baja.png) Elaboración propia.
 
 **Reporte de clasificación**
 
