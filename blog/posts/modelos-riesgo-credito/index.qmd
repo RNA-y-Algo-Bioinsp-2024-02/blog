@@ -70,7 +70,11 @@ El análisis exploratorio de datos es una fase crítica para comprender la estru
 
 El primer paso del análisis exploratorio será entender los datos en términos generales. Para ello: leeiemos la base datos e identificmos sus dimensiones que corresponden con 887379 filas y 74 columnas o variables.
 
-A continuación se muestra una gráfica que muestra la estructura de las variables asi como el porcentage de NA
+En la Tabla 1 que se muestra a continuación puede verse la estructura de las variables del conjunto de datos así como del porcentaje del valores nulos *NA* presentes en cada variable.
+
+**Tabla 1.**
+
+*Primer análisis exploratorio del conjunto de datos.*
 
 ```{python}
 
@@ -81,7 +85,7 @@ pd.set_option('display.max_rows', None)
 pd.set_option('display.max_columns', None)
 def show_dataframe(df):
     display(HTML(f"""
-    <div style="height: 300px; overflow: auto; border: 1px solid black;">
+    <div style="height: 300px; overflow: auto; margin-bottom: 16px;">
         {df.to_html()}
     </div>
     """))
@@ -93,19 +97,21 @@ df = pd.read_excel("info_data.xlsx")
 show_dataframe(df)
 ```
 
-Una vez entendida la estructura y consistencia de los datos, procedimos con una fase de análisis para su preparación y limpieza. Usando diccionarios de variables para interpretar el significado y contexto de cada una de las variables, se ha decidido eliminar las siguientes, ya que a priori consideramos que no aportan relevancia práctica o lógica al modelo. Estas variables son:
+Elaboración propia.
 
--   **id**: Es un identificador único del crédito, por lo que no proporciona información adicional útil para el modelo.
+Una vez entendida la estructura y consistencia de los datos, se procede con una fase de análisis para su preparación y limpieza. Usando diccionarios de variables para interpretar el significado y contexto de cada una de las variables, se ha decidido eliminar las siguientes, ya que a priori consideramos que no aportan relevancia práctica o lógica al modelo. Estas variables son:
 
--   **member_id**: Al ser un identificador único del prestatario, tampoco añade valor informativo al análisis.
+-   **id**: es un identificador único del crédito, por lo que no proporciona información adicional útil para el modelo.
 
--   **url**: Es un enlace único que no aporta información relevante para el modelo.
+-   **member_id**: al ser un identificador único del prestatario, tampoco añade valor informativo al análisis.
 
--   **desc**: Es una descripción de las razones para solicitar el préstamo. Aunque podría contener información útil, su análisis requeriría técnicas de procesamiento de texto, lo cual está fuera del alcance inmediato.
+-   **url**: es un enlace único que no aporta información relevante para el modelo.
 
--   **title**: Representa el título del préstamo proporcionado por el prestatario. Debido a su alta diversidad y el gran número de categorías, no se considera relevante para este análisis.
+-   **desc**: es una descripción de las razones para solicitar el préstamo. Aunque podría contener información útil, su análisis requeriría técnicas de procesamiento de texto, lo cual está fuera del alcance inmediato.
 
--   **recoveries**: Indica la cantidad de dinero recuperado en caso de incumplimiento (default). Al estar relacionada con eventos posteriores al interés del modelo, no puede ser una covariable válida y además proporcionaría información determinística, lo que no es deseable.
+-   **title**: representa el título del préstamo proporcionado por el prestatario. Debido a su alta diversidad y el gran número de categorías, no se considera relevante para este análisis.
+
+-   **recoveries**: indica la cantidad de dinero recuperado en caso de incumplimiento (default). Al estar relacionada con eventos posteriores al interés del modelo, no puede ser una covariable válida y además proporcionaría información determinística, lo que no es deseable.
 
 -   **collection_recovery_fee**, **out_prncp** y **out_prncp_inv** al igual que la variable anterior, no se incluye por estar causada por eventos posteriores al interés del modelo.
 
@@ -113,15 +119,18 @@ Una vez entendida la estructura y consistencia de los datos, procedimos con una 
 
 -   Debido a la relación directa entre **grade** y **subgrade**, se opta por descartar **grade** y conservar **subgrade**, ya que esta última proporciona un nivel de detalle mayor y, por lo tanto, más información relevante para el análisis.
 
-
--   **Depuración de variables**:  Adicionalmente, debido a la gran cantidad de variables con valores faltantes, se decidió eliminar aquellas que presentan más del 75% de datos faltantes. Con un porcentaje tan elevado, no es óptimo realizar imputaciones u otros procedimientos de recuperación de datos. Las variables que serán eliminadas son: mths_since_last_record, mths_since_last_major_derog, annual_inc_joint, dti_joint, verification_status_joint, open_acc_6m, open_il_6m, open_il_12m, open_il_24m, mths_since_rcnt_il, total_bal_il, il_util, open_rv_12m, open_rv_24m, max_bal_bc, all_util, inq_fi, total_cu_tl y inq_last_12m.
+-   **Depuración de variables**: Adicionalmente, debido a la gran cantidad de variables con valores faltantes, se decidió eliminar aquellas que presentan más del 75% de datos faltantes. Con un porcentaje tan elevado, no es óptimo realizar imputaciones u otros procedimientos de recuperación de datos. Las variables que serán eliminadas son: **mths_since_last_record, mths_since_last_major_derog, annual_inc_joint, dti_joint, verification_status_joint, open_acc_6m, open_il_6m, open_il_12m, open_il_24m, mths_since_rcnt_il, total_bal_il, il_util, open_rv_12m, open_rv_24m, max_bal_bc, all_util, inq_fi, total_cu_tl** y **inq_last_12m**.
 
 ### Análisis Visual y Tratamiento de NAs
 
-En esta fase, exploraremos las distribuciones y relaciones de los datos para detectar posibles problemas de los datos y necesidades de transformación: 
-- Analizaremos la distribución de las variables, evaluando si requieren transformaciones, como normalización o estandarización. 
-- Trataremos los valores faltantes restantes mediante técnicas de imputación que se ajusten al contexto de las variables.
+En esta fase se van a explorar las distribuciones y relaciones de los datos para detectar posibles problemas de los datos y necesidades de transformación, como podrá observarse a continuación en la Figura 2: 
 
+-   Se analizará la distribución de las variables, evaluando si requieren transformaciones, como normalización o estandarización.
+-   Se tratarán los valores faltantes restantes mediante técnicas de imputación que se ajusten al contexto de las variables.
+
+**Figura 2.**
+
+*Análisis completo del conjunto de datos.*
 
 ```{python}
 from IPython.core.display import HTML
@@ -136,20 +145,22 @@ display(HTML(f"""
 <div style="
     height: 500px;
     overflow: auto;
-    border: 1px solid black;
     margin: 0 auto; /* Centrar horizontalmente si es más estrecho */
+    margin-bottom: 16px;
 ">
     {html_content}
 </div>
 """))
 ```
 
-Dicho análisis nos da información adicional sobre el comportamiento de las variables por una parte se obreva que hay ciertas variables que se pueden omitir.
+Elaboración propia.
 
-- policy_code: Esta variable tiene un valor constante, lo que significa que no contribuye con variabilidad ni información al modelo.
-- pyment_plan: Esta variable solo tiene 2 niveles y uno de ellos tiene muy pocas observaciones, por lo que esta variable no daría mucha información al modelo.
-- emp_title: Esta variable puede ser descartada debido a la alta cantidad de categorías que presenta, lo que dificulta su utilidad y análisis en el modelo.
-- zip_code: Se descarta por la gran cantidad de niveles
+Dicho análisis proporciona información adicional sobre el comportamiento de las variables por una parte se obreva que hay ciertas variables que se pueden omitir.
+
+-   **policy_code:** Esta variable tiene un valor constante, lo que significa que no contribuye con variabilidad ni información al modelo.
+-   **pyment_plan:** Esta variable solo tiene 2 niveles y uno de ellos tiene muy pocas observaciones, por lo que esta variable no daría mucha información al modelo.
+-   **emp_title:** Esta variable puede ser descartada debido a la alta cantidad de categorías que presenta, lo que dificulta su utilidad y análisis en el modelo.
+-   **zip_code:** Se descarta por la gran cantidad de niveles
 
 En general, las variables obtenidas presentan un balance adecuado. Sin embargo, es necesario imputar los valores faltantes de las siguientes variables: **emp_length, mths_since_last_delinq, revol_util, collections_12_mths_ex_med, tot_coll_amt, tot_cur_bal** y **total_rev_hi_lim**.
 
@@ -169,9 +180,9 @@ Este teorema establece que:
 
 "Cualquier función continua definida en un conjunto compacto puede ser aproximada arbitrariamente bien por una red neuronal feedforward con una sola capa oculta y un número suficiente de neuronas, utilizando funciones de activación no lineales"
 
-Lo anterior significa que las funciones de activación no lineales son esenciales para que las redes neuronales puedan aproximar funciones complejas, como se puede observar en la Figura 2. Si bien el teorema garantiza que una sola capa oculta con suficientes neuronas puede aproximar cualquier función continua en un conjunto compacto, en la práctica, aumentar el número de capas suele ser más eficiente para modelar problemas complejos.
+Lo anterior significa que las funciones de activación no lineales son esenciales para que las redes neuronales puedan aproximar funciones complejas, como se puede observar en la Figura 3. Si bien el teorema garantiza que una sola capa oculta con suficientes neuronas puede aproximar cualquier función continua en un conjunto compacto, en la práctica, aumentar el número de capas suele ser más eficiente para modelar problemas complejos.
 
-**Figura 2.**
+**Figura 3.**
 
 *Comparación entre resultados obtenidos mediante funciones lineales y no lineales.* ![Funciones lineales vs funciones no lineales](no_linealidad.png) *Nota.* La gráfica muestra un comparativo entre los resultados obtenidos al aproximar una función a través de una función lineal y de una serie de funciones no lineales, observando que estas últimas permiten una aproximación mucho mejor en comparación con su contraparte lineal.
 
@@ -292,9 +303,9 @@ Algunas de las aplicaciones de las redes neuronales en la actualidad incluyen la
 
 ## Construcción del Modelo de Aprendizaje Automático
 
-Como podrá observarse detalladamente más adelante, la conexión entre las diferentes neuronas artificiales permite el aprendizaje de patrones complejos. El video presentado en la Figura 3 es una representación artística de este planteamiento.
+Como podrá observarse detalladamente más adelante, la conexión entre las diferentes neuronas artificiales permite el aprendizaje de patrones complejos. El video presentado en la Figura 4 es una representación artística de este planteamiento.
 
-**Figura 3.**
+**Figura 4.**
 
 *Conexión entre las neuronas del modelo.* {{< video video.mp4 >}} Tomado de Sora OpenAI.
 
@@ -343,7 +354,7 @@ Este método asegura que las características tengan una varianza de 1 y estén 
 
 El análisis descriptivo mostró que la variable respuesta del dataset está altamente desbalanceada, lo cual representa un reto significativo al crear el modelo. Un modelo entrenado en estas condiciones puede tender a predecir únicamente la clase mayoritaria, generando métricas como el *accuracy* con valores engañosamente altos, pero sin reflejar una verdadera capacidad predictiva. Para abordar este problema, se emplearán las siguientes técnicas:
 
--   **Sobremuestreo y Submuestreo**: esta estrategia, ilustrada en la Figura 4, combina el aumento de las clases minoritarias mediante sobremuestreo y la reducción de las clases mayoritarias mediante submuestreo. El objetivo es equilibrar la cantidad de datos entre las clases, incentivando al modelo a aprender las características de todas las clases y mejorando sus métricas al minimizar la función de pérdida. Esto fue utilizado para todas las clases en el entrenamiento y el valor final para cada clase fue el siguiente:
+-   **Sobremuestreo y Submuestreo**: esta estrategia, ilustrada en la Figura 5, combina el aumento de las clases minoritarias mediante sobremuestreo y la reducción de las clases mayoritarias mediante submuestreo. El objetivo es equilibrar la cantidad de datos entre las clases, incentivando al modelo a aprender las características de todas las clases y mejorando sus métricas al minimizar la función de pérdida. Esto fue utilizado para todas las clases en el entrenamiento y el valor final para cada clase fue el siguiente:
 
     -   Current: 150.000
 
@@ -355,7 +366,7 @@ El análisis descriptivo mostró que la variable respuesta del dataset está alt
 
     -   Issued: 50.000
 
-**Figura 4.**
+**Figura 5.**
 
 *Ilustración del funcionamiento de las técnicas de sobremuestreo y submuestreo.* ![Ilustración del funcionamiento de las técnicas de sobremuestreo y submuestreo](muestreo.png) Tomado de *Handling imbalanced dataset in supervised learning using family of SMOTE algorithm*, por RohitWalimbe, 2017 (https://www.datasciencecentral.com/handling-imbalanced-data-sets-in-supervised-learning-using-family)
 
@@ -393,9 +404,9 @@ La función de pérdida a elegir, es sparse categorical cross entropy, la cual e
 
 **Evolución de las métricas**
 
-**Figura 5.**
+Es posible notar en la Figura 6 que, durante el entrenamiento, el modelo tiene una función de pérdida muy alta y una precisión que, en vez de incrementar, va disminuyendo en los datos de validación a pesar de que empieza en un valor muy alto. Los motivos por los cuales sucede esto serán abordados más adelante de una manera específica.
 
-Es posible notar en la Figura 5 que, durante el entrenamiento, el modelo tiene una función de pérdida muy alta y una precisión que, en vez de incrementar, va disminuyendo en los datos de validación a pesar de que empieza en un valor muy alto. Los motivos por los cuales sucede esto serán abordados más adelante de una manera específica.
+**Figura 6.**
 
 *Evolución de las métricas del modelo a través de las épocas durante el proceso de entrenamiento.* ![Evolución de las métricas del modelo a través de las épocas durante el proceso de entrenamiento.](metricas_baja.png) Elaboración propia.
 
@@ -403,9 +414,9 @@ Es posible notar en la Figura 5 que, durante el entrenamiento, el modelo tiene u
 
 **Matriz de confusión**
 
-De acuerdo con la matriz de confusión observada en la Figura 6, se pueden notar ciertas dificultades para predecir clases como *Fully Paid*. Sin embargo, el modelo predice bien clases como *Charged Off* y *Current*.
+De acuerdo con la matriz de confusión observada en la Figura 7, se pueden notar ciertas dificultades para predecir clases como *Fully Paid*. Sin embargo, el modelo predice bien clases como *Charged Off* y *Current*.
 
-**Figura 6.**
+**Figura 7.**
 
 *Matriz de confusión del modelo de baja complejidad.* ![Matriz de confusón del modelo de baja complejidad.](matriz_de_confusion_baja.png) Elaboración propia.
 
@@ -459,9 +470,9 @@ Las capas definidas en el modelo fueron las siguiente:
 
 **Evolución de las métricas**
 
-En la Figura 6 se puede evidenciar cómo la función de pérdida va disminuyendo a lo largo de las épocas, con lo cual se va obteniendo un *accuracy* mucho más alto.
+En la Figura 8 se puede evidenciar cómo la función de pérdida va disminuyendo a lo largo de las épocas, con lo cual se va obteniendo un *accuracy* mucho más alto.
 
-**Figura 6.**
+**Figura 8.**
 
 *Evolución de las métricas obtenidas por el modelo a través de las épocas.* ![Evolución de las métricas obtenidas por el modelo a través de las épocas](metricas.png) Elaboración propia.
 
@@ -469,9 +480,9 @@ Finalmente se ha de observar que en el entrenamiento los resultados son muy esta
 
 #### **Reporte de clasificación**
 
-A continuación se muestra una visión mucho más clara de los resultados obtenidos por el modelo para el conjunto de prueba, ya que en los problemas multiclase puede llegar a ser engañoso considerar solamente la métrica global calculada por el modelo. En los resultados mostrados por la Tabla 1, se evidencia que la clase *Default* es la que presenta más dificultades para el modelo.
+A continuación se muestra una visión mucho más clara de los resultados obtenidos por el modelo para el conjunto de prueba, ya que en los problemas multiclase puede llegar a ser engañoso considerar solamente la métrica global calculada por el modelo. En los resultados mostrados por la Tabla 2, se evidencia que la clase *Default* es la que presenta más dificultades para el modelo.
 
-**Tabla 1.**
+**Tabla 2.**
 
 *Reporte de clasificación del modelo de mayor complejidad.*
 
@@ -494,9 +505,9 @@ Elaboración propia.
 
 **Matriz de confusión**
 
-Igualmente, en la Figura 7 se observan cuántos datos de cada clase fueron clasificados correctamente en la diagonal principal de la matriz de confusión. También se observan las dificultades que tuvo el modelo, así como su claridad para predecir algunas de las clases en el problema.
+Igualmente, en la Figura 9 se observan cuántos datos de cada clase fueron clasificados correctamente en la diagonal principal de la matriz de confusión. También se observan las dificultades que tuvo el modelo, así como su claridad para predecir algunas de las clases en el problema.
 
-**Figura 7.**
+**Figura 9.**
 
 *Matriz de confusión obtenida al evaluar el conjunto de prueba en el modelo.* ![Matriz de confusión obtenida al evaluar el conjunto de prueba en el modelo.](matriz_de_confusion.png) Elaboración propia.
 
@@ -588,11 +599,82 @@ Además se agregó un workflow con GitHub Actions para automatizar el despliegue
 
 A continuación se desarrollará un caso de uso que ejemplifica cómo el uso del modelo desplegado anteriormente a través de una aplicación web puede traer beneficios a las entidades bancarias en los procesos de toma de decisiones, así como darle una mayor claridad a los usuarios de estos servicios, en términos de cononocer los motivos por los cuales se toman ciertas decisiones respecto a sus préstamos o productos bancarios (como puede ser la venta de cartera o similares).
 
-**Caso del banco**
+### Caso de la entidad financiera
 
-**Caso del usuario**
+De acuerdo con el @cooperativasdefinicion, en Colombia se encuentran reglamentadas el conjunto de "empresas asociativas sin ánimo de lucro en las cuales los trabajadores o los usuarios, según el caso, son simultáneamente los aportantes y los gestores de la Empresa", bajo el nombre de cooperativas. Estas entidades son reguladas por la Superintendencia de la Economía Solidaria **Supersolidaria** o por la Superintendencia Financiera de Colombia **Superfinanciera** y tienen como objetivo la distribución o producción de bienes o servicios que satisfagan las necesidades de sus asociados, de manera colaborativa y eficiente. De la misma manera, las cooperativas tienen facultades legales para asociarse entre sí en miras al cumplimiento de sus propósitos económicos y sociales de una mejor manera.
+
+Ahora bien, la ley colombiana regula las actividades financieras de las cooperativas de la siguiente manera, según @supersolidaria:
+
+-   Las **cooperativas financieras** como organismos cooperativos que tienen como función principal la realización de actividades financieras, se consideran establecimientos de crédito y pueden solicitar autorización de la Superfinanciera para ofrecer sus servicios a terceros no asociados a la cooperativa.
+
+-   Las **cooperativas de ahorro y crédito** como organismos cooperativos que tienen la función principal de adelantar actividades financieras con sus asociados de forma única. A su vez, deben solicitar autorización de la Supersolidaria para la prestación de sus servicios.
+
+Teniendo en cuenta lo anterior, al hacer énfasis en la actividad ejercida por las cooperativas financieras, es posible observar que dichas entidades deben tener una especial importancia en la correcta gestión del riesgo de crédito, pues de esto depende en gran medida su capacidad para continuar prestando sus servicios a sus asociados o terceros que así lo necesiten. Por lo tanto, este caso de uso obedece a la situación en que una cooperativa financiera necesite evaluar cuál sería la decisión adecuada con respecto al crédito solicitado por un tercero no asociado, considerando las variables que interactúan en el problema y se muestran en la Tabla 3.
+
+**Tabla 3.**
+
+*Reporte de clasificación del modelo de mayor complejidad.*
+
+| Variable                                      | Valor                       |
+|--------------------------------------------|----------------------------|
+| **Monto del Préstamo**                        | \$50,000,000 COP            |
+| **Monto Comprometido**                        | \$50,000,000 COP            |
+| **Monto Inversionistas**                      | \$50,000,000 COP            |
+| **Tasa de Interés**                           | 18.5% E.A.                  |
+| **Pago Mensual**                              | \$1,875,000 COP             |
+| **Ingresos Anuales**                          | \$60,000,000 COP            |
+| **DTI (Relación Deuda/Ingresos)**             | 45%                         |
+| **Incidentes de Mora en 2 años**              | 2                           |
+| **Consultas Crediticias en 6 meses**          | 4                           |
+| **Líneas de Crédito Abiertas**                | 6                           |
+| **Registros Derogatorios**                    | 1                           |
+| **Saldo Crédito Rotativo**                    | \$15,000,000 COP            |
+| **Uso de Crédito Rotativo**                   | 70%                         |
+| **Líneas de Crédito Totales**                 | 9                           |
+| **Pagos Recibidos por Monto Total**           | \$30,000,000 COP            |
+| **Pagos Recibidos por Porción Inversionista** | \$30,000,000 COP            |
+| **Principal Recibido**                        | \$25,000,000 COP            |
+| **Interés Recibido**                          | \$5,000,000 COP             |
+| **Recargos por Mora**                         | \$1,200,000 COP             |
+| **Último Pago Recibido**                      | \$1,500,000 COP             |
+| **Cobros en 12 Meses**                        | 3                           |
+| **Cuentas en Mora**                           | 2                           |
+| **Cobros Adeudados**                          | \$2,500,000 COP             |
+| **Saldo de las Cuentas**                      | \$35,000,000 COP            |
+| **Límite de Crédito Rotativo**                | \$20,000,000 COP            |
+| **Tiempo de Empleo en Años**                  | 5                           |
+| **Número de Pagos del Préstamo**              | 60 meses                    |
+| **Calificación del Préstamo**                 | 3 (Nivel de Riesgo Regular) |
+| **Estado de Propiedad de Vivienda**           | MORTGAGE                    |
+| **Estado de Verificación**                    | Verificado                  |
+
+Dados estos datos, es posible observar que el prestatario muestra un riesgo entre moderado y alto debido a su alto DTI, sus incidentes de mora recientes y uso elevado del crédito rotativo. A pesar de que ha pagado más de la mitad del préstamo, aún mantiene cuentas en mora y un historial de cobros en los últimos 12 meses. Por lo tanto, la cooperativa financiera podría considerar estrategias como la restructuración concertada de las condiciones del préstamo o la venta de cartera en otra entidad financiera.
+
+### Caso del usuario
+
+Por otra parte, si se tiene en cuenta el punto de vista de un prestatario (es decir, alguien que accede a créditos, préstamos y otros productos) resultaría muy importante conocer la forma en que es evaluado su perfil por parte de las entidades financieras como cooperativas y bancos, pues de esta manera sería posible comprender el porqué de las condiciones que le son propuestas para acceder a un crédito y planear estrategias para mejorar dicho perfil y acceder a mejores opciones. 
+
+En este sentido, la Tabla 4 muestra algunas variables que se consideran cruciales al evaluar el riesgo de crédito y que, ciertamente fueron consideradas en el modelo de redes neuronales artificiales, con los valores que se juzgan **poco riesgosos** desde el análisis realizado por las entidades financieras.
+
+**Tabla 4.**
+
+*Valores de un perfil de crédito que permitiría obtener mejores condiciones por parte de las entidades financieras en un préstamo o similar.*
+
+| **Variable**                         | **Valores Óptimos** |
+|--------------------------------------|---------------------|
+| **DTI (Relación Deuda/Ingresos)**    | Menos del 30%       |
+| **Incidentes de Mora en 2 años**     | 0                   |
+| **Consultas Crediticias en 6 meses** | Menos de 2          |
+| **Registros Derogatorios**           | 0                   |
+| **Uso de Crédito Rotativo**          | Menos del 35%       |
+| **Cuentas en Mora**                  | 0                   |
+| **Cobros Adeudados**                 | \$0 COP             |
+
+La información encontrada anteriormente puede contrastarse por lo dicho en @valoresoptimosequifax y por @valoresoptimosincharge, donde además se especifica que la tasa **DTI** puede considerarse poco riesgosa hasta en un valor del 43%, teniendo algunas consideraciones adicionales.
 
 # Aplicación web
+
+Como se mencionó anteriormente, el modelo de redes neuronales artificiales fue desplegado en una aplicación web titulada *CrediMetric* que podrá ser accedida en el siguiente **enlace**, donde las entidades financieras podrán evaluar los perfiles de crédito de los casos en los que necesitan evaluar una decisión especial y también los prestatarios podrán conocer su perfil de riesgo de crédito de una manera más completa y descriptiva.
 
 # Video publicitario
 
