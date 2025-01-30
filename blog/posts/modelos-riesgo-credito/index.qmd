@@ -123,7 +123,7 @@ Una vez entendida la estructura y consistencia de los datos, se procede con una 
 
 ### Análisis Visual y Tratamiento de NAs
 
-En esta fase se van a explorar las distribuciones y relaciones de los datos para detectar posibles problemas de los datos y necesidades de transformación, como podrá observarse a continuación en la Figura 2: 
+En esta fase se van a explorar las distribuciones y relaciones de los datos para detectar posibles problemas de los datos y necesidades de transformación, como podrá observarse a continuación en la Figura 2:
 
 -   Se analizará la distribución de las variables, evaluando si requieren transformaciones, como normalización o estandarización.
 -   Se tratarán los valores faltantes restantes mediante técnicas de imputación que se ajusten al contexto de las variables.
@@ -378,6 +378,8 @@ Todo lo descrito a continuación fue implementado mediante Tensorflow.
 
 #### Modelo simple
 
+Este es el modelo que utilzaremos como referencia, este reflejará los resultados que se obtienen, no solo al utilizar una arquitectura bastante sencilla del modelo, sino además no realizar un proceso de ingeniería de características, es entonces esperado un mal rendimiento en este modelo al tener malas prácticas dentro del mismo.
+
 ##### Evaluación del modelo
 
 Utilizaremos la métrica más simple posible, que es la que toma Tensorflow por defecto, el accuracy.
@@ -421,6 +423,18 @@ De acuerdo con la matriz de confusión observada en la Figura 7, se pueden notar
 *Matriz de confusión del modelo de baja complejidad.* ![Matriz de confusón del modelo de baja complejidad.](matriz_de_confusion_baja.png) Elaboración propia.
 
 #### Modelo con mayor complejidad
+
+##### Ingeniería de características
+
+Debido a que contamos con variables temporales, vamos a centrar el proceso de ingeniería de características en estas variables para darles un tratamiento que ayuden la capacidad predictiva del modelo (también se puede pensar en arquitecturas como LSTM para el manejo de este tipo de datos)
+
+**Cálculo de Intervalos de Tiempo**
+  - Calculamos el **tiempo transcurrido** desde una fecha de referencia (`2025-01-01`):
+  - **Antigüedad del préstamo (`loan_age_years`)**: Tiempo desde que se emitió el préstamo.
+  - **Historial de crédito (`credit_history_years`)**: Años desde la apertura del primer crédito.
+  - **Días desde el último pago (`days_since_last_payment`)**: Indicador de riesgo si el valor es alto.
+  - **Días desde la última consulta de crédito (`days_since_last_credit_pull`)**: Indica actividad reciente del cliente.
+
 
 ##### Evaluación del modelo
 
@@ -474,7 +488,7 @@ En la Figura 8 se puede evidenciar cómo la función de pérdida va disminuyendo
 
 **Figura 8.**
 
-*Evolución de las métricas obtenidas por el modelo a través de las épocas.* ![Evolución de las métricas obtenidas por el modelo a través de las épocas](metricas.png) Elaboración propia.
+*Evolución de las métricas obtenidas por el modelo a través de las épocas.* ![Evolución de las métricas obtenidas por el modelo a través de las épocas](metricas_final.png) Elaboración propia.
 
 Finalmente se ha de observar que en el entrenamiento los resultados son muy estables mostrando una convergencia, mientras que en la validación tiende a fluctuar, pero mostrando buenos resultados a pesar de las flucutaciones, ya que ninguna es extrema.
 
@@ -487,19 +501,19 @@ A continuación se muestra una visión mucho más clara de los resultados obteni
 *Reporte de clasificación del modelo de mayor complejidad.*
 
 | **Clase**        | **Precision** | **Recall** | **F1-score** | **Support** |
-|------------------|---------------|------------|--------------|-------------|
-| **Charged Off**  | 0.3117        | 0.6172     | 0.4142       | 9158        |
-| **Current**      | 0.9466        | 0.9471     | 0.9468       | 120122      |
-| **Default**      | 0.1646        | 0.1490     | 0.1564       | 4382        |
-| **Fully Paid**   | 0.9846        | 0.7334     | 0.8406       | 42111       |
-| **Issued**       | 0.4362        | 0.9789     | 0.6034       | 1703        |
-| **Accuracy**     | \-            | \-         | 0.8600       | 177476      |
-| **Macro avg**    | 0.5687        | 0.6851     | 0.5923       | 177476      |
-| **Weighted avg** | 0.8986        | 0.8600     | 0.8713       | 177476      |
+|------------------|-------------|------------|------------|-------------|
+| **Charged Off**  | 1.00        | 0.99       | 0.99       | 9509        |
+| **Current**      | 0.99        | 0.79       | 0.88       | 120560      |
+| **Fully Paid**   | 1.00        | 1.00       | 1.00       | 41689       |
+| **In Progress**  | 0.44        | 0.58       | 0.50       | 2976        |
+| **Late**         | 0.09        | 0.88       | 0.17       | 2742        |
+| **Accuracy**     | -           | -          | 0.85       | 177476      |
+| **Macro avg**    | 0.70        | 0.85       | 0.71       | 177476      |
+| **Weighted avg** | 0.97        | 0.85       | 0.90       | 177476      |
 
-**F1-score macro:** 0.5439
+**F1-score macro:** 0.71
 
-**Recall macro:** 0.7302
+**Recall macro:** 0.85
 
 Elaboración propia.
 
@@ -521,57 +535,58 @@ Los resultados que se mostrarán a continuación muestran que el desarrollo del 
 
 #### Pesos del modelo
 
-Después de entrenar el modelo se puede ver cuáles son las características más relevantes bajo los paramétros que maximizan la capacidad predictiva del modelo. Es importante tener en cuenta que cada capa se concentra en diferentes tipos de patrones, más simples o complejos, por lo que el peso de las características va variando a lo largo del entrenamiento en cada una de ellas. A continuación se observa el resultado obtenido para cada capa:
+Podemos obtener el peso de cada una de las características del modelo. Este fue el orden de importancia de las 19 características utilizadas:
 
-**Primera Capa**
+| Feature                           | Importance    |
+|-----------------------------------|--------------:|
+| last_pymnt_d_day_of_week         | 1644.288574   |
+| last_pymnt_d_month               | 1508.413818   |
+| last_credit_pull_d_month         | 562.279358    |
+| loan_age_years                   | 482.754181    |
+| installment                      | 303.830078    |
+| recoveries                       | 258.369934    |
+| days_since_last_payment          | 256.875885    |
+| last_credit_pull_d_day_of_week   | 234.173584    |
+| out_prncp_inv                    | 204.917572    |
+| out_prncp                        | 204.653198    |
+| last_pymnt_d_year                | 194.993286    |
+| collection_recovery_fee          | 191.655243    |
+| issue_d_year                     | 167.871353    |
+| last_pymnt_amnt                  | 151.017563    |
+| last_credit_pull_d_year          | 126.103256    |
+| total_rec_prncp                  | 103.840637    |
+| days_since_last_credit_pull      | 88.737617     |
+| total_pymnt                      | 86.705498     |
+| total_pymnt_inv                  | 85.052872     |
 
-\- **`home_ownership_OWN`**: El prestatario es propietario de su vivienda.
 
-\- **`funded_amnt`**: La cantidad desembolsada del préstamo hasta el momento.
+### **Variables de Fecha y Tiempo**
+- **`last_pymnt_d_day_of_week`**: Día de la semana en que se realizó el último pago. Puede revelar patrones de pago recurrentes.  
+- **`last_pymnt_d_month`**: Mes del último pago. Ayuda a detectar estacionalidad en los pagos.  
+- **`last_pymnt_d_year`**: Año del último pago. Captura tendencias anuales en el comportamiento del prestatario.  
+- **`loan_age_years`**: Antigüedad del préstamo en años. Permite evaluar el riesgo según el tiempo que ha pasado desde su emisión.  
+- **`issue_d_year`**: Año en que se emitió el préstamo. Útil para analizar cambios en la concesión de créditos a lo largo del tiempo.  
+- **`days_since_last_payment`**: Días desde el último pago realizado. Un número alto puede indicar posible morosidad.  
+- **`days_since_last_credit_pull`**: Días desde la última consulta de crédito del prestatario. Si es alto, puede significar falta de actividad financiera reciente.  
 
-\- **`total_rec_int`**: El interés total recibido.
+### **Variables Relacionadas con Pagos**
+- **`installment`**: Pago mensual que debe realizar el prestatario. Refleja la carga financiera del crédito.  
+- **`last_pymnt_amnt`**: Monto del último pago realizado. Indica la capacidad de pago reciente del prestatario.  
+- **`total_pymnt`**: Suma total pagada por el prestatario, incluyendo capital e intereses.  
+- **`total_pymnt_inv`**: Suma total pagada a los inversionistas. Similar a `total_pymnt`, pero desde la perspectiva del inversor.  
 
-**Segunda capa**
+### **Variables de Historial Crediticio**
+- **`last_credit_pull_d_month`**: Mes de la última consulta de crédito del prestatario. Indica actividad reciente en su historial crediticio.  
+- **`last_credit_pull_d_year`**: Año de la última consulta de crédito. Útil para evaluar la regularidad en la revisión crediticia.  
+- **`last_credit_pull_d_day_of_week`**: Día de la semana en que se realizó la última consulta de crédito. Puede reflejar patrones en las evaluaciones de riesgo.  
 
-\- **`revol_util`**: Cantidad de crédito que el prestatario está utilizando en relación con todo el crédito disponible.
+### **Variables de Recuperación y Deuda Pendiente**
+- **`recoveries`**: Monto recuperado de préstamos que habían caído en mora. Evalúa la efectividad del proceso de cobranza.  
+- **`collection_recovery_fee`**: Costos asociados a la recuperación de préstamos en mora. Permite analizar la eficiencia del cobro.  
+- **`out_prncp`**: Principal pendiente de pago del prestatario. Indica cuánto capital aún no ha sido devuelto.  
+- **`out_prncp_inv`**: Principal pendiente de pago desde la perspectiva de los inversionistas.  
 
--   **`int_rate`**: Tasa de interés del préstamo.
-
-\- **`tot_cur_bal`**: Balance total actual de todas las cuentas del prestatario.
-
--   **`total_pymnt`**: Pagos totales recibidos hasta la fecha para la cantidad total financiada.
-
-**Tercera capa**
-
-\- **`int_rate`**: Tasa de interés del préstamo.
-
-\- **`dti`**: Porcentaje del ingreso mensual del prestatario destinado al pago de deudas.
-
-\- **`grade_encoded`**: Grado asignado al préstamo por LC.
-
-\- **`installment`**: Pago mensual que debe realizar el prestatario.
-
-\- **`total_rev_hi_lim`**: Límite máximo de crédito disponible en líneas de crédito revolvente.
-
-**Cuarta Capa**
-
-\- **`total_rec_prncp`**: Capital total recibido hasta el momento.
-
-\- **`revol_util`**: Cantidad de crédito que el prestatario está utilizando en relación con todo el crédito disponible.
-
-\- **`tot_cur_bal`**: Balance total actual de todas las cuentas del prestatario.
-
-\- **`home_ownership_OWN`**: El prestatario es propietario de su vivienda.
-
-**Quinta capa**
-
-\- **`tot_cur_bal`**: Balance total actual de todas las cuentas del prestatario.
-
-\- **`total_rec_prncp`**: Capital total recibido hasta la fecha.
-
-\- **`emp_length_encoded`**: Codificación de la longitud del empleo.
-
-\- **`total_rec_late_fee`**: Tarifas por pagos tardíos acumuladas hasta la fecha.
+Podemos ver la importancia de la ingeniería de características que se realizó, pues la mayoría de ellas quedaron entre las características más importantes del modelo que además permitieron mejorar el rendimiento obtenido.
 
 ## Puesta en producción del modelo
 
@@ -652,7 +667,7 @@ Dados estos datos, es posible observar que el prestatario muestra un riesgo entr
 
 ### Caso del usuario
 
-Por otra parte, si se tiene en cuenta el punto de vista de un prestatario (es decir, alguien que accede a créditos, préstamos y otros productos) resultaría muy importante conocer la forma en que es evaluado su perfil por parte de las entidades financieras como cooperativas y bancos, pues de esta manera sería posible comprender el porqué de las condiciones que le son propuestas para acceder a un crédito y planear estrategias para mejorar dicho perfil y acceder a mejores opciones. 
+Por otra parte, si se tiene en cuenta el punto de vista de un prestatario (es decir, alguien que accede a créditos, préstamos y otros productos) resultaría muy importante conocer la forma en que es evaluado su perfil por parte de las entidades financieras como cooperativas y bancos, pues de esta manera sería posible comprender el porqué de las condiciones que le son propuestas para acceder a un crédito y planear estrategias para mejorar dicho perfil y acceder a mejores opciones.
 
 En este sentido, la Tabla 4 muestra algunas variables que se consideran cruciales al evaluar el riesgo de crédito y que, ciertamente fueron consideradas en el modelo de redes neuronales artificiales, con los valores que se juzgan **poco riesgosos** desde el análisis realizado por las entidades financieras.
 
