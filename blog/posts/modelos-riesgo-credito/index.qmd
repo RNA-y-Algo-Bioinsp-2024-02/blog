@@ -368,7 +368,9 @@ El análisis descriptivo mostró que la variable respuesta del dataset está alt
 
 **Figura 5.**
 
-*Ilustración del funcionamiento de las técnicas de sobremuestreo y submuestreo.* ![Ilustración del funcionamiento de las técnicas de sobremuestreo y submuestreo](muestreo.png) Tomado de *Handling imbalanced dataset in supervised learning using family of SMOTE algorithm*, por RohitWalimbe, 2017 (https://www.datasciencecentral.com/handling-imbalanced-data-sets-in-supervised-learning-using-family)
+*Ilustración del funcionamiento de las técnicas de sobremuestreo y submuestreo.* ![Ilustración del funcionamiento de las técnicas de sobremuestreo y submuestreo](muestreo.png) 
+
+Tomado de *Handling imbalanced dataset in supervised learning using family of SMOTE algorithm*, por RohitWalimbe, 2017 (https://www.datasciencecentral.com/handling-imbalanced-data-sets-in-supervised-learning-using-family)
 
 -   **Agrupamiento de las clases**: en esta estrategia se agruparon algunas de las clases con una menor cantidad de datos, teniendo en cuenta que, como se verá más adelante, son clases que tienen tan pocos datos que predecirlas es altamente complejo; esto pone en evidencia las limitaciones de las técnicas de sobremuestreo y submuestreo en la presencia de clases altamente desbalanceadas.
 
@@ -428,13 +430,15 @@ De acuerdo con la matriz de confusión observada en la Figura 7, se pueden notar
 
 Debido a que contamos con variables temporales, vamos a centrar el proceso de ingeniería de características en estas variables para darles un tratamiento que ayuden la capacidad predictiva del modelo (también se puede pensar en arquitecturas como LSTM para el manejo de este tipo de datos)
 
-**Cálculo de Intervalos de Tiempo**
-  - Calculamos el **tiempo transcurrido** desde una fecha de referencia (`2025-01-01`):
+**Cálculo de Intervalos de Tiempo** : Calculamos el **tiempo transcurrido** desde una fecha de referencia (`2025-01-01`):
+   
   - **Antigüedad del préstamo (`loan_age_years`)**: Tiempo desde que se emitió el préstamo.
+   
   - **Historial de crédito (`credit_history_years`)**: Años desde la apertura del primer crédito.
+   
   - **Días desde el último pago (`days_since_last_payment`)**: Indicador de riesgo si el valor es alto.
+  
   - **Días desde la última consulta de crédito (`days_since_last_credit_pull`)**: Indica actividad reciente del cliente.
-
 
 ##### Evaluación del modelo
 
@@ -448,11 +452,21 @@ Para abordar el desbalance de clases durante el entrenamiento, utilizaremos téc
 
 -   **Focal Loss:** esta función de pérdida está diseñada específicamente para problemas de clasificación desbalanceados. Su objetivo es priorizar las clases minoritarias al reducir la importancia de las predicciones correctamente clasificadas para las clases mayoritarias. Esto ayuda al modelo a concentrarse más en aprender las características de las clases menos representadas.
 
+##### Pesos de las clases
+
+Podemos además a incentivar al modelo a aprender los patrones de las clases minortitarias y ser capaz de predecirlos dandole un peso mnyor a estas clases, por lo que un error en las clases minoritarias pesa mucho más.
+
 -   **Pesos de las Clases:** en algunos casos, asignar pesos inversamente proporcionales al tamaño de cada clase en la función de pérdida puede ser una estrategia complementaria para equilibrar la importancia de las clases en el modelo.
 
-##### Callbacks
+| Clase         | Peso  |
+|--------------|------:|
+| Current      | 0.58  |
+| Fully Paid   | 0.725 |
+| Charged Off  | 1.16  |
+| In Progress  | 10.0  |
+| Late         | 1.933 |
 
--   **Early Stopping:** permite reducir los tiempos de entrenamiento al monitorear una métrica, y dado un parámetro de paciencia que indica cuantas Epoch esperar, detiene el entrenamiento si la mejora después de cumplida la paciencia no es lo suficientemente significativa para justificar seguir entrenando.
+##### Callbacks
 
 -   **Reduce Learning Rate on Plateu:** ayuda a mantener la capacidad de mejora durante el entrenamiento, los cálculos del gradiente, que dependen de la tasa de aprendizaje pueden no ser capaces de llegar al mínimo de la función de pérdida, por lo que este callback reduce la tasa de entrenamiento si para una cantidad de Epochs dada, no ha habida una mejoría en los resultados, esto permite tener un aprendizaje con capacidad de mejoría a través de las Epochs.
 
@@ -460,25 +474,41 @@ Para abordar el desbalance de clases durante el entrenamiento, utilizaremos téc
 
 Las capas definidas en el modelo fueron las siguiente:
 
-1.  **Capa de entrada.**
+1. **Capa de Entrada**  
 
-    Define el tamaño de entrada , el cual corresponde al numero de características con el dataset ya balanceado, para recibir los datos que serán procesados en las siguientes capas.
+   Define el tamaño de entrada, el cual corresponde al número de características del dataset ya balanceado. Esta capa recibe los datos y los prepara para su procesamiento en las siguientes capas.
 
-2.  **Primera Capa Oculta.**
+2. **Primera Capa Oculta**  
 
-    Esta capa contiene 128 neuronas con una activación ReLU, que introduce no linealidades y permite que el modelo aprenda patrones complejos. Se utiliza la regularización $L_2$ con un valor de $1 \times 10^{-4}$ para evitar el sobreajuste, penalizando pesos grandes. Se utiliza BatchNormalization() para mantener un entrenamiento estable. Se sigue utilizando un valor de desactivación del 20% para reducir la posibilidad de sobreajuste mediante Dropout().
+   Contiene **1024 neuronas** con activación **ReLU**, lo que permite capturar relaciones no lineales en los datos.  
+   Se aplica **Batch Normalization** para estabilizar el entrenamiento y acelerar la convergencia.  
+   Se incorpora un **Dropout del 40%** para reducir el sobreajuste regularizando la activación de las neuronas.  
 
-3.  **Segunda Capa Oculta.**
+3. **Segunda Capa Oculta**  
 
-    La cantidad de neuronas se reduce a 64, permitiendo que el modelo capture características más detalladas y específicas. Se mantiene la normalización y el dropout con los mismos parámetros de la capa anterior.
+   La cantidad de neuronas se reduce a **512**, lo que permite refinar la representación aprendida por la red.  
+   Se mantiene la activación **ReLU**.  
+   Se aplica **Batch Normalization** y **Dropout del 30%** para evitar el sobreajuste.  
 
-4.  **Tercera Capa Oculta.**
+4. **Tercera Capa Oculta**  
 
-    La cantidad de neuronas se reduce a 64, permitiendo que el modelo capture características más detalladas y específicas. Se mantiene la normalización y el dropout con los mismos parámetros de la primera capa oculta.
+   Se continúa reduciendo la dimensionalidad a **256 neuronas** para extraer patrones más específicos.  
+   Se mantiene la combinación de **ReLU + Batch Normalization + Dropout (30%)** para asegurar un entrenamiento estable.  
 
-5.  **Capa de Salida.**
+5. **Cuarta Capa Oculta**  
 
-    Esta capa tiene una neurona por cada clase del problema de clasificación multiclase. La activación Softmax convierte las salidas en probabilidades, asegurando que la suma de las probabilidades sea igual a 1, lo que es esencial para clasificación multiclase.
+   Se emplean **128 neuronas** con activación **ReLU**.  
+   Se mantiene **Batch Normalization** y **Dropout del 20%**, reduciendo progresivamente la tasa de dropout a medida que la red avanza hacia capas más específicas.  
+
+6. **Quinta Capa Oculta**  
+
+   Se incorporan **64 neuronas**, permitiendo una mayor compactación de las representaciones.  
+   Se conserva **ReLU**, **Batch Normalization** y **Dropout del 20%**.  
+
+7. **Capa de Salida**  
+
+   Contiene **una neurona por cada clase del problema de clasificación multiclase**.  
+   Utiliza **Softmax** como función de activación, lo que convierte las salidas en probabilidades normalizadas, asegurando que la suma de las probabilidades sea igual a 1.  
 
 ##### Resultados del modelo
 
@@ -533,7 +563,7 @@ En este punto, se pone en evidencia el problema de utilizar métricas como *accu
 
 Los resultados que se mostrarán a continuación muestran que el desarrollo del modelo fue un problema retador, tanto por el alto volumen de datos como por el desbalanceo de las clases, ambos factores que añaden dificultad al problema, sin embargo, fue posible darles un tratamiento correcto para obtener una mejor solución.
 
-#### Pesos del modelo
+### Pesos del modelo
 
 Podemos obtener el peso de cada una de las características del modelo. Este fue el orden de importancia de las 19 características utilizadas:
 
@@ -560,7 +590,7 @@ Podemos obtener el peso de cada una de las características del modelo. Este fue
 | total_pymnt_inv                  | 85.052872     |
 
 
-### **Variables de Fecha y Tiempo**
+#### **Variables de Fecha y Tiempo**
 - **`last_pymnt_d_day_of_week`**: Día de la semana en que se realizó el último pago. Puede revelar patrones de pago recurrentes.  
 - **`last_pymnt_d_month`**: Mes del último pago. Ayuda a detectar estacionalidad en los pagos.  
 - **`last_pymnt_d_year`**: Año del último pago. Captura tendencias anuales en el comportamiento del prestatario.  
@@ -569,18 +599,18 @@ Podemos obtener el peso de cada una de las características del modelo. Este fue
 - **`days_since_last_payment`**: Días desde el último pago realizado. Un número alto puede indicar posible morosidad.  
 - **`days_since_last_credit_pull`**: Días desde la última consulta de crédito del prestatario. Si es alto, puede significar falta de actividad financiera reciente.  
 
-### **Variables Relacionadas con Pagos**
+#### **Variables Relacionadas con Pagos**
 - **`installment`**: Pago mensual que debe realizar el prestatario. Refleja la carga financiera del crédito.  
 - **`last_pymnt_amnt`**: Monto del último pago realizado. Indica la capacidad de pago reciente del prestatario.  
 - **`total_pymnt`**: Suma total pagada por el prestatario, incluyendo capital e intereses.  
 - **`total_pymnt_inv`**: Suma total pagada a los inversionistas. Similar a `total_pymnt`, pero desde la perspectiva del inversor.  
 
-### **Variables de Historial Crediticio**
+#### **Variables de Historial Crediticio**
 - **`last_credit_pull_d_month`**: Mes de la última consulta de crédito del prestatario. Indica actividad reciente en su historial crediticio.  
 - **`last_credit_pull_d_year`**: Año de la última consulta de crédito. Útil para evaluar la regularidad en la revisión crediticia.  
 - **`last_credit_pull_d_day_of_week`**: Día de la semana en que se realizó la última consulta de crédito. Puede reflejar patrones en las evaluaciones de riesgo.  
 
-### **Variables de Recuperación y Deuda Pendiente**
+#### **Variables de Recuperación y Deuda Pendiente**
 - **`recoveries`**: Monto recuperado de préstamos que habían caído en mora. Evalúa la efectividad del proceso de cobranza.  
 - **`collection_recovery_fee`**: Costos asociados a la recuperación de préstamos en mora. Permite analizar la eficiencia del cobro.  
 - **`out_prncp`**: Principal pendiente de pago del prestatario. Indica cuánto capital aún no ha sido devuelto.  
