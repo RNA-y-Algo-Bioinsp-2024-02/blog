@@ -278,7 +278,7 @@ $$
 \text{Focal Loss} = - \alpha_t (1 - p_t)^\gamma \log(p_t) \tag{9}
 $$
 
-donde \$ p_t = \hat{y}\_c \$
+donde $ p_t = \hat{y}\_c $
 
 #### Tipos de redes neuronales artificiales
 
@@ -368,7 +368,7 @@ El análisis descriptivo mostró que la variable respuesta del dataset está alt
 
 **Figura 5.**
 
-*Ilustración del funcionamiento de las técnicas de sobremuestreo y submuestreo.* ![Ilustración del funcionamiento de las técnicas de sobremuestreo y submuestreo](muestreo.png) 
+*Ilustración del funcionamiento de las técnicas de sobremuestreo y submuestreo.* ![Ilustración del funcionamiento de las técnicas de sobremuestreo y submuestreo](muestreo.png)
 
 Tomado de *Handling imbalanced dataset in supervised learning using family of SMOTE algorithm*, por RohitWalimbe, 2017 (https://www.datasciencecentral.com/handling-imbalanced-data-sets-in-supervised-learning-using-family)
 
@@ -431,14 +431,14 @@ De acuerdo con la matriz de confusión observada en la Figura 7, se pueden notar
 Debido a que contamos con variables temporales, vamos a centrar el proceso de ingeniería de características en estas variables para darles un tratamiento que ayuden la capacidad predictiva del modelo (también se puede pensar en arquitecturas como LSTM para el manejo de este tipo de datos)
 
 **Cálculo de Intervalos de Tiempo** : Calculamos el **tiempo transcurrido** desde una fecha de referencia (`2025-01-01`):
-   
-  - **Antigüedad del préstamo (`loan_age_years`)**: Tiempo desde que se emitió el préstamo.
-   
-  - **Historial de crédito (`credit_history_years`)**: Años desde la apertura del primer crédito.
-   
-  - **Días desde el último pago (`days_since_last_payment`)**: Indicador de riesgo si el valor es alto.
-  
-  - **Días desde la última consulta de crédito (`days_since_last_credit_pull`)**: Indica actividad reciente del cliente.
+
+-   **Antigüedad del préstamo (`loan_age_years`)**: Tiempo desde que se emitió el préstamo.
+
+-   **Historial de crédito (`credit_history_years`)**: Años desde la apertura del primer crédito.
+
+-   **Días desde el último pago (`days_since_last_payment`)**: Indicador de riesgo si el valor es alto.
+
+-   **Días desde la última consulta de crédito (`days_since_last_credit_pull`)**: Indica actividad reciente del cliente.
 
 ##### Evaluación del modelo
 
@@ -456,15 +456,21 @@ Para abordar el desbalance de clases durante el entrenamiento, utilizaremos téc
 
 Podemos además a incentivar al modelo a aprender los patrones de las clases minortitarias y ser capaz de predecirlos dandole un peso mnyor a estas clases, por lo que un error en las clases minoritarias pesa mucho más.
 
--   **Pesos de las Clases:** en algunos casos, asignar pesos inversamente proporcionales al tamaño de cada clase en la función de pérdida puede ser una estrategia complementaria para equilibrar la importancia de las clases en el modelo.
+-   **Pesos de las Clases:** en algunos casos, asignar pesos inversamente proporcionales al tamaño de cada clase en la función de pérdida puede ser una estrategia complementaria para equilibrar la importancia de las clases en el modelo, como puede observarse en la Tabla 2 a continuación.
 
-| Clase         | Peso  |
-|--------------|------:|
-| Current      | 0.58  |
-| Fully Paid   | 0.725 |
-| Charged Off  | 1.16  |
-| In Progress  | 10.0  |
-| Late         | 1.933 |
+**Tabla 2.**
+
+*Pesos asignados a cada clase en el modelo.*
+
+| Clase       |  Peso |
+|-------------|------:|
+| Current     |  0.58 |
+| Fully Paid  | 0.725 |
+| Charged Off |  1.16 |
+| In Progress |  10.0 |
+| Late        | 1.933 |
+
+Elaboración propia.
 
 ##### Callbacks
 
@@ -474,41 +480,41 @@ Podemos además a incentivar al modelo a aprender los patrones de las clases min
 
 Las capas definidas en el modelo fueron las siguiente:
 
-1. **Capa de Entrada**  
+1.  **Capa de Entrada**
 
-   Define el tamaño de entrada, el cual corresponde al número de características del dataset ya balanceado. Esta capa recibe los datos y los prepara para su procesamiento en las siguientes capas.
+    Define el tamaño de entrada, el cual corresponde al número de características del dataset ya balanceado. Esta capa recibe los datos y los prepara para su procesamiento en las siguientes capas.
 
-2. **Primera Capa Oculta**  
+2.  **Primera Capa Oculta**
 
-   Contiene **1024 neuronas** con activación **ReLU**, lo que permite capturar relaciones no lineales en los datos.  
-   Se aplica **Batch Normalization** para estabilizar el entrenamiento y acelerar la convergencia.  
-   Se incorpora un **Dropout del 40%** para reducir el sobreajuste regularizando la activación de las neuronas.  
+    Contiene **1024 neuronas** con activación **ReLU**, lo que permite capturar relaciones no lineales en los datos.\
+    Se aplica **Batch Normalization** para estabilizar el entrenamiento y acelerar la convergencia.\
+    Se incorpora un **Dropout del 40%** para reducir el sobreajuste regularizando la activación de las neuronas.
 
-3. **Segunda Capa Oculta**  
+3.  **Segunda Capa Oculta**
 
-   La cantidad de neuronas se reduce a **512**, lo que permite refinar la representación aprendida por la red.  
-   Se mantiene la activación **ReLU**.  
-   Se aplica **Batch Normalization** y **Dropout del 30%** para evitar el sobreajuste.  
+    La cantidad de neuronas se reduce a **512**, lo que permite refinar la representación aprendida por la red.\
+    Se mantiene la activación **ReLU**.\
+    Se aplica **Batch Normalization** y **Dropout del 30%** para evitar el sobreajuste.
 
-4. **Tercera Capa Oculta**  
+4.  **Tercera Capa Oculta**
 
-   Se continúa reduciendo la dimensionalidad a **256 neuronas** para extraer patrones más específicos.  
-   Se mantiene la combinación de **ReLU + Batch Normalization + Dropout (30%)** para asegurar un entrenamiento estable.  
+    Se continúa reduciendo la dimensionalidad a **256 neuronas** para extraer patrones más específicos.\
+    Se mantiene la combinación de **ReLU + Batch Normalization + Dropout (30%)** para asegurar un entrenamiento estable.
 
-5. **Cuarta Capa Oculta**  
+5.  **Cuarta Capa Oculta**
 
-   Se emplean **128 neuronas** con activación **ReLU**.  
-   Se mantiene **Batch Normalization** y **Dropout del 20%**, reduciendo progresivamente la tasa de dropout a medida que la red avanza hacia capas más específicas.  
+    Se emplean **128 neuronas** con activación **ReLU**.\
+    Se mantiene **Batch Normalization** y **Dropout del 20%**, reduciendo progresivamente la tasa de dropout a medida que la red avanza hacia capas más específicas.
 
-6. **Quinta Capa Oculta**  
+6.  **Quinta Capa Oculta**
 
-   Se incorporan **64 neuronas**, permitiendo una mayor compactación de las representaciones.  
-   Se conserva **ReLU**, **Batch Normalization** y **Dropout del 20%**.  
+    Se incorporan **64 neuronas**, permitiendo una mayor compactación de las representaciones.\
+    Se conserva **ReLU**, **Batch Normalization** y **Dropout del 20%**.
 
-7. **Capa de Salida**  
+7.  **Capa de Salida**
 
-   Contiene **una neurona por cada clase del problema de clasificación multiclase**.  
-   Utiliza **Softmax** como función de activación, lo que convierte las salidas en probabilidades normalizadas, asegurando que la suma de las probabilidades sea igual a 1.  
+    Contiene **una neurona por cada clase del problema de clasificación multiclase**.\
+    Utiliza **Softmax** como función de activación, lo que convierte las salidas en probabilidades normalizadas, asegurando que la suma de las probabilidades sea igual a 1.
 
 ##### Resultados del modelo
 
@@ -524,22 +530,22 @@ Finalmente se ha de observar que en el entrenamiento los resultados son muy esta
 
 #### **Reporte de clasificación**
 
-A continuación se muestra una visión mucho más clara de los resultados obtenidos por el modelo para el conjunto de prueba, ya que en los problemas multiclase puede llegar a ser engañoso considerar solamente la métrica global calculada por el modelo. En los resultados mostrados por la Tabla 2, se evidencia que la clase *Default* es la que presenta más dificultades para el modelo.
+A continuación se muestra una visión mucho más clara de los resultados obtenidos por el modelo para el conjunto de prueba, ya que en los problemas multiclase puede llegar a ser engañoso considerar solamente la métrica global calculada por el modelo. En los resultados mostrados por la Tabla 3, se evidencia que la clase *Default* es la que presenta más dificultades para el modelo.
 
-**Tabla 2.**
+**Tabla 3.**
 
 *Reporte de clasificación del modelo de mayor complejidad.*
 
 | **Clase**        | **Precision** | **Recall** | **F1-score** | **Support** |
-|------------------|-------------|------------|------------|-------------|
-| **Charged Off**  | 1.00        | 0.99       | 0.99       | 9509        |
-| **Current**      | 0.99        | 0.79       | 0.88       | 120560      |
-| **Fully Paid**   | 1.00        | 1.00       | 1.00       | 41689       |
-| **In Progress**  | 0.44        | 0.58       | 0.50       | 2976        |
-| **Late**         | 0.09        | 0.88       | 0.17       | 2742        |
-| **Accuracy**     | -           | -          | 0.85       | 177476      |
-| **Macro avg**    | 0.70        | 0.85       | 0.71       | 177476      |
-| **Weighted avg** | 0.97        | 0.85       | 0.90       | 177476      |
+|------------------|---------------|------------|--------------|-------------|
+| **Charged Off**  | 1.00          | 0.99       | 0.99         | 9509        |
+| **Current**      | 0.99          | 0.79       | 0.88         | 120560      |
+| **Fully Paid**   | 1.00          | 1.00       | 1.00         | 41689       |
+| **In Progress**  | 0.44          | 0.58       | 0.50         | 2976        |
+| **Late**         | 0.09          | 0.88       | 0.17         | 2742        |
+| **Accuracy**     | \-            | \-         | 0.85         | 177476      |
+| **Macro avg**    | 0.70          | 0.85       | 0.71         | 177476      |
+| **Weighted avg** | 0.97          | 0.85       | 0.90         | 177476      |
 
 **F1-score macro:** 0.71
 
@@ -565,56 +571,65 @@ Los resultados que se mostrarán a continuación muestran que el desarrollo del 
 
 ### Pesos del modelo
 
-Podemos obtener el peso de cada una de las características del modelo. Este fue el orden de importancia de las 19 características utilizadas:
+En este sentido, es posible obtener el peso de cada una de las características del modelo, dando como resultado el orden de importancia de las 19 características utilizadas, las cuales pueden observarse en la Tabla 4.
 
-| Feature                           | Importance    |
-|-----------------------------------|--------------:|
-| last_pymnt_d_day_of_week         | 1644.288574   |
-| last_pymnt_d_month               | 1508.413818   |
-| last_credit_pull_d_month         | 562.279358    |
-| loan_age_years                   | 482.754181    |
-| installment                      | 303.830078    |
-| recoveries                       | 258.369934    |
-| days_since_last_payment          | 256.875885    |
-| last_credit_pull_d_day_of_week   | 234.173584    |
-| out_prncp_inv                    | 204.917572    |
-| out_prncp                        | 204.653198    |
-| last_pymnt_d_year                | 194.993286    |
-| collection_recovery_fee          | 191.655243    |
-| issue_d_year                     | 167.871353    |
-| last_pymnt_amnt                  | 151.017563    |
-| last_credit_pull_d_year          | 126.103256    |
-| total_rec_prncp                  | 103.840637    |
-| days_since_last_credit_pull      | 88.737617     |
-| total_pymnt                      | 86.705498     |
-| total_pymnt_inv                  | 85.052872     |
+**Tabla 4.**
 
+*Importancia de cada una de las variables empleadas en el modelo de redes neuronales artificiales.*
+
+| Feature                        |  Importance |
+|--------------------------------|------------:|
+| last_pymnt_d_day_of_week       | 1644.288574 |
+| last_pymnt_d_month             | 1508.413818 |
+| last_credit_pull_d_month       |  562.279358 |
+| loan_age_years                 |  482.754181 |
+| installment                    |  303.830078 |
+| recoveries                     |  258.369934 |
+| days_since_last_payment        |  256.875885 |
+| last_credit_pull_d_day_of_week |  234.173584 |
+| out_prncp_inv                  |  204.917572 |
+| out_prncp                      |  204.653198 |
+| last_pymnt_d_year              |  194.993286 |
+| collection_recovery_fee        |  191.655243 |
+| issue_d_year                   |  167.871353 |
+| last_pymnt_amnt                |  151.017563 |
+| last_credit_pull_d_year        |  126.103256 |
+| total_rec_prncp                |  103.840637 |
+| days_since_last_credit_pull    |   88.737617 |
+| total_pymnt                    |   86.705498 |
+| total_pymnt_inv                |   85.052872 |
+
+Elaboración propia.
 
 #### **Variables de Fecha y Tiempo**
-- **`last_pymnt_d_day_of_week`**: Día de la semana en que se realizó el último pago. Puede revelar patrones de pago recurrentes.  
-- **`last_pymnt_d_month`**: Mes del último pago. Ayuda a detectar estacionalidad en los pagos.  
-- **`last_pymnt_d_year`**: Año del último pago. Captura tendencias anuales en el comportamiento del prestatario.  
-- **`loan_age_years`**: Antigüedad del préstamo en años. Permite evaluar el riesgo según el tiempo que ha pasado desde su emisión.  
-- **`issue_d_year`**: Año en que se emitió el préstamo. Útil para analizar cambios en la concesión de créditos a lo largo del tiempo.  
-- **`days_since_last_payment`**: Días desde el último pago realizado. Un número alto puede indicar posible morosidad.  
-- **`days_since_last_credit_pull`**: Días desde la última consulta de crédito del prestatario. Si es alto, puede significar falta de actividad financiera reciente.  
+
+-   **`last_pymnt_d_day_of_week`**: Día de la semana en que se realizó el último pago. Puede revelar patrones de pago recurrentes.\
+-   **`last_pymnt_d_month`**: Mes del último pago. Ayuda a detectar estacionalidad en los pagos.\
+-   **`last_pymnt_d_year`**: Año del último pago. Captura tendencias anuales en el comportamiento del prestatario.\
+-   **`loan_age_years`**: Antigüedad del préstamo en años. Permite evaluar el riesgo según el tiempo que ha pasado desde su emisión.\
+-   **`issue_d_year`**: Año en que se emitió el préstamo. Útil para analizar cambios en la concesión de créditos a lo largo del tiempo.\
+-   **`days_since_last_payment`**: Días desde el último pago realizado. Un número alto puede indicar posible morosidad.\
+-   **`days_since_last_credit_pull`**: Días desde la última consulta de crédito del prestatario. Si es alto, puede significar falta de actividad financiera reciente.
 
 #### **Variables Relacionadas con Pagos**
-- **`installment`**: Pago mensual que debe realizar el prestatario. Refleja la carga financiera del crédito.  
-- **`last_pymnt_amnt`**: Monto del último pago realizado. Indica la capacidad de pago reciente del prestatario.  
-- **`total_pymnt`**: Suma total pagada por el prestatario, incluyendo capital e intereses.  
-- **`total_pymnt_inv`**: Suma total pagada a los inversionistas. Similar a `total_pymnt`, pero desde la perspectiva del inversor.  
+
+-   **`installment`**: Pago mensual que debe realizar el prestatario. Refleja la carga financiera del crédito.\
+-   **`last_pymnt_amnt`**: Monto del último pago realizado. Indica la capacidad de pago reciente del prestatario.\
+-   **`total_pymnt`**: Suma total pagada por el prestatario, incluyendo capital e intereses.\
+-   **`total_pymnt_inv`**: Suma total pagada a los inversionistas. Similar a `total_pymnt`, pero desde la perspectiva del inversor.
 
 #### **Variables de Historial Crediticio**
-- **`last_credit_pull_d_month`**: Mes de la última consulta de crédito del prestatario. Indica actividad reciente en su historial crediticio.  
-- **`last_credit_pull_d_year`**: Año de la última consulta de crédito. Útil para evaluar la regularidad en la revisión crediticia.  
-- **`last_credit_pull_d_day_of_week`**: Día de la semana en que se realizó la última consulta de crédito. Puede reflejar patrones en las evaluaciones de riesgo.  
+
+-   **`last_credit_pull_d_month`**: Mes de la última consulta de crédito del prestatario. Indica actividad reciente en su historial crediticio.\
+-   **`last_credit_pull_d_year`**: Año de la última consulta de crédito. Útil para evaluar la regularidad en la revisión crediticia.\
+-   **`last_credit_pull_d_day_of_week`**: Día de la semana en que se realizó la última consulta de crédito. Puede reflejar patrones en las evaluaciones de riesgo.
 
 #### **Variables de Recuperación y Deuda Pendiente**
-- **`recoveries`**: Monto recuperado de préstamos que habían caído en mora. Evalúa la efectividad del proceso de cobranza.  
-- **`collection_recovery_fee`**: Costos asociados a la recuperación de préstamos en mora. Permite analizar la eficiencia del cobro.  
-- **`out_prncp`**: Principal pendiente de pago del prestatario. Indica cuánto capital aún no ha sido devuelto.  
-- **`out_prncp_inv`**: Principal pendiente de pago desde la perspectiva de los inversionistas.  
+
+-   **`recoveries`**: Monto recuperado de préstamos que habían caído en mora. Evalúa la efectividad del proceso de cobranza.\
+-   **`collection_recovery_fee`**: Costos asociados a la recuperación de préstamos en mora. Permite analizar la eficiencia del cobro.\
+-   **`out_prncp`**: Principal pendiente de pago del prestatario. Indica cuánto capital aún no ha sido devuelto.\
+-   **`out_prncp_inv`**: Principal pendiente de pago desde la perspectiva de los inversionistas.
 
 Podemos ver la importancia de la ingeniería de características que se realizó, pues la mayoría de ellas quedaron entre las características más importantes del modelo que además permitieron mejorar el rendimiento obtenido.
 
@@ -630,7 +645,7 @@ Se utilizó el framework de Python llamado FastAPI @fastapi para convertir el mo
 
 Adicionalmente, se empleó Render como servicio de computación en la nube para desplegar el modelo. Esta plataforma fue elegida por su simplicidad para realizar la tarea además de la posibilidad que brinda de utilizar recursos gratuitos.
 
-Para observar el resultado se pueden consultar los siguientes archivos, necesarios para el despliegue en el repositorio desde donde se realizó dicha actividad: [Repositorio despliegue del modelo](https://github.com/RNA-y-Algo-Bioinsp-2024-02/model_credit_risk).
+Para observar el resultado se pueden consultar los siguientes archivos, necesarios para el despliegue en el repositorio desde donde se realizó dicha actividad: <ins>[Repositorio despliegue del modelo](https://github.com/RNA-y-Algo-Bioinsp-2024-02/model_credit_risk)</ins>.
 
 -   **Dockerfile:** describe como construir la imagen de tal manera que contenga todas las dependencias necesarias define el puerto de ejecución de la API.
 
@@ -654,44 +669,58 @@ Ahora bien, la ley colombiana regula las actividades financieras de las cooperat
 
 -   Las **cooperativas de ahorro y crédito** como organismos cooperativos que tienen la función principal de adelantar actividades financieras con sus asociados de forma única. A su vez, deben solicitar autorización de la Supersolidaria para la prestación de sus servicios.
 
-Teniendo en cuenta lo anterior, al hacer énfasis en la actividad ejercida por las cooperativas financieras, es posible observar que dichas entidades deben tener una especial importancia en la correcta gestión del riesgo de crédito, pues de esto depende en gran medida su capacidad para continuar prestando sus servicios a sus asociados o terceros que así lo necesiten. Por lo tanto, este caso de uso obedece a la situación en que una cooperativa financiera necesite evaluar cuál sería la decisión adecuada con respecto al crédito solicitado por un tercero no asociado, considerando las variables que interactúan en el problema y se muestran en la Tabla 3.
+Teniendo en cuenta lo anterior, al hacer énfasis en la actividad ejercida por las cooperativas financieras, es posible observar que dichas entidades deben tener una especial importancia en la correcta gestión del riesgo de crédito, pues de esto depende en gran medida su capacidad para continuar prestando sus servicios a sus asociados o terceros que así lo necesiten. Por lo tanto, este caso de uso obedece a la situación en que una cooperativa financiera necesite evaluar cuál sería la decisión adecuada con respecto al crédito solicitado por un tercero no asociado, considerando las variables que interactúan en el problema y se muestran en la Tabla 5.
 
-**Tabla 3.**
+**Tabla 5.**
 
-*Reporte de clasificación del modelo de mayor complejidad.*
+*Información del perfil de crédito a analizar en el caso de estudio.*
 
-| Variable                                      | Valor                       |
-|--------------------------------------------|----------------------------|
-| **Monto del Préstamo**                        | \$50,000,000 COP            |
-| **Monto Comprometido**                        | \$50,000,000 COP            |
-| **Monto Inversionistas**                      | \$50,000,000 COP            |
-| **Tasa de Interés**                           | 18.5% E.A.                  |
-| **Pago Mensual**                              | \$1,875,000 COP             |
-| **Ingresos Anuales**                          | \$60,000,000 COP            |
-| **DTI (Relación Deuda/Ingresos)**             | 45%                         |
-| **Incidentes de Mora en 2 años**              | 2                           |
-| **Consultas Crediticias en 6 meses**          | 4                           |
-| **Líneas de Crédito Abiertas**                | 6                           |
-| **Registros Derogatorios**                    | 1                           |
-| **Saldo Crédito Rotativo**                    | \$15,000,000 COP            |
-| **Uso de Crédito Rotativo**                   | 70%                         |
-| **Líneas de Crédito Totales**                 | 9                           |
-| **Pagos Recibidos por Monto Total**           | \$30,000,000 COP            |
-| **Pagos Recibidos por Porción Inversionista** | \$30,000,000 COP            |
-| **Principal Recibido**                        | \$25,000,000 COP            |
-| **Interés Recibido**                          | \$5,000,000 COP             |
-| **Recargos por Mora**                         | \$1,200,000 COP             |
-| **Último Pago Recibido**                      | \$1,500,000 COP             |
-| **Cobros en 12 Meses**                        | 3                           |
-| **Cuentas en Mora**                           | 2                           |
-| **Cobros Adeudados**                          | \$2,500,000 COP             |
-| **Saldo de las Cuentas**                      | \$35,000,000 COP            |
-| **Límite de Crédito Rotativo**                | \$20,000,000 COP            |
-| **Tiempo de Empleo en Años**                  | 5                           |
-| **Número de Pagos del Préstamo**              | 60 meses                    |
-| **Calificación del Préstamo**                 | 3 (Nivel de Riesgo Regular) |
-| **Estado de Propiedad de Vivienda**           | MORTGAGE                    |
-| **Estado de Verificación**                    | Verificado                  |
+| **Variable**                                    | **Valor**                    |
+|-------------------------------------------------|------------------------------|
+| **Monto del Préstamo**                          | \$50,000,000 COP             |
+| **Monto Comprometido**                          | \$50,000,000 COP             |
+| **Monto Inversionistas**                        | \$50,000,000 COP             |
+| **Tasa de Interés**                             | 18.5% E.A.                   |
+| **Pago Mensual**                                | \$1,875,000 COP              |
+| **Ingresos Anuales**                            | \$60,000,000 COP             |
+| **DTI (Relación Deuda/Ingresos)**               | 45%                          |
+| **Incidentes de Mora en 2 años**                | 2                            |
+| **Consultas Crediticias en 6 meses**            | 4                            |
+| **Líneas de Crédito Abiertas**                  | 6                            |
+| **Registros Derogatorios**                      | 1                            |
+| **Saldo Crédito Rotativo**                      | \$15,000,000 COP             |
+| **Uso de Crédito Rotativo**                     | 70%                          |
+| **Líneas de Crédito Totales**                   | 9                            |
+| **Pagos Recibidos por Monto Total**             | \$30,000,000 COP             |
+| **Pagos Recibidos por Porción Inversionista**   | \$30,000,000 COP             |
+| **Principal Recibido**                          | \$25,000,000 COP             |
+| **Interés Recibido**                            | \$5,000,000 COP              |
+| **Recargos por Mora**                           | \$1,200,000 COP              |
+| **Último Pago Recibido**                        | \$1,500,000 COP              |
+| **Última fecha de pago (Día)**                  | 15                           |
+| **Última fecha de pago (Mes)**                  | Octubre                      |
+| **Última fecha de pago (Año)**                  | 2024                         |
+| **Último Informe de Crédito (Mes)**             | Noviembre                    |
+| **Último Informe de Crédito (Año)**             | 2024                         |
+| **Último Informe de Crédito (Días)**            | 45 días                      |
+| **Cobros en 12 Meses**                          | 3                            |
+| **Cuentas en Mora**                             | 2                            |
+| **Cobros Adeudados**                            | \$2,500,000 COP              |
+| **Saldo de las Cuentas**                        | \$35,000,000 COP             |
+| **Límite de Crédito Rotativo**                  | \$20,000,000 COP             |
+| **Tiempo de Empleo en Años**                    | 5                            |
+| **Número de Pagos del Préstamo**                | 60 meses                     |
+| **Calificación del Préstamo**                   | 3 (Nivel de Riesgo Regular)  |
+| **Estado de Propiedad de Vivienda**             | MORTGAGE                     |
+| **Estado de Verificación**                      | Verificado                   |
+| **Años con el Préstamo**                        | 3 años                       |
+| **Recuperación**                                | 65%                          |
+| **Días desde el último pago**                   | 14 días                      |
+| **Última fecha de consulta**                    | 25 de Noviembre de 2024      |
+| **Saldo Pendiente (Monto Inversión)**           | \$20,000,000 COP             |
+| **Saldo Pendiente (Total)**                     | \$20,000,000 COP             |
+| **Tarifa por Cancelación**                      | \$500,000 COP                |
+| **Año del Préstamo**                            | 2021                         |
 
 Dados estos datos, es posible observar que el prestatario muestra un riesgo entre moderado y alto debido a su alto DTI, sus incidentes de mora recientes y uso elevado del crédito rotativo. A pesar de que ha pagado más de la mitad del préstamo, aún mantiene cuentas en mora y un historial de cobros en los últimos 12 meses. Por lo tanto, la cooperativa financiera podría considerar estrategias como la restructuración concertada de las condiciones del préstamo o la venta de cartera en otra entidad financiera.
 
@@ -699,9 +728,9 @@ Dados estos datos, es posible observar que el prestatario muestra un riesgo entr
 
 Por otra parte, si se tiene en cuenta el punto de vista de un prestatario (es decir, alguien que accede a créditos, préstamos y otros productos) resultaría muy importante conocer la forma en que es evaluado su perfil por parte de las entidades financieras como cooperativas y bancos, pues de esta manera sería posible comprender el porqué de las condiciones que le son propuestas para acceder a un crédito y planear estrategias para mejorar dicho perfil y acceder a mejores opciones.
 
-En este sentido, la Tabla 4 muestra algunas variables que se consideran cruciales al evaluar el riesgo de crédito y que, ciertamente fueron consideradas en el modelo de redes neuronales artificiales, con los valores que se juzgan **poco riesgosos** desde el análisis realizado por las entidades financieras.
+En este sentido, la Tabla 6 muestra algunas variables que se consideran cruciales al evaluar el riesgo de crédito y que, ciertamente fueron consideradas en el modelo de redes neuronales artificiales, con los valores que se juzgan **poco riesgosos** desde el análisis realizado por las entidades financieras.
 
-**Tabla 4.**
+**Tabla 6.**
 
 *Valores de un perfil de crédito que permitiría obtener mejores condiciones por parte de las entidades financieras en un préstamo o similar.*
 
@@ -719,10 +748,18 @@ La información encontrada anteriormente puede contrastarse por lo dicho en @val
 
 # Aplicación web
 
-Como se mencionó anteriormente, el modelo de redes neuronales artificiales fue desplegado en una aplicación web titulada *CrediMetric* que podrá ser accedida en el siguiente **enlace**, donde las entidades financieras podrán evaluar los perfiles de crédito de los casos en los que necesitan evaluar una decisión especial y también los prestatarios podrán conocer su perfil de riesgo de crédito de una manera más completa y descriptiva.
+Como se mencionó anteriormente, el modelo de redes neuronales artificiales fue desplegado en una aplicación web titulada *CrediMetric* que podrá ser accedida en el siguiente enlace: <ins>[CrediMetric](https://front-credit-risk.onrender.com/)</ins>.
+
+Esta aplicación web cuenta con una funcionalidad que permitirá a las entidades financieras evaluar los perfiles de crédito de los casos en los que necesitan evaluar una decisión especial, además de permitir que los prestatarios también puedan conocer su perfil de riesgo de crédito de una manera más completa y descriptiva.
 
 # Video publicitario
+
+De manera adicional a los resultados anteriormente obtenidos, se presenta el siguiente recurso audiovisual como video publicitario para la aplicación web resultante del presente trabajo, mostrando el tipo de problemas que puede ayudar a resolver e invitando a su descubrimiento y utilización.
+
+{{< video https://youtu.be/GSx1EJdQpBA >}}
 
 ## Contribuciones individuales
 
 Las contribuciones realizadas por cada uno de los integrantes del equipo en el desarrollo de los ejercicios correspondientes a **Modelos de riesgo de crédito con Redes Neuronales Artificiales** se muestran en el siguiente video.
+
+{{< video https://youtu.be/3H1xWTNLn0g >}}
