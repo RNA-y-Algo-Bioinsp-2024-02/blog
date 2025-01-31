@@ -267,11 +267,7 @@ window.Quarto = {
   <li><a href="#creación-de-la-api" id="toc-creación-de-la-api" class="nav-link" data-scroll-target="#creación-de-la-api"><span class="header-section-number">1.5.1</span> Creación de la API</a></li>
   <li><a href="#despliegue-del-modelo" id="toc-despliegue-del-modelo" class="nav-link" data-scroll-target="#despliegue-del-modelo"><span class="header-section-number">1.5.2</span> Despliegue del modelo</a></li>
   </ul></li>
-  <li><a href="#caso-de-uso" id="toc-caso-de-uso" class="nav-link" data-scroll-target="#caso-de-uso"><span class="header-section-number">1.6</span> Caso de uso</a>
-  <ul class="collapse">
-  <li><a href="#caso-de-la-entidad-financiera" id="toc-caso-de-la-entidad-financiera" class="nav-link" data-scroll-target="#caso-de-la-entidad-financiera"><span class="header-section-number">1.6.1</span> Caso de la entidad financiera</a></li>
-  <li><a href="#caso-del-usuario" id="toc-caso-del-usuario" class="nav-link" data-scroll-target="#caso-del-usuario"><span class="header-section-number">1.6.2</span> Caso del usuario</a></li>
-  </ul></li>
+  <li><a href="#caso-de-uso" id="toc-caso-de-uso" class="nav-link" data-scroll-target="#caso-de-uso"><span class="header-section-number">1.6</span> Caso de uso</a></li>
   </ul></li>
   <li><a href="#aplicación-web" id="toc-aplicación-web" class="nav-link" data-scroll-target="#aplicación-web"><span class="header-section-number">2</span> Aplicación web</a></li>
   <li><a href="#video-publicitario" id="toc-video-publicitario" class="nav-link" data-scroll-target="#video-publicitario"><span class="header-section-number">3</span> Video publicitario</a>
@@ -24155,8 +24151,6 @@ Utiliza <strong>Softmax</strong> como función de activación, lo que convierte 
 <section id="caso-de-uso" class="level2" data-number="1.6">
 <h2 data-number="1.6" class="anchored" data-anchor-id="caso-de-uso"><span class="header-section-number">1.6</span> Caso de uso</h2>
 <p>A continuación se desarrollará un caso de uso que ejemplifica cómo el uso del modelo desplegado anteriormente a través de una aplicación web puede traer beneficios a las entidades bancarias en los procesos de toma de decisiones, así como darle una mayor claridad a los usuarios de estos servicios, en términos de cononocer los motivos por los cuales se toman ciertas decisiones respecto a sus préstamos o productos bancarios (como puede ser la venta de cartera o similares).</p>
-<section id="caso-de-la-entidad-financiera" class="level3" data-number="1.6.1">
-<h3 data-number="1.6.1" class="anchored" data-anchor-id="caso-de-la-entidad-financiera"><span class="header-section-number">1.6.1</span> Caso de la entidad financiera</h3>
 <p>De acuerdo con el <span class="citation" data-cites="cooperativasdefinicion">Consejo de Estado. Sala de Consulta y Servicio Civil (<a href="#ref-cooperativasdefinicion" role="doc-biblioref">1992</a>)</span>, en Colombia se encuentran reglamentadas el conjunto de “empresas asociativas sin ánimo de lucro en las cuales los trabajadores o los usuarios, según el caso, son simultáneamente los aportantes y los gestores de la Empresa”, bajo el nombre de cooperativas. Estas entidades son reguladas por la Superintendencia de la Economía Solidaria <strong>Supersolidaria</strong> o por la Superintendencia Financiera de Colombia <strong>Superfinanciera</strong> y tienen como objetivo la distribución o producción de bienes o servicios que satisfagan las necesidades de sus asociados, de manera colaborativa y eficiente. De la misma manera, las cooperativas tienen facultades legales para asociarse entre sí en miras al cumplimiento de sus propósitos económicos y sociales de una mejor manera.</p>
 <p>Ahora bien, la ley colombiana regula las actividades financieras de las cooperativas de la siguiente manera, según <span class="citation" data-cites="supersolidaria">Superintendencia de la Economía Solidaria (<a href="#ref-supersolidaria" role="doc-biblioref">n.d.</a>)</span>:</p>
 <ul>
@@ -24168,242 +24162,116 @@ Utiliza <strong>Softmax</strong> como función de activación, lo que convierte 
 <p><em>Información del perfil de crédito a analizar en el caso de estudio.</em></p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 62%">
-<col style="width: 37%">
+<col style="width: 27%">
+<col style="width: 12%">
+<col style="width: 60%">
 </colgroup>
 <thead>
 <tr class="header">
 <th><strong>Variable</strong></th>
 <th><strong>Valor</strong></th>
+<th><strong>Descripción</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>Monto del Préstamo</strong></td>
-<td>$50,000,000 COP</td>
-</tr>
-<tr class="even">
-<td><strong>Monto Comprometido</strong></td>
-<td>$50,000,000 COP</td>
-</tr>
-<tr class="odd">
-<td><strong>Monto Inversionistas</strong></td>
-<td>$50,000,000 COP</td>
-</tr>
-<tr class="even">
-<td><strong>Tasa de Interés</strong></td>
-<td>18.5% E.A.</td>
-</tr>
-<tr class="odd">
 <td><strong>Pago Mensual</strong></td>
-<td>$1,875,000 COP</td>
+<td>$500,000</td>
+<td>Monto que debe pagar el prestatario mensualmente si el préstamo es originado.</td>
 </tr>
 <tr class="even">
-<td><strong>Ingresos Anuales</strong></td>
-<td>$60,000,000 COP</td>
-</tr>
-<tr class="odd">
-<td><strong>DTI (Relación Deuda/Ingresos)</strong></td>
-<td>45%</td>
-</tr>
-<tr class="even">
-<td><strong>Incidentes de Mora en 2 años</strong></td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td><strong>Consultas Crediticias en 6 meses</strong></td>
-<td>4</td>
-</tr>
-<tr class="even">
-<td><strong>Líneas de Crédito Abiertas</strong></td>
-<td>6</td>
-</tr>
-<tr class="odd">
-<td><strong>Registros Derogatorios</strong></td>
-<td>1</td>
-</tr>
-<tr class="even">
-<td><strong>Saldo Crédito Rotativo</strong></td>
-<td>$15,000,000 COP</td>
-</tr>
-<tr class="odd">
-<td><strong>Uso de Crédito Rotativo</strong></td>
-<td>70%</td>
-</tr>
-<tr class="even">
-<td><strong>Líneas de Crédito Totales</strong></td>
-<td>9</td>
-</tr>
-<tr class="odd">
 <td><strong>Pagos Recibidos por Monto Total</strong></td>
-<td>$30,000,000 COP</td>
+<td>$2,000,000</td>
+<td>Pagos realizados hasta la fecha para el monto total financiado.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong>Pagos Recibidos por Porción Inversionista</strong></td>
-<td>$30,000,000 COP</td>
+<td>$1,200,000</td>
+<td>Pagos realizados hasta la fecha para la porción financiada por inversionistas.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong>Principal Recibido</strong></td>
-<td>$25,000,000 COP</td>
-</tr>
-<tr class="even">
-<td><strong>Interés Recibido</strong></td>
-<td>$5,000,000 COP</td>
+<td>$1,800,000</td>
+<td>Monto principal recibido hasta la fecha.</td>
 </tr>
 <tr class="odd">
-<td><strong>Recargos por Mora</strong></td>
-<td>$1,200,000 COP</td>
-</tr>
-<tr class="even">
 <td><strong>Último Pago Recibido</strong></td>
-<td>$1,500,000 COP</td>
-</tr>
-<tr class="odd">
-<td><strong>Última fecha de pago (Día)</strong></td>
-<td>15</td>
+<td>$500,000</td>
+<td>Monto total del último pago realizado.</td>
 </tr>
 <tr class="even">
-<td><strong>Última fecha de pago (Mes)</strong></td>
-<td>Octubre</td>
+<td><strong>Última Fecha de Pago (Día)</strong></td>
+<td>20 de enero</td>
+<td>El último día de la semana en que se recibió el pago.</td>
 </tr>
 <tr class="odd">
-<td><strong>Última fecha de pago (Año)</strong></td>
-<td>2024</td>
+<td><strong>Última Fecha de Pago (Mes)</strong></td>
+<td>Enero 2025</td>
+<td>El mes en el cual se realizó el último pago.</td>
 </tr>
 <tr class="even">
 <td><strong>Último Informe de Crédito (Mes)</strong></td>
-<td>Noviembre</td>
-</tr>
-<tr class="odd">
-<td><strong>Último Informe de Crédito (Año)</strong></td>
-<td>2024</td>
-</tr>
-<tr class="even">
-<td><strong>Último Informe de Crédito (Días)</strong></td>
-<td>45 días</td>
-</tr>
-<tr class="odd">
-<td><strong>Cobros en 12 Meses</strong></td>
-<td>3</td>
-</tr>
-<tr class="even">
-<td><strong>Cuentas en Mora</strong></td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td><strong>Cobros Adeudados</strong></td>
-<td>$2,500,000 COP</td>
-</tr>
-<tr class="even">
-<td><strong>Saldo de las Cuentas</strong></td>
-<td>$35,000,000 COP</td>
-</tr>
-<tr class="odd">
-<td><strong>Límite de Crédito Rotativo</strong></td>
-<td>$20,000,000 COP</td>
-</tr>
-<tr class="even">
-<td><strong>Tiempo de Empleo en Años</strong></td>
-<td>5</td>
-</tr>
-<tr class="odd">
-<td><strong>Número de Pagos del Préstamo</strong></td>
-<td>60 meses</td>
-</tr>
-<tr class="even">
-<td><strong>Calificación del Préstamo</strong></td>
-<td>3 (Nivel de Riesgo Regular)</td>
-</tr>
-<tr class="odd">
-<td><strong>Estado de Propiedad de Vivienda</strong></td>
-<td>MORTGAGE</td>
-</tr>
-<tr class="even">
-<td><strong>Estado de Verificación</strong></td>
-<td>Verificado</td>
+<td>Octubre 2024</td>
+<td>El mes más reciente en el que se obtuvo el informe de crédito del prestatario.</td>
 </tr>
 <tr class="odd">
 <td><strong>Años con el Préstamo</strong></td>
 <td>3 años</td>
+<td>Número de años que el prestatario lleva con el préstamo.</td>
 </tr>
 <tr class="even">
 <td><strong>Recuperación</strong></td>
-<td>65%</td>
+<td>$400,000</td>
+<td>La recuperación bruta después de la cancelación por incobrabilidad.</td>
 </tr>
 <tr class="odd">
-<td><strong>Días desde el último pago</strong></td>
-<td>14 días</td>
+<td><strong>Días Desde el Último Pago</strong></td>
+<td>10 días</td>
+<td>Número de días desde que se recibió el último pago.</td>
 </tr>
 <tr class="even">
-<td><strong>Última fecha de consulta</strong></td>
-<td>25 de Noviembre de 2024</td>
+<td><strong>Última Fecha de Consulta</strong></td>
+<td>15 de enero 2025</td>
+<td>El día más reciente en el que se consultó el crédito del prestatario.</td>
 </tr>
 <tr class="odd">
 <td><strong>Saldo Pendiente (Monto Inversión)</strong></td>
-<td>$20,000,000 COP</td>
+<td>$500,000</td>
+<td>Saldo principal pendiente de la parte financiada por inversionistas.</td>
 </tr>
 <tr class="even">
 <td><strong>Saldo Pendiente (Total)</strong></td>
-<td>$20,000,000 COP</td>
+<td>$1,000,000</td>
+<td>Saldo principal pendiente del monto total financiado.</td>
 </tr>
 <tr class="odd">
+<td><strong>Última Fecha de Pago (Año)</strong></td>
+<td>2025</td>
+<td>El año en el cual se realizó el último pago.</td>
+</tr>
+<tr class="even">
 <td><strong>Tarifa por Cancelación</strong></td>
-<td>$500,000 COP</td>
+<td>$50,000</td>
+<td>Tarifa de cobro después de la cancelación por incobrabilidad.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong>Año del Préstamo</strong></td>
-<td>2021</td>
+<td>2022</td>
+<td>El año en que se originó el préstamo.</td>
+</tr>
+<tr class="even">
+<td><strong>Último Informe de Crédito (Año)</strong></td>
+<td>2024</td>
+<td>El año más reciente en que se obtuvo el informe de crédito para este préstamo.</td>
+</tr>
+<tr class="odd">
+<td><strong>Último Informe de Crédito (Días)</strong></td>
+<td>100 días</td>
+<td>Número de días desde el último informe de crédito.</td>
 </tr>
 </tbody>
 </table>
-<p>Dados estos datos, es posible observar que el prestatario muestra un riesgo entre moderado y alto debido a su alto DTI, sus incidentes de mora recientes y uso elevado del crédito rotativo. A pesar de que ha pagado más de la mitad del préstamo, aún mantiene cuentas en mora y un historial de cobros en los últimos 12 meses. Por lo tanto, la cooperativa financiera podría considerar estrategias como la restructuración concertada de las condiciones del préstamo o la venta de cartera en otra entidad financiera.</p>
-</section>
-<section id="caso-del-usuario" class="level3" data-number="1.6.2">
-<h3 data-number="1.6.2" class="anchored" data-anchor-id="caso-del-usuario"><span class="header-section-number">1.6.2</span> Caso del usuario</h3>
-<p>Por otra parte, si se tiene en cuenta el punto de vista de un prestatario (es decir, alguien que accede a créditos, préstamos y otros productos) resultaría muy importante conocer la forma en que es evaluado su perfil por parte de las entidades financieras como cooperativas y bancos, pues de esta manera sería posible comprender el porqué de las condiciones que le son propuestas para acceder a un crédito y planear estrategias para mejorar dicho perfil y acceder a mejores opciones.</p>
-<p>En este sentido, la Tabla 6 muestra algunas variables que se consideran cruciales al evaluar el riesgo de crédito y que, ciertamente fueron consideradas en el modelo de redes neuronales artificiales, con los valores que se juzgan <strong>poco riesgosos</strong> desde el análisis realizado por las entidades financieras.</p>
-<p><strong>Tabla 6.</strong></p>
-<p><em>Valores de un perfil de crédito que permitiría obtener mejores condiciones por parte de las entidades financieras en un préstamo o similar.</em></p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th><strong>Variable</strong></th>
-<th><strong>Valores Óptimos</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>DTI (Relación Deuda/Ingresos)</strong></td>
-<td>Menos del 30%</td>
-</tr>
-<tr class="even">
-<td><strong>Incidentes de Mora en 2 años</strong></td>
-<td>0</td>
-</tr>
-<tr class="odd">
-<td><strong>Consultas Crediticias en 6 meses</strong></td>
-<td>Menos de 2</td>
-</tr>
-<tr class="even">
-<td><strong>Registros Derogatorios</strong></td>
-<td>0</td>
-</tr>
-<tr class="odd">
-<td><strong>Uso de Crédito Rotativo</strong></td>
-<td>Menos del 35%</td>
-</tr>
-<tr class="even">
-<td><strong>Cuentas en Mora</strong></td>
-<td>0</td>
-</tr>
-<tr class="odd">
-<td><strong>Cobros Adeudados</strong></td>
-<td>$0 COP</td>
-</tr>
-</tbody>
-</table>
-<p>La información encontrada anteriormente puede contrastarse por lo dicho en <span class="citation" data-cites="valoresoptimosequifax">Equifax (<a href="#ref-valoresoptimosequifax" role="doc-biblioref">n.d.</a>)</span> y por <span class="citation" data-cites="valoresoptimosincharge">Brady (<a href="#ref-valoresoptimosincharge" role="doc-biblioref">n.d.</a>)</span>, donde además se especifica que la tasa <strong>DTI</strong> puede considerarse poco riesgosa hasta en un valor del 43%, teniendo algunas consideraciones adicionales.</p>
-</section>
+<p>Dados estos datos, es posible observar que la respuesta por parte del modelo desplegado será que el prestatario muestra un <strong>riesgo crediticio elevado</strong> debido a múltiples indicadores, como lo pueden ser: capacidad de pago limitada, historial crediticio inconsistente y alta utilización de crédito rotativo. De acuerdo con esto, las condiciones del préstamo requieren garantías sustanciales, por lo que la cooperativa financiera podría considerar estrategias como la restructuración concertada de dichas condiciones o la venta de cartera en otra entidad.</p>
 </section>
 </section>
 <section id="aplicación-web" class="level1" data-number="2">
@@ -24429,9 +24297,6 @@ Utiliza <strong>Softmax</strong> como función de activación, lo que convierte 
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
-<div id="ref-valoresoptimosincharge" class="csl-entry" role="listitem">
-Brady, Sarah. n.d. <span>“Relación Deuda-Ingresos.”</span> <a href="https://www.incharge.org/es/educacion-financiera/como-calcular-la-relacion-deuda-ingresos">https://www.incharge.org/es/educacion-financiera/como-calcular-la-relacion-deuda-ingresos</a>.
-</div>
 <div id="ref-franciscopalaciorna" class="csl-entry" role="listitem">
 Burgos, Francisco José Palacios. n.d. <span>“La Neurona Artificial.”</span> <a href="https://www.ibiblio.org/pub/linux/docs/LuCaS/Presentaciones/200304curso-glisa/redes_neuronales/curso-glisa-redes_neuronales-html/x38.html">https://www.ibiblio.org/pub/linux/docs/LuCaS/Presentaciones/200304curso-glisa/redes_neuronales/curso-glisa-redes_neuronales-html/x38.html</a>.
 </div>
@@ -24440,9 +24305,6 @@ Cloudflare. 2025. <span>“¿Qué Es Una Red Neuronal?”</span> 2025. <a href="
 </div>
 <div id="ref-cooperativasdefinicion" class="csl-entry" role="listitem">
 Consejo de Estado. Sala de Consulta y Servicio Civil. 1992. <span>“ORGANISMO COOPERATIVO / SECTOR COOPERATIVO.”</span> 1992. <a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.supersolidaria.gov.co%2Fsites%2Fdefault%2Ffiles%2Fconceptos_juridicos_y_contables%2Fs._c._estado_sc-rad1992-n472-92_.doc&amp;wdOrigin=BROWSELINK">https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.supersolidaria.gov.co%2Fsites%2Fdefault%2Ffiles%2Fconceptos_juridicos_y_contables%2Fs._c._estado_sc-rad1992-n472-92_.doc&amp;wdOrigin=BROWSELINK</a>.
-</div>
-<div id="ref-valoresoptimosequifax" class="csl-entry" role="listitem">
-Equifax. n.d. <span>“¿Qué Es Un Puntaje de Crédito?”</span> <a href="https://www.equifax.com/personal/education/espanol/articles/-/learn/que-es-un-puntaje-de-credito-articulo">https://www.equifax.com/personal/education/espanol/articles/-/learn/que-es-un-puntaje-de-credito-articulo</a>.
 </div>
 <div id="ref-financionario2025" class="csl-entry" role="listitem">
 Financionario. n.d. <span>“¿Qué Es El Riesgo de Crédito?”</span> <a href="https://financionario.com/definicion-riesgo-de-credito">https://financionario.com/definicion-riesgo-de-credito</a>.
@@ -25366,7 +25228,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb3-281"><a href="#cb3-281" aria-hidden="true" tabindex="-1"></a>\text{Focal Loss} = - \alpha_t (1 - p_t)^\gamma \log(p_t) \tag{9}</span>
 <span id="cb3-282"><a href="#cb3-282" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb3-283"><a href="#cb3-283" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-284"><a href="#cb3-284" aria-hidden="true" tabindex="-1"></a>donde $ p_t = \hat{y}<span class="sc">\_</span>c $</span>
+<span id="cb3-284"><a href="#cb3-284" aria-hidden="true" tabindex="-1"></a>donde \$ p_t = \hat{y}<span class="sc">\_</span>c \$</span>
 <span id="cb3-285"><a href="#cb3-285" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-286"><a href="#cb3-286" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Tipos de redes neuronales artificiales</span></span>
 <span id="cb3-287"><a href="#cb3-287" aria-hidden="true" tabindex="-1"></a></span>
@@ -25747,110 +25609,61 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb3-662"><a href="#cb3-662" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-663"><a href="#cb3-663" aria-hidden="true" tabindex="-1"></a>A continuación se desarrollará un caso de uso que ejemplifica cómo el uso del modelo desplegado anteriormente a través de una aplicación web puede traer beneficios a las entidades bancarias en los procesos de toma de decisiones, así como darle una mayor claridad a los usuarios de estos servicios, en términos de cononocer los motivos por los cuales se toman ciertas decisiones respecto a sus préstamos o productos bancarios (como puede ser la venta de cartera o similares).</span>
 <span id="cb3-664"><a href="#cb3-664" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-665"><a href="#cb3-665" aria-hidden="true" tabindex="-1"></a><span class="fu">### Caso de la entidad financiera</span></span>
+<span id="cb3-665"><a href="#cb3-665" aria-hidden="true" tabindex="-1"></a>De acuerdo con el @cooperativasdefinicion, en Colombia se encuentran reglamentadas el conjunto de "empresas asociativas sin ánimo de lucro en las cuales los trabajadores o los usuarios, según el caso, son simultáneamente los aportantes y los gestores de la Empresa", bajo el nombre de cooperativas. Estas entidades son reguladas por la Superintendencia de la Economía Solidaria **Supersolidaria** o por la Superintendencia Financiera de Colombia **Superfinanciera** y tienen como objetivo la distribución o producción de bienes o servicios que satisfagan las necesidades de sus asociados, de manera colaborativa y eficiente. De la misma manera, las cooperativas tienen facultades legales para asociarse entre sí en miras al cumplimiento de sus propósitos económicos y sociales de una mejor manera.</span>
 <span id="cb3-666"><a href="#cb3-666" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-667"><a href="#cb3-667" aria-hidden="true" tabindex="-1"></a>De acuerdo con el @cooperativasdefinicion, en Colombia se encuentran reglamentadas el conjunto de "empresas asociativas sin ánimo de lucro en las cuales los trabajadores o los usuarios, según el caso, son simultáneamente los aportantes y los gestores de la Empresa", bajo el nombre de cooperativas. Estas entidades son reguladas por la Superintendencia de la Economía Solidaria **Supersolidaria** o por la Superintendencia Financiera de Colombia **Superfinanciera** y tienen como objetivo la distribución o producción de bienes o servicios que satisfagan las necesidades de sus asociados, de manera colaborativa y eficiente. De la misma manera, las cooperativas tienen facultades legales para asociarse entre sí en miras al cumplimiento de sus propósitos económicos y sociales de una mejor manera.</span>
+<span id="cb3-667"><a href="#cb3-667" aria-hidden="true" tabindex="-1"></a>Ahora bien, la ley colombiana regula las actividades financieras de las cooperativas de la siguiente manera, según @supersolidaria:</span>
 <span id="cb3-668"><a href="#cb3-668" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-669"><a href="#cb3-669" aria-hidden="true" tabindex="-1"></a>Ahora bien, la ley colombiana regula las actividades financieras de las cooperativas de la siguiente manera, según @supersolidaria:</span>
+<span id="cb3-669"><a href="#cb3-669" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Las **cooperativas financieras** como organismos cooperativos que tienen como función principal la realización de actividades financieras, se consideran establecimientos de crédito y pueden solicitar autorización de la Superfinanciera para ofrecer sus servicios a terceros no asociados a la cooperativa.</span>
 <span id="cb3-670"><a href="#cb3-670" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-671"><a href="#cb3-671" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Las **cooperativas financieras** como organismos cooperativos que tienen como función principal la realización de actividades financieras, se consideran establecimientos de crédito y pueden solicitar autorización de la Superfinanciera para ofrecer sus servicios a terceros no asociados a la cooperativa.</span>
+<span id="cb3-671"><a href="#cb3-671" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Las **cooperativas de ahorro y crédito** como organismos cooperativos que tienen la función principal de adelantar actividades financieras con sus asociados de forma única. A su vez, deben solicitar autorización de la Supersolidaria para la prestación de sus servicios.</span>
 <span id="cb3-672"><a href="#cb3-672" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-673"><a href="#cb3-673" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Las **cooperativas de ahorro y crédito** como organismos cooperativos que tienen la función principal de adelantar actividades financieras con sus asociados de forma única. A su vez, deben solicitar autorización de la Supersolidaria para la prestación de sus servicios.</span>
+<span id="cb3-673"><a href="#cb3-673" aria-hidden="true" tabindex="-1"></a>Teniendo en cuenta lo anterior, al hacer énfasis en la actividad ejercida por las cooperativas financieras, es posible observar que dichas entidades deben tener una especial importancia en la correcta gestión del riesgo de crédito, pues de esto depende en gran medida su capacidad para continuar prestando sus servicios a sus asociados o terceros que así lo necesiten. Por lo tanto, este caso de uso obedece a la situación en que una cooperativa financiera necesite evaluar cuál sería la decisión adecuada con respecto al crédito solicitado por un tercero no asociado, considerando las variables que interactúan en el problema y se muestran en la Tabla 5.</span>
 <span id="cb3-674"><a href="#cb3-674" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-675"><a href="#cb3-675" aria-hidden="true" tabindex="-1"></a>Teniendo en cuenta lo anterior, al hacer énfasis en la actividad ejercida por las cooperativas financieras, es posible observar que dichas entidades deben tener una especial importancia en la correcta gestión del riesgo de crédito, pues de esto depende en gran medida su capacidad para continuar prestando sus servicios a sus asociados o terceros que así lo necesiten. Por lo tanto, este caso de uso obedece a la situación en que una cooperativa financiera necesite evaluar cuál sería la decisión adecuada con respecto al crédito solicitado por un tercero no asociado, considerando las variables que interactúan en el problema y se muestran en la Tabla 5.</span>
+<span id="cb3-675"><a href="#cb3-675" aria-hidden="true" tabindex="-1"></a>**Tabla 5.**</span>
 <span id="cb3-676"><a href="#cb3-676" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-677"><a href="#cb3-677" aria-hidden="true" tabindex="-1"></a>**Tabla 5.**</span>
+<span id="cb3-677"><a href="#cb3-677" aria-hidden="true" tabindex="-1"></a>*Información del perfil de crédito a analizar en el caso de estudio.*</span>
 <span id="cb3-678"><a href="#cb3-678" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-679"><a href="#cb3-679" aria-hidden="true" tabindex="-1"></a>*Información del perfil de crédito a analizar en el caso de estudio.*</span>
-<span id="cb3-680"><a href="#cb3-680" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-681"><a href="#cb3-681" aria-hidden="true" tabindex="-1"></a>| **Variable**                                    | **Valor**                    |</span>
-<span id="cb3-682"><a href="#cb3-682" aria-hidden="true" tabindex="-1"></a>|-------------------------------------------------|------------------------------|</span>
-<span id="cb3-683"><a href="#cb3-683" aria-hidden="true" tabindex="-1"></a>| **Monto del Préstamo**                          | \$50,000,000 COP             |</span>
-<span id="cb3-684"><a href="#cb3-684" aria-hidden="true" tabindex="-1"></a>| **Monto Comprometido**                          | \$50,000,000 COP             |</span>
-<span id="cb3-685"><a href="#cb3-685" aria-hidden="true" tabindex="-1"></a>| **Monto Inversionistas**                        | \$50,000,000 COP             |</span>
-<span id="cb3-686"><a href="#cb3-686" aria-hidden="true" tabindex="-1"></a>| **Tasa de Interés**                             | 18.5% E.A.                   |</span>
-<span id="cb3-687"><a href="#cb3-687" aria-hidden="true" tabindex="-1"></a>| **Pago Mensual**                                | \$1,875,000 COP              |</span>
-<span id="cb3-688"><a href="#cb3-688" aria-hidden="true" tabindex="-1"></a>| **Ingresos Anuales**                            | \$60,000,000 COP             |</span>
-<span id="cb3-689"><a href="#cb3-689" aria-hidden="true" tabindex="-1"></a>| **DTI (Relación Deuda/Ingresos)**               | 45%                          |</span>
-<span id="cb3-690"><a href="#cb3-690" aria-hidden="true" tabindex="-1"></a>| **Incidentes de Mora en 2 años**                | 2                            |</span>
-<span id="cb3-691"><a href="#cb3-691" aria-hidden="true" tabindex="-1"></a>| **Consultas Crediticias en 6 meses**            | 4                            |</span>
-<span id="cb3-692"><a href="#cb3-692" aria-hidden="true" tabindex="-1"></a>| **Líneas de Crédito Abiertas**                  | 6                            |</span>
-<span id="cb3-693"><a href="#cb3-693" aria-hidden="true" tabindex="-1"></a>| **Registros Derogatorios**                      | 1                            |</span>
-<span id="cb3-694"><a href="#cb3-694" aria-hidden="true" tabindex="-1"></a>| **Saldo Crédito Rotativo**                      | \$15,000,000 COP             |</span>
-<span id="cb3-695"><a href="#cb3-695" aria-hidden="true" tabindex="-1"></a>| **Uso de Crédito Rotativo**                     | 70%                          |</span>
-<span id="cb3-696"><a href="#cb3-696" aria-hidden="true" tabindex="-1"></a>| **Líneas de Crédito Totales**                   | 9                            |</span>
-<span id="cb3-697"><a href="#cb3-697" aria-hidden="true" tabindex="-1"></a>| **Pagos Recibidos por Monto Total**             | \$30,000,000 COP             |</span>
-<span id="cb3-698"><a href="#cb3-698" aria-hidden="true" tabindex="-1"></a>| **Pagos Recibidos por Porción Inversionista**   | \$30,000,000 COP             |</span>
-<span id="cb3-699"><a href="#cb3-699" aria-hidden="true" tabindex="-1"></a>| **Principal Recibido**                          | \$25,000,000 COP             |</span>
-<span id="cb3-700"><a href="#cb3-700" aria-hidden="true" tabindex="-1"></a>| **Interés Recibido**                            | \$5,000,000 COP              |</span>
-<span id="cb3-701"><a href="#cb3-701" aria-hidden="true" tabindex="-1"></a>| **Recargos por Mora**                           | \$1,200,000 COP              |</span>
-<span id="cb3-702"><a href="#cb3-702" aria-hidden="true" tabindex="-1"></a>| **Último Pago Recibido**                        | \$1,500,000 COP              |</span>
-<span id="cb3-703"><a href="#cb3-703" aria-hidden="true" tabindex="-1"></a>| **Última fecha de pago (Día)**                  | 15                           |</span>
-<span id="cb3-704"><a href="#cb3-704" aria-hidden="true" tabindex="-1"></a>| **Última fecha de pago (Mes)**                  | Octubre                      |</span>
-<span id="cb3-705"><a href="#cb3-705" aria-hidden="true" tabindex="-1"></a>| **Última fecha de pago (Año)**                  | 2024                         |</span>
-<span id="cb3-706"><a href="#cb3-706" aria-hidden="true" tabindex="-1"></a>| **Último Informe de Crédito (Mes)**             | Noviembre                    |</span>
-<span id="cb3-707"><a href="#cb3-707" aria-hidden="true" tabindex="-1"></a>| **Último Informe de Crédito (Año)**             | 2024                         |</span>
-<span id="cb3-708"><a href="#cb3-708" aria-hidden="true" tabindex="-1"></a>| **Último Informe de Crédito (Días)**            | 45 días                      |</span>
-<span id="cb3-709"><a href="#cb3-709" aria-hidden="true" tabindex="-1"></a>| **Cobros en 12 Meses**                          | 3                            |</span>
-<span id="cb3-710"><a href="#cb3-710" aria-hidden="true" tabindex="-1"></a>| **Cuentas en Mora**                             | 2                            |</span>
-<span id="cb3-711"><a href="#cb3-711" aria-hidden="true" tabindex="-1"></a>| **Cobros Adeudados**                            | \$2,500,000 COP              |</span>
-<span id="cb3-712"><a href="#cb3-712" aria-hidden="true" tabindex="-1"></a>| **Saldo de las Cuentas**                        | \$35,000,000 COP             |</span>
-<span id="cb3-713"><a href="#cb3-713" aria-hidden="true" tabindex="-1"></a>| **Límite de Crédito Rotativo**                  | \$20,000,000 COP             |</span>
-<span id="cb3-714"><a href="#cb3-714" aria-hidden="true" tabindex="-1"></a>| **Tiempo de Empleo en Años**                    | 5                            |</span>
-<span id="cb3-715"><a href="#cb3-715" aria-hidden="true" tabindex="-1"></a>| **Número de Pagos del Préstamo**                | 60 meses                     |</span>
-<span id="cb3-716"><a href="#cb3-716" aria-hidden="true" tabindex="-1"></a>| **Calificación del Préstamo**                   | 3 (Nivel de Riesgo Regular)  |</span>
-<span id="cb3-717"><a href="#cb3-717" aria-hidden="true" tabindex="-1"></a>| **Estado de Propiedad de Vivienda**             | MORTGAGE                     |</span>
-<span id="cb3-718"><a href="#cb3-718" aria-hidden="true" tabindex="-1"></a>| **Estado de Verificación**                      | Verificado                   |</span>
-<span id="cb3-719"><a href="#cb3-719" aria-hidden="true" tabindex="-1"></a>| **Años con el Préstamo**                        | 3 años                       |</span>
-<span id="cb3-720"><a href="#cb3-720" aria-hidden="true" tabindex="-1"></a>| **Recuperación**                                | 65%                          |</span>
-<span id="cb3-721"><a href="#cb3-721" aria-hidden="true" tabindex="-1"></a>| **Días desde el último pago**                   | 14 días                      |</span>
-<span id="cb3-722"><a href="#cb3-722" aria-hidden="true" tabindex="-1"></a>| **Última fecha de consulta**                    | 25 de Noviembre de 2024      |</span>
-<span id="cb3-723"><a href="#cb3-723" aria-hidden="true" tabindex="-1"></a>| **Saldo Pendiente (Monto Inversión)**           | \$20,000,000 COP             |</span>
-<span id="cb3-724"><a href="#cb3-724" aria-hidden="true" tabindex="-1"></a>| **Saldo Pendiente (Total)**                     | \$20,000,000 COP             |</span>
-<span id="cb3-725"><a href="#cb3-725" aria-hidden="true" tabindex="-1"></a>| **Tarifa por Cancelación**                      | \$500,000 COP                |</span>
-<span id="cb3-726"><a href="#cb3-726" aria-hidden="true" tabindex="-1"></a>| **Año del Préstamo**                            | 2021                         |</span>
-<span id="cb3-727"><a href="#cb3-727" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-728"><a href="#cb3-728" aria-hidden="true" tabindex="-1"></a>Dados estos datos, es posible observar que el prestatario muestra un riesgo entre moderado y alto debido a su alto DTI, sus incidentes de mora recientes y uso elevado del crédito rotativo. A pesar de que ha pagado más de la mitad del préstamo, aún mantiene cuentas en mora y un historial de cobros en los últimos 12 meses. Por lo tanto, la cooperativa financiera podría considerar estrategias como la restructuración concertada de las condiciones del préstamo o la venta de cartera en otra entidad financiera.</span>
-<span id="cb3-729"><a href="#cb3-729" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-730"><a href="#cb3-730" aria-hidden="true" tabindex="-1"></a><span class="fu">### Caso del usuario</span></span>
-<span id="cb3-731"><a href="#cb3-731" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-732"><a href="#cb3-732" aria-hidden="true" tabindex="-1"></a>Por otra parte, si se tiene en cuenta el punto de vista de un prestatario (es decir, alguien que accede a créditos, préstamos y otros productos) resultaría muy importante conocer la forma en que es evaluado su perfil por parte de las entidades financieras como cooperativas y bancos, pues de esta manera sería posible comprender el porqué de las condiciones que le son propuestas para acceder a un crédito y planear estrategias para mejorar dicho perfil y acceder a mejores opciones.</span>
-<span id="cb3-733"><a href="#cb3-733" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-734"><a href="#cb3-734" aria-hidden="true" tabindex="-1"></a>En este sentido, la Tabla 6 muestra algunas variables que se consideran cruciales al evaluar el riesgo de crédito y que, ciertamente fueron consideradas en el modelo de redes neuronales artificiales, con los valores que se juzgan **poco riesgosos** desde el análisis realizado por las entidades financieras.</span>
-<span id="cb3-735"><a href="#cb3-735" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-736"><a href="#cb3-736" aria-hidden="true" tabindex="-1"></a>**Tabla 6.**</span>
-<span id="cb3-737"><a href="#cb3-737" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-738"><a href="#cb3-738" aria-hidden="true" tabindex="-1"></a>*Valores de un perfil de crédito que permitiría obtener mejores condiciones por parte de las entidades financieras en un préstamo o similar.*</span>
-<span id="cb3-739"><a href="#cb3-739" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-740"><a href="#cb3-740" aria-hidden="true" tabindex="-1"></a>| **Variable**                         | **Valores Óptimos** |</span>
-<span id="cb3-741"><a href="#cb3-741" aria-hidden="true" tabindex="-1"></a>|--------------------------------------|---------------------|</span>
-<span id="cb3-742"><a href="#cb3-742" aria-hidden="true" tabindex="-1"></a>| **DTI (Relación Deuda/Ingresos)**    | Menos del 30%       |</span>
-<span id="cb3-743"><a href="#cb3-743" aria-hidden="true" tabindex="-1"></a>| **Incidentes de Mora en 2 años**     | 0                   |</span>
-<span id="cb3-744"><a href="#cb3-744" aria-hidden="true" tabindex="-1"></a>| **Consultas Crediticias en 6 meses** | Menos de 2          |</span>
-<span id="cb3-745"><a href="#cb3-745" aria-hidden="true" tabindex="-1"></a>| **Registros Derogatorios**           | 0                   |</span>
-<span id="cb3-746"><a href="#cb3-746" aria-hidden="true" tabindex="-1"></a>| **Uso de Crédito Rotativo**          | Menos del 35%       |</span>
-<span id="cb3-747"><a href="#cb3-747" aria-hidden="true" tabindex="-1"></a>| **Cuentas en Mora**                  | 0                   |</span>
-<span id="cb3-748"><a href="#cb3-748" aria-hidden="true" tabindex="-1"></a>| **Cobros Adeudados**                 | \$0 COP             |</span>
-<span id="cb3-749"><a href="#cb3-749" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-750"><a href="#cb3-750" aria-hidden="true" tabindex="-1"></a>La información encontrada anteriormente puede contrastarse por lo dicho en @valoresoptimosequifax y por @valoresoptimosincharge, donde además se especifica que la tasa **DTI** puede considerarse poco riesgosa hasta en un valor del 43%, teniendo algunas consideraciones adicionales.</span>
-<span id="cb3-751"><a href="#cb3-751" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-752"><a href="#cb3-752" aria-hidden="true" tabindex="-1"></a><span class="fu"># Aplicación web</span></span>
-<span id="cb3-753"><a href="#cb3-753" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-754"><a href="#cb3-754" aria-hidden="true" tabindex="-1"></a>Como se mencionó anteriormente, el modelo de redes neuronales artificiales fue desplegado en una aplicación web titulada *CrediMetric* que podrá ser accedida en el siguiente enlace: &lt;ins&gt;<span class="co">[</span><span class="ot">CrediMetric</span><span class="co">](https://front-credit-risk.onrender.com/)</span>&lt;/ins&gt;.</span>
-<span id="cb3-755"><a href="#cb3-755" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-756"><a href="#cb3-756" aria-hidden="true" tabindex="-1"></a>Esta aplicación web cuenta con una funcionalidad que permitirá a las entidades financieras evaluar los perfiles de crédito de los casos en los que necesitan evaluar una decisión especial, además de permitir que los prestatarios también puedan conocer su perfil de riesgo de crédito de una manera más completa y descriptiva.</span>
-<span id="cb3-757"><a href="#cb3-757" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-758"><a href="#cb3-758" aria-hidden="true" tabindex="-1"></a><span class="fu"># Video publicitario</span></span>
-<span id="cb3-759"><a href="#cb3-759" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-760"><a href="#cb3-760" aria-hidden="true" tabindex="-1"></a>De manera adicional a los resultados anteriormente obtenidos, se presenta el siguiente recurso audiovisual como video publicitario para la aplicación web resultante del presente trabajo, mostrando el tipo de problemas que puede ayudar a resolver e invitando a su descubrimiento y utilización.</span>
-<span id="cb3-761"><a href="#cb3-761" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-762"><a href="#cb3-762" aria-hidden="true" tabindex="-1"></a>{{&lt; video https://youtu.be/GSx1EJdQpBA &gt;}}</span>
-<span id="cb3-763"><a href="#cb3-763" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-764"><a href="#cb3-764" aria-hidden="true" tabindex="-1"></a><span class="fu">## Contribuciones individuales</span></span>
-<span id="cb3-765"><a href="#cb3-765" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-766"><a href="#cb3-766" aria-hidden="true" tabindex="-1"></a>Las contribuciones realizadas por cada uno de los integrantes del equipo en el desarrollo de los ejercicios correspondientes a **Modelos de riesgo de crédito con Redes Neuronales Artificiales** se muestran en el siguiente video.</span>
-<span id="cb3-767"><a href="#cb3-767" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-768"><a href="#cb3-768" aria-hidden="true" tabindex="-1"></a>{{&lt; video https://youtu.be/3H1xWTNLn0g &gt;}}</span>
+<span id="cb3-679"><a href="#cb3-679" aria-hidden="true" tabindex="-1"></a>| **Variable**                                | **Valor**          | **Descripción**                                                                                   |</span>
+<span id="cb3-680"><a href="#cb3-680" aria-hidden="true" tabindex="-1"></a>|---------------------------------------------|--------------------|---------------------------------------------------------------------------------------------------|</span>
+<span id="cb3-681"><a href="#cb3-681" aria-hidden="true" tabindex="-1"></a>| **Pago Mensual**                            | $500,000           | Monto que debe pagar el prestatario mensualmente si el préstamo es originado.                     |</span>
+<span id="cb3-682"><a href="#cb3-682" aria-hidden="true" tabindex="-1"></a>| **Pagos Recibidos por Monto Total**         | $2,000,000         | Pagos realizados hasta la fecha para el monto total financiado.                                   |</span>
+<span id="cb3-683"><a href="#cb3-683" aria-hidden="true" tabindex="-1"></a>| **Pagos Recibidos por Porción Inversionista**| $1,200,000         | Pagos realizados hasta la fecha para la porción financiada por inversionistas.                    |</span>
+<span id="cb3-684"><a href="#cb3-684" aria-hidden="true" tabindex="-1"></a>| **Principal Recibido**                      | $1,800,000         | Monto principal recibido hasta la fecha.                                                           |</span>
+<span id="cb3-685"><a href="#cb3-685" aria-hidden="true" tabindex="-1"></a>| **Último Pago Recibido**                    | $500,000           | Monto total del último pago realizado.                                                             |</span>
+<span id="cb3-686"><a href="#cb3-686" aria-hidden="true" tabindex="-1"></a>| **Última Fecha de Pago (Día)**              | 20 de enero        | El último día de la semana en que se recibió el pago.                                              |</span>
+<span id="cb3-687"><a href="#cb3-687" aria-hidden="true" tabindex="-1"></a>| **Última Fecha de Pago (Mes)**              | Enero 2025         | El mes en el cual se realizó el último pago.                                                      |</span>
+<span id="cb3-688"><a href="#cb3-688" aria-hidden="true" tabindex="-1"></a>| **Último Informe de Crédito (Mes)**         | Octubre 2024       | El mes más reciente en el que se obtuvo el informe de crédito del prestatario.                     |</span>
+<span id="cb3-689"><a href="#cb3-689" aria-hidden="true" tabindex="-1"></a>| **Años con el Préstamo**                    | 3 años             | Número de años que el prestatario lleva con el préstamo.                                           |</span>
+<span id="cb3-690"><a href="#cb3-690" aria-hidden="true" tabindex="-1"></a>| **Recuperación**                            | $400,000           | La recuperación bruta después de la cancelación por incobrabilidad.                                |</span>
+<span id="cb3-691"><a href="#cb3-691" aria-hidden="true" tabindex="-1"></a>| **Días Desde el Último Pago**               | 10 días            | Número de días desde que se recibió el último pago.                                               |</span>
+<span id="cb3-692"><a href="#cb3-692" aria-hidden="true" tabindex="-1"></a>| **Última Fecha de Consulta**                | 15 de enero 2025   | El día más reciente en el que se consultó el crédito del prestatario.                              |</span>
+<span id="cb3-693"><a href="#cb3-693" aria-hidden="true" tabindex="-1"></a>| **Saldo Pendiente (Monto Inversión)**       | $500,000           | Saldo principal pendiente de la parte financiada por inversionistas.                               |</span>
+<span id="cb3-694"><a href="#cb3-694" aria-hidden="true" tabindex="-1"></a>| **Saldo Pendiente (Total)**                 | $1,000,000         | Saldo principal pendiente del monto total financiado.                                              |</span>
+<span id="cb3-695"><a href="#cb3-695" aria-hidden="true" tabindex="-1"></a>| **Última Fecha de Pago (Año)**              | 2025               | El año en el cual se realizó el último pago.                                                      |</span>
+<span id="cb3-696"><a href="#cb3-696" aria-hidden="true" tabindex="-1"></a>| **Tarifa por Cancelación**                  | $50,000            | Tarifa de cobro después de la cancelación por incobrabilidad.                                      |</span>
+<span id="cb3-697"><a href="#cb3-697" aria-hidden="true" tabindex="-1"></a>| **Año del Préstamo**                        | 2022               | El año en que se originó el préstamo.                                                              |</span>
+<span id="cb3-698"><a href="#cb3-698" aria-hidden="true" tabindex="-1"></a>| **Último Informe de Crédito (Año)**         | 2024               | El año más reciente en que se obtuvo el informe de crédito para este préstamo.                    |</span>
+<span id="cb3-699"><a href="#cb3-699" aria-hidden="true" tabindex="-1"></a>| **Último Informe de Crédito (Días)**        | 100 días           | Número de días desde el último informe de crédito.                                                |</span>
+<span id="cb3-700"><a href="#cb3-700" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-701"><a href="#cb3-701" aria-hidden="true" tabindex="-1"></a>Dados estos datos, es posible observar que la respuesta por parte del modelo desplegado será que el prestatario muestra un **riesgo crediticio elevado** debido a múltiples indicadores, como lo pueden ser: capacidad de pago limitada, historial crediticio inconsistente y alta utilización de crédito rotativo. De acuerdo con esto, las condiciones del préstamo requieren garantías sustanciales, por lo que la cooperativa financiera podría considerar estrategias como la restructuración concertada de dichas condiciones o la venta de cartera en otra entidad.</span>
+<span id="cb3-702"><a href="#cb3-702" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-703"><a href="#cb3-703" aria-hidden="true" tabindex="-1"></a><span class="fu"># Aplicación web</span></span>
+<span id="cb3-704"><a href="#cb3-704" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-705"><a href="#cb3-705" aria-hidden="true" tabindex="-1"></a>Como se mencionó anteriormente, el modelo de redes neuronales artificiales fue desplegado en una aplicación web titulada *CrediMetric* que podrá ser accedida en el siguiente enlace: &lt;ins&gt;<span class="co">[</span><span class="ot">CrediMetric</span><span class="co">](https://front-credit-risk.onrender.com/)</span>&lt;/ins&gt;.</span>
+<span id="cb3-706"><a href="#cb3-706" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-707"><a href="#cb3-707" aria-hidden="true" tabindex="-1"></a>Esta aplicación web cuenta con una funcionalidad que permitirá a las entidades financieras evaluar los perfiles de crédito de los casos en los que necesitan evaluar una decisión especial, además de permitir que los prestatarios también puedan conocer su perfil de riesgo de crédito de una manera más completa y descriptiva.</span>
+<span id="cb3-708"><a href="#cb3-708" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-709"><a href="#cb3-709" aria-hidden="true" tabindex="-1"></a><span class="fu"># Video publicitario</span></span>
+<span id="cb3-710"><a href="#cb3-710" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-711"><a href="#cb3-711" aria-hidden="true" tabindex="-1"></a>De manera adicional a los resultados anteriormente obtenidos, se presenta el siguiente recurso audiovisual como video publicitario para la aplicación web resultante del presente trabajo, mostrando el tipo de problemas que puede ayudar a resolver e invitando a su descubrimiento y utilización.</span>
+<span id="cb3-712"><a href="#cb3-712" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-713"><a href="#cb3-713" aria-hidden="true" tabindex="-1"></a>{{&lt; video https://youtu.be/GSx1EJdQpBA &gt;}}</span>
+<span id="cb3-714"><a href="#cb3-714" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-715"><a href="#cb3-715" aria-hidden="true" tabindex="-1"></a><span class="fu">## Contribuciones individuales</span></span>
+<span id="cb3-716"><a href="#cb3-716" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-717"><a href="#cb3-717" aria-hidden="true" tabindex="-1"></a>Las contribuciones realizadas por cada uno de los integrantes del equipo en el desarrollo de los ejercicios correspondientes a **Modelos de riesgo de crédito con Redes Neuronales Artificiales** se muestran en el siguiente video.</span>
+<span id="cb3-718"><a href="#cb3-718" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-719"><a href="#cb3-719" aria-hidden="true" tabindex="-1"></a>{{&lt; video https://youtu.be/3H1xWTNLn0g &gt;}}</span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

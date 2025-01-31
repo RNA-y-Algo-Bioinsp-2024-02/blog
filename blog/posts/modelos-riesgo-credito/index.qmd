@@ -278,7 +278,7 @@ $$
 \text{Focal Loss} = - \alpha_t (1 - p_t)^\gamma \log(p_t) \tag{9}
 $$
 
-donde $ p_t = \hat{y}\_c $
+donde \$ p_t = \hat{y}\_c \$
 
 #### Tipos de redes neuronales artificiales
 
@@ -659,8 +659,6 @@ Además se agregó un workflow con GitHub Actions para automatizar el despliegue
 
 A continuación se desarrollará un caso de uso que ejemplifica cómo el uso del modelo desplegado anteriormente a través de una aplicación web puede traer beneficios a las entidades bancarias en los procesos de toma de decisiones, así como darle una mayor claridad a los usuarios de estos servicios, en términos de cononocer los motivos por los cuales se toman ciertas decisiones respecto a sus préstamos o productos bancarios (como puede ser la venta de cartera o similares).
 
-### Caso de la entidad financiera
-
 De acuerdo con el @cooperativasdefinicion, en Colombia se encuentran reglamentadas el conjunto de "empresas asociativas sin ánimo de lucro en las cuales los trabajadores o los usuarios, según el caso, son simultáneamente los aportantes y los gestores de la Empresa", bajo el nombre de cooperativas. Estas entidades son reguladas por la Superintendencia de la Economía Solidaria **Supersolidaria** o por la Superintendencia Financiera de Colombia **Superfinanciera** y tienen como objetivo la distribución o producción de bienes o servicios que satisfagan las necesidades de sus asociados, de manera colaborativa y eficiente. De la misma manera, las cooperativas tienen facultades legales para asociarse entre sí en miras al cumplimiento de sus propósitos económicos y sociales de una mejor manera.
 
 Ahora bien, la ley colombiana regula las actividades financieras de las cooperativas de la siguiente manera, según @supersolidaria:
@@ -675,76 +673,29 @@ Teniendo en cuenta lo anterior, al hacer énfasis en la actividad ejercida por l
 
 *Información del perfil de crédito a analizar en el caso de estudio.*
 
-| **Variable**                                    | **Valor**                    |
-|-------------------------------------------------|------------------------------|
-| **Monto del Préstamo**                          | \$50,000,000 COP             |
-| **Monto Comprometido**                          | \$50,000,000 COP             |
-| **Monto Inversionistas**                        | \$50,000,000 COP             |
-| **Tasa de Interés**                             | 18.5% E.A.                   |
-| **Pago Mensual**                                | \$1,875,000 COP              |
-| **Ingresos Anuales**                            | \$60,000,000 COP             |
-| **DTI (Relación Deuda/Ingresos)**               | 45%                          |
-| **Incidentes de Mora en 2 años**                | 2                            |
-| **Consultas Crediticias en 6 meses**            | 4                            |
-| **Líneas de Crédito Abiertas**                  | 6                            |
-| **Registros Derogatorios**                      | 1                            |
-| **Saldo Crédito Rotativo**                      | \$15,000,000 COP             |
-| **Uso de Crédito Rotativo**                     | 70%                          |
-| **Líneas de Crédito Totales**                   | 9                            |
-| **Pagos Recibidos por Monto Total**             | \$30,000,000 COP             |
-| **Pagos Recibidos por Porción Inversionista**   | \$30,000,000 COP             |
-| **Principal Recibido**                          | \$25,000,000 COP             |
-| **Interés Recibido**                            | \$5,000,000 COP              |
-| **Recargos por Mora**                           | \$1,200,000 COP              |
-| **Último Pago Recibido**                        | \$1,500,000 COP              |
-| **Última fecha de pago (Día)**                  | 15                           |
-| **Última fecha de pago (Mes)**                  | Octubre                      |
-| **Última fecha de pago (Año)**                  | 2024                         |
-| **Último Informe de Crédito (Mes)**             | Noviembre                    |
-| **Último Informe de Crédito (Año)**             | 2024                         |
-| **Último Informe de Crédito (Días)**            | 45 días                      |
-| **Cobros en 12 Meses**                          | 3                            |
-| **Cuentas en Mora**                             | 2                            |
-| **Cobros Adeudados**                            | \$2,500,000 COP              |
-| **Saldo de las Cuentas**                        | \$35,000,000 COP             |
-| **Límite de Crédito Rotativo**                  | \$20,000,000 COP             |
-| **Tiempo de Empleo en Años**                    | 5                            |
-| **Número de Pagos del Préstamo**                | 60 meses                     |
-| **Calificación del Préstamo**                   | 3 (Nivel de Riesgo Regular)  |
-| **Estado de Propiedad de Vivienda**             | MORTGAGE                     |
-| **Estado de Verificación**                      | Verificado                   |
-| **Años con el Préstamo**                        | 3 años                       |
-| **Recuperación**                                | 65%                          |
-| **Días desde el último pago**                   | 14 días                      |
-| **Última fecha de consulta**                    | 25 de Noviembre de 2024      |
-| **Saldo Pendiente (Monto Inversión)**           | \$20,000,000 COP             |
-| **Saldo Pendiente (Total)**                     | \$20,000,000 COP             |
-| **Tarifa por Cancelación**                      | \$500,000 COP                |
-| **Año del Préstamo**                            | 2021                         |
+| **Variable**                                | **Valor**          | **Descripción**                                                                                   |
+|---------------------------------------------|--------------------|---------------------------------------------------------------------------------------------------|
+| **Pago Mensual**                            | $500,000           | Monto que debe pagar el prestatario mensualmente si el préstamo es originado.                     |
+| **Pagos Recibidos por Monto Total**         | $2,000,000         | Pagos realizados hasta la fecha para el monto total financiado.                                   |
+| **Pagos Recibidos por Porción Inversionista**| $1,200,000         | Pagos realizados hasta la fecha para la porción financiada por inversionistas.                    |
+| **Principal Recibido**                      | $1,800,000         | Monto principal recibido hasta la fecha.                                                           |
+| **Último Pago Recibido**                    | $500,000           | Monto total del último pago realizado.                                                             |
+| **Última Fecha de Pago (Día)**              | 20 de enero        | El último día de la semana en que se recibió el pago.                                              |
+| **Última Fecha de Pago (Mes)**              | Enero 2025         | El mes en el cual se realizó el último pago.                                                      |
+| **Último Informe de Crédito (Mes)**         | Octubre 2024       | El mes más reciente en el que se obtuvo el informe de crédito del prestatario.                     |
+| **Años con el Préstamo**                    | 3 años             | Número de años que el prestatario lleva con el préstamo.                                           |
+| **Recuperación**                            | $400,000           | La recuperación bruta después de la cancelación por incobrabilidad.                                |
+| **Días Desde el Último Pago**               | 10 días            | Número de días desde que se recibió el último pago.                                               |
+| **Última Fecha de Consulta**                | 15 de enero 2025   | El día más reciente en el que se consultó el crédito del prestatario.                              |
+| **Saldo Pendiente (Monto Inversión)**       | $500,000           | Saldo principal pendiente de la parte financiada por inversionistas.                               |
+| **Saldo Pendiente (Total)**                 | $1,000,000         | Saldo principal pendiente del monto total financiado.                                              |
+| **Última Fecha de Pago (Año)**              | 2025               | El año en el cual se realizó el último pago.                                                      |
+| **Tarifa por Cancelación**                  | $50,000            | Tarifa de cobro después de la cancelación por incobrabilidad.                                      |
+| **Año del Préstamo**                        | 2022               | El año en que se originó el préstamo.                                                              |
+| **Último Informe de Crédito (Año)**         | 2024               | El año más reciente en que se obtuvo el informe de crédito para este préstamo.                    |
+| **Último Informe de Crédito (Días)**        | 100 días           | Número de días desde el último informe de crédito.                                                |
 
-Dados estos datos, es posible observar que el prestatario muestra un riesgo entre moderado y alto debido a su alto DTI, sus incidentes de mora recientes y uso elevado del crédito rotativo. A pesar de que ha pagado más de la mitad del préstamo, aún mantiene cuentas en mora y un historial de cobros en los últimos 12 meses. Por lo tanto, la cooperativa financiera podría considerar estrategias como la restructuración concertada de las condiciones del préstamo o la venta de cartera en otra entidad financiera.
-
-### Caso del usuario
-
-Por otra parte, si se tiene en cuenta el punto de vista de un prestatario (es decir, alguien que accede a créditos, préstamos y otros productos) resultaría muy importante conocer la forma en que es evaluado su perfil por parte de las entidades financieras como cooperativas y bancos, pues de esta manera sería posible comprender el porqué de las condiciones que le son propuestas para acceder a un crédito y planear estrategias para mejorar dicho perfil y acceder a mejores opciones.
-
-En este sentido, la Tabla 6 muestra algunas variables que se consideran cruciales al evaluar el riesgo de crédito y que, ciertamente fueron consideradas en el modelo de redes neuronales artificiales, con los valores que se juzgan **poco riesgosos** desde el análisis realizado por las entidades financieras.
-
-**Tabla 6.**
-
-*Valores de un perfil de crédito que permitiría obtener mejores condiciones por parte de las entidades financieras en un préstamo o similar.*
-
-| **Variable**                         | **Valores Óptimos** |
-|--------------------------------------|---------------------|
-| **DTI (Relación Deuda/Ingresos)**    | Menos del 30%       |
-| **Incidentes de Mora en 2 años**     | 0                   |
-| **Consultas Crediticias en 6 meses** | Menos de 2          |
-| **Registros Derogatorios**           | 0                   |
-| **Uso de Crédito Rotativo**          | Menos del 35%       |
-| **Cuentas en Mora**                  | 0                   |
-| **Cobros Adeudados**                 | \$0 COP             |
-
-La información encontrada anteriormente puede contrastarse por lo dicho en @valoresoptimosequifax y por @valoresoptimosincharge, donde además se especifica que la tasa **DTI** puede considerarse poco riesgosa hasta en un valor del 43%, teniendo algunas consideraciones adicionales.
+Dados estos datos, es posible observar que la respuesta por parte del modelo desplegado será que el prestatario muestra un **riesgo crediticio elevado** debido a múltiples indicadores, como lo pueden ser: capacidad de pago limitada, historial crediticio inconsistente y alta utilización de crédito rotativo. De acuerdo con esto, las condiciones del préstamo requieren garantías sustanciales, por lo que la cooperativa financiera podría considerar estrategias como la restructuración concertada de dichas condiciones o la venta de cartera en otra entidad.
 
 # Aplicación web
 
