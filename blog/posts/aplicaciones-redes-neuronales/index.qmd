@@ -1,0 +1,52 @@
+---
+title: "Aplicaciones de Redes Neuronales"
+format: 
+  html:
+    toc: true
+    toc-width: 250px
+    main-container-width: 90%
+    fig-width: 8
+    fig-height: 6
+    number-sections: true
+    math: 
+      method: mathjax
+      options:
+        TeX:
+          equationNumbers: { autoNumber: "AMS" }
+  
+author:
+  - name: "Julián Castaño Pineda"
+  - name: "Luis Andrés Altamar Romero"
+  - name: "Catalina Restrepo Salgado"
+  - name: "Tomás Rodríguez Taborda"
+date: "2025-02-18"
+categories: [redes neuronales artificiales, desarrollo web, python, series de tiempo, clasificación]
+image: "image.jpg"
+bibliography: ref.bib
+execute:
+  cache: true
+---
+
+# Aplicaciones de Redes Neuronales en el desarrollo de un Sistema Inteligente Integrado para Predicción, Clasificación y Recomendación en Comercio Electrónico
+
+## Predicción de la demanda
+
+## Clasificación automática de productos
+
+## Recomendación personalizada
+
+# Aplicación web
+
+De acuerdo a lo que se ha venido presentando a lo largo de este ejercicio, los modelos de redes neuronales entrenados han sido desplegados en el sitio web titulado [título], donde la compañía de comercio electrónico y sus usuarios pueden acceder a los siguientes servicios:
+
+- Visualización de gráficos de predicción de la demanda.
+- Ver clasificación automática de un producto, dada su imagen.
+- Recepción de recomendaciones personalizadas para diferentes perfiles de usuarios.
+
+## Videos explicativos
+
+En los videos presentados a continuación se puede encontrar una breve descripción del funcionamiento de cada sección de la aplicación web, con un ejemplo real de utilización y posible interpretación de los resultados obtenidos.
+
+## Contribuciones individuales
+
+Las contribuciones realizadas por cada uno de los integrantes del equipo en el desarrollo del presente trabajo se pueden observar en el video a continuación:
