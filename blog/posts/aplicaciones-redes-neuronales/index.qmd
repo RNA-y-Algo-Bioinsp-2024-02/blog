@@ -13,7 +13,6 @@ format:
       options:
         TeX:
           equationNumbers: { autoNumber: "AMS" }
-  
 author:
   - name: "Julián Castaño Pineda"
   - name: "Luis Andrés Altamar Romero"
@@ -27,21 +26,95 @@ execute:
   cache: true
 ---
 
-# Aplicaciones de Redes Neuronales en el desarrollo de un Sistema Inteligente Integrado para Predicción, Clasificación y Recomendación en Comercio Electrónico
+**Aplicaciones de Redes Neuronales en el desarrollo de un Sistema Inteligente Integrado para Predicción, Clasificación y Recomendación en Comercio Electrónico**
 
-## Predicción de la demanda
+# Resumen ejecutivo
 
-## Clasificación automática de productos
+# Introducción
 
-## Recomendación personalizada
+El comercio electrónico, que puede definirse según @ibm2024 como el "proceso de compraventa de bienes y servicios a través de internet", se facilitan a través de diferentes plataformas en línea como lo son principalmente las aplicaciones móviles y sitios web. En sus primeros años se definió como un proceso simple que incluía transacciones de compra entre vendedores y sus clientes por medio de sitios web, no obstante, a medida que se han desarrollado tecnologías más complejas y se han ampliado las dinámicas comerciales entre personas y empresas, el comercio electrónico ha comenzado a abarcar otras aplicaciones como:
 
-# Aplicación web
+- Sitios web de comercios minoristas que también tienen tiendas físicas.
+- Plataformas de economía colaborativa que facilitan la adquisición de servicios.
+- Sitios de redes sociales, por ejemplo, Facebook Marketplace, donde los usuarios pueden ofrecer y vender bienes y servicios.
+
+Considerando lo anterior, y si se tiene un enfoque especial en la dinámica de comercio electrónico generado por las compañías que ofrecen bienes a través de un sitio web, abarcando grandes multitudes de clientes (y posibles clientes), es posible observar que se presentan una serie de retos a la hora de desarrollar estrategias de marketing adecuadas y que aporten valor al negocio. Algunos de estos retos, definidos después de contrastar con lo dicho por @danielb2023 son:
+
+1.  ¿Cómo mejorar las actividades logísticas y de gestión del inventario, que pueden verse afectadas a causa de una mala (o nula) estimación de la demanda futura o una clasificación incorrecta de los productos que se ofrecen a los clientes?
+
+2.  ¿De qué manera mejorar la retención de clientes y brindar una experiencia personalizada a cada comprador, disminuyendo así la pérdida de ventas potenciales y mejorando la reputación en el mercado?
+
+Estos retos pueden ser abordados desde diferentes perspectivas. sin embargo, el presente trabajo pretende plantear soluciones desde las temáticas vistas en el curso de Redes Neuronales y Algoritmos Bioinspirados, desarrollando herramientas que puedan servir de ayuda a la hora de tomar decisiones por parte del equipo de mercadeo en la sección dedicada al comercio electrónico de una compañía. Para esto, se plantearán los siguientes objetivos que esperan ser alcanzados a lo largo del trabajo aquí desarrollado.
+
+**Objetivo general**
+
+Desarrollar un sistema basado en aprendizaje profundo que integre predicción de demanda, clasificación de productos y recomendaciones personalizadas en la dinámica de negocio de una empresa de comercio electrónico.
+
+**Objetivos específicos**
+
+- Desarrollar un modelo de redes neuronales que pueda estimar la demanda durante los próximos 30 días de acuerdo con información histórica proporcionada por la tienda de comercio electrónico.
+
+- Desarrollar un modelo de redes neuronales que pueda clasificar automáticamente un producto de acuerdo con categorías previamente establecidas, a fin de facilitar la gesión de inventarios.
+
+- Diseñar un sistema de recomendaciones de productos de acuerdo con el comportamiento presentado por un usuario de la tienda a la hora de navegar a través del sitio web de comercio electrónico.
+
+# Metodología
+
+Para el desarrollo del presente trabajo se planteó una metodología basada en **Design Thinking**, pues garantiza un enfoque centrado en el usuario (que para este caso, será la tienda de comercio electrónico que requiere una mejora en sus estrategias de marketing para abordar los retos anteriormente mencionados), el cual permitirá comprender sus necesidades y diseñar una solución innovadora. Dicha metodología será desarrollada en las cinco fases que se describena a continuación:
+
+1. **Empatizar:**
+  - Análisis del comportamiento de clientes y tendencias de compra en comercio electrónico.
+  - Identificación de problemas clave mediante análisis de datos históricos.
+
+2. **Definir:**
+  - Formulación de los problemas a resolver con base en la información obtenida en la fase de empatización.
+  - Identificación de métricas clave para evaluar el desempeño de los modelos de redes neuronales artificiales.
+
+3. **Idear:**
+  - Propuestas de soluciones utilizando aprendizaje profundo para cada módulo del sistema.
+  - Comparación de enfoques para determinar el más adecuado según los recursos disponibles.
+
+4. **Prototipar:**
+  - Desarrollo inicial de modelos de predicción de demanda, clasificación de productos y recomendación personalizada.
+  - Construcción de una interfaz web interactiva para visualizar los resultados.
+
+5. **Testear:**
+  - Evaluación de los modelos con métricas como RMSE, MAE, precisión y F1-score.
+  - Pruebas con usuarios para validar la funcionalidad y usabilidad de la herramienta web.
+
+Por medio de este enfoque se espera asegurar que las soluciones implementadas sean funcionales, escalables y alineadas con las necesidades reales de la empresa de comercio electrónico.
+
+## Módulos
+
+Como se mencionó anteriormente, el trabajo será dividido en los siguientes módulos, con el fin de separar adecuadamente las actividades de diseño y desarrollo relacionadas con cada uno de los objetivos; posteriormente los resultados obtenidos en cada módulo serán unificados para el proceso de análisis de resultados y despliegue de la herramienta web que integrará todo el sistema de soluciones establecido.
+
+- Módulo de **predicción de la demanda**.
+- Módulo de **clasificación de productos**.
+- Módulo de **recomendaciones personalizadas**.
+
+# Desarrollo técnico por módulo
+
+## Módulo de predicción de la demanda
+
+## Módulo de clasificación de productos
+
+## Módulo de recomendaciones personalizadas
+
+# Herramienta web
 
 De acuerdo a lo que se ha venido presentando a lo largo de este ejercicio, los modelos de redes neuronales entrenados han sido desplegados en el sitio web titulado [título], donde la compañía de comercio electrónico y sus usuarios pueden acceder a los siguientes servicios:
 
 - Visualización de gráficos de predicción de la demanda.
 - Ver clasificación automática de un producto, dada su imagen.
 - Recepción de recomendaciones personalizadas para diferentes perfiles de usuarios.
+
+# Resultados generales y discusión
+
+# Conclusiones y recomendaciones
+
+# Aspectos éticos
+
+# Anexos
 
 ## Videos explicativos
 

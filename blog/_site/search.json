@@ -200,14 +200,14 @@
     "href": "posts/aplicaciones-redes-neuronales/index.html",
     "title": "Aplicaciones de Redes Neuronales",
     "section": "",
-    "text": "1 Aplicaciones de Redes Neuronales en el desarrollo de un Sistema Inteligente Integrado para Predicción, Clasificación y Recomendación en Comercio Electrónico"
+    "text": "Aplicaciones de Redes Neuronales en el desarrollo de un Sistema Inteligente Integrado para Predicción, Clasificación y Recomendación en Comercio Electrónico"
   },
   {
     "objectID": "posts/aplicaciones-redes-neuronales/index.html#contribuciones-individuales",
     "href": "posts/aplicaciones-redes-neuronales/index.html#contribuciones-individuales",
     "title": "Aplicaciones de Redes Neuronales",
-    "section": "2.2 Contribuciones individuales",
-    "text": "2.2 Contribuciones individuales\nLas contribuciones realizadas por cada uno de los integrantes del equipo en el desarrollo del presente trabajo se pueden observar en el video a continuación:"
+    "section": "9.2 Contribuciones individuales",
+    "text": "9.2 Contribuciones individuales\nLas contribuciones realizadas por cada uno de los integrantes del equipo en el desarrollo del presente trabajo se pueden observar en el video a continuación:"
   },
   {
     "objectID": "posts/aplicaciones-redes-neuronales/index.html#videos-de-demostración",
@@ -220,7 +220,77 @@
     "objectID": "posts/aplicaciones-redes-neuronales/index.html#videos-explicativos",
     "href": "posts/aplicaciones-redes-neuronales/index.html#videos-explicativos",
     "title": "Aplicaciones de Redes Neuronales",
-    "section": "2.1 Videos explicativos",
-    "text": "2.1 Videos explicativos\nEn los videos presentados a continuación se puede encontrar una breve descripción del funcionamiento de cada sección de la aplicación web, con un ejemplo real de utilización y posible interpretación de los resultados obtenidos."
+    "section": "9.1 Videos explicativos",
+    "text": "9.1 Videos explicativos\nEn los videos presentados a continuación se puede encontrar una breve descripción del funcionamiento de cada sección de la aplicación web, con un ejemplo real de utilización y posible interpretación de los resultados obtenidos."
+  },
+  {
+    "objectID": "posts/aplicaciones-redes-neuronales/index.html#introducción",
+    "href": "posts/aplicaciones-redes-neuronales/index.html#introducción",
+    "title": "Aplicaciones de Redes Neuronales",
+    "section": "2 Introducción",
+    "text": "2 Introducción\nEl comercio electrónico, que puede definirse según Hayes and Downie (2024) como el “proceso de compraventa de bienes y servicios a través de internet”, se facilitan a través de diferentes plataformas en línea como lo son principalmente las aplicaciones móviles y sitios web. En sus primeros años se definió como un proceso simple que incluía transacciones de compra entre vendedores y sus clientes por medio de sitios web, no obstante, a medida que se han desarrollado tecnologías más complejas y se han ampliado las dinámicas comerciales entre personas y empresas, el comercio electrónico ha comenzado a abarcar otras aplicaciones como:\n\nSitios web de comercios minoristas que también tienen tiendas físicas.\nPlataformas de economía colaborativa que facilitan la adquisición de servicios.\nSitios de redes sociales, por ejemplo, Facebook Marketplace, donde los usuarios pueden ofrecer y vender bienes y servicios.\n\nConsiderando lo anterior, y si se tiene un enfoque especial en la dinámica de comercio electrónico generado por las compañías que ofrecen bienes a través de un sitio web, abarcando grandes multitudes de clientes (y posibles clientes), es posible observar que se presentan una serie de retos a la hora de desarrollar estrategias de marketing adecuadas y que aporten valor al negocio. Algunos de estos retos, definidos después de contrastar con lo dicho por Bengochea (2023) son:\n\n¿Cómo mejorar las actividades logísticas y de gestión del inventario, que pueden verse afectadas a causa de una mala (o nula) estimación de la demanda futura o una clasificación incorrecta de los productos que se ofrecen a los clientes?\n¿De qué manera mejorar la retención de clientes y brindar una experiencia personalizada a cada comprador, disminuyendo así la pérdida de ventas potenciales y mejorando la reputación en el mercado?\n\nEstos retos pueden ser abordados desde diferentes perspectivas. sin embargo, el presente trabajo pretende plantear soluciones desde las temáticas vistas en el curso de Redes Neuronales y Algoritmos Bioinspirados, desarrollando herramientas que puedan servir de ayuda a la hora de tomar decisiones por parte del equipo de mercadeo en la sección dedicada al comercio electrónico de una compañía. Para esto, se plantearán los siguientes objetivos que esperan ser alcanzados a lo largo del trabajo aquí desarrollado.\nObjetivo general\nDesarrollar un sistema basado en aprendizaje profundo que integre predicción de demanda, clasificación de productos y recomendaciones personalizadas en la dinámica de negocio de una empresa de comercio electrónico.\nObjetivos específicos\n\nDesarrollar un modelo de redes neuronales que pueda estimar la demanda durante los próximos 30 días de acuerdo con información histórica proporcionada por la tienda de comercio electrónico.\nDesarrollar un modelo de redes neuronales que pueda clasificar automáticamente un producto de acuerdo con categorías previamente establecidas, a fin de facilitar la gesión de inventarios.\nDiseñar un sistema de recomendaciones de productos de acuerdo con el comportamiento presentado por un usuario de la tienda a la hora de navegar a través del sitio web de comercio electrónico."
+  },
+  {
+    "objectID": "posts/aplicaciones-redes-neuronales/index.html#herramienta-we",
+    "href": "posts/aplicaciones-redes-neuronales/index.html#herramienta-we",
+    "title": "Aplicaciones de Redes Neuronales",
+    "section": "",
+    "text": "De acuerdo a lo que se ha venido presentando a lo largo de este ejercicio, los modelos de redes neuronales entrenados han sido desplegados en el sitio web titulado [título], donde la compañía de comercio electrónico y sus usuarios pueden acceder a los siguientes servicios:\n\nVisualización de gráficos de predicción de la demanda.\nVer clasificación automática de un producto, dada su imagen.\nRecepción de recomendaciones personalizadas para diferentes perfiles de usuarios."
+  },
+  {
+    "objectID": "posts/aplicaciones-redes-neuronales/index.html#resumen-ejecutivo",
+    "href": "posts/aplicaciones-redes-neuronales/index.html#resumen-ejecutivo",
+    "title": "Aplicaciones de Redes Neuronales",
+    "section": "1 Resumen ejecutivo",
+    "text": "1 Resumen ejecutivo"
+  },
+  {
+    "objectID": "posts/aplicaciones-redes-neuronales/index.html#metodología",
+    "href": "posts/aplicaciones-redes-neuronales/index.html#metodología",
+    "title": "Aplicaciones de Redes Neuronales",
+    "section": "2.1 Metodología",
+    "text": "2.1 Metodología"
+  },
+  {
+    "objectID": "posts/aplicaciones-redes-neuronales/index.html#desarrollo-técnico-por-módulo",
+    "href": "posts/aplicaciones-redes-neuronales/index.html#desarrollo-técnico-por-módulo",
+    "title": "Aplicaciones de Redes Neuronales",
+    "section": "2.2 Desarrollo técnico por módulo",
+    "text": "2.2 Desarrollo técnico por módulo\n\n2.2.1 Módulo de predicción de la demanda\n\n\n2.2.2 Módulo de clasificación de productos\n\n\n2.2.3 Módulo de recomendaciones personalizadas"
+  },
+  {
+    "objectID": "posts/aplicaciones-redes-neuronales/index.html#herramienta-web",
+    "href": "posts/aplicaciones-redes-neuronales/index.html#herramienta-web",
+    "title": "Aplicaciones de Redes Neuronales",
+    "section": "4.4 Herramienta web",
+    "text": "4.4 Herramienta web\nDe acuerdo a lo que se ha venido presentando a lo largo de este ejercicio, los modelos de redes neuronales entrenados han sido desplegados en el sitio web titulado [título], donde la compañía de comercio electrónico y sus usuarios pueden acceder a los siguientes servicios:\n\nVisualización de gráficos de predicción de la demanda.\nVer clasificación automática de un producto, dada su imagen.\nRecepción de recomendaciones personalizadas para diferentes perfiles de usuarios."
+  },
+  {
+    "objectID": "posts/aplicaciones-redes-neuronales/index.html#módulo-de-predicción-de-la-demanda",
+    "href": "posts/aplicaciones-redes-neuronales/index.html#módulo-de-predicción-de-la-demanda",
+    "title": "Aplicaciones de Redes Neuronales",
+    "section": "4.1 Módulo de predicción de la demanda",
+    "text": "4.1 Módulo de predicción de la demanda"
+  },
+  {
+    "objectID": "posts/aplicaciones-redes-neuronales/index.html#módulo-de-clasificación-de-productos",
+    "href": "posts/aplicaciones-redes-neuronales/index.html#módulo-de-clasificación-de-productos",
+    "title": "Aplicaciones de Redes Neuronales",
+    "section": "4.2 Módulo de clasificación de productos",
+    "text": "4.2 Módulo de clasificación de productos"
+  },
+  {
+    "objectID": "posts/aplicaciones-redes-neuronales/index.html#módulo-de-recomendaciones-personalizadas",
+    "href": "posts/aplicaciones-redes-neuronales/index.html#módulo-de-recomendaciones-personalizadas",
+    "title": "Aplicaciones de Redes Neuronales",
+    "section": "4.3 Módulo de recomendaciones personalizadas",
+    "text": "4.3 Módulo de recomendaciones personalizadas"
+  },
+  {
+    "objectID": "posts/aplicaciones-redes-neuronales/index.html#módulos",
+    "href": "posts/aplicaciones-redes-neuronales/index.html#módulos",
+    "title": "Aplicaciones de Redes Neuronales",
+    "section": "3.1 Módulos",
+    "text": "3.1 Módulos\nComo se mencionó anteriormente, el trabajo será dividido en los siguientes módulos, con el fin de separar adecuadamente las actividades de diseño y desarrollo relacionadas con cada uno de los objetivos; posteriormente los resultados obtenidos en cada módulo serán unificados para el proceso de análisis de resultados y despliegue de la herramienta web que integrará todo el sistema de soluciones establecido.\n\nMódulo de predicción de la demanda.\nMódulo de clasificación de productos.\nMódulo de recomendaciones personalizadas."
   }
 ]
