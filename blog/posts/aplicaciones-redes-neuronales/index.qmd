@@ -34,9 +34,9 @@ execute:
 
 El comercio electrónico, que puede definirse según @ibm2024 como el "proceso de compraventa de bienes y servicios a través de internet", se facilitan a través de diferentes plataformas en línea como lo son principalmente las aplicaciones móviles y sitios web. En sus primeros años se definió como un proceso simple que incluía transacciones de compra entre vendedores y sus clientes por medio de sitios web, no obstante, a medida que se han desarrollado tecnologías más complejas y se han ampliado las dinámicas comerciales entre personas y empresas, el comercio electrónico ha comenzado a abarcar otras aplicaciones como:
 
-- Sitios web de comercios minoristas que también tienen tiendas físicas.
-- Plataformas de economía colaborativa que facilitan la adquisición de servicios.
-- Sitios de redes sociales, por ejemplo, Facebook Marketplace, donde los usuarios pueden ofrecer y vender bienes y servicios.
+-   Sitios web de comercios minoristas que también tienen tiendas físicas.
+-   Plataformas de economía colaborativa que facilitan la adquisición de servicios.
+-   Sitios de redes sociales, por ejemplo, Facebook Marketplace, donde los usuarios pueden ofrecer y vender bienes y servicios.
 
 Considerando lo anterior, y si se tiene un enfoque especial en la dinámica de comercio electrónico generado por las compañías que ofrecen bienes a través de un sitio web, abarcando grandes multitudes de clientes (y posibles clientes), es posible observar que se presentan una serie de retos a la hora de desarrollar estrategias de marketing adecuadas y que aporten valor al negocio. Algunos de estos retos, definidos después de contrastar con lo dicho por @danielb2023 son:
 
@@ -52,35 +52,40 @@ Desarrollar un sistema basado en aprendizaje profundo que integre predicción de
 
 **Objetivos específicos**
 
-- Desarrollar un modelo de redes neuronales que pueda estimar la demanda durante los próximos 30 días de acuerdo con información histórica proporcionada por la tienda de comercio electrónico.
+-   Desarrollar un modelo de redes neuronales que pueda estimar la demanda durante los próximos 30 días de acuerdo con información histórica proporcionada por la tienda de comercio electrónico.
 
-- Desarrollar un modelo de redes neuronales que pueda clasificar automáticamente un producto de acuerdo con categorías previamente establecidas, a fin de facilitar la gesión de inventarios.
+-   Desarrollar un modelo de redes neuronales que pueda clasificar automáticamente un producto de acuerdo con categorías previamente establecidas, a fin de facilitar la gesión de inventarios.
 
-- Diseñar un sistema de recomendaciones de productos de acuerdo con el comportamiento presentado por un usuario de la tienda a la hora de navegar a través del sitio web de comercio electrónico.
+-   Diseñar un sistema de recomendaciones de productos de acuerdo con el comportamiento presentado por un usuario de la tienda a la hora de navegar a través del sitio web de comercio electrónico.
 
 # Metodología
 
 Para el desarrollo del presente trabajo se planteó una metodología basada en **Design Thinking**, pues garantiza un enfoque centrado en el usuario (que para este caso, será la tienda de comercio electrónico que requiere una mejora en sus estrategias de marketing para abordar los retos anteriormente mencionados), el cual permitirá comprender sus necesidades y diseñar una solución innovadora. Dicha metodología será desarrollada en las cinco fases que se describena a continuación:
 
-1. **Empatizar:**
-  - Análisis del comportamiento de clientes y tendencias de compra en comercio electrónico.
-  - Identificación de problemas clave mediante análisis de datos históricos.
+1.  **Empatizar:**
 
-2. **Definir:**
-  - Formulación de los problemas a resolver con base en la información obtenida en la fase de empatización.
-  - Identificación de métricas clave para evaluar el desempeño de los modelos de redes neuronales artificiales.
+-   Análisis del comportamiento de clientes y tendencias de compra en comercio electrónico.
+-   Identificación de problemas clave mediante análisis de datos históricos.
 
-3. **Idear:**
-  - Propuestas de soluciones utilizando aprendizaje profundo para cada módulo del sistema.
-  - Comparación de enfoques para determinar el más adecuado según los recursos disponibles.
+2.  **Definir:**
 
-4. **Prototipar:**
-  - Desarrollo inicial de modelos de predicción de demanda, clasificación de productos y recomendación personalizada.
-  - Construcción de una interfaz web interactiva para visualizar los resultados.
+-   Formulación de los problemas a resolver con base en la información obtenida en la fase de empatización.
+-   Identificación de métricas clave para evaluar el desempeño de los modelos de redes neuronales artificiales.
 
-5. **Testear:**
-  - Evaluación de los modelos con métricas como RMSE, MAE, precisión y F1-score.
-  - Pruebas con usuarios para validar la funcionalidad y usabilidad de la herramienta web.
+3.  **Idear:**
+
+-   Propuestas de soluciones utilizando aprendizaje profundo para cada módulo del sistema.
+-   Comparación de enfoques para determinar el más adecuado según los recursos disponibles.
+
+4.  **Prototipar:**
+
+-   Desarrollo inicial de modelos de predicción de demanda, clasificación de productos y recomendación personalizada.
+-   Construcción de una interfaz web interactiva para visualizar los resultados.
+
+5.  **Testear:**
+
+-   Evaluación de los modelos con métricas como RMSE, MAE, precisión y F1-score.
+-   Pruebas con usuarios para validar la funcionalidad y usabilidad de la herramienta web.
 
 Por medio de este enfoque se espera asegurar que las soluciones implementadas sean funcionales, escalables y alineadas con las necesidades reales de la empresa de comercio electrónico.
 
@@ -88,9 +93,9 @@ Por medio de este enfoque se espera asegurar que las soluciones implementadas se
 
 Como se mencionó anteriormente, el trabajo será dividido en los siguientes módulos, con el fin de separar adecuadamente las actividades de diseño y desarrollo relacionadas con cada uno de los objetivos; posteriormente los resultados obtenidos en cada módulo serán unificados para el proceso de análisis de resultados y despliegue de la herramienta web que integrará todo el sistema de soluciones establecido.
 
-- Módulo de **predicción de la demanda**.
-- Módulo de **clasificación de productos**.
-- Módulo de **recomendaciones personalizadas**.
+-   Módulo de **predicción de la demanda**.
+-   Módulo de **clasificación de productos**.
+-   Módulo de **recomendaciones personalizadas**.
 
 # Desarrollo técnico por módulo
 
@@ -98,15 +103,293 @@ Como se mencionó anteriormente, el trabajo será dividido en los siguientes mó
 
 ## Módulo de clasificación de productos
 
+Para afrontar este problema se desarrollo un modelo de visión artificial utilizando el dataset propuesto, conformado por imágenes etiquetadas en camisetas, jeans, sofas y televisiones. Inicialmente se puede observar como el dataset es bastante pequeno, lo que puede dificultar tener un modelo que pueda generalizarse hacia nuevas imágenes. Se propone un modelo basado en redes neuronales convolucionales debido a sus altas capacidades para clasificar correctamente datos del tipo de imágenes.
+
+Para afrontar este problema, y el desarrollo general del modelo se hizo lo siguiente:
+
+### Limpieza del dataset
+
+Si observamos algunos grupos, especialmente el de televisiones, tienen imágenes que no estan relacionadas con la temática, por lo que las eliminamos para no crear sesgos durante el entrenamiento.
+
+### Preprocesamiento de las imágenes
+
+#### Normalización de las imágenes
+
+Se recorren las carpetas de diferentes categorías de productos para cargar las imágenes disponibles. Para garantizar una uniformidad en los datos, cada imagen se convierte al formato **RGB** (tres canales de color) y se redimensiona a un tamaño estándar de **224x224 píxeles**. Posteriormente, se normalizan los valores de los píxeles dividiéndolos entre 255, lo que los escala a un rango entre **0 y 1**, mejorando la estabilidad del entrenamiento de la red neuronal.
+
+#### Conversión a arrays numéricos
+
+Una vez procesadas, las imágenes se almacenan en un arreglo de NumPy para facilitar su manipulación y procesamiento. De manera similar, las etiquetas correspondientes a cada imagen se almacenan en otro arreglo.
+
+### Data Augmentation
+
+Para mejorar la generalización del modelo y reducir el sobreajuste, se aplica **data augmentation** en las imágenes de entrenamiento. Se utilizan técnicas como:
+
+-   Rotaciones de hasta 30 grados.
+
+-   Desplazamientos horizontales y verticales (20% del tamaño de la imagen).
+
+-   Transformaciones de corte y zoom.
+
+-   Reflejo de las imágenes
+
+Estas modificaciones permiten simular nuevas imágenes a partir del conjunto de entrenamiento existente, ayudando al modelo a aprender características más robustas, lo cual es especialmente útil para el algoritmo del descenso del gradiente estocástico ya que al procesarse en batches permite distorsionar las imágenes en el bache que se esta procesando y no es necesario almacenar las nuevas imágenes.
+
+Con esta técnica las 636 imágenes que había para cada batch se vuelven 20352, lo que permite obtener mayor información durante el entrenamiento.
+
+### Arquitectura de una red neuronal convolucional
+
+Las redes neuronales convolucionales surgieron debido a la aparición de bases de datos masivas clasificadas en una gran variedad de posibilidades, y se mostraron como una alternativa muy poderosa para este tipo de problemas.
+
+![Ilustración acerca del funcionamiento de una red neuronal convolucional. Tomado de An Introduction to Statistical Learning.](funcionamiento_cnn.png)
+
+Como se puede ver en la ilustración, estas redes imitan hasta cierto punto el comportamiento para reconocer patrones basado en características específicas, parten desde características diminutas como los bordes, el color y similares, y empiezan a evolucionar a características más notables como las orejas, los ojos y similares.
+
+#### Capas convolucionales
+
+Se basan en filtros convolucionales los cuales consisten en plantillas que determinan la presencia de alguna característica particular en la imagen. Para lograr lo anterior se basan en la operación llamada convolución, donde ilustramos su funcionamiento de la siguiente manera:
+
+**Matriz original**
+
+$\begin{bmatrix} a & b & c \\
+d & e & f \\
+g & h & i \\
+j & k & l\end{bmatrix}$
+
+#### **Filtro de convolución**
+
+$$
+\begin{bmatrix}
+\alpha & \beta \\
+\gamma & \delta
+\end{bmatrix}
+$$
+
+**Imagen convolucionada**
+
+$$
+\begin{bmatrix}
+a\alpha + b\beta + d\gamma + e\delta & b\alpha + c\beta + e\gamma + f\delta \\
+d\alpha + e\beta + g\gamma + h\delta & e\alpha + f\beta + h\gamma + i\delta \\
+g\alpha + h\beta + j\gamma + k\delta & h\alpha + i\beta + k\gamma + l\delta
+\end{bmatrix}
+$$
+
+La convolución en imágenes consiste en aplicar un filtro pequeño sobre submatrices de la imagen original, multiplicando cada elemento correspondiente y sumando los resultados. Si una región de la imagen se parece al filtro, el valor resultante será alto, resaltando esa zona. Si no se parece, el valor será bajo. Este proceso permite detectar patrones y se usa en redes neuronales convolucionales (CNNs) para reconocimiento de imágenes.
+
+#### Capas de pooling
+
+Para condensar imágenes en un resumen más pequeño utilizando técnicas como **max pooling** y **average pooling**.
+
+-   **Max pooling** selecciona el valor **máximo** dentro de cada bloque de la imagen (por ejemplo, de 2 \times 2), lo que ayuda a resaltar las características más importantes.
+
+-   **Average pooling** en cambio, calcula el **promedio** de los valores en cada bloque, produciendo una versión más suavizada de la imagen.
+
+#### **Capa de Activación (ReLU)**
+
+Se utiliza la función ReLU (Rectified Linear Unit) para introducir no linealidad y mejorar la capacidad de aprendizaje de la red. Convierte valores negativos en cero, manteniendo los positivos sin cambios.
+
+#### Capas de Flattening
+
+Permite transformar las matrices de características que se forman al procesar las imágenes en vectores que pueden ser procesadas por capas completamente conectadas
+
+#### **Capas completamente conectadas**
+
+Estas capas actúan como un **clasificador**, combinando la información extraída en las capas previas para hacer predicciones. Suele utilizarse la función softmax para clasificación múltiple y la función sigmoide para clasificación binaria.
+
+![Arquitectura de una red neuronal convolucional. Tomado de https://developersbreach.com/convolution-neural-network-deep-learning/](cnn_arquitectura.webp)
+
+### Aplicación en el dataset
+
+#### Arquitectura propia
+
+Desarrollamos la siguiente arquitectura propia:
+
+-   **Capas Convolucionales y de Normalización**
+
+    -   Se aplican **convoluciones** con filtros de 3×33 \times 33×3 para detectar patrones en la imagen.
+
+    -   Se usa **Batch Normalization** después de cada convolución para estabilizar el aprendizaje y mejorar la convergencia.
+
+    -   Se emplea **Max Pooling** (2×22 \times 22×2) después de cada bloque convolucional para reducir la dimensionalidad.
+
+-   **Bloques Convolucionales**
+
+    -   **Bloque 1:** 32 filtros, seguido de normalización y max pooling.
+
+    -   **Bloque 2:** 64 filtros, normalización y max pooling.
+
+    -   **Bloque 3:** 128 filtros, normalización y max pooling.
+
+    -   **Bloque 4 :** 256 filtros, normalización y max pooling.
+
+-   **Aplanamiento y Capas Densas**
+
+    -   Se aplanan las características extraídas en un vector de entrada para la parte densa.
+
+    -   Se añade una **capa densa** de 128 neuronas con **ReLU**.
+
+    -   Se incorpora **Dropout (50%)** para reducir el overfitting.
+
+-   **Capa de Salida**
+
+    -   La última capa tiene tantas neuronas como clases en la clasificación.
+
+    -   Se usa la activación **Softmax** para generar probabilidades sobre cada categoría.
+
+-   **Compilación del Modelo**
+
+    -   Se emplea el optimizador **Adam** para el entrenamiento.
+
+    -   La función de pérdida es **categorical crossentropy** (o **sparse categorical crossentropy** si las etiquetas no están en formato one-hot).
+
+    -   Se mide la precisión (**accuracy**) como métrica principal.
+
+##### Matriz de confusión
+
+![Matriz de confusión para la red neuronal convolucional. Elaboración propia.](confusion1.png)
+
+##### Métricas obtenidas
+
+![Evolución de la precisión y la función de pérdida en el entrenamiento y la validación. Elaboración propia.](rendimiento.png)
+
+##### Reporte de clasificación
+
+| Clase            | Precisión | Recall | F1-Score | Soporte |
+|------------------|-----------|--------|----------|---------|
+| Jeans            | 0.95      | 0.97   | 0.96     | 40      |
+| Sofa             | 1.00      | 0.07   | 0.14     | 40      |
+| T-Shirt          | 1.00      | 0.95   | 0.97     | 40      |
+| TV               | 0.49      | 0.95   | 0.64     | 40      |
+| **Accuracy**     |           |        | **0.74** | **160** |
+| **Macro Avg**    | 0.86      | 0.74   | 0.68     | 160     |
+| **Weighted Avg** | 0.86      | 0.74   | 0.68     | 160     |
+
+#### Modelo preentrenado
+
+Debido a los problemas presentados con el problema propio, desarrollamos también un modelo preentrenado en Imagenet, lo cual es una alternativa muy atractiva al ser un conjunto de datos pequeno, por lo que esto puede ayudar a mejorar el rendimiento del modelo.
+
+##### Arquitectura agregada al modelo preentrenado
+
+-   **GlobalAveragePooling2D**
+
+    -   Reduce la dimensionalidad de los mapas de características mediante el cálculo del promedio de cada filtro convolucional.
+
+    -   Ayuda a disminuir el número de parámetros y mejora la eficiencia del modelo.
+
+-   **Capa Densa (128 neuronas, ReLU)**
+
+    -   Introduce una capa completamente conectada para aprender combinaciones avanzadas de características.
+
+    -   La activación **ReLU** mejora la capacidad de aprendizaje al introducir no linealidad.
+
+-   **Dropout (50%)**
+
+    -   Apaga aleatoriamente el 50% de las neuronas en cada iteración durante el entrenamiento.
+
+    -   Reduce el riesgo de sobreajuste, haciendo que la red sea más robusta y generalizable.
+
+-   **Capa de Salida (Softmax)**
+
+    -   Tiene tantas neuronas como categorías a clasificar.
+
+    -   Usa **Softmax** para convertir las salidas en probabilidades, asegurando que la suma sea 1 y permitiendo la clasificación de la imagen en una categoría específica.
+
+##### Matriz de confusión
+
+![Matriz de confusión modelo preentrenado. Elaboración propia.](confusion2.png)
+
+##### Evolución métricas
+
+![Evolución de la precisión y la pérdida en entrenamiento y validación. Elaboración propia.](rendimeinto2.png)
+
+##### Reporte de clasificación
+
+| Clase            | Precisión | Recall | F1-Score | Soporte |
+|------------------|-----------|--------|----------|---------|
+| Jeans            | 1.00      | 1.00   | 1.00     | 40      |
+| Sofa             | 1.00      | 1.00   | 1.00     | 40      |
+| T-Shirt          | 1.00      | 1.00   | 0.99     | 40      |
+| TV               | 1.00      | 0.97   | 0.99     | 40      |
+| **Accuracy**     |           |        | **0.99** | **160** |
+| **Macro Avg**    | 0.99      | 0.99   | 0.99     | 160     |
+| **Weighted Avg** | 0.99      | 0.99   | 0.99     | 160     |
+
+
 ## Módulo de recomendaciones personalizadas
+
+Se desarrolló un modelo basado en redes neuronales y embeddings. Estos embeddings nos permiten representar datos categóricos o secuenciales, como las palabras, en espacios continuos donde pueden ser representados como vectores numéricos que capturen relaciones semánticas y similitudes.
+
+### Limpieza de los datos
+
+Se eliminaron los símbolos y comas de los precios para convertirlos a valores numéricos. Luego, se codifican las variables categóricas, como el nombre del producto, la categoría principal y la subcategoría, utilizando `LabelEncoder`. Se convierten las variables `ratings` y `no_of_ratings` a tipo flotante para su correcto procesamiento.
+
+Posteriormente, se normalizan los precios, las calificaciones y el número de valoraciones para escalarlos entre 0 y 1, lo que facilita el entrenamiento del modelo. Finalmente, los datos se dividen en conjuntos de entrenamiento y prueba, asegurando una correcta evaluación del modelo en datos no vistos.
+
+### Arquitectura del modelo
+
+#### Embeddings
+
+-   **Producto** - Representado con un embedding de 50 dimensiones.
+
+-   **Categoría principal** - Representado con un embedding de 10 dimensiones.
+
+-   **Subcategoría**  - Representado con un embedding de 10 dimensiones.
+
+Cada una de las entradas categóricas se convierte en un vector a través de una **capa de embedding** y se aplana con `Flatten()`. Luego, estos vectores se concatenan con las características numéricas.
+
+#### Características numéricas
+
+Incluye las características de `discount_price`, `actual_price` y `no_of_ratings`.
+
+#### Capas modelo
+
+-   **Capas de Entrada**:
+
+    -   `product_input`, `main_cat_input`, `sub_cat_input`, `numeric_input`: Cuatro capas de entrada que reciben diferentes tipos de datos (producto, categoría principal, subcategoría y características numéricas).
+
+-   **Capas de Embedding**:
+
+    -   `product_embedding`: Convierte el ID del producto en un vector de 50 dimensiones (11,867,600 parámetros).
+
+    -   `main_cat_embedding`: Convierte la categoría principal en un vector de 10 dimensiones (200 parámetros).
+
+    -   `sub_cat_embedding`: Convierte la subcategoría en un vector de 10 dimensiones (1,120 parámetros).
+
+-   **Capas de Flatten**:
+
+    -   `flatten`, `flatten_1`, `flatten_2`: Aplanan los embeddings en vectores de una sola dimensión para facilitar la concatenación con los datos numéricos.
+
+-   **Capa de Concatenación**:
+
+    -   `concatenate`: Une todas las características transformadas en un único vector de 73 dimensiones.
+
+-   **Capas Densas y Dropout**:
+
+    -   `dense`: Capa densa con 128 neuronas y 9,472 parámetros.
+
+    -   `dropout`: Capa de dropout para regularización.
+
+    -   `dense_1`: Capa densa con 64 neuronas y 8,256 parámetros.
+
+    -   `dropout_1`: Otra capa de dropout para reducir sobreajuste.
+
+-   **Capa de Salida**:
+
+    -   `output`: Capa densa con 1 neurona para la predicción final (65 parámetros).
+
+### Métricas obtenidas por el modelo
+
+![Evolución de la pérdida y el MAE para el modelo de recomendación. Elaboración propia.](mae.png)
+
 
 # Herramienta web
 
-De acuerdo a lo que se ha venido presentando a lo largo de este ejercicio, los modelos de redes neuronales entrenados han sido desplegados en el sitio web titulado [título], donde la compañía de comercio electrónico y sus usuarios pueden acceder a los siguientes servicios:
+De acuerdo a lo que se ha venido presentando a lo largo de este ejercicio, los modelos de redes neuronales entrenados han sido desplegados en el sitio web titulado \[título\], donde la compañía de comercio electrónico y sus usuarios pueden acceder a los siguientes servicios:
 
-- Visualización de gráficos de predicción de la demanda.
-- Ver clasificación automática de un producto, dada su imagen.
-- Recepción de recomendaciones personalizadas para diferentes perfiles de usuarios.
+-   Visualización de gráficos de predicción de la demanda.
+-   Ver clasificación automática de un producto, dada su imagen.
+-   Recepción de recomendaciones personalizadas para diferentes perfiles de usuarios.
 
 # Resultados generales y discusión
 
@@ -119,6 +402,8 @@ De acuerdo a lo que se ha venido presentando a lo largo de este ejercicio, los m
 ## Videos explicativos
 
 En los videos presentados a continuación se puede encontrar una breve descripción del funcionamiento de cada sección de la aplicación web, con un ejemplo real de utilización y posible interpretación de los resultados obtenidos.
+
+## Aspectos éticos de los modelos
 
 ## Contribuciones individuales
 
