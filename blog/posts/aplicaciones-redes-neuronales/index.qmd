@@ -101,7 +101,52 @@ Como se mencionó anteriormente, el trabajo será dividido en los siguientes mó
 
 ## Módulo de predicción de la demanda
 
+El problema de predicción de inventario es un desafío recurrente en la industria del comercio electrónico. Modelos de negocio como el *dropshipping* dependen fundamentalmente de una gestión eficiente de inventarios para garantizar entregas rápidas y minimizar costos operativos. Por ello, el análisis de esta problemática se vuelve esencial para la optimización de la cadena de suministro y la mejora en la toma de decisiones estratégicas.
+
+En esta sección, nos enfocamos en entrenar y desarrollar un producto de inteligencia artificial basado en redes neuronales recurrentes con múltiples salidas, orientado al pronóstico de ventas en almacenes de cadena, específicamente para Walmart. Este problema fue tomado de [Kaggle](https://www.kaggle.com/datasets/aslanahmedov/walmart-sales-forecast/data?authuser=1), en la que sugiere seguir una metodología basada en el **Cross-Industry Standard Process for Data Mining (CRISP-DM)**, un marco ampliamente utilizado en proyectos de minería de datos e inteligencia artificial.
+
+Dicha metodología se estructura en las siguientes etapas:
+
+### **1. Comprensión del Negocio**
+
+Todo producto tecnológico que aspire a ofrecer una solución rentable debe centrarse en el entendimiento del negocio. En el caso del pronóstico de ventas para Walmart, la precisión en la predicción del inventario impacta directamente la rentabilidad y eficiencia operativa. Sin embargo, más allá de este caso específico, es crucial evaluar el impacto de una solución similar en otros modelos de negocio, como pequeñas y medianas empresas o plataformas de comercio electrónico.
+
+### **2. Comprensión de los Datos**
+
+El insumo inicial de todo modelo de aprendizaje automático (ML) o inteligencia artificial (IA) son los datos. En este caso, más que simplemente utilizarlos como materia prima, buscamos comprenderla y mostrar cuál debería ser la información mínima necesaria para un negocio que aspire a desarrollar un modelo de pronóstico de ventas efectivo, capaz de apoyar la planificación de inventario.
+
+#### Análisis Descriptivo
+
+### **3. Preparación de los Datos**
+
+En esta etapa, realizamos la limpieza, transformación y estructuración de los datos para su uso en el modelo. Algunas de las tareas clave incluyen:\
+- Manejo de valores faltantes y datos atípicos.\
+- Generación de características (*feature engineering*), como tendencias de ventas, estacionalidad y efectos de días festivos.\
+- Normalización y escalado de variables.\
+- División del conjunto de datos en entrenamiento, validación y prueba.
+
+### **4. Modelado**
+
+Aquí implementamos una red neuronal recurrente (*Recurrent Neural Network*, RNN) con múltiples salidas, aprovechando su capacidad para capturar patrones temporales en series de tiempo. Se explorarán variantes como *Long Short-Term Memory* (LSTM) y *Gated Recurrent Units* (GRU) para mejorar el rendimiento del modelo. Además, se comparará el desempeño de estos modelos con enfoques más tradicionales, como ARIMA, para evaluar su eficacia.
+
+### **5. Evaluación**
+
+La validación del modelo se realizará utilizando métricas clave para problemas de series de tiempo, tales como:\
+- **Error Absoluto Medio (MAE)**\
+- **Error Porcentual Absoluto Medio (MAPE)**
+
+Se evaluará la capacidad del modelo para capturar tendencias de ventas y su estabilidad en distintos escenarios, incluyendo cambios en la demanda y eventos atípicos.
+
+### **6. Despliegue**
+
+Finalmente, el modelo se integrará en un sistema de producción que permita generar pronósticos segun los inputs suminisrados. Para ello, se desarrolló:\
+1. **API en FastAPI** para servir las predicciones.
+
+2.  **Dashboards interactivos** una herramienta web que permitirá visualizar pronósticos y tomar decisiones estratégicas en la gestión de inventario para este ejemplo particular.
+
 ## Módulo de clasificación de productos
+
+Frente a los avances en la calidad de las imágenes digitales, junto con la facilidad de acceso a GPUs, clasificar de maner automática productos es una opción muy atractiva para la mayoría de empresas. Una tarea que anteriormente debía ser manual, hoy en día es automática y cada vez más fácil de desarrollar, lo que se permite disminuir la cantidad de errores que tengan un impacto económico en el negocio.
 
 Para afrontar este problema se desarrollo un modelo de visión artificial utilizando el dataset propuesto, conformado por imágenes etiquetadas en camisetas, jeans, sofas y televisiones. Inicialmente se puede observar como el dataset es bastante pequeno, lo que puede dificultar tener un modelo que pueda generalizarse hacia nuevas imágenes. Se propone un modelo basado en redes neuronales convolucionales debido a sus altas capacidades para clasificar correctamente datos del tipo de imágenes.
 
@@ -156,7 +201,7 @@ d & e & f \\
 g & h & i \\
 j & k & l\end{bmatrix}$
 
-#### **Filtro de convolución**
+**Filtro de convolución**
 
 $$
 \begin{bmatrix}
@@ -389,11 +434,17 @@ De acuerdo a lo que se ha venido presentando a lo largo de este ejercicio, los m
 -   Ver clasificación automática de un producto, dada su imagen.
 -   Recepción de recomendaciones personalizadas para diferentes perfiles de usuarios.
 
+## Despliegue de los modelos
+
+Los tres modelos que se desarrollaron y se explican en este reporte deben de ser desplegados para poder ponerlos al alcance de los demás y poder ser utilizados en el sitio web. Para lograr lo anterior utilizamos los servicios de **Render** y **Digital Ocean** para desplegar las APIs creadas utilizando FastAPI**.** Es importante reportar la complicación que se tuvo para el tercer modelo, el modelo de recomendación, debido a que computacionalmente es un modelo pesado por lo que el tier gratuito de Render se queda corto antes este modelo, también se intento usar el free tier de AWS sin embargo la memoria RAM que este ofrecía seguía quedándose corta, por lo que Digital Ocean, aprovechando los créditos otorgados por el GitHub Student Pack, nos permitió superar esa dificultad.
+
 # Resultados generales y discusión
 
-# Conclusiones y recomendaciones
+Podemos ver como el modelo preentrenado para el modelo de visión artificial muestra una mejoría importante, si el modelo que se propuso inicialmente se hubiera utilizado, hubiera presentado problemas para clasificar los televisores, sin embargo, el preentrenado funciona muy bien ante todas estas situaciones.
 
-# Aspectos éticos
+El modelo de recomendación que se propuso presenta muy buenos resultados gracias al uso de modelos basados en embeddings, sin embargo, el problema que se enfrento aquí, es que computacionalmente es un modelo pesado, por lo que el entrenamiento es lento, y ponerlo a disposición como una API desplegada implica un mayor uso de recursos de los que se suele tener acceso de manera gratuita.
+
+# Conclusiones y recomendaciones
 
 # Anexos
 
@@ -402,6 +453,16 @@ De acuerdo a lo que se ha venido presentando a lo largo de este ejercicio, los m
 En los videos presentados a continuación se puede encontrar una breve descripción del funcionamiento de cada sección de la aplicación web, con un ejemplo real de utilización y posible interpretación de los resultados obtenidos.
 
 ## Aspectos éticos de los modelos
+
+Dentro de los aspectos éticos a considerar de estos modelos, hay dos aspectos principales, como se presenta el modelo y que uso se le da al mismo.
+
+## Presentación del modelo
+
+Los modelos suelen presentarse a un público no especializado, por lo cual tratar de dar una presentación optimista del modelo sin que los demás se de den cuenta es posible, lo anterior, en busca de salir del paso, quedar bien, u obtener algún beneficio. Se tiene entonces una responsabilidad con el conocimiento que se posee para generar valor dentro del negocio.
+
+## **Uso de los modelos**
+
+En el trabajo se presentan modelos poderosos que tienen capacidades de resolver el problema, sin embargo, muchas veces se debe tener en cuenta los sesgos que se pueden crear dentro del mismo. Que modelos de clasificación por ejemplo en un entorno bancario, tiendan a negar préstamos a grupos minoritarios basado únicamente en sesgos, lo anterior implica evaluar correctamente el uso de las características del modelo, si bien puede deberse a pensamientos arcaicos que se reflejan en los datos, es deber de la persona encargada de crear el modelo, superar esos retos para generar valor para el negocio adaptado a las necesidades de las nuevas generaciones.
 
 ## Contribuciones individuales
 
