@@ -38,6 +38,8 @@ El comercio electrónico, que puede definirse según @ibm2024 como el "proceso d
 -   Plataformas de economía colaborativa que facilitan la adquisición de servicios.
 -   Sitios de redes sociales, por ejemplo, Facebook Marketplace, donde los usuarios pueden ofrecer y vender bienes y servicios.
 
+![El comercio masivo presenta nuevos desafíos que con la llegada de la inteligencia artifical aparecen soluciones a la medida de sus problemas. Tomado de <https://www.youtube.com/watch?v=XRRu9cea1sg>](walmart.jpg)
+
 Considerando lo anterior, y si se tiene un enfoque especial en la dinámica de comercio electrónico generado por las compañías que ofrecen bienes a través de un sitio web, abarcando grandes multitudes de clientes (y posibles clientes), es posible observar que se presentan una serie de retos a la hora de desarrollar estrategias de marketing adecuadas y que aporten valor al negocio. Algunos de estos retos, definidos después de contrastar con lo dicho por @danielb2023 son:
 
 1.  ¿Cómo mejorar las actividades logísticas y de gestión del inventario, que pueden verse afectadas a causa de una mala (o nula) estimación de la demanda futura o una clasificación incorrecta de los productos que se ofrecen a los clientes?
@@ -194,31 +196,27 @@ Como se puede ver en la ilustración, estas redes imitan hasta cierto punto el c
 
 Se basan en filtros convolucionales los cuales consisten en plantillas que determinan la presencia de alguna característica particular en la imagen. Para lograr lo anterior se basan en la operación llamada convolución, donde ilustramos su funcionamiento de la siguiente manera:
 
-**Matriz original**
+\begin{bmatrix} 
+a & b & c \\ 
+d & e & f \\ 
+g & h & i \\ 
+j & k & l
+\end{bmatrix}
 
-$\begin{bmatrix} a & b & c \\
-d & e & f \\
-g & h & i \\
-j & k & l\end{bmatrix}$
+\text{Filtro de convolución}
 
-**Filtro de convolución**
-
-$$
 \begin{bmatrix}
-\alpha & \beta \\
+\alpha & \beta \\ 
 \gamma & \delta
 \end{bmatrix}
-$$
 
-**Imagen convolucionada**
+\text{Imagen convolucionada}
 
-$$
 \begin{bmatrix}
-a\alpha + b\beta + d\gamma + e\delta & b\alpha + c\beta + e\gamma + f\delta \\
-d\alpha + e\beta + g\gamma + h\delta & e\alpha + f\beta + h\gamma + i\delta \\
+a\alpha + b\beta + d\gamma + e\delta & b\alpha + c\beta + e\gamma + f\delta \\ 
+d\alpha + e\beta + g\gamma + h\delta & e\alpha + f\beta + h\gamma + i\delta \\ 
 g\alpha + h\beta + j\gamma + k\delta & h\alpha + i\beta + k\gamma + l\delta
 \end{bmatrix}
-$$
 
 La convolución en imágenes consiste en aplicar un filtro pequeño sobre submatrices de la imagen original, multiplicando cada elemento correspondiente y sumando los resultados. Si una región de la imagen se parece al filtro, el valor resultante será alto, resaltando esa zona. Si no se parece, el valor será bajo. Este proceso permite detectar patrones y se usa en redes neuronales convolucionales (CNNs) para reconocimiento de imágenes.
 
@@ -293,6 +291,8 @@ Desarrollamos la siguiente arquitectura propia:
 ##### Matriz de confusión
 
 ![Matriz de confusión para la red neuronal convolucional. Elaboración propia.](confusion1.png)
+
+Podemos ver como para la clase 1, el modelo no es capaz de reconocerla bien, como se observa en el reporte de clasificación, esta corresponde a los sofas, con lo cual el modelo presenta una gran cantidad de errores para ese tipo de imágenes.
 
 ##### Métricas obtenidas
 
@@ -456,11 +456,11 @@ En los videos presentados a continuación se puede encontrar una breve descripci
 
 Dentro de los aspectos éticos a considerar de estos modelos, hay dos aspectos principales, como se presenta el modelo y que uso se le da al mismo.
 
-## Presentación del modelo
+### Presentación del modelo
 
 Los modelos suelen presentarse a un público no especializado, por lo cual tratar de dar una presentación optimista del modelo sin que los demás se de den cuenta es posible, lo anterior, en busca de salir del paso, quedar bien, u obtener algún beneficio. Se tiene entonces una responsabilidad con el conocimiento que se posee para generar valor dentro del negocio.
 
-## **Uso de los modelos**
+### Uso de los modelos
 
 En el trabajo se presentan modelos poderosos que tienen capacidades de resolver el problema, sin embargo, muchas veces se debe tener en cuenta los sesgos que se pueden crear dentro del mismo. Que modelos de clasificación por ejemplo en un entorno bancario, tiendan a negar préstamos a grupos minoritarios basado únicamente en sesgos, lo anterior implica evaluar correctamente el uso de las características del modelo, si bien puede deberse a pensamientos arcaicos que se reflejan en los datos, es deber de la persona encargada de crear el modelo, superar esos retos para generar valor para el negocio adaptado a las necesidades de las nuevas generaciones.
 
