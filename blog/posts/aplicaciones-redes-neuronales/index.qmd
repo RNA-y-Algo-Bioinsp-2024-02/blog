@@ -315,7 +315,6 @@ Debido a los problemas presentados con el problema propio, desarrollamos tambié
 | **Macro Avg**    | 0.99      | 0.99   | 0.99     | 160     |
 | **Weighted Avg** | 0.99      | 0.99   | 0.99     | 160     |
 
-
 ## Módulo de recomendaciones personalizadas
 
 Se desarrolló un modelo basado en redes neuronales y embeddings. Estos embeddings nos permiten representar datos categóricos o secuenciales, como las palabras, en espacios continuos donde pueden ser representados como vectores numéricos que capturen relaciones semánticas y similitudes.
@@ -334,7 +333,7 @@ Posteriormente, se normalizan los precios, las calificaciones y el número de va
 
 -   **Categoría principal** - Representado con un embedding de 10 dimensiones.
 
--   **Subcategoría**  - Representado con un embedding de 10 dimensiones.
+-   **Subcategoría** - Representado con un embedding de 10 dimensiones.
 
 Cada una de las entradas categóricas se convierte en un vector a través de una **capa de embedding** y se aplana con `Flatten()`. Luego, estos vectores se concatenan con las características numéricas.
 
@@ -381,7 +380,6 @@ Incluye las características de `discount_price`, `actual_price` y `no_of_rating
 ### Métricas obtenidas por el modelo
 
 ![Evolución de la pérdida y el MAE para el modelo de recomendación. Elaboración propia.](mae.png)
-
 
 # Herramienta web
 
