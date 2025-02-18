@@ -30,6 +30,10 @@ execute:
 
 # Resumen ejecutivo
 
+Este trabajo se centra en mejorar las estrategias de marketing en el comercio electrónico mediante la integración de modelos de inteligencia artificial (IA), con un enfoque en la predicción de la demanda, clasificación de productos y recomendaciones personalizadas. Utilizando redes neuronales y técnicas de aprendizaje profundo, se desarrollaron tres módulos: uno para predecir la demanda futura, otro para clasificar productos automáticamente según su imagen, y un tercero para recomendar productos a los usuarios basándose en su comportamiento. Estos modelos fueron diseñados e implementados utilizando la metodología Design Thinking, asegurando que las soluciones fueran funcionales, escalables y alineadas con las necesidades del negocio.
+
+El desarrollo de estos modelos se basó en arquitecturas avanzadas como redes neuronales recurrentes (LSTM) para la predicción de ventas y redes neuronales convolucionales (CNN) para la clasificación de imágenes. Además, se creó un sistema de recomendaciones utilizando embeddings y redes neuronales profundas, lo que permitió personalizar las sugerencias para cada usuario. A pesar de desafíos computacionales, como el alto costo de recursos para el modelo de recomendación, se logró implementar con éxito un sistema que optimiza la experiencia del cliente y la eficiencia operativa. Los resultados fueron desplegados en una herramienta web interactiva, facilitando la visualización de pronósticos y la toma de decisiones estratégicas en el ámbito del comercio electrónico.
+
 # Introducción
 
 El comercio electrónico, que puede definirse según @ibm2024 como el "proceso de compraventa de bienes y servicios a través de internet", se facilitan a través de diferentes plataformas en línea como lo son principalmente las aplicaciones móviles y sitios web. En sus primeros años se definió como un proceso simple que incluía transacciones de compra entre vendedores y sus clientes por medio de sitios web, no obstante, a medida que se han desarrollado tecnologías más complejas y se han ampliado las dinámicas comerciales entre personas y empresas, el comercio electrónico ha comenzado a abarcar otras aplicaciones como:
@@ -107,19 +111,31 @@ El problema de predicción de inventario es un desafío recurrente en la industr
 
 En esta sección, nos enfocamos en entrenar y desarrollar un producto de inteligencia artificial basado en redes neuronales recurrentes con múltiples salidas, orientado al pronóstico de ventas en almacenes de cadena, específicamente para Walmart. Este problema fue tomado de [Kaggle](https://www.kaggle.com/datasets/aslanahmedov/walmart-sales-forecast/data?authuser=1), en la que sugiere seguir una metodología basada en el **Cross-Industry Standard Process for Data Mining (CRISP-DM)**, un marco ampliamente utilizado en proyectos de minería de datos e inteligencia artificial.
 
+![Ilustración de una serie temporal. Elaborado mediante GPT.](DALL·E%202025-02-18%2017.43.48%20-%20A%20simplified%20and%20less%20colorful%20cartoon-style%20illustration%20of%20a%20time%20series%20graph,%20focusing%20primarily%20on%20the%20temporal%20aspect.%20The%20graph%20features%20a%20clea.webp)
+
 Dicha metodología se estructura en las siguientes etapas:
 
-### **1. Comprensión del Negocio**
+### **Comprensión del Negocio**
 
 Todo producto tecnológico que aspire a ofrecer una solución rentable debe centrarse en el entendimiento del negocio. En el caso del pronóstico de ventas para Walmart, la precisión en la predicción del inventario impacta directamente la rentabilidad y eficiencia operativa. Sin embargo, más allá de este caso específico, es crucial evaluar el impacto de una solución similar en otros modelos de negocio, como pequeñas y medianas empresas o plataformas de comercio electrónico.
 
-### **2. Comprensión de los Datos**
+### **Comprensión de los Datos**
 
 El insumo inicial de todo modelo de aprendizaje automático (ML) o inteligencia artificial (IA) son los datos. En este caso, más que simplemente utilizarlos como materia prima, buscamos comprenderla y mostrar cuál debería ser la información mínima necesaria para un negocio que aspire a desarrollar un modelo de pronóstico de ventas efectivo, capaz de apoyar la planificación de inventario.
 
 #### Análisis Descriptivo
 
-### **3. Preparación de los Datos**
+Realizamos el histograma de la variable respuesta en escala logarítmica para facilitar la visualización de las ventas semanales. Se puede observar como la distribución es asimétrica a la izquierda, teniendo la mayoría de ventas entre 7.5 y 10 logaritmo de las unidades de ventas semanales, y tiene una media, mediana y moda que no necesariamente son iguales, ya que lo anterior se cumple es para distribuciones simétricas.
+
+![Histograma de la variable respuesta. Elaboración propia.](descriptivo.png)
+
+#### Matriz de correlación
+
+Realizamos la siguiente matriz de correlación para observar la relación lineal entre las variables, especialmente, con la variable respuesta. Se observa como ninguna parece tener una relación lineal muy fuerte, siendo las que más el departamento de la tienda y el tamano, sin embargo, sigue siendo una relación muy débil.
+
+![Matriz de correlación entre las características presentes en el dataset. Elaboración propia.](correlacion.png)
+
+### **Preparación de los Datos**
 
 En esta etapa, realizamos la limpieza, transformación y estructuración de los datos para su uso en el modelo. Algunas de las tareas clave incluyen:\
 - Manejo de valores faltantes y datos atípicos.\
@@ -127,11 +143,31 @@ En esta etapa, realizamos la limpieza, transformación y estructuración de los 
 - Normalización y escalado de variables.\
 - División del conjunto de datos en entrenamiento, validación y prueba.
 
-### **4. Modelado**
+### **Modelado**
 
 Aquí implementamos una red neuronal recurrente (*Recurrent Neural Network*, RNN) con múltiples salidas, aprovechando su capacidad para capturar patrones temporales en series de tiempo. Se explorarán variantes como *Long Short-Term Memory* (LSTM) y *Gated Recurrent Units* (GRU) para mejorar el rendimiento del modelo. Además, se comparará el desempeño de estos modelos con enfoques más tradicionales, como ARIMA, para evaluar su eficacia.
 
-### **5. Evaluación**
+#### Variables exógenas
+
+**Las variables exógenas** son aquellas que están fuera del sistema o proceso que estamos modelando, pero tienen un impacto significativo en el comportamiento de las variables dentro de ese sistema. En el contexto de las **ventas semanales**, las variables exógenas son factores que pueden afectar las ventas, pero no dependen directamente de las ventas mismas.
+
+Las empresas a menudo ajustan sus promociones o campañas de marketing en función de la temporada o el clima. Por ejemplo, una campaña de ropa de baño se intensifica en semanas calurosas, mientras que una promoción de ropa de invierno lo hace en semanas frías.
+
+#### Ventanas móviles
+
+Se utilizan para crear un conjunto de datos dinámico que se ajusta conforme avanza el tiempo. En lugar de utilizar toda la serie histórica para hacer una predicción (lo cual podría ser ineficiente o no tan preciso en ciertos contextos), las ventanas móviles permiten ajustar el modelo usando solo una porción reciente de los datos, lo que puede hacer las predicciones más sensibles a las últimas tendencias.
+
+Las ventas de las últimas semanas pueden estar más influenciadas por factores recientes (como promociones, cambios en el clima, o eventos especiales) que las ventas de hace meses o incluso años. Usar una ventana móvil permite que el modelo se enfoque solo en los datos más relevantes. Además al usar un conjunto de datos más pequeño y reciente, se puede evitar que el modelo se sobreajuste (overfitting) a patrones antiguos que ya no se aplican a las condiciones actuales del mercado.
+
+#### **LSTM**
+
+Las LSTM son ideales para predecir series temporales porque pueden aprender y modelar patrones complejos en los datos, como estacionalidad, tendencias a largo plazo o eventos puntuales (como promociones, cambios de clima, etc.). En el caso de las ventas semanales, las LSTM son capaces de capturar las dependencias que pueden existir entre las ventas de semanas anteriores y las futuras.
+
+Pueden aprender de la estacionalidad (por ejemplo, ventas más altas durante ciertas épocas del año), así como de las tendencias a largo plazo (crecimiento o disminución de ventas).
+
+![Ilustración del funcionamiento de una LSTM. Elaboración mediante GPT.](DALL·E%202025-02-18%2017.42.09%20-%20A%20digital%20illustration%20of%20a%20Long%20Short-Term%20Memory%20(LSTM)%20neural%20network,%20showcasing%20its%20components%20like%20memory%20cells,%20input%20gates,%20forget%20gates,%20and%20.webp)
+
+### **Evaluación**
 
 La validación del modelo se realizará utilizando métricas clave para problemas de series de tiempo, tales como:\
 - **Error Absoluto Medio (MAE)**\
@@ -139,7 +175,11 @@ La validación del modelo se realizará utilizando métricas clave para problema
 
 Se evaluará la capacidad del modelo para capturar tendencias de ventas y su estabilidad en distintos escenarios, incluyendo cambios en la demanda y eventos atípicos.
 
-### **6. Despliegue**
+![Predicciones para las ventas en cada departamento. Elaboración propia.](ventas_departamento.png)
+
+![Predicciones para las ventas. Elaboración propia.](prediccion_ventas.png)
+
+### **Despliegue**
 
 Finalmente, el modelo se integrará en un sistema de producción que permita generar pronósticos segun los inputs suminisrados. Para ello, se desarrolló:\
 1. **API en FastAPI** para servir las predicciones.
@@ -148,11 +188,15 @@ Finalmente, el modelo se integrará en un sistema de producción que permita gen
 
 ## Módulo de clasificación de productos
 
-Frente a los avances en la calidad de las imágenes digitales, junto con la facilidad de acceso a GPUs, clasificar de maner automática productos es una opción muy atractiva para la mayoría de empresas. Una tarea que anteriormente debía ser manual, hoy en día es automática y cada vez más fácil de desarrollar, lo que se permite disminuir la cantidad de errores que tengan un impacto económico en el negocio.
+El problema de clasificación mediante visión artificial es uno de los desafíos más prominentes en el campo de la inteligencia artificial, especialmente en aplicaciones que requieren la categorización automática de imágenes, como la identificación de objetos, reconocimiento facial o diagnóstico médico a partir de imágenes. La capacidad de los sistemas para aprender a reconocer patrones visuales a través de redes neuronales profundas ha abierto nuevas oportunidades en sectores como la seguridad, la atención sanitaria, el comercio electrónico, la automoción, entre otros.
 
-Para afrontar este problema se desarrollo un modelo de visión artificial utilizando el dataset propuesto, conformado por imágenes etiquetadas en camisetas, jeans, sofas y televisiones. Inicialmente se puede observar como el dataset es bastante pequeno, lo que puede dificultar tener un modelo que pueda generalizarse hacia nuevas imágenes. Se propone un modelo basado en redes neuronales convolucionales debido a sus altas capacidades para clasificar correctamente datos del tipo de imágenes.
+En esta sección, nos enfocamos en el desarrollo de un modelo de clasificación de imágenes utilizando redes neuronales convolucionales (CNN), un enfoque popular y altamente eficaz en tareas de visión por computadora. Este modelo fue entrenado con un conjunto de datos de imágenes etiquetadas y tiene como objetivo clasificar las imágenes en diversas categorías, como prendas de ropa, electrodomésticos y otros productos comunes en plataformas de venta en línea.
 
-Para afrontar este problema, y el desarrollo general del modelo se hizo lo siguiente:
+El problema específico para el que se plantea el modelo es la clasificación de jeans, camisetas, televisores y sofás, con el objetivo de mejorar la precisión en el reconocimiento de estos productos dentro de un sistema de recomendación de comercio electrónico o en un entorno de inventario automatizado. Este modelo está orientado a la clasificación de imágenes de productos, utilizando una red neuronal convolucional (CNN) para extraer características visuales relevantes y asignar correctamente cada imagen a su categoría correspondiente.
+
+El proceso comienza con la exploración y preprocesamiento de un conjunto de datos etiquetado disponible en la plataforma [Kaggle](https://www.kaggle.com/datasets/sunnykusawa/ecommerce-products-image-dataset/data), que incluye una variedad de imágenes de jeans, camisetas, televisores y sofás. Estas imágenes son normalizadas y transformadas para facilitar el entrenamiento del modelo, asegurando que el modelo sea capaz de generalizar bien a nuevas imágenes. Posteriormente, se entrenan diferentes arquitecturas de redes neuronales, como CNNs con múltiples capas, para realizar la clasificación de las imágenes.
+
+El modelo resultante tiene como objetivo no solo clasificar las imágenes con alta precisión, sino también proporcionar un sistema capaz de adaptarse a nuevas categorías de productos con una mínima intervención humana. Este sistema se puede utilizar en plataformas de comercio electrónico para mejorar las recomendaciones de productos, automatizar el proceso de catalogación y facilitar una gestión de inventario más eficiente.
 
 ### Limpieza del dataset
 
@@ -190,11 +234,13 @@ Las redes neuronales convolucionales surgieron debido a la aparición de bases d
 
 ![Ilustración acerca del funcionamiento de una red neuronal convolucional. Tomado de An Introduction to Statistical Learning.](funcionamiento_cnn.png)
 
-Como se puede ver en la ilustración, estas redes imitan hasta cierto punto el comportamiento para reconocer patrones basado en características específicas, parten desde características diminutas como los bordes, el color y similares, y empiezan a evolucionar a características más notables como las orejas, los ojos y similares.
+Como se puede ver en la ilustración, estas redes imitan hasta cierto punto el comportamiento para reconocer patrones basado en características específicas, parten desde características diminutas como los bordes, el color y similares, y empiezan a evolucionar a características más notables como las orejas, los ojos y similares @danielb2023.
 
 #### Capas convolucionales
 
 Se basan en filtros convolucionales los cuales consisten en plantillas que determinan la presencia de alguna característica particular en la imagen. Para lograr lo anterior se basan en la operación llamada convolución, donde ilustramos su funcionamiento de la siguiente manera:
+
+**Imagen original**
 
 \begin{bmatrix} 
 a & b & c \\ 
@@ -203,12 +249,16 @@ g & h & i \\
 j & k & l
 \end{bmatrix}
 
+**Filtro de convolución**
+
 \text{Filtro de convolución}
 
 \begin{bmatrix}
 \alpha & \beta \\ 
 \gamma & \delta
 \end{bmatrix}
+
+**Imagen convolucionada**
 
 \text{Imagen convolucionada}
 
@@ -250,11 +300,11 @@ Desarrollamos la siguiente arquitectura propia:
 
 -   **Capas Convolucionales y de Normalización**
 
-    -   Se aplican **convoluciones** con filtros de 3×33 \times 33×3 para detectar patrones en la imagen.
+    -   Se aplican **convoluciones** con filtros de 3 \times 3 para detectar patrones en la imagen.
 
     -   Se usa **Batch Normalization** después de cada convolución para estabilizar el aprendizaje y mejorar la convergencia.
 
-    -   Se emplea **Max Pooling** (2×22 \times 22×2) después de cada bloque convolucional para reducir la dimensionalidad.
+    -   Se emplea **Max Pooling** (2 \times 2) después de cada bloque convolucional para reducir la dimensionalidad.
 
 -   **Bloques Convolucionales**
 
@@ -284,7 +334,7 @@ Desarrollamos la siguiente arquitectura propia:
 
     -   Se emplea el optimizador **Adam** para el entrenamiento.
 
-    -   La función de pérdida es **categorical crossentropy** (o **sparse categorical crossentropy** si las etiquetas no están en formato one-hot).
+    -   La función de pérdida es **categorical crossentropy**
 
     -   Se mide la precisión (**accuracy**) como métrica principal.
 
@@ -292,11 +342,13 @@ Desarrollamos la siguiente arquitectura propia:
 
 ![Matriz de confusión para la red neuronal convolucional. Elaboración propia.](confusion1.png)
 
-Podemos ver como para la clase 1, el modelo no es capaz de reconocerla bien, como se observa en el reporte de clasificación, esta corresponde a los sofas, con lo cual el modelo presenta una gran cantidad de errores para ese tipo de imágenes.
+Podemos ver como para la clase 1, el modelo no es capaz de reconocerla bien, como se observa en el reporte de clasificación, esta corresponde a los sofas, con lo cual el modelo presenta una gran cantidad de errores para ese tipo de imágenes y tiende a decir además que son televisiones, esto nos hace pensar que quizás las imágenes que corresponden a los sofas no son de la mejor calidad que provocan que el modelo se confunda.
 
 ##### Métricas obtenidas
 
 ![Evolución de la precisión y la función de pérdida en el entrenamiento y la validación. Elaboración propia.](rendimiento.png)
+
+La precisión va aumentando significativamente con la cantidad de épocas y para el caso de la pérdida va disminuyendo considerablemente alcanzado valores muy bajos al final del entrenamiento. Podría parecer que es demasiado volátil por lo que se se deberían aumentar el número de epochs, sin embargo, como vemos más adelante, hay problemas muy grandes para una clase por lo que se necesita buscar una alternativa que sea computacionalmente viable.
 
 ##### Reporte de clasificación
 
@@ -309,6 +361,8 @@ Podemos ver como para la clase 1, el modelo no es capaz de reconocerla bien, com
 | **Accuracy**     |           |        | **0.74** | **160** |
 | **Macro Avg**    | 0.86      | 0.74   | 0.68     | 160     |
 | **Weighted Avg** | 0.86      | 0.74   | 0.68     | 160     |
+
+Se evidencia como para todas las clases hay un buen rendimiento en el recall excepto para sofa que tiende a confundirlo con televisión.
 
 #### Modelo preentrenado
 
@@ -344,6 +398,8 @@ Debido a los problemas presentados con el problema propio, desarrollamos tambié
 
 ![Matriz de confusión modelo preentrenado. Elaboración propia.](confusion2.png)
 
+Se ve una clara mejoría con el modelo preentrenado, teniendo solo un error en la clasificación de los televisores.
+
 ##### Evolución métricas
 
 ![Evolución de la precisión y la pérdida en entrenamiento y validación. Elaboración propia.](rendimeinto2.png)
@@ -362,7 +418,13 @@ Debido a los problemas presentados con el problema propio, desarrollamos tambié
 
 ## Módulo de recomendaciones personalizadas
 
-Se desarrolló un modelo basado en redes neuronales y embeddings. Estos embeddings nos permiten representar datos categóricos o secuenciales, como las palabras, en espacios continuos donde pueden ser representados como vectores numéricos que capturen relaciones semánticas y similitudes.
+El desarrollo de sistemas de recomendación ha ganado una gran relevancia en diversas industrias, especialmente en el comercio electrónico, donde la personalización de la experiencia de usuario juega un papel crucial para incrementar la retención de clientes y mejorar las ventas. Los sistemas de recomendación permiten a las empresas ofrecer productos que se alinean con los intereses y preferencias de los usuarios, lo que optimiza tanto la experiencia del consumidor como el rendimiento del negocio.
+
+En este contexto, nos enfocamos en el desarrollo de un sistema de recomendación basado en embeddings y redes neuronales profundas. Los embeddings son representaciones vectoriales de objetos, como productos o usuarios, que capturan relaciones y similitudes de manera eficiente. Combinados con redes neuronales, estos sistemas pueden aprender patrones complejos y realizar predicciones de manera precisa y escalable.
+
+El problema específico que abordamos en esta sección se centra en el diseño y entrenamiento de un sistema de recomendación para una plataforma de comercio electrónico. Utilizamos técnicas como embeddings de productos y usuarios, y redes neuronales para aprender las representaciones latentes que mejor capturen las preferencias y necesidades de los clientes. Este enfoque permite no solo mejorar la precisión de las recomendaciones, sino también escalar el modelo a grandes volúmenes de usuarios y productos, superando las limitaciones de los métodos tradicionales basados en filtrado colaborativo.
+
+![Ilustración de un modelo de recomendación. Elaborado mediante GPT.](DALL·E%202025-02-18%2015.53.51%20-%20A%20cartoon-style%20illustration%20of%20a%20virtual%20assistant%20with%20a%20friendly,%20futuristic%20appearance,%20standing%20in%20front%20of%20multiple%20screens%20showing%20personalized.webp)
 
 ### Limpieza de los datos
 
@@ -381,6 +443,8 @@ Posteriormente, se normalizan los precios, las calificaciones y el número de va
 -   **Subcategoría** - Representado con un embedding de 10 dimensiones.
 
 Cada una de las entradas categóricas se convierte en un vector a través de una **capa de embedding** y se aplana con `Flatten()`. Luego, estos vectores se concatenan con las características numéricas.
+
+![Ilustración del resultado obtenido mediante embeddings. Tomado de https://weaviate.io/blog/vector-embeddings-explained](embeddings.jpg)
 
 #### Características numéricas
 
@@ -452,17 +516,15 @@ El modelo de recomendación que se propuso presenta muy buenos resultados gracia
 
 En los videos presentados a continuación se puede encontrar una breve descripción del funcionamiento de cada sección de la aplicación web, con un ejemplo real de utilización y posible interpretación de los resultados obtenidos.
 
-## Aspectos éticos de los modelos
+## Aspectos Éticos de los Modelos
 
-Dentro de los aspectos éticos a considerar de estos modelos, hay dos aspectos principales, como se presenta el modelo y que uso se le da al mismo.
+Los aspectos éticos en el desarrollo y uso de modelos de inteligencia artificial (IA) son fundamentales, y se dividen principalmente en dos áreas: la forma en que se presentan los modelos y el uso que se les da.
 
-### Presentación del modelo
+### Presentación del Modelo
+Cuando los modelos se presentan a un público no especializado, es fácil caer en la tentación de ofrecer una visión demasiado optimista o simplificada del funcionamiento y las capacidades del modelo. Esto puede hacerse con el fin de ganar aprobación, impresionar a los demás o lograr algún beneficio, pero es importante reconocer que esta práctica puede ser peligrosa. Como profesionales del área, tenemos la responsabilidad de ser transparentes con el conocimiento que poseemos, para asegurar que este sea utilizado de manera ética y para generar valor real dentro del negocio. Una presentación honesta y precisa contribuye a una comprensión adecuada de las capacidades y limitaciones del modelo, lo cual es crucial para tomar decisiones informadas.
 
-Los modelos suelen presentarse a un público no especializado, por lo cual tratar de dar una presentación optimista del modelo sin que los demás se de den cuenta es posible, lo anterior, en busca de salir del paso, quedar bien, u obtener algún beneficio. Se tiene entonces una responsabilidad con el conocimiento que se posee para generar valor dentro del negocio.
-
-### Uso de los modelos
-
-En el trabajo se presentan modelos poderosos que tienen capacidades de resolver el problema, sin embargo, muchas veces se debe tener en cuenta los sesgos que se pueden crear dentro del mismo. Que modelos de clasificación por ejemplo en un entorno bancario, tiendan a negar préstamos a grupos minoritarios basado únicamente en sesgos, lo anterior implica evaluar correctamente el uso de las características del modelo, si bien puede deberse a pensamientos arcaicos que se reflejan en los datos, es deber de la persona encargada de crear el modelo, superar esos retos para generar valor para el negocio adaptado a las necesidades de las nuevas generaciones.
+### Uso de los Modelos
+A pesar de la gran potencia de los modelos actuales, es esencial tener en cuenta los sesgos que pueden estar presentes en los mismos. Un ejemplo claro es el uso de modelos de clasificación en entornos bancarios, donde un modelo podría negar préstamos a grupos minoritarios debido a sesgos preexistentes en los datos. Estos sesgos no siempre son evidentes a simple vista, pero pueden tener un impacto significativo en las decisiones que el modelo toma. Por ello, es crucial que los responsables de desarrollar estos modelos evalúen cuidadosamente las características utilizadas por el modelo y se aseguren de que no estén perpetuando discriminación o desigualdad. Los datos históricos pueden reflejar prejuicios arcaicos que se transmiten a través de los modelos, pero es responsabilidad de quienes los crean trabajar activamente para superar estos desafíos. Este proceso no solo mejora la equidad, sino que también permite que el modelo se alinee mejor con las necesidades y valores de las generaciones actuales, generando así un valor más inclusivo y justo para el negocio.
 
 ## Contribuciones individuales
 
