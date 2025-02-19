@@ -111,7 +111,7 @@ El problema de predicción de inventario es un desafío recurrente en la industr
 
 En esta sección, nos enfocamos en entrenar y desarrollar un producto de inteligencia artificial basado en redes neuronales recurrentes con múltiples salidas, orientado al pronóstico de ventas en almacenes de cadena, específicamente para Walmart. Este problema fue tomado de [Kaggle](https://www.kaggle.com/datasets/aslanahmedov/walmart-sales-forecast/data?authuser=1), en la que sugiere seguir una metodología basada en el **Cross-Industry Standard Process for Data Mining (CRISP-DM)**, un marco ampliamente utilizado en proyectos de minería de datos e inteligencia artificial.
 
-![Ilustración de una serie temporal. Elaborado mediante GPT.](DALL·E%202025-02-18%2017.43.48%20-%20A%20simplified%20and%20less%20colorful%20cartoon-style%20illustration%20of%20a%20time%20series%20graph,%20focusing%20primarily%20on%20the%20temporal%20aspect.%20The%20graph%20features%20a%20clea.webp)
+![Ilustración de una serie temporal. Elaborado mediante GPT.](Dall.E_Serie.webp)
 
 Dicha metodología se estructura en las siguientes etapas:
 
@@ -145,7 +145,7 @@ En esta etapa, realizamos la limpieza, transformación y estructuración de los 
 
 ### **Modelado**
 
-Aquí implementamos una red neuronal recurrente (*Recurrent Neural Network*, RNN) con múltiples salidas, aprovechando su capacidad para capturar patrones temporales en series de tiempo. Se explorarán variantes como *Long Short-Term Memory* (LSTM) y *Gated Recurrent Units* (GRU) para mejorar el rendimiento del modelo. Además, se comparará el desempeño de estos modelos con enfoques más tradicionales, como ARIMA, para evaluar su eficacia.
+Aquí implementamos una red neuronal recurrente (*Recurrent Neural Network*, RNN) con múltiples salidas, aprovechando su capacidad para capturar patrones temporales en series de tiempo. Se explorarán variantes como *Long Short-Term Memory* (LSTM) y *Gated Recurrent Units* (GRU) para mejorar el rendimiento del modelo.
 
 #### Variables exógenas
 
@@ -165,7 +165,7 @@ Las LSTM son ideales para predecir series temporales porque pueden aprender y mo
 
 Pueden aprender de la estacionalidad (por ejemplo, ventas más altas durante ciertas épocas del año), así como de las tendencias a largo plazo (crecimiento o disminución de ventas).
 
-![Ilustración del funcionamiento de una LSTM. Elaboración mediante GPT.](DALL·E%202025-02-18%2017.42.09%20-%20A%20digital%20illustration%20of%20a%20Long%20Short-Term%20Memory%20(LSTM)%20neural%20network,%20showcasing%20its%20components%20like%20memory%20cells,%20input%20gates,%20forget%20gates,%20and%20.webp)
+![Ilustración del funcionamiento de una LSTM. Elaboración mediante GPT.](LSTM.webp)
 
 ### **Evaluación**
 
@@ -424,7 +424,7 @@ En este contexto, nos enfocamos en el desarrollo de un sistema de recomendación
 
 El problema específico que abordamos en esta sección se centra en el diseño y entrenamiento de un sistema de recomendación para una plataforma de comercio electrónico. Utilizamos técnicas como embeddings de productos y usuarios, y redes neuronales para aprender las representaciones latentes que mejor capturen las preferencias y necesidades de los clientes. Este enfoque permite no solo mejorar la precisión de las recomendaciones, sino también escalar el modelo a grandes volúmenes de usuarios y productos, superando las limitaciones de los métodos tradicionales basados en filtrado colaborativo.
 
-![Ilustración de un modelo de recomendación. Elaborado mediante GPT.](DALL·E%202025-02-18%2015.53.51%20-%20A%20cartoon-style%20illustration%20of%20a%20virtual%20assistant%20with%20a%20friendly,%20futuristic%20appearance,%20standing%20in%20front%20of%20multiple%20screens%20showing%20personalized.webp)
+![Ilustración de un modelo de recomendación. Elaborado mediante GPT.](robot_ropa.webp)
 
 ### Limpieza de los datos
 
@@ -521,9 +521,11 @@ En los videos presentados a continuación se puede encontrar una breve descripci
 Los aspectos éticos en el desarrollo y uso de modelos de inteligencia artificial (IA) son fundamentales, y se dividen principalmente en dos áreas: la forma en que se presentan los modelos y el uso que se les da.
 
 ### Presentación del Modelo
+
 Cuando los modelos se presentan a un público no especializado, es fácil caer en la tentación de ofrecer una visión demasiado optimista o simplificada del funcionamiento y las capacidades del modelo. Esto puede hacerse con el fin de ganar aprobación, impresionar a los demás o lograr algún beneficio, pero es importante reconocer que esta práctica puede ser peligrosa. Como profesionales del área, tenemos la responsabilidad de ser transparentes con el conocimiento que poseemos, para asegurar que este sea utilizado de manera ética y para generar valor real dentro del negocio. Una presentación honesta y precisa contribuye a una comprensión adecuada de las capacidades y limitaciones del modelo, lo cual es crucial para tomar decisiones informadas.
 
 ### Uso de los Modelos
+
 A pesar de la gran potencia de los modelos actuales, es esencial tener en cuenta los sesgos que pueden estar presentes en los mismos. Un ejemplo claro es el uso de modelos de clasificación en entornos bancarios, donde un modelo podría negar préstamos a grupos minoritarios debido a sesgos preexistentes en los datos. Estos sesgos no siempre son evidentes a simple vista, pero pueden tener un impacto significativo en las decisiones que el modelo toma. Por ello, es crucial que los responsables de desarrollar estos modelos evalúen cuidadosamente las características utilizadas por el modelo y se aseguren de que no estén perpetuando discriminación o desigualdad. Los datos históricos pueden reflejar prejuicios arcaicos que se transmiten a través de los modelos, pero es responsabilidad de quienes los crean trabajar activamente para superar estos desafíos. Este proceso no solo mejora la equidad, sino que también permite que el modelo se alinee mejor con las necesidades y valores de las generaciones actuales, generando así un valor más inclusivo y justo para el negocio.
 
 ## Contribuciones individuales
