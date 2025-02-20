@@ -95,14 +95,14 @@
     "href": "posts/aplicaciones-redes-neuronales/index.html#despliegue-de-los-modelos",
     "title": "Aplicaciones de Redes Neuronales",
     "section": "5.1 Despliegue de los modelos",
-    "text": "5.1 Despliegue de los modelos\nLos tres modelos que se desarrollaron y son explicados en este reporte debieron ser desplegados para ponerlos al alcance de los demás y permitir su uso como APIs en el sitio web SmartSell. Para lograr lo anterior se utilizaron los servicios de Render y Digital Ocean con el fin de desplegar las APIs creadas utilizando el framework FastAPI. Es importante reportar en este punto la complicación que se tuvo para el tercer modelo, el modelo de recomendación, debido a que es un modelo pesado a nivel computacional por lo que el tier gratuito de Render se quedó corto ante sus especificaciones. Posteriormente se intentó utilizar el free tier de AWS, no obstante, la memoria RAM que este ofrecía seguía quedándose corta, por lo que fue necesario realizar este despliegue por medio de Digital Ocean, aprovechando los créditos otorgados por el GitHub Student Pack, superando así esta dificultad técnica y económica."
+    "text": "5.1 Despliegue de los modelos\nLos tres modelos que se desarrollaron y son explicados en este reporte debieron ser desplegados para ponerlos al alcance de los demás y permitir su uso como APIs en el sitio web SmartSell. Para lograr lo anterior se utilizaron los servicios de Render y Digital Ocean con el fin de desplegar las APIs creadas utilizando el framework FastAPI. Es importante reportar en este punto la complicación que se tuvo para el tercer modelo, el modelo de recomendación, debido a que es un modelo pesado a nivel computacional por lo que el tier gratuito de Render se quedó corto ante sus especificaciones. Posteriormente se intentó utilizar el free tier de AWS, no obstante, la memoria RAM que este ofrecía seguía quedándose corta, por lo que fue necesario realizar este despliegue por medio de Digital Ocean, aprovechando los créditos otorgados por el GitHub Student Pack, superando así esta dificultad técnica y económica.\nA continuación se disponen los enlaces a los repositorios de GitHub donde puede encontrarse el código fuente de los modelos desarrollados y sus correspondientes implementaciones:\n\nModelo para predicción de la demanda: Model forecast\nModelo para clasificación automática de productos: Model images\nModelo para el sistema de recomendaciones: Model recommendations"
   },
   {
     "objectID": "posts/aplicaciones-redes-neuronales/index.html#videos-explicativos",
     "href": "posts/aplicaciones-redes-neuronales/index.html#videos-explicativos",
     "title": "Aplicaciones de Redes Neuronales",
     "section": "8.1 Videos explicativos",
-    "text": "8.1 Videos explicativos\nA continuación se presentan una serie de videos que dan a conocer una breve descripción del funcionamiento de cada sección de la aplicación web (correspondiente con los módulos desarrollados en el presente trabajo), además de algunos ejemplos reales de utilización de la herramienta SmartSell y una posible interpretación de los resultados obtenidos.\n\nLista de reproducción de los videos demostrativos: Redes Neuronales y Algoritmos Bioinspirados | SmartSell"
+    "text": "8.1 Videos explicativos\nA continuación se presentan una serie de videos que dan a conocer una breve descripción del funcionamiento de cada sección de la aplicación web (correspondiente con los módulos desarrollados en el presente trabajo), además de algunos ejemplos propuestos de utilización de la herramienta SmartSell y una posible interpretación de los resultados obtenidos.\n\nLista de reproducción de los videos demostrativos: Redes Neuronales y Algoritmos Bioinspirados | SmartSell"
   },
   {
     "objectID": "posts/aplicaciones-redes-neuronales/index.html#aspectos-éticos-de-los-modelos",
@@ -257,5 +257,19 @@
     "title": "Optimización Heurística",
     "section": "Footnotes",
     "text": "Footnotes\n\n\nEl fitness representa la aptitud o adecuación de una solución a un problema específico. En nuestro caso, representa la evaluación del individuo en la funcion objetivo.↩︎"
+  },
+  {
+    "objectID": "posts/aplicaciones-redes-neuronales/index.html#despliegue-del-sitio-web",
+    "href": "posts/aplicaciones-redes-neuronales/index.html#despliegue-del-sitio-web",
+    "title": "Aplicaciones de Redes Neuronales",
+    "section": "5.2 Despliegue del sitio web",
+    "text": "5.2 Despliegue del sitio web\nComo fue mencionado anteriormente, la herramienta web se desplegó para su uso a través de internet, accesible en el enlace proporcionado más arriba. Para ello, se desarrolló una aplicación web en React que accede a los modelos de inteligencia artificial mediante endpoints siguiendo la arquitectura RESTful. En este sentido, es importante mencionar que el tiempo de carga para cada una de las secciones de SmartSell puede variar, con valores que se encuentran generalmente entre 50 segundos y dos minutos; los recursos computacionales no están siempre disponibles de forma inmediata debido a la utilización de los tier gratuitos en los diferentes servicios de alojamiento en la nube."
+  },
+  {
+    "objectID": "posts/aplicaciones-redes-neuronales/index.html#videos-demostrativos",
+    "href": "posts/aplicaciones-redes-neuronales/index.html#videos-demostrativos",
+    "title": "Aplicaciones de Redes Neuronales",
+    "section": "8.1 Videos demostrativos",
+    "text": "8.1 Videos demostrativos\nA continuación se presentan una serie de videos que dan a conocer una breve descripción del funcionamiento de cada sección de la aplicación web (correspondiente con los módulos desarrollados en el presente trabajo), además de algunos ejemplos propuestos de utilización de la herramienta SmartSell con diferentes datos y una posible interpretación de los resultados obtenidos.\n\nLista de reproducción de los videos demostrativos: Redes Neuronales y Algoritmos Bioinspirados | SmartSell"
   }
 ]

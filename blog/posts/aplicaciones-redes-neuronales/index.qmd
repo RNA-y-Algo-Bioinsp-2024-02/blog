@@ -587,6 +587,16 @@ De acuerdo a lo que se ha venido presentando a lo largo de este trabajo, los mod
 
 Los tres modelos que se desarrollaron y son explicados en este reporte debieron ser desplegados para ponerlos al alcance de los demás y permitir su uso como APIs en el sitio web SmartSell. Para lograr lo anterior se utilizaron los servicios de **Render** y **Digital Ocean** con el fin de desplegar las APIs creadas utilizando el framework **FastAPI**. Es importante reportar en este punto la complicación que se tuvo para el tercer modelo, el modelo de recomendación, debido a que es un modelo pesado a nivel computacional por lo que el *tier* gratuito de Render se quedó corto ante sus especificaciones. Posteriormente se intentó utilizar el *free tier* de AWS, no obstante, la memoria RAM que este ofrecía seguía quedándose corta, por lo que fue necesario realizar este despliegue por medio de Digital Ocean, aprovechando los créditos otorgados por el *GitHub Student Pack*, superando así esta dificultad técnica y económica.
 
+A continuación se disponen los enlaces a los repositorios de GitHub donde puede encontrarse el código fuente de los modelos desarrollados y sus correspondientes implementaciones:
+
+-   Modelo para predicción de la demanda: [Model forecast](https://github.com/RNA-y-Algo-Bioinsp-2024-02/model_forecast)
+-   Modelo para clasificación automática de productos: [Model images](https://github.com/RNA-y-Algo-Bioinsp-2024-02/model_images)
+-   Modelo para el sistema de recomendaciones: [Model recommendations](https://github.com/RNA-y-Algo-Bioinsp-2024-02/model_recommendations)
+
+## Despliegue del sitio web
+
+Como fue mencionado anteriormente, la herramienta web se desplegó para su uso a través de internet, accesible en el enlace proporcionado más arriba. Para ello, se desarrolló una aplicación web en *React* que accede a los modelos de inteligencia artificial mediante endpoints siguiendo la arquitectura RESTful. En este sentido, es importante mencionar que el tiempo de carga para cada una de las secciones de SmartSell puede variar, con valores que se encuentran generalmente entre 50 segundos y dos minutos; los recursos computacionales no están siempre disponibles de forma inmediata debido a la utilización de los *tier* gratuitos en los diferentes servicios de alojamiento en la nube.
+
 # Resultados generales y discusión
 
 Es posible notar que el modelo preentrenado mostró una mejoría importante frente a la arquitectura propia en el módulo de **clasificación de productos**, lo cual puede indicar que si se hubiera empleado el modelo inicialmente propuesto en el desarrollo de la API, se hubieran presentado múltiples problemas para clasificar los televisores y sofás, sin embargo, el modelo preentrenado funciona muy bien ante todas estas situaciones.
@@ -601,9 +611,9 @@ No obstante, si se pudiera generar una recomendación a partir de los resultados
 
 # Anexos
 
-## Videos explicativos
+## Videos demostrativos
 
-A continuación se presentan una serie de videos que dan a conocer una breve descripción del funcionamiento de cada sección de la aplicación web (correspondiente con los módulos desarrollados en el presente trabajo), además de algunos ejemplos reales de utilización de la herramienta SmartSell y una posible interpretación de los resultados obtenidos.
+A continuación se presentan una serie de videos que dan a conocer una breve descripción del funcionamiento de cada sección de la aplicación web (correspondiente con los módulos desarrollados en el presente trabajo), además de algunos ejemplos propuestos de utilización de la herramienta SmartSell con diferentes datos y una posible interpretación de los resultados obtenidos.
 
 -   Lista de reproducción de los videos demostrativos: [Redes Neuronales y Algoritmos Bioinspirados | SmartSell](https://youtube.com/playlist?list=PL6M0kvPyv0Ebd2s01Awkhq8FdnqZjvAkC)
 
