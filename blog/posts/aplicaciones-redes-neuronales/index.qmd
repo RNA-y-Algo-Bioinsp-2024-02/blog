@@ -18,7 +18,7 @@ author:
   - name: "Luis Andrés Altamar Romero"
   - name: "Catalina Restrepo Salgado"
   - name: "Tomás Rodríguez Taborda"
-date: "2025-02-18"
+date: "2025-02-20"
 categories: [redes neuronales artificiales, desarrollo web, python, series de tiempo, clasificación]
 image: "image.jpg"
 bibliography: ref.bib
@@ -44,9 +44,7 @@ El comercio electrónico, que puede definirse según @ibm2024 como el "proceso d
 
 **Figura 1.**
 
-*El comercio masivo presenta nuevos desafíos, a medida que la llegada de la inteligencia artifical presenta soluciones a la medida de sus problemas.*
-![El comercio masivo presenta nuevos desafíos, a medida que la llegada de la inteligencia artifical presenta soluciones a la medida de sus problemas.](walmart.jpg)
-Tomado de <https://www.youtube.com/watch?v=XRRu9cea1sg>
+*El comercio masivo presenta nuevos desafíos, a medida que la llegada de la inteligencia artifical presenta soluciones a la medida de sus problemas.* ![El comercio masivo presenta nuevos desafíos, a medida que la llegada de la inteligencia artifical presenta soluciones a la medida de sus problemas.](walmart.jpg) Tomado de <https://www.youtube.com/watch?v=XRRu9cea1sg>
 
 Considerando lo anterior, y si se tiene un enfoque especial en la dinámica de comercio electrónico generado por las compañías que ofrecen bienes a través de un sitio web, abarcando grandes multitudes de clientes (y posibles clientes), es posible observar que se presentan una serie de retos a la hora de desarrollar estrategias de marketing adecuadas y que aporten valor al negocio. Algunos de estos retos, definidos después de contrastar con lo dicho por @danielb2023 son:
 
@@ -72,25 +70,15 @@ Desarrollar un sistema basado en aprendizaje profundo que integre predicción de
 
 Para el desarrollo del presente trabajo se planteó una metodología basada en **Design Thinking**, pues garantiza un enfoque centrado en el usuario (que para este caso, será la tienda de comercio electrónico que requiere una mejora en sus estrategias de marketing para abordar los retos anteriormente mencionados), el cual permitirá comprender sus necesidades y diseñar una solución innovadora. Dicha metodología será desarrollada en las cinco fases que se describena a continuación:
 
-**Empatizar:**
--   Análisis del comportamiento de clientes y tendencias de compra en comercio electrónico.
--   Identificación de problemas clave mediante análisis de datos históricos.
+**Empatizar:** - Análisis del comportamiento de clientes y tendencias de compra en comercio electrónico. - Identificación de problemas clave mediante análisis de datos históricos.
 
-**Definir:**
--   Formulación de los problemas a resolver con base en la información obtenida en la fase de empatización.
--   Identificación de métricas clave para evaluar el desempeño de los modelos de redes neuronales artificiales.
+**Definir:** - Formulación de los problemas a resolver con base en la información obtenida en la fase de empatización. - Identificación de métricas clave para evaluar el desempeño de los modelos de redes neuronales artificiales.
 
-**Idear:**
--   Propuestas de soluciones utilizando aprendizaje profundo para cada módulo del sistema.
--   Comparación de enfoques para determinar el más adecuado según los recursos disponibles.
+**Idear:** - Propuestas de soluciones utilizando aprendizaje profundo para cada módulo del sistema. - Comparación de enfoques para determinar el más adecuado según los recursos disponibles.
 
-**Prototipar:**
--   Desarrollo inicial de modelos de predicción de demanda, clasificación de productos y recomendación personalizada.
--   Construcción de una interfaz web interactiva para visualizar los resultados.
+**Prototipar:** - Desarrollo inicial de modelos de predicción de demanda, clasificación de productos y recomendación personalizada. - Construcción de una interfaz web interactiva para visualizar los resultados.
 
-**Testear:**
--   Evaluación de los modelos con métricas como RMSE, MAE, precisión y F1-score.
--   Pruebas con usuarios para validar la funcionalidad y usabilidad de la herramienta web.
+**Testear:** - Evaluación de los modelos con métricas como RMSE, MAE, precisión y F1-score. - Pruebas con usuarios para validar la funcionalidad y usabilidad de la herramienta web.
 
 Por medio de este enfoque se espera asegurar que las soluciones implementadas sean funcionales, escalables y alineadas con las necesidades reales de la empresa de comercio electrónico.
 
@@ -114,9 +102,7 @@ Esta sección estará enfocada en entrenar y desarrollar un producto de intelige
 
 **Figura 2.**
 
-*Ilustración de una serie de tiempo.*
-![Ilustración de una serie de tiempo](Dall.E_Serie.webp)
-Elaborado mediante GPT.
+*Ilustración de una serie de tiempo.* ![Ilustración de una serie de tiempo](Dall.E_Serie.webp) Elaborado mediante GPT.
 
 La metodología anteriormente mencionada se estructura en las siguientes etapas:
 
@@ -134,9 +120,7 @@ En primer lugar, se realizó el histograma de la variable respuesta en escala lo
 
 **Figura 3.**
 
-*Histograma de la variable respuesta.*
-![Histograma de la variable respuesta.](descriptivo.png)
-Elaboración propia.
+*Histograma de la variable respuesta.* ![Histograma de la variable respuesta.](descriptivo.png) Elaboración propia.
 
 #### Matriz de correlación
 
@@ -144,18 +128,16 @@ También se realizó la matriz de correlación mostrada en la Figura 4, con el o
 
 **Figura 4.**
 
-*Matriz de correlación entre las características presentes en el dataset.*
-![Matriz de correlación entre las características presentes en el dataset.](correlacion.png)
-Elaboración propia.
+*Matriz de correlación entre las características presentes en el dataset.* ![Matriz de correlación entre las características presentes en el dataset.](correlacion.png) Elaboración propia.
 
 ### **Preparación de los Datos**
 
 En esta etapa se llevó a cabo la limpieza, transformación y estructuración de los datos para su uso en el modelo. Algunas de las tareas clave incluyeron:
 
-- Manejo de valores faltantes y datos atípicos.
-- Generación de características (*feature engineering*) como tendencias de ventas, estacionalidad y efectos de días festivos.
-- Normalización y escalado de variables.
-- División del conjunto de datos en entrenamiento, validación y prueba.
+-   Manejo de valores faltantes y datos atípicos.
+-   Generación de características (*feature engineering*) como tendencias de ventas, estacionalidad y efectos de días festivos.
+-   Normalización y escalado de variables.
+-   División del conjunto de datos en entrenamiento, validación y prueba.
 
 ### **Modelado**
 
@@ -181,35 +163,27 @@ Adicionalmente, pueden aprender de la estacionalidad (por ejemplo, ventas más a
 
 **Figura 5.**
 
-*Ilustración del funcionamiento de una LSTM.*
-![Ilustración del funcionamiento de una LSTM.](LSTM.webp)
-Elaboración mediante GPT.
+*Ilustración del funcionamiento de una LSTM.* ![Ilustración del funcionamiento de una LSTM.](LSTM.webp) Elaboración mediante GPT.
 
 ### **Evaluación**
 
-La validación del modelo se realizará utilizando métricas clave para problemas de series de tiempo, tales como:
-- **Error Absoluto Medio (MAE)**
-- **Error Porcentual Absoluto Medio (MAPE)**
+La validación del modelo se realizará utilizando métricas clave para problemas de series de tiempo, tales como: - **Error Absoluto Medio (MAE)** - **Error Porcentual Absoluto Medio (MAPE)**
 
 Se evaluará la capacidad del modelo para capturar tendencias de ventas y su estabilidad en distintos escenarios, incluyendo cambios en la demanda y eventos atípicos. Estas métricas pueden observarse detalladamente en las Figuras 6 y 7.
 
 **Figura 6.**
 
-*Predicciones para las ventas en cada departamento.*
-![Predicciones para las ventas en cada departamento.](ventas_departamento.png)
-Elaboración propia.
+*Predicciones para las ventas en cada departamento.* ![Predicciones para las ventas en cada departamento.](ventas_departamento.png) Elaboración propia.
 
 **Figura 7.**
 
-*Predicciones para las ventas.*
-![Predicciones para las ventas.](prediccion_ventas.png)
-Elaboración propia.
+*Predicciones para las ventas.* ![Predicciones para las ventas.](prediccion_ventas.png) Elaboración propia.
 
 ### **Despliegue**
 
 Finalmente, el modelo se integrará en un sistema de que permita generar pronósticos segun los datos iniciales suministrados, considerando las siguientes especificaciones técnicas:
 
-1. **API en FastAPI** para generar las predicciones.
+1.  **API en FastAPI** para generar las predicciones.
 
 2.  **Dashboards interactivos** en una herramienta web que permitirá visualizar pronósticos y tomar decisiones estratégicas en la gestión de inventario para este ejemplo particular.
 
@@ -261,17 +235,15 @@ Las redes neuronales convolucionales surgieron debido a la aparición de bases d
 
 **Figura 8.**
 
-*Ilustración acerca del funcionamiento de una red neuronal convolucional.*
-![Ilustración acerca del funcionamiento de una red neuronal convolucional.](funcionamiento_cnn.png)
-Tomado de *An Introduction to Statistical Learning.*
+*Ilustración acerca del funcionamiento de una red neuronal convolucional.* ![Ilustración acerca del funcionamiento de una red neuronal convolucional.](funcionamiento_cnn.png) Tomado de *An Introduction to Statistical Learning.*
 
-Como se puede ver en la Figura 8, estas redes imitan hasta cierto punto el comportamiento del cerebro para reconocer patrones basado en características específicas a partir de características diminutas como los bordes y el color, y evolucionando posteriormente a características más notables como las orejas y los ojos.
+Como se puede ver en la Figura 8, estas redes imitan hasta cierto punto el comportamiento del cerebro para reconocer patrones basado en características específicas a partir de características diminutas como los bordes y el color, y evolucionando posteriormente a características más notables como las orejas y los ojos, de acuerdo con @hastie2017introduction.
 
 #### Capas convolucionales
 
 Estas capas se basan en filtros convolucionales, los cuales consisten en plantillas que determinan la presencia de alguna característica particular en la imagen. Para lograr lo anterior se basan en la operación llamada convolución, donde ilustramos su funcionamiento de la siguiente manera:
 
-- **Imagen original**
+-   **Imagen original**
 
 \begin{bmatrix} 
 a & b & c \\ 
@@ -280,7 +252,7 @@ g & h & i \\
 j & k & l
 \end{bmatrix} \tag{1}
 
-- **Filtro de convolución**
+-   **Filtro de convolución**
 
 \text{Filtro de convolución}
 
@@ -289,7 +261,7 @@ j & k & l
 \gamma & \delta
 \end{bmatrix} \tag{2}
 
-- **Imagen convolucionada**
+-   **Imagen convolucionada**
 
 \text{Imagen convolucionada}
 
@@ -323,9 +295,7 @@ Finalmente, estas capas actúan como un **clasificador**, combinando la informac
 
 **Figura 9.**
 
-*Arquitectura de una red neuronal convolucional.*
-![Arquitectura de una red neuronal convolucional.](cnn_arquitectura.webp)
-Tomado de https://developersbreach.com/convolution-neural-network-deep-learning/
+*Arquitectura de una red neuronal convolucional.* ![Arquitectura de una red neuronal convolucional.](cnn_arquitectura.webp) Tomado de https://developersbreach.com/convolution-neural-network-deep-learning/
 
 ### Aplicación en el dataset
 
@@ -379,9 +349,7 @@ Los resultados obtenidos por la red neuronal definida anteriormente pueden obser
 
 **Figura 10.**
 
-*Matriz de confusión para la red neuronal convolucional.*
-![Matriz de confusión para la red neuronal convolucional.](confusion1.png)
-Elaboración propia.
+*Matriz de confusión para la red neuronal convolucional.* ![Matriz de confusión para la red neuronal convolucional.](confusion1.png) Elaboración propia.
 
 En este sentido, es posible ver que el modelo no es capaz de reconocer bien la clase 1, correspondiente a los sofás, confundiéndola de manera significativa con la clase correspondiente a los televisores. Esto puede sugerir que las imágenes correspondientes a los sofás no son de una buena calidad y esto puede inducir errores en el modelo.
 
@@ -391,9 +359,7 @@ En la Figura 11 se pueden observar las métricas obtenidas en el proceso de entr
 
 **Figura 11.**
 
-*Evolución de la precisión y la función de pérdida en el entrenamiento y la validación.*
-![Evolución de la precisión y la función de pérdida en el entrenamiento y la validación.](rendimiento.png)
-Elaboración propia.
+*Evolución de la precisión y la función de pérdida en el entrenamiento y la validación.* ![Evolución de la precisión y la función de pérdida en el entrenamiento y la validación.](rendimiento.png) Elaboración propia.
 
 Conforme con la figura, puede decirse que la precisión va aumentando significativamente con la cantidad de épocas al tiempo que la pérdida va disminuyendo considerablemente, alcanzado valores muy bajos al final del entrenamiento. Podría parecer que es demasiado volátil y que se deberían aumentar el número de épocas, sin embargo, como se verá más adelante, hay problemas muy grandes para una de las clases por lo cual se necesitará buscar una alternativa que sea computacionalmente viable.
 
@@ -453,9 +419,7 @@ De acuerdo con la Figura 12, el modelo preentrenado representa una gran mejoría
 
 **Figura 12.**
 
-*Matriz de confusión para el modelo preentrenado.*
-![Matriz de confusión para el modelo preentrenado.](confusion2.png)
-Elaboración propia.
+*Matriz de confusión para el modelo preentrenado.* ![Matriz de confusión para el modelo preentrenado.](confusion2.png) Elaboración propia.
 
 ##### Evolución métricas
 
@@ -463,9 +427,7 @@ Por su parte, la evolución de las métricas para el modelo preentrenado puede o
 
 **Figura 13.**
 
-*Evolución de la precisión y la pérdida en entrenamiento y validación.*
-![Evolución de la precisión y la pérdida en entrenamiento y validación.](rendimeinto2.png)
-Elaboración propia.
+*Evolución de la precisión y la pérdida en entrenamiento y validación.* ![Evolución de la precisión y la pérdida en entrenamiento y validación.](rendimeinto2.png) Elaboración propia.
 
 ##### Reporte de clasificación
 
@@ -493,13 +455,11 @@ En este punto, puede decirse que el desarrollo de sistemas de recomendación ha 
 
 En este contexto, se considera necesario un enfoque en el desarrollo de un sistema de recomendación basado en *embeddings* y redes neuronales profundas. Los embeddings, de acuerdo con @embeddings, son representaciones vectoriales de objetos, como productos o usuarios, que capturan relaciones y similitudes de manera eficiente. Combinados con redes neuronales, estos sistemas pueden aprender patrones complejos y realizar predicciones de manera precisa y escalable.
 
-El problema específico que se abordará en este módulo se centra en el diseño y entrenamiento de un sistema de recomendaciones para una plataforma de comercio electrónico. Se utilizarán técnicas como *embeddings* de productos y usuarios, y redes neuronales para aprender las representaciones latentes que mejor capturen las preferencias y necesidades de los clientes. Este enfoque permite no solo mejorar la precisión de las recomendaciones, sino también escalar el modelo a grandes volúmenes de usuarios y productos, superando las limitaciones de los métodos tradicionales basados en filtrado colaborativo; en la Figura 14 puede observarse una representación artística de esta realidad. 
+El problema específico que se abordará en este módulo se centra en el diseño y entrenamiento de un sistema de recomendaciones para una plataforma de comercio electrónico. Se utilizarán técnicas como *embeddings* de productos y usuarios, y redes neuronales para aprender las representaciones latentes que mejor capturen las preferencias y necesidades de los clientes. Este enfoque permite no solo mejorar la precisión de las recomendaciones, sino también escalar el modelo a grandes volúmenes de usuarios y productos, superando las limitaciones de los métodos tradicionales basados en filtrado colaborativo; en la Figura 14 puede observarse una representación artística de esta realidad.
 
 **Figura 14.**
 
-*Ilustración de un modelo de recomendación.*
-![Ilustración de un modelo de recomendación.](robot_ropa.webp)
-Elaborado mediante GPT.
+*Ilustración de un modelo de recomendación.* ![Ilustración de un modelo de recomendación.](robot_ropa.webp) Elaborado mediante GPT.
 
 ### Limpieza de los datos
 
@@ -521,9 +481,7 @@ Cada una de las entradas categóricas se convierte en un vector a través de una
 
 **Figura 15.**
 
-*Ilustración del resultado obtenido mediante embeddings.*
-![Ilustración del resultado obtenido mediante embeddings.](embeddings.jpg)
-Tomado de https://weaviate.io/blog/vector-embeddings-explained
+*Ilustración del resultado obtenido mediante embeddings.* ![Ilustración del resultado obtenido mediante embeddings.](embeddings.jpg) Tomado de https://weaviate.io/blog/vector-embeddings-explained
 
 #### Características numéricas
 
@@ -571,9 +529,7 @@ Como es menester para este tipo de modelos, en la Figura 16 se muestran las mét
 
 **Figura 16.**
 
-*Evolución de la pérdida y el MAE para el modelo de recomendación.*
-![Evolución de la pérdida y el MAE para el modelo de recomendación.](mae.png)
-Elaboración propia.
+*Evolución de la pérdida y el MAE para el modelo de recomendación.* ![Evolución de la pérdida y el MAE para el modelo de recomendación.](mae.png) Elaboración propia.
 
 # Herramienta web
 
@@ -595,7 +551,7 @@ A continuación se disponen los enlaces a los repositorios de GitHub donde puede
 
 ## Despliegue del sitio web
 
-Como fue mencionado anteriormente, la herramienta web se desplegó para su uso a través de internet, accesible en el enlace proporcionado más arriba. Para ello, se desarrolló una aplicación web en *React* que accede a los modelos de inteligencia artificial mediante endpoints siguiendo la arquitectura RESTful. En este sentido, es importante mencionar que el tiempo de carga para cada una de las secciones de SmartSell puede variar, con valores que se encuentran generalmente entre 50 segundos y dos minutos; los recursos computacionales no están siempre disponibles de forma inmediata debido a la utilización de los *tier* gratuitos en los diferentes servicios de alojamiento en la nube.
+Como fue mencionado anteriormente, la herramienta web se desplegó para su uso a través de internet, accesible en el enlace proporcionado más arriba. Para ello, se desarrolló una aplicación web en *React* que accede a los modelos de inteligencia artificial mediante endpoints siguiendo la arquitectura RESTful. En este sentido, es importante mencionar que el tiempo de carga para cada una de las secciones de SmartSell puede variar, con valores que se encuentran generalmente entre 50 segundos y 10 minutos; los recursos computacionales no están siempre disponibles de forma inmediata debido a la utilización de los *tier* gratuitos en los diferentes servicios de alojamiento en la nube.
 
 # Resultados generales y discusión
 
@@ -615,7 +571,7 @@ No obstante, si se pudiera generar una recomendación a partir de los resultados
 
 A continuación se presentan una serie de videos que dan a conocer una breve descripción del funcionamiento de cada sección de la aplicación web (correspondiente con los módulos desarrollados en el presente trabajo), además de algunos ejemplos propuestos de utilización de la herramienta SmartSell con diferentes datos y una posible interpretación de los resultados obtenidos.
 
--   Lista de reproducción de los videos demostrativos: [Redes Neuronales y Algoritmos Bioinspirados | SmartSell](https://youtube.com/playlist?list=PL6M0kvPyv0Ebd2s01Awkhq8FdnqZjvAkC)
+-   Lista de reproducción de los videos demostrativos: [Redes Neuronales y Algoritmos Bioinspirados \| SmartSell](https://youtube.com/playlist?list=PL6M0kvPyv0Ebd2s01Awkhq8FdnqZjvAkC)
 
 ## Aspectos Éticos de los Modelos
 
@@ -632,3 +588,5 @@ A pesar de la gran potencia de los modelos actuales, es esencial tener en cuenta
 ## Contribuciones individuales
 
 Las contribuciones realizadas por cada uno de los integrantes del equipo en el desarrollo del presente trabajo se pueden observar en el video a continuación:
+
+{{< video https://youtu.be/f0QrsMgDcNc >}}
