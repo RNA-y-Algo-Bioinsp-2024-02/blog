@@ -1,0 +1,34 @@
+---
+title: "Construcción de un Generador de Contenido Educativo basado en LLM"
+format: 
+  html:
+    toc: true
+    toc-width: 250px
+    main-container-width: 90%
+    fig-width: 8
+    fig-height: 6
+    number-sections: true
+    math: 
+      method: mathjax
+      options:
+        TeX:
+          equationNumbers: { autoNumber: "AMS" }
+  
+author:
+  - name: "Julián Castaño Pineda"
+  - name: "Luis Andrés Altamar Romero"
+  - name: "Catalina Restrepo Salgado"
+  - name: "Tomás Rodríguez Taborda"
+date: "2025-03-06"
+categories: [Large Language Model, Inteligencia Artificial]
+image: "image.webp"
+bibliography: ref.bib
+execute:
+  cache: true
+---
+
+Generación de contenido educativo basado en LLM para cursos universitarios.
+
+## Contribuciones individuales
+
+Las contribuciones realizadas por cada uno de los integrantes del equipo en el desarrollo de los ejercicios correspondientes al presente trabajo se muestran en el siguiente video.

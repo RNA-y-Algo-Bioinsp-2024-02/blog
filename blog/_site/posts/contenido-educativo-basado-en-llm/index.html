@@ -6,10 +6,13 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="">
-<meta name="dcterms.date" content="2024-11-12">
+<meta name="author" content="Julián Castaño Pineda">
+<meta name="author" content="Luis Andrés Altamar Romero">
+<meta name="author" content="Catalina Restrepo Salgado">
+<meta name="author" content="Tomás Rodríguez Taborda">
+<meta name="dcterms.date" content="2025-03-06">
 
-<title>¡Bienvenidos a nuestro blog! – Redes Neuronales Artificiales y Algoritmos Bioinspirados</title>
+<title>Construcción de un Generador de Contenido Educativo basado en LLM – Redes Neuronales Artificiales y Algoritmos Bioinspirados</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -105,6 +108,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -147,9 +179,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <div class="quarto-title-block"><div><h1 class="title">¡Bienvenidos a nuestro blog!</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+      <div class="quarto-title-block"><div><h1 class="title">Construcción de un Generador de Contenido Educativo basado en LLM</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
                                 <div class="quarto-categories">
-                <div class="quarto-category">news</div>
+                <div class="quarto-category">Large Language Model</div>
+                <div class="quarto-category">Inteligencia Artificial</div>
               </div>
                   </div>
   </div>
@@ -157,11 +190,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
   <div class="quarto-title-meta">
 
+      <div>
+      <div class="quarto-title-meta-heading">Authors</div>
+      <div class="quarto-title-meta-contents">
+               <p>Julián Castaño Pineda </p>
+               <p>Luis Andrés Altamar Romero </p>
+               <p>Catalina Restrepo Salgado </p>
+               <p>Tomás Rodríguez Taborda </p>
+            </div>
+    </div>
       
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">November 12, 2024</p>
+        <p class="date">March 6, 2025</p>
       </div>
     </div>
     
@@ -176,13 +218,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#bienvenidos-a-un-espacio-para-aprender-y-crear" id="toc-bienvenidos-a-un-espacio-para-aprender-y-crear" class="nav-link active" data-scroll-target="#bienvenidos-a-un-espacio-para-aprender-y-crear"><strong>Bienvenidos a un espacio para aprender y crear</strong></a>
-  <ul class="collapse">
-  <li><a href="#qué-encontrarás-aquí" id="toc-qué-encontrarás-aquí" class="nav-link" data-scroll-target="#qué-encontrarás-aquí"><strong>¿Qué encontrarás aquí?</strong></a></li>
-  <li><a href="#por-qué-este-blog" id="toc-por-qué-este-blog" class="nav-link" data-scroll-target="#por-qué-este-blog"><strong>¿Por qué este blog?</strong></a></li>
-  <li><a href="#cómo-aprovechar-este-blog" id="toc-cómo-aprovechar-este-blog" class="nav-link" data-scroll-target="#cómo-aprovechar-este-blog"><strong>¿Cómo aprovechar este blog?</strong></a></li>
-  </ul></li>
-  <li><a href="#explora-aprende-y-comparte." id="toc-explora-aprende-y-comparte." class="nav-link" data-scroll-target="#explora-aprende-y-comparte."><strong>Explora, aprende y comparte.</strong></a></li>
+  <li><a href="#contribuciones-individuales" id="toc-contribuciones-individuales" class="nav-link active" data-scroll-target="#contribuciones-individuales"><span class="header-section-number">1</span> Contribuciones individuales</a></li>
   </ul>
 </nav>
 </nav>
@@ -197,47 +233,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="bienvenidos-a-un-espacio-para-aprender-y-crear" class="level1">
-<h1><strong>Bienvenidos a un espacio para aprender y crear</strong></h1>
-<p>Este blog ha sido diseñado como parte de un curso dedicado a las <strong>Redes Neuronales y Algoritmos Bioinspirados</strong>, con el propósito de servir como un repositorio de trabajos, reflexiones y aprendizajes desarrollados a lo largo del programa. Más allá del curso, nuestro objetivo es que este espacio evolucione hacia un portafolio que abarque múltiples temáticas en <strong>inteligencia artificial, analítica avanzada y aprendizaje automático</strong>.</p>
-<hr>
-<section id="qué-encontrarás-aquí" class="level2">
-<h2 class="anchored" data-anchor-id="qué-encontrarás-aquí"><strong>¿Qué encontrarás aquí?</strong></h2>
-<ul>
-<li><p><strong>Trabajos del curso:</strong> Proyectos que exploran desde el funcionamiento básico de redes neuronales hasta implementaciones más avanzadas de algoritmos bioinspirados, como los basados en evolución genética o el comportamiento de colonias de hormigas.</p></li>
-<li><p><strong>Artículos educativos:</strong> Explicaciones claras y prácticas sobre conceptos clave de inteligencia artificial y sus aplicaciones.</p></li>
-<li><p><strong>Recursos reproducibles:</strong> Todo lo que publico está diseñado para ser reutilizable y comprensible, buscando contribuir al aprendizaje de otros.</p></li>
-</ul>
-<hr>
-<hr>
-<div style="text-align: center;">
-<p><img src="robot.gif" alt="Welcome AI" width="60%"></p>
-</div>
-<hr>
-</section>
-<section id="por-qué-este-blog" class="level2">
-<h2 class="anchored" data-anchor-id="por-qué-este-blog"><strong>¿Por qué este blog?</strong></h2>
-<p>La idea de este blog no solo es mostrar lo aprendido, sino también convertirlo en un material accesible y de calidad para otros. Crear contenido reproducible y útil puede ser un puente hacia el aprendizaje compartido, la inspiración y la mejora continua.</p>
-<p>Además, quieremos que este espacio sea un ejemplo de cómo construir un portafolio profesional que combine el rigor técnico con un diseño atractivo. Esto puede ser útil tanto para la comunidad académica como para el ámbito profesional.</p>
-<hr>
-</section>
-<section id="cómo-aprovechar-este-blog" class="level2">
-<h2 class="anchored" data-anchor-id="cómo-aprovechar-este-blog"><strong>¿Cómo aprovechar este blog?</strong></h2>
-<ul>
-<li><strong>Lee los proyectos:</strong> Cada entrada está organizada para que puedas entender tanto la teoría como las implementaciones prácticas.</li>
-<li><strong>Descarga y reproduce:</strong> Los ejemplos están diseñados para ser replicados, con código y explicaciones detalladas.</li>
-<li><strong>Construye sobre esto:</strong> Usa las ideas presentadas como punto de partida para tus propios proyectos.</li>
-</ul>
-<hr>
-</section>
-</section>
-<section id="explora-aprende-y-comparte." class="level1">
-<h1><strong>Explora, aprende y comparte.</strong></h1>
-<p>Gracias por visitar este espacio. Espero que encuentres aquí inspiración, herramientas y conocimientos que puedan acompañarte en tu propio camino en el mundo de la inteligencia artificial y más allá. 🚀</p>
-<p><strong>✨ ¡Manos a la obra! ✨</strong></p>
-<div style="text-align: center;">
-<p><img src="letsgo.gif" alt="Let's go" width="40%"></p>
-</div>
+<p>Generación de contenido educativo basado en LLM para cursos universitarios.</p>
+<section id="contribuciones-individuales" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="contribuciones-individuales"><span class="header-section-number">1</span> Contribuciones individuales</h2>
+<p>Las contribuciones realizadas por cada uno de los integrantes del equipo en el desarrollo de los ejercicios correspondientes al presente trabajo se muestran en el siguiente video.</p>
+
 
 
 <!-- -->
@@ -858,62 +858,39 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "¡Bienvenidos a nuestro blog!"</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> ""</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "2024-11-12"</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span><span class="co"> [news]</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="an">image:</span><span class="co"> welcome.jpg</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu"># **Bienvenidos a un espacio para aprender y crear**</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>Este blog ha sido diseñado como parte de un curso dedicado a las **Redes Neuronales y Algoritmos Bioinspirados**, con el propósito de servir como un repositorio de trabajos, reflexiones y aprendizajes desarrollados a lo largo del programa. Más allá del curso, nuestro objetivo es que este espacio evolucione hacia un portafolio que abarque múltiples temáticas en **inteligencia artificial, analítica avanzada y aprendizaje automático**.</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">## **¿Qué encontrarás aquí?**</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Trabajos del curso:** Proyectos que exploran desde el funcionamiento básico de redes neuronales hasta implementaciones más avanzadas de algoritmos bioinspirados, como los basados en evolución genética o el comportamiento de colonias de hormigas.</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Artículos educativos:** Explicaciones claras y prácticas sobre conceptos clave de inteligencia artificial y sus aplicaciones.</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Recursos reproducibles:** Todo lo que publico está diseñado para ser reutilizable y comprensible, buscando contribuir al aprendizaje de otros.</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>::: {style="text-align: center;"}</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>&lt;img src="robot.gif" alt="Welcome AI" width="60%"/&gt;</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="fu">## **¿Por qué este blog?**</span></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>La idea de este blog no solo es mostrar lo aprendido, sino también convertirlo en un material accesible y de calidad para otros. Crear contenido reproducible y útil puede ser un puente hacia el aprendizaje compartido, la inspiración y la mejora continua.</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>Además, quieremos que este espacio sea un ejemplo de cómo construir un portafolio profesional que combine el rigor técnico con un diseño atractivo. Esto puede ser útil tanto para la comunidad académica como para el ámbito profesional.</span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="fu">## **¿Cómo aprovechar este blog?**</span></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Lee los proyectos:** Cada entrada está organizada para que puedas entender tanto la teoría como las implementaciones prácticas.</span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Descarga y reproduce:** Los ejemplos están diseñados para ser replicados, con código y explicaciones detalladas.</span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Construye sobre esto:** Usa las ideas presentadas como punto de partida para tus propios proyectos.</span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="fu"># **Explora, aprende y comparte.**</span></span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>Gracias por visitar este espacio. Espero que encuentres aquí inspiración, herramientas y conocimientos que puedan acompañarte en tu propio camino en el mundo de la inteligencia artificial y más allá. 🚀</span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>**✨ ¡Manos a la obra! ✨**</span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>::: {style="text-align: center;"}</span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>&lt;img src="letsgo.gif" alt="Let<span class="dv">&amp;apos;</span>s go" width="40%"/&gt;</span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>:::</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Construcción de un Generador de Contenido Educativo basado en LLM"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> </span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-width: 250px</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">    main-container-width: 90%</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-width: 8</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-height: 6</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">    math: </span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">      method: mathjax</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">      options:</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co">        TeX:</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co">          equationNumbers: { autoNumber: "AMS" }</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co">  </span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co">  - name: "Julián Castaño Pineda"</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co">  - name: "Luis Andrés Altamar Romero"</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co">  - name: "Catalina Restrepo Salgado"</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co">  - name: "Tomás Rodríguez Taborda"</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "2025-03-06"</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span><span class="co"> [Large Language Model, Inteligencia Artificial]</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="an">image:</span><span class="co"> "image.webp"</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="an">bibliography:</span><span class="co"> ref.bib</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="co">  cache: true</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>Generación de contenido educativo basado en LLM para cursos universitarios.</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="fu">## Contribuciones individuales</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>Las contribuciones realizadas por cada uno de los integrantes del equipo en el desarrollo de los ejercicios correspondientes al presente trabajo se muestran en el siguiente video.</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

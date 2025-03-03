@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/contenido-educativo-basado-en-llm/index.html",
       "/posts/aplicaciones-redes-neuronales/index.html",
       "/posts/modelos-riesgo-credito/index.html",
       "/posts/optimizacion_combinatoria/index.html",
