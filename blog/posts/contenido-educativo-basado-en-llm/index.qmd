@@ -29,6 +29,52 @@ execute:
 
 Generación de contenido educativo basado en LLM para cursos universitarios.
 
+## Introducción
+
+Los Modelos de Lenguaje de Gran Escala (LLM, por sus siglas en inglés) han supuesto una revolución tanto para la industria como para la sociedad, en gran parte debido a su creciente accesibilidad. Un claro ejemplo de este fenómeno es el impacto de OpenAI con **ChatGPT**, que popularizó el uso de estos modelos a pesar de que su motor subyacente, **GPT**, ya existía desde hace tiempo. Sin embargo, en sus inicios, el entrenamiento de estos modelos era una tarea extremadamente costosa y limitada por los recursos computacionales disponibles.
+
+El avance en **hardware especializado**, en particular el desarrollo de **tarjetas gráficas (GPU) y unidades de procesamiento tensorial (TPU) de nueva generación**, ha permitido acelerar significativamente el entrenamiento de los modelos. Esto ha facilitado la creación de versiones cada vez más avanzadas y accesibles, lo que ha impulsado la adopción masiva de los LLM en diversas aplicaciones, desde asistentes virtuales hasta generación de contenido y automatización de tareas complejas.
+
+A medida que la tecnología sigue evolucionando, la combinación de mayor poder computacional y mejores algoritmos de entrenamiento promete expandir aún más las capacidades de estos modelos, consolidando su papel en la transformación digital de múltiples sectores.
+
+![Imagen ilustrativa. Tomado de https://www.linkedin.com/pulse/so-much-talk-large-language-models-aibut-what-else-does-martin-hughes/](images/1695386064286.jpeg)
+
+Lo anterior es una situación que puede llegar a generar preocupación debido a la capacidad de estos modelos, preocupación que se ve reflejada tanto en el mundo laboral, de ser reemplazado por un modelo de IA, y en el sistema educativo, no es fácil trazar una línea de hasta donde debe ser usada la inteligencia artificial en los trabajos y hasta donde es trabajo original, y a la vez tratar de cumplir con los mínimos establecidos en la educación. En este trabajo nos centraremos en la segunda situación, mostrando como los LLM son un apoyo para el sistema educativo y no una traba que debe superarse sino integrarse al mismo.
+
+### Objetivos generales
+
+Desarrollar un agente que integrando un LLM permita generar contenido basado en el programa resumen de un curso. Se busca que permita obtener notas detalladas para cada tema, ejercicios con soluciones, preguntas, objetivos de aprendizaje y lecturas sugeridas.
+
+### Objetivos específicos
+
+-   Generar material de aprendizaje basado en el programa del curso.
+
+-   Evaluar la calidad de material del modelo.
+
+## Arquitectura de los transformers
+
+La aparición de los LLM se debe en gran parte, a la creación de la arquitectura de los transformers que permite que los modelos tengan "atención" de tal manera que pueden analizar los prompts de manera completa y mejorar su entendimiento del mismo, y por ende, de las salidas que se obtienen. La arquitectura básica de un transformer se puede apreciar en la siguiente figura
+
+![Arquitectura de un transformer con un encoder y un decoder. Tomado de https://aws.amazon.com/es/what-is/transformers-in-artificial-intelligence/](images/paste-1.png)
+
+## Desarrollo del Agente
+
+### LLM Gemini
+
+Se utilizará la API de Gemini como modelo LLM del agente, lo anterior debido a que se hicieron prueba con otros modelos pero requerían capacidades computacionales más altas de las que se tenían acceso, por lo que la API de Gemini termino siendo la mejor alternativa para generar el contendio.
+
+### Funciones del agente
+
+-   **Procesamiento del formato de archivo:** Se crearon funciones que mejoran la capacidad del agente para entender el documento segmentando la información relevante que irá en el prompt.
+
+-   **Documento PDF:** Se crea la función que permite obtener el material como contenido PDF.
+
+-   **Flashcards:** Se crearon flashcards que permiten sintetizar las preguntas y hacer más natural la forma de estudio a partir del material generado.
+
+### Prompt utilizado
+
+## Material Generado
+
 ## Contribuciones individuales
 
 Las contribuciones realizadas por cada uno de los integrantes del equipo en el desarrollo de los ejercicios correspondientes al presente trabajo se muestran en el siguiente video.

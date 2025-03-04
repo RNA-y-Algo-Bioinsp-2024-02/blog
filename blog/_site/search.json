@@ -66,8 +66,8 @@
     "objectID": "posts/contenido-educativo-basado-en-llm/index.html#contribuciones-individuales",
     "href": "posts/contenido-educativo-basado-en-llm/index.html#contribuciones-individuales",
     "title": "Construcción de un Generador de Contenido Educativo basado en LLM",
-    "section": "1 Contribuciones individuales",
-    "text": "1 Contribuciones individuales\nLas contribuciones realizadas por cada uno de los integrantes del equipo en el desarrollo de los ejercicios correspondientes al presente trabajo se muestran en el siguiente video."
+    "section": "5 Contribuciones individuales",
+    "text": "5 Contribuciones individuales\nLas contribuciones realizadas por cada uno de los integrantes del equipo en el desarrollo de los ejercicios correspondientes al presente trabajo se muestran en el siguiente video."
   },
   {
     "objectID": "index.html",
@@ -278,5 +278,33 @@
     "title": "Optimización Heurística",
     "section": "Footnotes",
     "text": "Footnotes\n\n\nEl fitness representa la aptitud o adecuación de una solución a un problema específico. En nuestro caso, representa la evaluación del individuo en la funcion objetivo.↩︎"
+  },
+  {
+    "objectID": "posts/contenido-educativo-basado-en-llm/index.html#introducción",
+    "href": "posts/contenido-educativo-basado-en-llm/index.html#introducción",
+    "title": "Construcción de un Generador de Contenido Educativo basado en LLM",
+    "section": "1 Introducción",
+    "text": "1 Introducción\nLos Modelos de Lenguaje de Gran Escala (LLM, por sus siglas en inglés) han supuesto una revolución tanto para la industria como para la sociedad, en gran parte debido a su creciente accesibilidad. Un claro ejemplo de este fenómeno es el impacto de OpenAI con ChatGPT, que popularizó el uso de estos modelos a pesar de que su motor subyacente, GPT, ya existía desde hace tiempo. Sin embargo, en sus inicios, el entrenamiento de estos modelos era una tarea extremadamente costosa y limitada por los recursos computacionales disponibles.\nEl avance en hardware especializado, en particular el desarrollo de tarjetas gráficas (GPU) y unidades de procesamiento tensorial (TPU) de nueva generación, ha permitido acelerar significativamente el entrenamiento de los modelos. Esto ha facilitado la creación de versiones cada vez más avanzadas y accesibles, lo que ha impulsado la adopción masiva de los LLM en diversas aplicaciones, desde asistentes virtuales hasta generación de contenido y automatización de tareas complejas.\nA medida que la tecnología sigue evolucionando, la combinación de mayor poder computacional y mejores algoritmos de entrenamiento promete expandir aún más las capacidades de estos modelos, consolidando su papel en la transformación digital de múltiples sectores.\n\n\n\nImagen ilustrativa. Tomado de https://www.linkedin.com/pulse/so-much-talk-large-language-models-aibut-what-else-does-martin-hughes/\n\n\nLo anterior es una situación que puede llegar a generar preocupación debido a la capacidad de estos modelos, preocupación que se ve reflejada tanto en el mundo laboral, de ser reemplazado por un modelo de IA, y en el sistema educativo, no es fácil trazar una línea de hasta donde debe ser usada la inteligencia artificial en los trabajos y hasta donde es trabajo original, y a la vez tratar de cumplir con los mínimos establecidos en la educación. En este trabajo nos centraremos en la segunda situación, mostrando como los LLM son un apoyo para el sistema educativo y no una traba que debe superarse sino integrarse al mismo.\n\n1.1 Objetivos generales\nDesarrollar un agente que integrando un LLM permita generar contenido basado en el programa resumen de un curso. Se busca que permita obtener notas detalladas para cada tema, ejercicios con soluciones, preguntas, objetivos de aprendizaje y lecturas sugeridas.\n\n\n1.2 Objetivos específicos\n\nGenerar material de aprendizaje basado en el programa del curso.\nEvaluar la calidad de material del modelo."
+  },
+  {
+    "objectID": "posts/contenido-educativo-basado-en-llm/index.html#arquitectura-de-los-transformers",
+    "href": "posts/contenido-educativo-basado-en-llm/index.html#arquitectura-de-los-transformers",
+    "title": "Construcción de un Generador de Contenido Educativo basado en LLM",
+    "section": "2 Arquitectura de los transformers",
+    "text": "2 Arquitectura de los transformers\nLa aparición de los LLM se debe en gran parte, a la creación de la arquitectura de los transformers que permite que los modelos tengan “atención” de tal manera que pueden analizar los prompts de manera completa y mejorar su entendimiento del mismo, y por ende, de las salidas que se obtienen. La arquitectura básica de un transformer se puede apreciar en la siguiente figura\n\n\n\nArquitectura de un transformer con un encoder y un decoder. Tomado de https://aws.amazon.com/es/what-is/transformers-in-artificial-intelligence/"
+  },
+  {
+    "objectID": "posts/contenido-educativo-basado-en-llm/index.html#desarrollo-del-agente",
+    "href": "posts/contenido-educativo-basado-en-llm/index.html#desarrollo-del-agente",
+    "title": "Construcción de un Generador de Contenido Educativo basado en LLM",
+    "section": "3 Desarrollo del Agente",
+    "text": "3 Desarrollo del Agente\n\n3.1 LLM Gemini\nSe utilizará la API de Gemini como modelo LLM del agente, lo anterior debido a que se hicieron prueba con otros modelos pero requerían capacidades computacionales más altas de las que se tenían acceso, por lo que la API de Gemini termino siendo la mejor alternativa para generar el contendio.\n\n\n3.2 Funciones del agente\n\nProcesamiento del formato de archivo: Se crearon funciones que mejoran la capacidad del agente para entender el documento segmentando la información relevante que irá en el prompt.\nDocumento PDF: Se crea la función que permite obtener el material como contenido PDF.\nFlashcards: Se crearon flashcards que permiten sintetizar las preguntas y hacer más natural la forma de estudio a partir del material generado.\n\n\n\n3.3 Prompt utilizado"
+  },
+  {
+    "objectID": "posts/contenido-educativo-basado-en-llm/index.html#material-generado",
+    "href": "posts/contenido-educativo-basado-en-llm/index.html#material-generado",
+    "title": "Construcción de un Generador de Contenido Educativo basado en LLM",
+    "section": "4 Material Generado",
+    "text": "4 Material Generado"
   }
 ]
