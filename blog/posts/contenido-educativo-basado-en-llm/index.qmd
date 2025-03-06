@@ -119,71 +119,74 @@ Utilizando el contenido generado por el agente se crean dos tipos de archivos
 
 ## Métricas del modelo
 
-### Evaluación por tema  
+### Evaluación por tema
+
 Cada tema tiene puntajes individuales para su sección. Se evalúan cuatro aspectos clave:
 
-- **Relevancia:** Medida a través de la cobertura de subtemas en el contenido generado.  
-  $$
-  \text{Cobertura Subtemas} = \frac{\sum_{i=1}^{N} \mathbb{1}(\text{Subtema}_i \in \text{Contenido})}{N}
-  $$
+-   **Relevancia:** Medida a través de la cobertura de subtemas en el contenido generado.\
+    $$
+    \text{Cobertura Subtemas} = \frac{\sum_{i=1}^{N} \mathbb{1}(\text{Subtema}_i \in \text{Contenido})}{N}
+    $$
 
-  donde $N$ es el número total de subtemas y la función indicadora $\mathbb{1}$ devuelve 1 si el subtema está presente y 0 si no.
+    donde $N$ es el número total de subtemas y la función indicadora $\mathbb{1}$ devuelve 1 si el subtema está presente y 0 si no.
 
-- **Consistencia:** Evaluada mediante la **similitud de coseno** entre las diferentes secciones del tema.  
-  $$
-  \text{Consistencia} = \frac{\sum_{i=1}^{N} \sum_{j=i+1}^{N} \text{SimilitudCoseno}(\text{Texto}_i, \text{Texto}_j)}{\frac{N (N-1)}{2}}
-  $$
+-   **Consistencia:** Evaluada mediante la **similitud de coseno** entre las diferentes secciones del tema.\
+    $$
+    \text{Consistencia} = \frac{\sum_{i=1}^{N} \sum_{j=i+1}^{N} \text{SimilitudCoseno}(\text{Texto}_i, \text{Texto}_j)}{\frac{N (N-1)}{2}}
+    $$
 
-  donde $N$ es el número total de textos generados y se calcula la similitud de coseno entre cada par de textos.
+    donde $N$ es el número total de textos generados y se calcula la similitud de coseno entre cada par de textos.
 
-- **Legibilidad:** Basada en la **longitud promedio de las oraciones**, donde textos más cortos y claros obtienen una mejor puntuación.  
-  $$
-  \text{Legibilidad} = \max \left(0, \min \left(1, \frac{30 - \frac{\text{Total Palabras}}{\text{Total Oraciones}}}{15} \right) \right)
-  $$
+-   **Legibilidad:** Basada en la **longitud promedio de las oraciones**, donde textos más cortos y claros obtienen una mejor puntuación.\
+    $$
+    \text{Legibilidad} = \max \left(0, \min \left(1, \frac{30 - \frac{\text{Total Palabras}}{\text{Total Oraciones}}}{15} \right) \right)
+    $$
 
-  Si las oraciones tienen menos de 15 palabras, la legibilidad es 1.0; si tienen más de 30, es 0.0.
+    Si las oraciones tienen menos de 15 palabras, la legibilidad es 1.0; si tienen más de 30, es 0.0.
 
-- **Uso de terminología:** Se mide utilizando **TF-IDF**, que identifica la presencia de términos clave del syllabus en el contenido.  
-  $$
-  \text{Terminología} = \min \left(1, \frac{\sum_{i=1}^{M} \mathbb{1}(\text{Término}_i \in \text{Contenido})}{\text{Total de Palabras} / 1000} \right)
-  $$
+-   **Uso de terminología:** Se mide utilizando **TF-IDF**, que identifica la presencia de términos clave del syllabus en el contenido.\
+    $$
+    \text{Terminología} = \min \left(1, \frac{\sum_{i=1}^{M} \mathbb{1}(\text{Término}_i \in \text{Contenido})}{\text{Total de Palabras} / 1000} \right)
+    $$
 
-  donde $M$ es el número total de términos clave y la función $\mathbb{1}$ devuelve 1 si el término está presente.
+    donde $M$ es el número total de términos clave y la función $\mathbb{1}$ devuelve 1 si el término está presente.
 
----
+------------------------------------------------------------------------
 
-### Evaluación por tipo de contenido  
-Se calculan puntuaciones agregadas para cada tipo de material generado (*lecture notes*, *practice problems*, *discussion questions*, *learning objectives*, *suggested resources*).  
+### Evaluación por tipo de contenido
 
-- Se obtiene el **promedio de las evaluaciones individuales** en todos los temas para cada tipo de contenido:
-  $$
-  \text{Puntuación por tipo de contenido} = \frac{\sum_{t=1}^{T} \text{Puntuación de contenido}_{t}}{T}
-  $$
+Se calculan puntuaciones agregadas para cada tipo de material generado (*lecture notes*, *practice problems*, *discussion questions*, *learning objectives*, *suggested resources*).
 
-  donde $T$ es el número total de temas.
+-   Se obtiene el **promedio de las evaluaciones individuales** en todos los temas para cada tipo de contenido: $$
+    \text{Puntuación por tipo de contenido} = \frac{\sum_{t=1}^{T} \text{Puntuación de contenido}_{t}}{T}
+    $$
 
-- Permite detectar cuáles secciones necesitan más mejoras en términos de profundidad, claridad y alineación con el syllabus.
+    donde $T$ es el número total de temas.
 
----
+-   Permite detectar cuáles secciones necesitan más mejoras en términos de profundidad, claridad y alineación con el syllabus.
 
-### Métricas globales  
+------------------------------------------------------------------------
+
+### Métricas globales
+
 Se evalúan características generales del contenido en su conjunto:
 
-- **Consistencia temática:** Se usa **similitud de coseno y TF-IDF** para medir la coherencia semántica entre temas.
-- **Relevancia general:** Se calcula la **cobertura de subtemas** a nivel global:
-  $$
-  \text{Relevancia} = \frac{\sum_{t=1}^{T} \text{Cobertura Subtemas}_{t}}{T}
-  $$
+-   **Consistencia temática:** Se usa **similitud de coseno y TF-IDF** para medir la coherencia semántica entre temas.
 
-- **Legibilidad promedio:** Se obtiene la **media de las longitudes de oraciones en todo el contenido**.
-- **Uso de terminología académica:** Se analiza la densidad de términos especializados extraídos del syllabus:
-  $$
-  \text{Terminología Global} = \frac{\sum_{t=1}^{T} \text{Terminología}_{t}}{T}
-  $$
+-   **Relevancia general:** Se calcula la **cobertura de subtemas** a nivel global: $$
+    \text{Relevancia} = \frac{\sum_{t=1}^{T} \text{Cobertura Subtemas}_{t}}{T}
+    $$
 
----
+-   **Legibilidad promedio:** Se obtiene la **media de las longitudes de oraciones en todo el contenido**.
 
-### Puntuación global  
+-   **Uso de terminología académica:** Se analiza la densidad de términos especializados extraídos del syllabus: $$
+    \text{Terminología Global} = \frac{\sum_{t=1}^{T} \text{Terminología}_{t}}{T}
+    $$
+
+------------------------------------------------------------------------
+
+### Puntuación global
+
 Se obtiene como el **promedio de dos componentes principales**:
 
 $$
@@ -207,37 +210,35 @@ La puntuación final proporciona una medida cuantitativa de la calidad del conte
 #### **Puntuaciones por Tema**
 
 | **Tema** | **Notas de Clase** | **Problemas de Práctica** | **Preguntas de Discusión** | **Objetivos de Aprendizaje** | **Recursos Sugeridos** | **Promedio** |
-|------|--------------|---------------------|--------------------|--------------------|------------------|---------|
-| **1**    | 0.664       | 0.650               | 0.417              | 0.357              | 0.600            | 0.537   |
-| **2**    | 0.671       | 0.650               | 0.190              | 0.405              | 0.600            | 0.503   |
-| **3**    | 0.720       | 0.650               | 0.433              | 0.405              | 0.600            | 0.562   |
-| **4**    | 0.682       | 0.650               | 0.306              | 0.405              | 0.600            | 0.528   |
+|-----------|-----------|-----------|-----------|-----------|-----------|-----------|
+| **1** | 0.664 | 0.650 | 0.417 | 0.357 | 0.600 | 0.537 |
+| **2** | 0.671 | 0.650 | 0.190 | 0.405 | 0.600 | 0.503 |
+| **3** | 0.720 | 0.650 | 0.433 | 0.405 | 0.600 | 0.562 |
+| **4** | 0.682 | 0.650 | 0.306 | 0.405 | 0.600 | 0.528 |
 
 #### **Puntuaciones por Tipo de Contenido**
 
-| **Tipo de Contenido**      | **Puntaje** |
-|------------------------|---------|
-| **Notas de Clase**        | 0.684   |
-| **Problemas de Práctica** | 0.650   |
-| **Preguntas de Discusión** | 0.337   |
-| **Objetivos de Aprendizaje** | 0.393   |
-| **Recursos Sugeridos**    | 0.600   |
+| **Tipo de Contenido**        | **Puntaje** |
+|------------------------------|-------------|
+| **Notas de Clase**           | 0.684       |
+| **Problemas de Práctica**    | 0.650       |
+| **Preguntas de Discusión**   | 0.337       |
+| **Objetivos de Aprendizaje** | 0.393       |
+| **Recursos Sugeridos**       | 0.600       |
 
 #### **Métricas Globales**
 
-| **Métrica**                     | **Puntaje** |
-|-----------------------------|---------|
-| **Consistencia Temática**       | 0.696   |
-| **Legibilidad**                 | 0.226   |
-| **Uso de Terminología**         | 0.228   |
+| **Métrica**               | **Puntaje** |
+|---------------------------|-------------|
+| **Consistencia Temática** | 0.696       |
+| **Legibilidad**           | 0.226       |
+| **Uso de Terminología**   | 0.228       |
 
-
-La puntuación final obtenida por el modelo es de 
+La puntuación final obtenida por el modelo es de
 
 $$
 \textbf{Puntuación Final} = 0.458
 $$
-
 
 ## Contribuciones individuales
 
