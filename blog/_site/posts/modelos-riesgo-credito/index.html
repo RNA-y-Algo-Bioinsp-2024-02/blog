@@ -2,14 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.40">
+<meta name="generator" content="quarto-1.6.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Tomás Rodríguez Taborda">
 <meta name="author" content="Julián Castaño Pineda">
 <meta name="author" content="Luis Andrés Altamar Romero">
 <meta name="author" content="Catalina Restrepo Salgado">
-<meta name="author" content="Tomás Rodríguez Taborda">
 <meta name="dcterms.date" content="2025-01-23">
 
 <title>Modelos de riesgo de crédito con Redes Neuronales Artificiales – Redes Neuronales Artificiales y Algoritmos Bioinspirados</title>
@@ -94,12 +94,12 @@ div.csl-indent {
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-8ea72dc5fed832574809a9c94082fbbb.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-01c78b5cd655e4cd89133cf59d535862.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-474c6d7e63be50eb6972897072b39b27.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-f3c2ea88cadbcfb37ba28ffa2c97cfc1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-ae2d0dcda2edce4ab590422bb373b64f.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-818b32141788da5f3afc8302f6e847b9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-1851c9bb8f3f4849af8ba858f06152b9.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script src="../../site_libs/quarto-contrib/videojs/video.min.js"></script>
 <link href="../../site_libs/quarto-contrib/videojs/video-js.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -131,10 +131,7 @@ div.csl-indent {
 }</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
 
-
-
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
-
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -222,10 +219,10 @@ window.Quarto = {
       <div>
       <div class="quarto-title-meta-heading">Authors</div>
       <div class="quarto-title-meta-contents">
+               <p>Tomás Rodríguez Taborda </p>
                <p>Julián Castaño Pineda </p>
                <p>Luis Andrés Altamar Romero </p>
                <p>Catalina Restrepo Salgado </p>
-               <p>Tomás Rodríguez Taborda </p>
             </div>
     </div>
       
@@ -277,6 +274,18 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#contribuciones-individuales" id="toc-contribuciones-individuales" class="nav-link" data-scroll-target="#contribuciones-individuales"><span class="header-section-number">3.1</span> Contribuciones individuales</a></li>
   </ul></li>
+  <li><a href="#correcciones-implementadas-sobre-la-primera-versión-del-informe" id="toc-correcciones-implementadas-sobre-la-primera-versión-del-informe" class="nav-link" data-scroll-target="#correcciones-implementadas-sobre-la-primera-versión-del-informe"><span class="header-section-number">4</span> Correcciones implementadas sobre la primera versión del informe</a>
+  <ul class="collapse">
+  <li><a href="#modelado-y-evaluación-de-desempeño" id="toc-modelado-y-evaluación-de-desempeño" class="nav-link" data-scroll-target="#modelado-y-evaluación-de-desempeño"><span class="header-section-number">4.1</span> Modelado y evaluación de desempeño</a>
+  <ul class="collapse">
+  <li><a href="#balanceo-de-clases-1" id="toc-balanceo-de-clases-1" class="nav-link" data-scroll-target="#balanceo-de-clases-1"><span class="header-section-number">4.1.1</span> Balanceo de clases:</a></li>
+  <li><a href="#uso-exclusivo-de-variables-no-prospectivas" id="toc-uso-exclusivo-de-variables-no-prospectivas" class="nav-link" data-scroll-target="#uso-exclusivo-de-variables-no-prospectivas"><span class="header-section-number">4.1.2</span> Uso exclusivo de variables no prospectivas</a></li>
+  <li><a href="#evalución-y-otros-ajustes" id="toc-evalución-y-otros-ajustes" class="nav-link" data-scroll-target="#evalución-y-otros-ajustes"><span class="header-section-number">4.1.3</span> Evalución y otros ajustes</a></li>
+  </ul></li>
+  <li><a href="#balanceo-de-clases-en-el-entrenamiento" id="toc-balanceo-de-clases-en-el-entrenamiento" class="nav-link" data-scroll-target="#balanceo-de-clases-en-el-entrenamiento"><span class="header-section-number">4.2</span> Balanceo de clases en el entrenamiento</a></li>
+  <li><a href="#aplicación-web-1" id="toc-aplicación-web-1" class="nav-link" data-scroll-target="#aplicación-web-1"><span class="header-section-number">4.3</span> Aplicación web</a></li>
+  <li><a href="#presentación-y-material-complementario" id="toc-presentación-y-material-complementario" class="nav-link" data-scroll-target="#presentación-y-material-complementario"><span class="header-section-number">4.4</span> Presentación y material complementario</a></li>
+  </ul></li>
   </ul>
 </nav>
 </nav>
@@ -326,7 +335,7 @@ window.Quarto = {
 <p>En la Tabla 1 que se muestra a continuación puede verse la estructura de las variables del conjunto de datos así como del porcentaje del valores nulos <em>NA</em> presentes en cada variable.</p>
 <p><strong>Tabla 1.</strong></p>
 <p><em>Primer análisis exploratorio del conjunto de datos.</em></p>
-<div id="250964cd" class="cell" data-execution_count="2">
+<div id="47166eb3" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -911,7 +920,7 @@ window.Quarto = {
 </ul>
 <p><strong>Figura 2.</strong></p>
 <p><em>Análisis completo del conjunto de datos.</em></p>
-<div id="821ca2d2" class="cell" data-execution_count="3">
+<div id="dbebe0d6" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.core.display <span class="im">import</span> HTML</span>
@@ -24284,12 +24293,57 @@ Utiliza <strong>Softmax</strong> como función de activación, lo que convierte 
 </section>
 <section id="video-publicitario" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> Video publicitario</h1>
-<p>De manera adicional a los resultados anteriormente obtenidos, se presenta el siguiente recurso audiovisual como video publicitario para la aplicación web resultante del presente trabajo, mostrando el tipo de problemas que puede ayudar a resolver e invitando a su descubrimiento y utilización.</p>
-<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/GSx1EJdQpBA" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<p>De manera adicional a los resultados anteriormente obtenidos, se presentan los siguientes recursos audiovisuales como material complementario al desarrollo del presente ejercicio mostrando la forma en que la herramienta web puede ser utilizada y los diferentes contextos en los que su uso puede resultar beneficioso para las entidades financieras y las personas naturales:</p>
+<ul>
+<li>Lista de reproducción de los contenidos complementarios: <ins><a href="https://www.youtube.com/playlist?list=PL6M0kvPyv0EbZ4FTTQHGzsTv5Yri6RmOQ">Redes Neuronales y Algoritmos Bioinspirados | CrediMetric</a></ins></li>
+</ul>
 <section id="contribuciones-individuales" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="contribuciones-individuales"><span class="header-section-number">3.1</span> Contribuciones individuales</h2>
 <p>Las contribuciones realizadas por cada uno de los integrantes del equipo en el desarrollo de los ejercicios correspondientes a <strong>Modelos de riesgo de crédito con Redes Neuronales Artificiales</strong> se muestran en el siguiente video.</p>
 <div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/3H1xWTNLn0g" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+</section>
+</section>
+<section id="correcciones-implementadas-sobre-la-primera-versión-del-informe" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Correcciones implementadas sobre la primera versión del informe</h1>
+<p>Como ha sido posible observar, el presente informe contiene una serie de diferencias con respecto a la primera versión que se publicó con anterioridad, esto debido al conjunto de correcciones que fueron propuestas después de la evaluación del trabajo realizado. A continuación se da a conocer una visión general de los cambios que fueron desarrollados de manera específica, de manera que puedan ser comparados más fácilmente respecto a su primera implementación y pueda verse más claramente la mejora alcanzada en cada caso.</p>
+<section id="modelado-y-evaluación-de-desempeño" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="modelado-y-evaluación-de-desempeño"><span class="header-section-number">4.1</span> Modelado y evaluación de desempeño</h2>
+<p>Con el objetivo de abordar las correcciones identificadas en relación con el desempeño del modelo de redes neuronales artificiales en la clasificación de categorías, especialmente la confusión entre las clases <strong>Late</strong> y <strong>Current</strong>, así como la baja representación de <strong>In Progress</strong>, se implementaron las siguientes mejoras en el procesamiento de datos, el balanceo de clases y la calibración del modelo:</p>
+<section id="balanceo-de-clases-1" class="level3" data-number="4.1.1">
+<h3 data-number="4.1.1" class="anchored" data-anchor-id="balanceo-de-clases-1"><span class="header-section-number">4.1.1</span> Balanceo de clases:</h3>
+<p>Considerando el desbalance de los datos y la predominancia de las clases <strong>Current</strong> Y <strong>Fully paid</strong>, se implementó una estrategia combinada de submuestreo y sobremuestreo para balancear la cantidad de muestras en el conjunto de datos de entrenamiento (como se especificará más adelante). Por medio de esta estrategia, se logró que el modelo distinguiera mejor los casos de <strong>Late</strong>, aunque la mejora en ¨<em>recall</em> y <em>f1-score</em> para esta categoría fue limitada debido a la naturaleza de las variables disponibles.</p>
+</section>
+<section id="uso-exclusivo-de-variables-no-prospectivas" class="level3" data-number="4.1.2">
+<h3 data-number="4.1.2" class="anchored" data-anchor-id="uso-exclusivo-de-variables-no-prospectivas"><span class="header-section-number">4.1.2</span> Uso exclusivo de variables no prospectivas</h3>
+<p>Respondiendo a la corrección realizada en este sentido, el modelo de redes neuronales entrenado solamente contó con variables <em>no prospectivas</em>, es decir, aquellas que están disponibles antes de la aprobación del crédito y que no dependen del comportamiento posterior del cliente o de las condiciones finalmente definidas por la entidad financiera. Debido a esto, se presentaron ciertas limitaciones en la capacidad del modelo para identificar correctamente clases como <strong>Late</strong> e <strong>In Progress</strong>, puesto que la mayor cantidad de información relacionada con el retraso en los pagos o el desarrollo de un crédito en progreso solamente se puede encontrar en variables que tendrán sentido una vez se aprueba el crédito.</p>
+<p>Adicionalmente, es necesario considerar que un mismo crédito puede estar en diferentes clases (como por ejemplo <strong>Late</strong>, <strong>Current</strong> e <strong>In progress</strong>) en diferentes momentos del tiempo y esto no puede detectarse sino con la utilziación de variables prospectivas, por lo que conseguir una mejor predicción para estas clases sigue siendo un reto que debe ser abordado con estrategias diferentes a las planteadas en el presente ejercicio.</p>
+</section>
+<section id="evalución-y-otros-ajustes" class="level3" data-number="4.1.3">
+<h3 data-number="4.1.3" class="anchored" data-anchor-id="evalución-y-otros-ajustes"><span class="header-section-number">4.1.3</span> Evalución y otros ajustes</h3>
+<p>En concordancia con las estrategias mencionadas anteriormente, también se hizo un proceso más exhaustivo de ingeniería de características, seleccionando por medio de un <strong>árbol de decisión</strong> aquellas variables no prospectivas que representaban una mayor importancia en el proceso de entrenamiento del modelo. Asimismo, se probaron varias configuraciones de pesos para las categorías analizadas en el problema de clasificación, esperando obtener la mejor representación posible de las clases minoritarias; de esta manera se redujo parcialmente la confusión entre <strong>Late</strong> y <strong>Current</strong> dentro de las limitaciones ocasionadas por las variables no prospectivas.</p>
+</section>
+</section>
+<section id="balanceo-de-clases-en-el-entrenamiento" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="balanceo-de-clases-en-el-entrenamiento"><span class="header-section-number">4.2</span> Balanceo de clases en el entrenamiento</h2>
+<p>Teniendo en cuenta lo dicho anteriormente, se realizó una nueva estrategia de balanceo de clases en el entrenamiento del modelo de redes neuronales, considerando que en el conjunto de datos original, las clases <strong>Current</strong> y <strong>Fully paid</strong> tenían un número de registros considerablemente mayor en comparación con las clases <strong>Charged off</strong>, <strong>Late</strong> e <strong>In progress</strong>. En este sentido, es importante mencionar que la estrategia de balanceo utilizada implementó una combinación de submuestreo aleatorio <em>RandomUnderSampler</em> y sobremuestreo con <em>SMOTE</em>. A continuación se describe con mayor detalle el enfoque de balanceo utilizado:</p>
+<ol type="1">
+<li><p><strong>Submuestreo aleatorio:</strong> Esta estrategia ayuda a reducir la cantidad de muestras de las clases mayoritarias para evitar que dominen el entrenamiento del modelo, ayudando a prevenir el sesgo del modelo hacia las clases <strong>Current</strong> y <strong>Fully paid</strong>. Sin embargo, se procuró no eliminar una cantidad sustancial de datos, pues podría ocasionar el efecto contrario y perder información importante para la predicción de dichas categorías.</p></li>
+<li><p><strong>Sobremuestreo con SMOTE:</strong> Por medio de este proceso se generaron nuevas muestras sintéticas para las clases minoritarias, en vez de duplicar registros existentes en el conjunto de datos original. Gracias a esto, el modelo pudo aprender patrones más diversos en las clases <strong>Charged off</strong>, <strong>Late</strong> e <strong>In progress</strong>, ayudando a reducir el riesgo de sobreajuste en el modelo.</p></li>
+</ol>
+<p>Sin embargo, es posible notar que no se buscó utilizar un enfoque que balanceara perfectamente el conjunto de datos, haciendo que todas las clases tuviesen el mismo número de muestras en el entrenamiento del modelo de redes neuronales. Esto sucedió debido a que se identificaron varias dificultades a la hora de entrenar un modelo que cumpliera con dicha característica, entre las cuales se encuentran las siguientes:</p>
+<ul>
+<li><p>El submuestreo llegó a eliminar una gran cantidad de información de las clases mayoritarias, de manera que el modelo - posiblemente - perdió información importante para realizar predicciones correctas en estas clases y no mejoró en su desempeño global, que era lo que se esperaba.</p></li>
+<li><p>Cuando se siguió una estrategia de sobremuestreo para equiparar la cantidad de registros en las clases minoritarias con las mayoritarias, posiblemente los datos (artificiales o duplicados) que se generaron no representaron de manera realisra la distribución real de estas clases, generando un sobreajuste en el modelo e impidiendo una correcta generalización en los datos de validación y prueba.</p></li>
+</ul>
+<p>Finalmente, se llegó a la conclusión de que el enfoque de balanceo de clases utilizado fue el más conveniente de acuerdo con la naturaleza del conjunto de datos analizado, mejorando los resultados que se habían obtenido con anterioridad y utilizando solamente las variables <strong>no prospectivas</strong>, según se mencionó en el ítem anterior.</p>
+</section>
+<section id="aplicación-web-1" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="aplicación-web-1"><span class="header-section-number">4.3</span> Aplicación web</h2>
+<p>De acuerdo con las correcciones sugeridas, se verificó que la herramienta web <ins><a href="https://front-credit-risk.onrender.com/">CrediMetric</a></ins> implementara correctamente el modelo de redes neuronales desarrollado y corregido en el presente ejercicio, brindando predicciones de acuerdo a la información proporcionada y manejando adecuadamente los errores que pudieran encontrarse en el flujo de ejecución de la herramienta.</p>
+</section>
+<section id="presentación-y-material-complementario" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="presentación-y-material-complementario"><span class="header-section-number">4.4</span> Presentación y material complementario</h2>
+<p>Para finalizar, se realizó un énfasis especial en la generación de material complementario que fuera pertinente para comprender de una mejor manera la utilización de los productos obtenidos durante la realización del presente trabajo (es decir, el modelo de redes neuronales artificiales y el sitio web). Por lo tanto, en concordancia con la sugerencia presentada, se grabó y publicó un video tutorial de la aplicación web <em>CrediMetric</em> el cual puede encontrarse en la lista de reproducción mencionada en una sección anterior de este reporte, con el objetivo de brindar un mayor entendimiento con respecto a la utilización de dicha herramienta y los posibles casos de uso en que puede ser aplicada.</p>
 
 
 
@@ -24969,10 +25023,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co">          equationNumbers: { autoNumber: "AMS" }</span></span>
 <span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co">  </span></span>
 <span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co">  - name: "Julián Castaño Pineda"</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="co">  - name: "Luis Andrés Altamar Romero"</span></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="co">  - name: "Catalina Restrepo Salgado"</span></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="co">  - name: "Tomás Rodríguez Taborda"</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co">  - name: "Tomás Rodríguez Taborda"</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="co">  - name: "Julián Castaño Pineda"</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="co">  - name: "Luis Andrés Altamar Romero"</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="co">  - name: "Catalina Restrepo Salgado"</span></span>
 <span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "2025-01-23"</span></span>
 <span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span><span class="co"> [redes neuronales artificiales, desarrollo web, python]</span></span>
 <span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="an">image:</span><span class="co"> "image.jpg"</span></span>
@@ -25658,15 +25712,61 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb3-708"><a href="#cb3-708" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-709"><a href="#cb3-709" aria-hidden="true" tabindex="-1"></a><span class="fu"># Video publicitario</span></span>
 <span id="cb3-710"><a href="#cb3-710" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-711"><a href="#cb3-711" aria-hidden="true" tabindex="-1"></a>De manera adicional a los resultados anteriormente obtenidos, se presenta el siguiente recurso audiovisual como video publicitario para la aplicación web resultante del presente trabajo, mostrando el tipo de problemas que puede ayudar a resolver e invitando a su descubrimiento y utilización.</span>
+<span id="cb3-711"><a href="#cb3-711" aria-hidden="true" tabindex="-1"></a>De manera adicional a los resultados anteriormente obtenidos, se presentan los siguientes recursos audiovisuales como material complementario al desarrollo del presente ejercicio mostrando la forma en que la herramienta web puede ser utilizada y los diferentes contextos en los que su uso puede resultar beneficioso para las entidades financieras y las personas naturales:</span>
 <span id="cb3-712"><a href="#cb3-712" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-713"><a href="#cb3-713" aria-hidden="true" tabindex="-1"></a>{{&lt; video https://youtu.be/GSx1EJdQpBA &gt;}}</span>
+<span id="cb3-713"><a href="#cb3-713" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Lista de reproducción de los contenidos complementarios: &lt;ins&gt;<span class="co">[</span><span class="ot">Redes Neuronales y Algoritmos Bioinspirados \| CrediMetric</span><span class="co">](https://www.youtube.com/playlist?list=PL6M0kvPyv0EbZ4FTTQHGzsTv5Yri6RmOQ)</span>&lt;/ins&gt;</span>
 <span id="cb3-714"><a href="#cb3-714" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-715"><a href="#cb3-715" aria-hidden="true" tabindex="-1"></a><span class="fu">## Contribuciones individuales</span></span>
 <span id="cb3-716"><a href="#cb3-716" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-717"><a href="#cb3-717" aria-hidden="true" tabindex="-1"></a>Las contribuciones realizadas por cada uno de los integrantes del equipo en el desarrollo de los ejercicios correspondientes a **Modelos de riesgo de crédito con Redes Neuronales Artificiales** se muestran en el siguiente video.</span>
 <span id="cb3-718"><a href="#cb3-718" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-719"><a href="#cb3-719" aria-hidden="true" tabindex="-1"></a>{{&lt; video https://youtu.be/3H1xWTNLn0g &gt;}}</span>
+<span id="cb3-720"><a href="#cb3-720" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-721"><a href="#cb3-721" aria-hidden="true" tabindex="-1"></a><span class="fu"># Correcciones implementadas sobre la primera versión del informe</span></span>
+<span id="cb3-722"><a href="#cb3-722" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-723"><a href="#cb3-723" aria-hidden="true" tabindex="-1"></a>Como ha sido posible observar, el presente informe contiene una serie de diferencias con respecto a la primera versión que se publicó con anterioridad, esto debido al conjunto de correcciones que fueron propuestas después de la evaluación del trabajo realizado. A continuación se da a conocer una visión general de los cambios que fueron desarrollados de manera específica, de manera que puedan ser comparados más fácilmente respecto a su primera implementación y pueda verse más claramente la mejora alcanzada en cada caso.</span>
+<span id="cb3-724"><a href="#cb3-724" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-725"><a href="#cb3-725" aria-hidden="true" tabindex="-1"></a><span class="fu">## Modelado y evaluación de desempeño</span></span>
+<span id="cb3-726"><a href="#cb3-726" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-727"><a href="#cb3-727" aria-hidden="true" tabindex="-1"></a>Con el objetivo de abordar las correcciones identificadas en relación con el desempeño del modelo de redes neuronales artificiales en la clasificación de categorías, especialmente la confusión entre las clases **Late** y **Current**, así como la baja representación de **In Progress**, se implementaron las siguientes mejoras en el procesamiento de datos, el balanceo de clases y la calibración del modelo:</span>
+<span id="cb3-728"><a href="#cb3-728" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-729"><a href="#cb3-729" aria-hidden="true" tabindex="-1"></a><span class="fu">### Balanceo de clases: </span></span>
+<span id="cb3-730"><a href="#cb3-730" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-731"><a href="#cb3-731" aria-hidden="true" tabindex="-1"></a>Considerando el desbalance de los datos y la predominancia de las clases **Current** Y **Fully paid**, se implementó una estrategia combinada de submuestreo y sobremuestreo para balancear la cantidad de muestras en el conjunto de datos de entrenamiento (como se especificará más adelante). Por medio de esta estrategia, se logró que el modelo distinguiera mejor los casos de **Late**, aunque la mejora en ¨*recall* y *f1-score* para esta categoría fue limitada debido a la naturaleza de las variables disponibles.</span>
+<span id="cb3-732"><a href="#cb3-732" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-733"><a href="#cb3-733" aria-hidden="true" tabindex="-1"></a><span class="fu">### Uso exclusivo de variables no prospectivas</span></span>
+<span id="cb3-734"><a href="#cb3-734" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-735"><a href="#cb3-735" aria-hidden="true" tabindex="-1"></a>Respondiendo a la corrección realizada en este sentido, el modelo de redes neuronales entrenado solamente contó con variables *no prospectivas*, es decir, aquellas que están disponibles antes de la aprobación del crédito y que no dependen del comportamiento posterior del cliente o de las condiciones finalmente definidas por la entidad financiera. Debido a esto, se presentaron ciertas limitaciones en la capacidad del modelo para identificar correctamente clases como **Late** e **In Progress**, puesto que la mayor cantidad de información relacionada con el retraso en los pagos o el desarrollo de un crédito en progreso solamente se puede encontrar en variables que tendrán sentido una vez se aprueba el crédito. </span>
+<span id="cb3-736"><a href="#cb3-736" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-737"><a href="#cb3-737" aria-hidden="true" tabindex="-1"></a>Adicionalmente, es necesario considerar que un mismo crédito puede estar en diferentes clases (como por ejemplo **Late**, **Current** e **In progress**) en diferentes momentos del tiempo y esto no puede detectarse sino con la utilziación de variables prospectivas, por lo que conseguir una mejor predicción para estas clases sigue siendo un reto que debe ser abordado con estrategias diferentes a las planteadas en el presente ejercicio.</span>
+<span id="cb3-738"><a href="#cb3-738" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-739"><a href="#cb3-739" aria-hidden="true" tabindex="-1"></a><span class="fu">### Evalución y otros ajustes</span></span>
+<span id="cb3-740"><a href="#cb3-740" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-741"><a href="#cb3-741" aria-hidden="true" tabindex="-1"></a>En concordancia con las estrategias mencionadas anteriormente, también se hizo un proceso más exhaustivo de ingeniería de características, seleccionando por medio de un **árbol de decisión** aquellas variables no prospectivas que representaban una mayor importancia en el proceso de entrenamiento del modelo. Asimismo, se probaron varias configuraciones de pesos para las categorías analizadas en el problema de clasificación, esperando obtener la mejor representación posible de las clases minoritarias; de esta manera se redujo parcialmente la confusión entre **Late** y **Current** dentro de las limitaciones ocasionadas por las variables no prospectivas.</span>
+<span id="cb3-742"><a href="#cb3-742" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-743"><a href="#cb3-743" aria-hidden="true" tabindex="-1"></a><span class="fu">## Balanceo de clases en el entrenamiento</span></span>
+<span id="cb3-744"><a href="#cb3-744" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-745"><a href="#cb3-745" aria-hidden="true" tabindex="-1"></a>Teniendo en cuenta lo dicho anteriormente, se realizó una nueva estrategia de balanceo de clases en el entrenamiento del modelo de redes neuronales, considerando que en el conjunto de datos original, las clases **Current** y **Fully paid** tenían un número de registros considerablemente mayor en comparación con las clases **Charged off**, **Late** e **In progress**. En este sentido, es importante mencionar que la estrategia de balanceo utilizada implementó una combinación de submuestreo aleatorio *RandomUnderSampler* y sobremuestreo con *SMOTE*. A continuación se describe con mayor detalle el enfoque de balanceo utilizado:</span>
+<span id="cb3-746"><a href="#cb3-746" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-747"><a href="#cb3-747" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>**Submuestreo aleatorio:** Esta estrategia ayuda a reducir la cantidad de muestras de las clases mayoritarias para evitar que dominen el entrenamiento del modelo, ayudando a prevenir el sesgo del modelo hacia las clases **Current** y **Fully paid**. Sin embargo, se procuró no eliminar una cantidad sustancial de datos, pues podría ocasionar el efecto contrario y perder información importante para la predicción de dichas categorías.</span>
+<span id="cb3-748"><a href="#cb3-748" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-749"><a href="#cb3-749" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>**Sobremuestreo con SMOTE:** Por medio de este proceso se generaron nuevas muestras sintéticas para las clases minoritarias, en vez de duplicar registros existentes en el conjunto de datos original. Gracias a esto, el modelo pudo aprender patrones más diversos en las clases **Charged off**, **Late** e **In progress**, ayudando a reducir el riesgo de sobreajuste en el modelo.</span>
+<span id="cb3-750"><a href="#cb3-750" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-751"><a href="#cb3-751" aria-hidden="true" tabindex="-1"></a>Sin embargo, es posible notar que no se buscó utilizar un enfoque que balanceara perfectamente el conjunto de datos, haciendo que todas las clases tuviesen el mismo número de muestras en el entrenamiento del modelo de redes neuronales. Esto sucedió debido a que se identificaron varias dificultades a la hora de entrenar un modelo que cumpliera con dicha característica, entre las cuales se encuentran las siguientes:</span>
+<span id="cb3-752"><a href="#cb3-752" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-753"><a href="#cb3-753" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>El submuestreo llegó a eliminar una gran cantidad de información de las clases mayoritarias, de manera que el modelo - posiblemente - perdió información importante para realizar predicciones correctas en estas clases y no mejoró en su desempeño global, que era lo que se esperaba.</span>
+<span id="cb3-754"><a href="#cb3-754" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-755"><a href="#cb3-755" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Cuando se siguió una estrategia de sobremuestreo para equiparar la cantidad de registros en las clases minoritarias con las mayoritarias, posiblemente los datos (artificiales o duplicados) que se generaron no representaron de manera realisra la distribución real de estas clases, generando un sobreajuste en el modelo e impidiendo una correcta generalización en los datos de validación y prueba.</span>
+<span id="cb3-756"><a href="#cb3-756" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-757"><a href="#cb3-757" aria-hidden="true" tabindex="-1"></a>Finalmente, se llegó a la conclusión de que el enfoque de balanceo de clases utilizado fue el más conveniente de acuerdo con la naturaleza del conjunto de datos analizado, mejorando los resultados que se habían obtenido con anterioridad y utilizando solamente las variables **no prospectivas**, según se mencionó en el ítem anterior.</span>
+<span id="cb3-758"><a href="#cb3-758" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-759"><a href="#cb3-759" aria-hidden="true" tabindex="-1"></a><span class="fu">## Aplicación web</span></span>
+<span id="cb3-760"><a href="#cb3-760" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-761"><a href="#cb3-761" aria-hidden="true" tabindex="-1"></a>De acuerdo con las correcciones sugeridas, se verificó que la herramienta web &lt;ins&gt;<span class="co">[</span><span class="ot">CrediMetric</span><span class="co">](https://front-credit-risk.onrender.com/)</span>&lt;/ins&gt; implementara correctamente el modelo de redes neuronales desarrollado y corregido en el presente ejercicio, brindando predicciones de acuerdo a la información proporcionada y manejando adecuadamente los errores que pudieran encontrarse en el flujo de ejecución de la herramienta. </span>
+<span id="cb3-762"><a href="#cb3-762" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-763"><a href="#cb3-763" aria-hidden="true" tabindex="-1"></a><span class="fu">## Presentación y material complementario</span></span>
+<span id="cb3-764"><a href="#cb3-764" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-765"><a href="#cb3-765" aria-hidden="true" tabindex="-1"></a>Para finalizar, se realizó un énfasis especial en la generación de material complementario que fuera pertinente para comprender de una mejor manera la utilización de los productos obtenidos durante la realización del presente trabajo (es decir, el modelo de redes neuronales artificiales y el sitio web). Por lo tanto, en concordancia con la sugerencia presentada, se grabó y publicó un video tutorial de la aplicación web *CrediMetric* el cual puede encontrarse en la lista de reproducción mencionada en una sección anterior de este reporte, con el objetivo de brindar un mayor entendimiento con respecto a la utilización de dicha herramienta y los posibles casos de uso en que puede ser aplicada. </span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

@@ -15,10 +15,10 @@ format:
           equationNumbers: { autoNumber: "AMS" }
   
 author:
+  - name: "Tomás Rodríguez Taborda"
   - name: "Julián Castaño Pineda"
   - name: "Luis Andrés Altamar Romero"
   - name: "Catalina Restrepo Salgado"
-  - name: "Tomás Rodríguez Taborda"
 date: "2025-01-23"
 categories: [redes neuronales artificiales, desarrollo web, python]
 image: "image.jpg"
@@ -705,12 +705,58 @@ Esta aplicación web cuenta con una funcionalidad que permitirá a las entidades
 
 # Video publicitario
 
-De manera adicional a los resultados anteriormente obtenidos, se presenta el siguiente recurso audiovisual como video publicitario para la aplicación web resultante del presente trabajo, mostrando el tipo de problemas que puede ayudar a resolver e invitando a su descubrimiento y utilización.
+De manera adicional a los resultados anteriormente obtenidos, se presentan los siguientes recursos audiovisuales como material complementario al desarrollo del presente ejercicio mostrando la forma en que la herramienta web puede ser utilizada y los diferentes contextos en los que su uso puede resultar beneficioso para las entidades financieras y las personas naturales:
 
-{{< video https://youtu.be/GSx1EJdQpBA >}}
+- Lista de reproducción de los contenidos complementarios: <ins>[Redes Neuronales y Algoritmos Bioinspirados \| CrediMetric](https://www.youtube.com/playlist?list=PL6M0kvPyv0EbZ4FTTQHGzsTv5Yri6RmOQ)</ins>
 
 ## Contribuciones individuales
 
 Las contribuciones realizadas por cada uno de los integrantes del equipo en el desarrollo de los ejercicios correspondientes a **Modelos de riesgo de crédito con Redes Neuronales Artificiales** se muestran en el siguiente video.
 
 {{< video https://youtu.be/3H1xWTNLn0g >}}
+
+# Correcciones implementadas sobre la primera versión del informe
+
+Como ha sido posible observar, el presente informe contiene una serie de diferencias con respecto a la primera versión que se publicó con anterioridad, esto debido al conjunto de correcciones que fueron propuestas después de la evaluación del trabajo realizado. A continuación se da a conocer una visión general de los cambios que fueron desarrollados de manera específica, de manera que puedan ser comparados más fácilmente respecto a su primera implementación y pueda verse más claramente la mejora alcanzada en cada caso.
+
+## Modelado y evaluación de desempeño
+
+Con el objetivo de abordar las correcciones identificadas en relación con el desempeño del modelo de redes neuronales artificiales en la clasificación de categorías, especialmente la confusión entre las clases **Late** y **Current**, así como la baja representación de **In Progress**, se implementaron las siguientes mejoras en el procesamiento de datos, el balanceo de clases y la calibración del modelo:
+
+### Balanceo de clases: 
+
+Considerando el desbalance de los datos y la predominancia de las clases **Current** Y **Fully paid**, se implementó una estrategia combinada de submuestreo y sobremuestreo para balancear la cantidad de muestras en el conjunto de datos de entrenamiento (como se especificará más adelante). Por medio de esta estrategia, se logró que el modelo distinguiera mejor los casos de **Late**, aunque la mejora en ¨*recall* y *f1-score* para esta categoría fue limitada debido a la naturaleza de las variables disponibles.
+
+### Uso exclusivo de variables no prospectivas
+
+Respondiendo a la corrección realizada en este sentido, el modelo de redes neuronales entrenado solamente contó con variables *no prospectivas*, es decir, aquellas que están disponibles antes de la aprobación del crédito y que no dependen del comportamiento posterior del cliente o de las condiciones finalmente definidas por la entidad financiera. Debido a esto, se presentaron ciertas limitaciones en la capacidad del modelo para identificar correctamente clases como **Late** e **In Progress**, puesto que la mayor cantidad de información relacionada con el retraso en los pagos o el desarrollo de un crédito en progreso solamente se puede encontrar en variables que tendrán sentido una vez se aprueba el crédito. 
+
+Adicionalmente, es necesario considerar que un mismo crédito puede estar en diferentes clases (como por ejemplo **Late**, **Current** e **In progress**) en diferentes momentos del tiempo y esto no puede detectarse sino con la utilziación de variables prospectivas, por lo que conseguir una mejor predicción para estas clases sigue siendo un reto que debe ser abordado con estrategias diferentes a las planteadas en el presente ejercicio.
+
+### Evalución y otros ajustes
+
+En concordancia con las estrategias mencionadas anteriormente, también se hizo un proceso más exhaustivo de ingeniería de características, seleccionando por medio de un **árbol de decisión** aquellas variables no prospectivas que representaban una mayor importancia en el proceso de entrenamiento del modelo. Asimismo, se probaron varias configuraciones de pesos para las categorías analizadas en el problema de clasificación, esperando obtener la mejor representación posible de las clases minoritarias; de esta manera se redujo parcialmente la confusión entre **Late** y **Current** dentro de las limitaciones ocasionadas por las variables no prospectivas.
+
+## Balanceo de clases en el entrenamiento
+
+Teniendo en cuenta lo dicho anteriormente, se realizó una nueva estrategia de balanceo de clases en el entrenamiento del modelo de redes neuronales, considerando que en el conjunto de datos original, las clases **Current** y **Fully paid** tenían un número de registros considerablemente mayor en comparación con las clases **Charged off**, **Late** e **In progress**. En este sentido, es importante mencionar que la estrategia de balanceo utilizada implementó una combinación de submuestreo aleatorio *RandomUnderSampler* y sobremuestreo con *SMOTE*. A continuación se describe con mayor detalle el enfoque de balanceo utilizado:
+
+1.  **Submuestreo aleatorio:** Esta estrategia ayuda a reducir la cantidad de muestras de las clases mayoritarias para evitar que dominen el entrenamiento del modelo, ayudando a prevenir el sesgo del modelo hacia las clases **Current** y **Fully paid**. Sin embargo, se procuró no eliminar una cantidad sustancial de datos, pues podría ocasionar el efecto contrario y perder información importante para la predicción de dichas categorías.
+
+2.  **Sobremuestreo con SMOTE:** Por medio de este proceso se generaron nuevas muestras sintéticas para las clases minoritarias, en vez de duplicar registros existentes en el conjunto de datos original. Gracias a esto, el modelo pudo aprender patrones más diversos en las clases **Charged off**, **Late** e **In progress**, ayudando a reducir el riesgo de sobreajuste en el modelo.
+
+Sin embargo, es posible notar que no se buscó utilizar un enfoque que balanceara perfectamente el conjunto de datos, haciendo que todas las clases tuviesen el mismo número de muestras en el entrenamiento del modelo de redes neuronales. Esto sucedió debido a que se identificaron varias dificultades a la hora de entrenar un modelo que cumpliera con dicha característica, entre las cuales se encuentran las siguientes:
+
+-   El submuestreo llegó a eliminar una gran cantidad de información de las clases mayoritarias, de manera que el modelo - posiblemente - perdió información importante para realizar predicciones correctas en estas clases y no mejoró en su desempeño global, que era lo que se esperaba.
+
+-   Cuando se siguió una estrategia de sobremuestreo para equiparar la cantidad de registros en las clases minoritarias con las mayoritarias, posiblemente los datos (artificiales o duplicados) que se generaron no representaron de manera realisra la distribución real de estas clases, generando un sobreajuste en el modelo e impidiendo una correcta generalización en los datos de validación y prueba.
+
+Finalmente, se llegó a la conclusión de que el enfoque de balanceo de clases utilizado fue el más conveniente de acuerdo con la naturaleza del conjunto de datos analizado, mejorando los resultados que se habían obtenido con anterioridad y utilizando solamente las variables **no prospectivas**, según se mencionó en el ítem anterior.
+
+## Aplicación web
+
+De acuerdo con las correcciones sugeridas, se verificó que la herramienta web <ins>[CrediMetric](https://front-credit-risk.onrender.com/)</ins> implementara correctamente el modelo de redes neuronales desarrollado y corregido en el presente ejercicio, brindando predicciones de acuerdo a la información proporcionada y manejando adecuadamente los errores que pudieran encontrarse en el flujo de ejecución de la herramienta. 
+
+## Presentación y material complementario
+
+Para finalizar, se realizó un énfasis especial en la generación de material complementario que fuera pertinente para comprender de una mejor manera la utilización de los productos obtenidos durante la realización del presente trabajo (es decir, el modelo de redes neuronales artificiales y el sitio web). Por lo tanto, en concordancia con la sugerencia presentada, se grabó y publicó un video tutorial de la aplicación web *CrediMetric* el cual puede encontrarse en la lista de reproducción mencionada en una sección anterior de este reporte, con el objetivo de brindar un mayor entendimiento con respecto a la utilización de dicha herramienta y los posibles casos de uso en que puede ser aplicada. 
