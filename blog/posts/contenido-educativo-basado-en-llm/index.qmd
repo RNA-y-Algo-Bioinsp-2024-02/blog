@@ -153,7 +153,12 @@ Posteriormente, a través de la utilización del contenido generado por el agent
 
 -   **PDF:** en primer lugar se genera un documento en formato PDF con todo el material obtenido por el agente de manera organizada, separando la teoría, los ejercicios, los consejos, el material extra como referencias y similares, etc. En este sentido, se puede ver que el resultado es un documento extenso, motivo por el cual se introduce el segundo material entregable: para mejorar el entendimiento de la respuesta dada por parte de los docentes y sus estudiantes.
 
--   **Flashcards:** utilizando el material correspondiente de las preguntas de evaluación, se anexan como material complementario una serie de *flash cards* que permiten ver de manera más clara las preguntas formuladas y su respectiva respuesta.
+-   **Flashcards:** utilizando el material correspondiente de las preguntas de evaluación, se anexan como material complementario una serie de *flash cards* que permiten ver de manera más clara las preguntas formuladas y su respectiva respuesta, como se ilustra en el ejemplo proporcionado por la Figura 6.
+
+**Figura 6.**
+
+*Ejemplo de Flashcard generada como material pedagógico complementario.*
+![Ejemplo de Flashcard generada como material pedagógico complementario.](images/flashcard.png) Elaboración propia.
 
 ## Métricas del modelo
 
@@ -329,6 +334,10 @@ Sumado a lo anterior, se considera importante que los estudiantes sepan cuándo 
 
 Como se ha venido realizando a lo largo del curso, el presente proyecto también contará con un video demostrativo que brindará mayor claridad con respecto a su uso, resultados e interpretación de estos últimos. Dicha demostración podrá visualizarse a continuación:
 
+// Link de video
+
 ### Contribuciones individuales
 
-Las contribuciones realizadas por cada uno de los integrantes del equipo en el desarrollo de los ejercicios correspondientes al presente trabajo se muestran en el siguiente video.
+Las contribuciones realizadas por cada uno de los integrantes del equipo en el desarrollo del presente trabajo se muestran en el siguiente video.
+
+// Link de video

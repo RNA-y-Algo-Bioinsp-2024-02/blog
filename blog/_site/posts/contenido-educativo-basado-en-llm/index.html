@@ -385,8 +385,10 @@ window.Quarto = {
 <p>Posteriormente, a través de la utilización del contenido generado por el agente, se obtiene el material didáctico y se lleva al formato de los siguientes archivos con sus correspondientes características:</p>
 <ul>
 <li><p><strong>PDF:</strong> en primer lugar se genera un documento en formato PDF con todo el material obtenido por el agente de manera organizada, separando la teoría, los ejercicios, los consejos, el material extra como referencias y similares, etc. En este sentido, se puede ver que el resultado es un documento extenso, motivo por el cual se introduce el segundo material entregable: para mejorar el entendimiento de la respuesta dada por parte de los docentes y sus estudiantes.</p></li>
-<li><p><strong>Flashcards:</strong> utilizando el material correspondiente de las preguntas de evaluación, se anexan como material complementario una serie de <em>flash cards</em> que permiten ver de manera más clara las preguntas formuladas y su respectiva respuesta.</p></li>
+<li><p><strong>Flashcards:</strong> utilizando el material correspondiente de las preguntas de evaluación, se anexan como material complementario una serie de <em>flash cards</em> que permiten ver de manera más clara las preguntas formuladas y su respectiva respuesta, como se ilustra en el ejemplo proporcionado por la Figura 6.</p></li>
 </ul>
+<p><strong>Figura 6.</strong></p>
+<p><em>Ejemplo de Flashcard generada como material pedagógico complementario.</em> <img src="images/flashcard.png" class="img-fluid" alt="Ejemplo de Flashcard generada como material pedagógico complementario."> Elaboración propia.</p>
 </section>
 <section id="métricas-del-modelo" class="level2" data-number="7">
 <h2 data-number="7" class="anchored" data-anchor-id="métricas-del-modelo"><span class="header-section-number">7</span> Métricas del modelo</h2>
@@ -625,10 +627,12 @@ window.Quarto = {
 <section id="video-demostrativo" class="level3" data-number="11.1">
 <h3 data-number="11.1" class="anchored" data-anchor-id="video-demostrativo"><span class="header-section-number">11.1</span> Video demostrativo</h3>
 <p>Como se ha venido realizando a lo largo del curso, el presente proyecto también contará con un video demostrativo que brindará mayor claridad con respecto a su uso, resultados e interpretación de estos últimos. Dicha demostración podrá visualizarse a continuación:</p>
+<p>// Link de video</p>
 </section>
 <section id="contribuciones-individuales" class="level3" data-number="11.2">
 <h3 data-number="11.2" class="anchored" data-anchor-id="contribuciones-individuales"><span class="header-section-number">11.2</span> Contribuciones individuales</h3>
-<p>Las contribuciones realizadas por cada uno de los integrantes del equipo en el desarrollo de los ejercicios correspondientes al presente trabajo se muestran en el siguiente video.</p>
+<p>Las contribuciones realizadas por cada uno de los integrantes del equipo en el desarrollo del presente trabajo se muestran en el siguiente video.</p>
+<p>// Link de video</p>
 
 
 
@@ -1428,185 +1432,194 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-153"><a href="#cb1-153" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-154"><a href="#cb1-154" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**PDF:** en primer lugar se genera un documento en formato PDF con todo el material obtenido por el agente de manera organizada, separando la teoría, los ejercicios, los consejos, el material extra como referencias y similares, etc. En este sentido, se puede ver que el resultado es un documento extenso, motivo por el cual se introduce el segundo material entregable: para mejorar el entendimiento de la respuesta dada por parte de los docentes y sus estudiantes.</span>
 <span id="cb1-155"><a href="#cb1-155" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-156"><a href="#cb1-156" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Flashcards:** utilizando el material correspondiente de las preguntas de evaluación, se anexan como material complementario una serie de *flash cards* que permiten ver de manera más clara las preguntas formuladas y su respectiva respuesta.</span>
+<span id="cb1-156"><a href="#cb1-156" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Flashcards:** utilizando el material correspondiente de las preguntas de evaluación, se anexan como material complementario una serie de *flash cards* que permiten ver de manera más clara las preguntas formuladas y su respectiva respuesta, como se ilustra en el ejemplo proporcionado por la Figura 6.</span>
 <span id="cb1-157"><a href="#cb1-157" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-158"><a href="#cb1-158" aria-hidden="true" tabindex="-1"></a><span class="fu">## Métricas del modelo</span></span>
+<span id="cb1-158"><a href="#cb1-158" aria-hidden="true" tabindex="-1"></a>**Figura 6.**</span>
 <span id="cb1-159"><a href="#cb1-159" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-160"><a href="#cb1-160" aria-hidden="true" tabindex="-1"></a>A continuación se describe de manera detallada el desarrollo e interpretación de las métricas para evaluar la pertinencia y calidad de los materiales educativos generados por el agente, de manera que este último termina por convertirse también en un evaluador de su propio trabajo.</span>
-<span id="cb1-161"><a href="#cb1-161" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-162"><a href="#cb1-162" aria-hidden="true" tabindex="-1"></a><span class="fu">### Evaluación por tema</span></span>
-<span id="cb1-163"><a href="#cb1-163" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-164"><a href="#cb1-164" aria-hidden="true" tabindex="-1"></a>Cada tema tiene puntajes individuales para su sección. Se evalúan cuatro aspectos clave.</span>
-<span id="cb1-165"><a href="#cb1-165" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-166"><a href="#cb1-166" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Relevancia:** Medida a través de la cobertura de subtemas en el contenido generado, como puede verse en la Ecuación 1.\</span>
-<span id="cb1-167"><a href="#cb1-167" aria-hidden="true" tabindex="-1"></a>    $$</span>
-<span id="cb1-168"><a href="#cb1-168" aria-hidden="true" tabindex="-1"></a>    \text{Cobertura Subtemas} = \frac{\sum_{i=1}^{N} \mathbb{1}(\text{Subtema}_i \in \text{Contenido})}{N} \tag{1}</span>
-<span id="cb1-169"><a href="#cb1-169" aria-hidden="true" tabindex="-1"></a>    $$</span>
+<span id="cb1-160"><a href="#cb1-160" aria-hidden="true" tabindex="-1"></a>*Ejemplo de Flashcard generada como material pedagógico complementario.*</span>
+<span id="cb1-161"><a href="#cb1-161" aria-hidden="true" tabindex="-1"></a><span class="al">![Ejemplo de Flashcard generada como material pedagógico complementario.](images/flashcard.png)</span> Elaboración propia.</span>
+<span id="cb1-162"><a href="#cb1-162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-163"><a href="#cb1-163" aria-hidden="true" tabindex="-1"></a><span class="fu">## Métricas del modelo</span></span>
+<span id="cb1-164"><a href="#cb1-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-165"><a href="#cb1-165" aria-hidden="true" tabindex="-1"></a>A continuación se describe de manera detallada el desarrollo e interpretación de las métricas para evaluar la pertinencia y calidad de los materiales educativos generados por el agente, de manera que este último termina por convertirse también en un evaluador de su propio trabajo.</span>
+<span id="cb1-166"><a href="#cb1-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-167"><a href="#cb1-167" aria-hidden="true" tabindex="-1"></a><span class="fu">### Evaluación por tema</span></span>
+<span id="cb1-168"><a href="#cb1-168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-169"><a href="#cb1-169" aria-hidden="true" tabindex="-1"></a>Cada tema tiene puntajes individuales para su sección. Se evalúan cuatro aspectos clave.</span>
 <span id="cb1-170"><a href="#cb1-170" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-171"><a href="#cb1-171" aria-hidden="true" tabindex="-1"></a>    donde $N$ es el número total de subtemas y la función indicadora $\mathbb{1}$ devuelve 1 si el subtema está presente y 0 si no.</span>
-<span id="cb1-172"><a href="#cb1-172" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-173"><a href="#cb1-173" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Consistencia:** Evaluada como se observa en la Ecuación 2: mediante la **similitud de coseno** entre las diferentes secciones del tema.\</span>
+<span id="cb1-171"><a href="#cb1-171" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Relevancia:** Medida a través de la cobertura de subtemas en el contenido generado, como puede verse en la Ecuación 1.\</span>
+<span id="cb1-172"><a href="#cb1-172" aria-hidden="true" tabindex="-1"></a>    $$</span>
+<span id="cb1-173"><a href="#cb1-173" aria-hidden="true" tabindex="-1"></a>    \text{Cobertura Subtemas} = \frac{\sum_{i=1}^{N} \mathbb{1}(\text{Subtema}_i \in \text{Contenido})}{N} \tag{1}</span>
 <span id="cb1-174"><a href="#cb1-174" aria-hidden="true" tabindex="-1"></a>    $$</span>
-<span id="cb1-175"><a href="#cb1-175" aria-hidden="true" tabindex="-1"></a>    \text{Consistencia} = \frac{\sum_{i=1}^{N} \sum_{j=i+1}^{N} \text{SimilitudCoseno}(\text{Texto}_i, \text{Texto}_j)}{\frac{N (N-1)}{2}} \tag{2}</span>
-<span id="cb1-176"><a href="#cb1-176" aria-hidden="true" tabindex="-1"></a>    $$</span>
+<span id="cb1-175"><a href="#cb1-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-176"><a href="#cb1-176" aria-hidden="true" tabindex="-1"></a>    donde $N$ es el número total de subtemas y la función indicadora $\mathbb{1}$ devuelve 1 si el subtema está presente y 0 si no.</span>
 <span id="cb1-177"><a href="#cb1-177" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-178"><a href="#cb1-178" aria-hidden="true" tabindex="-1"></a>    donde $N$ es el número total de textos generados y se calcula la similitud de coseno entre cada par de textos.</span>
-<span id="cb1-179"><a href="#cb1-179" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-180"><a href="#cb1-180" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Legibilidad:** Basada en la **longitud promedio de las oraciones**, donde textos más cortos y claros obtienen una mejor puntuación asignada por la Ecuación 3.</span>
+<span id="cb1-178"><a href="#cb1-178" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Consistencia:** Evaluada como se observa en la Ecuación 2: mediante la **similitud de coseno** entre las diferentes secciones del tema.\</span>
+<span id="cb1-179"><a href="#cb1-179" aria-hidden="true" tabindex="-1"></a>    $$</span>
+<span id="cb1-180"><a href="#cb1-180" aria-hidden="true" tabindex="-1"></a>    \text{Consistencia} = \frac{\sum_{i=1}^{N} \sum_{j=i+1}^{N} \text{SimilitudCoseno}(\text{Texto}_i, \text{Texto}_j)}{\frac{N (N-1)}{2}} \tag{2}</span>
 <span id="cb1-181"><a href="#cb1-181" aria-hidden="true" tabindex="-1"></a>    $$</span>
-<span id="cb1-182"><a href="#cb1-182" aria-hidden="true" tabindex="-1"></a>    \text{Legibilidad} = \max \left(0, \min \left(1, \frac{30 - \frac{\text{Total Palabras}}{\text{Total Oraciones}}}{15} \right) \right) \tag{3}</span>
-<span id="cb1-183"><a href="#cb1-183" aria-hidden="true" tabindex="-1"></a>    $$</span>
+<span id="cb1-182"><a href="#cb1-182" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-183"><a href="#cb1-183" aria-hidden="true" tabindex="-1"></a>    donde $N$ es el número total de textos generados y se calcula la similitud de coseno entre cada par de textos.</span>
 <span id="cb1-184"><a href="#cb1-184" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-185"><a href="#cb1-185" aria-hidden="true" tabindex="-1"></a>    Como valores extremos, si las oraciones tienen menos de 15 palabras, la legibilidad es 1.0; si tienen más de 30, es 0.0.</span>
-<span id="cb1-186"><a href="#cb1-186" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-187"><a href="#cb1-187" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Uso de terminología:** Se mide utilizando **TF-IDF** en la Ecuación 4, que identifica la presencia de términos clave del syllabus en el contenido.\</span>
+<span id="cb1-185"><a href="#cb1-185" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Legibilidad:** Basada en la **longitud promedio de las oraciones**, donde textos más cortos y claros obtienen una mejor puntuación asignada por la Ecuación 3.</span>
+<span id="cb1-186"><a href="#cb1-186" aria-hidden="true" tabindex="-1"></a>    $$</span>
+<span id="cb1-187"><a href="#cb1-187" aria-hidden="true" tabindex="-1"></a>    \text{Legibilidad} = \max \left(0, \min \left(1, \frac{30 - \frac{\text{Total Palabras}}{\text{Total Oraciones}}}{15} \right) \right) \tag{3}</span>
 <span id="cb1-188"><a href="#cb1-188" aria-hidden="true" tabindex="-1"></a>    $$</span>
-<span id="cb1-189"><a href="#cb1-189" aria-hidden="true" tabindex="-1"></a>    \text{Terminología} = \min \left(1, \frac{\sum_{i=1}^{M} \mathbb{1}(\text{Término}_i \in \text{Contenido})}{\text{Total de Palabras} / 1000} \right) \tag{4}</span>
-<span id="cb1-190"><a href="#cb1-190" aria-hidden="true" tabindex="-1"></a>    $$</span>
+<span id="cb1-189"><a href="#cb1-189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-190"><a href="#cb1-190" aria-hidden="true" tabindex="-1"></a>    Como valores extremos, si las oraciones tienen menos de 15 palabras, la legibilidad es 1.0; si tienen más de 30, es 0.0.</span>
 <span id="cb1-191"><a href="#cb1-191" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-192"><a href="#cb1-192" aria-hidden="true" tabindex="-1"></a>    donde $M$ es el número total de términos clave y la función $\mathbb{1}$ devuelve 1 si el término está presente.</span>
-<span id="cb1-193"><a href="#cb1-193" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-194"><a href="#cb1-194" aria-hidden="true" tabindex="-1"></a><span class="fu">### Evaluación por tipo de contenido</span></span>
-<span id="cb1-195"><a href="#cb1-195" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-196"><a href="#cb1-196" aria-hidden="true" tabindex="-1"></a>Adicionalmente, se calculan puntuaciones agregadas para cada tipo de material generado (*lecture notes*, *practice problems*, *discussion questions*, *learning objectives*, *suggested resources*).</span>
-<span id="cb1-197"><a href="#cb1-197" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-198"><a href="#cb1-198" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Se obtiene el **promedio de las evaluaciones individuales** en todos los temas para cada tipo de contenido, tal como se define en la Ecuación 5: </span>
-<span id="cb1-199"><a href="#cb1-199" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-200"><a href="#cb1-200" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-201"><a href="#cb1-201" aria-hidden="true" tabindex="-1"></a>    \text{Puntuación por tipo de contenido} = \frac{\sum_{t=1}^{T} \text{Puntuación de contenido}_{t}}{T} \tag{5}</span>
-<span id="cb1-202"><a href="#cb1-202" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-203"><a href="#cb1-203" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-204"><a href="#cb1-204" aria-hidden="true" tabindex="-1"></a>donde $T$ es el número total de temas.</span>
-<span id="cb1-205"><a href="#cb1-205" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-206"><a href="#cb1-206" aria-hidden="true" tabindex="-1"></a>Esta métrica permite detectar cuáles secciones necesitan más mejoras en términos de profundidad, claridad y alineación con el syllabus.</span>
-<span id="cb1-207"><a href="#cb1-207" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-208"><a href="#cb1-208" aria-hidden="true" tabindex="-1"></a><span class="fu">### Métricas globales</span></span>
-<span id="cb1-209"><a href="#cb1-209" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-210"><a href="#cb1-210" aria-hidden="true" tabindex="-1"></a>En adición a lo anterior, también se consideró importante evaluar características generales del contenido en su conjunto:</span>
-<span id="cb1-211"><a href="#cb1-211" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-212"><a href="#cb1-212" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Consistencia temática:** Se usa **similitud de coseno y TF-IDF** para medir la coherencia semántica entre temas.</span>
-<span id="cb1-213"><a href="#cb1-213" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-214"><a href="#cb1-214" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Relevancia general:** Se calcula la **cobertura de subtemas** a nivel global de acuerdo con la Ecuación 6:</span>
-<span id="cb1-215"><a href="#cb1-215" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-216"><a href="#cb1-216" aria-hidden="true" tabindex="-1"></a>  \text{Relevancia} = \frac{\sum_{t=1}^{T} \text{Cobertura Subtemas}_{t}}{T} \tag{6}</span>
-<span id="cb1-217"><a href="#cb1-217" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-192"><a href="#cb1-192" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Uso de terminología:** Se mide utilizando **TF-IDF** en la Ecuación 4, que identifica la presencia de términos clave del syllabus en el contenido.\</span>
+<span id="cb1-193"><a href="#cb1-193" aria-hidden="true" tabindex="-1"></a>    $$</span>
+<span id="cb1-194"><a href="#cb1-194" aria-hidden="true" tabindex="-1"></a>    \text{Terminología} = \min \left(1, \frac{\sum_{i=1}^{M} \mathbb{1}(\text{Término}_i \in \text{Contenido})}{\text{Total de Palabras} / 1000} \right) \tag{4}</span>
+<span id="cb1-195"><a href="#cb1-195" aria-hidden="true" tabindex="-1"></a>    $$</span>
+<span id="cb1-196"><a href="#cb1-196" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-197"><a href="#cb1-197" aria-hidden="true" tabindex="-1"></a>    donde $M$ es el número total de términos clave y la función $\mathbb{1}$ devuelve 1 si el término está presente.</span>
+<span id="cb1-198"><a href="#cb1-198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-199"><a href="#cb1-199" aria-hidden="true" tabindex="-1"></a><span class="fu">### Evaluación por tipo de contenido</span></span>
+<span id="cb1-200"><a href="#cb1-200" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-201"><a href="#cb1-201" aria-hidden="true" tabindex="-1"></a>Adicionalmente, se calculan puntuaciones agregadas para cada tipo de material generado (*lecture notes*, *practice problems*, *discussion questions*, *learning objectives*, *suggested resources*).</span>
+<span id="cb1-202"><a href="#cb1-202" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-203"><a href="#cb1-203" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Se obtiene el **promedio de las evaluaciones individuales** en todos los temas para cada tipo de contenido, tal como se define en la Ecuación 5: </span>
+<span id="cb1-204"><a href="#cb1-204" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-205"><a href="#cb1-205" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-206"><a href="#cb1-206" aria-hidden="true" tabindex="-1"></a>    \text{Puntuación por tipo de contenido} = \frac{\sum_{t=1}^{T} \text{Puntuación de contenido}_{t}}{T} \tag{5}</span>
+<span id="cb1-207"><a href="#cb1-207" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-208"><a href="#cb1-208" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-209"><a href="#cb1-209" aria-hidden="true" tabindex="-1"></a>donde $T$ es el número total de temas.</span>
+<span id="cb1-210"><a href="#cb1-210" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-211"><a href="#cb1-211" aria-hidden="true" tabindex="-1"></a>Esta métrica permite detectar cuáles secciones necesitan más mejoras en términos de profundidad, claridad y alineación con el syllabus.</span>
+<span id="cb1-212"><a href="#cb1-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-213"><a href="#cb1-213" aria-hidden="true" tabindex="-1"></a><span class="fu">### Métricas globales</span></span>
+<span id="cb1-214"><a href="#cb1-214" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-215"><a href="#cb1-215" aria-hidden="true" tabindex="-1"></a>En adición a lo anterior, también se consideró importante evaluar características generales del contenido en su conjunto:</span>
+<span id="cb1-216"><a href="#cb1-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-217"><a href="#cb1-217" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Consistencia temática:** Se usa **similitud de coseno y TF-IDF** para medir la coherencia semántica entre temas.</span>
 <span id="cb1-218"><a href="#cb1-218" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-219"><a href="#cb1-219" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Legibilidad promedio:** Se obtiene la **media de las longitudes de oraciones en todo el contenido**.</span>
-<span id="cb1-220"><a href="#cb1-220" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-221"><a href="#cb1-221" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Uso de terminología académica:** En conformidad con la Ecuación 7, se analiza la densidad de términos especializados extraídos del syllabus: </span>
+<span id="cb1-219"><a href="#cb1-219" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Relevancia general:** Se calcula la **cobertura de subtemas** a nivel global de acuerdo con la Ecuación 6:</span>
+<span id="cb1-220"><a href="#cb1-220" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-221"><a href="#cb1-221" aria-hidden="true" tabindex="-1"></a>  \text{Relevancia} = \frac{\sum_{t=1}^{T} \text{Cobertura Subtemas}_{t}}{T} \tag{6}</span>
 <span id="cb1-222"><a href="#cb1-222" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-223"><a href="#cb1-223" aria-hidden="true" tabindex="-1"></a>  \text{Terminología Global} = \frac{\sum_{t=1}^{T} \text{Terminología}_{t}}{T} \tag{7}</span>
-<span id="cb1-224"><a href="#cb1-224" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-223"><a href="#cb1-223" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-224"><a href="#cb1-224" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Legibilidad promedio:** Se obtiene la **media de las longitudes de oraciones en todo el contenido**.</span>
 <span id="cb1-225"><a href="#cb1-225" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-226"><a href="#cb1-226" aria-hidden="true" tabindex="-1"></a><span class="fu">### Puntuación global</span></span>
-<span id="cb1-227"><a href="#cb1-227" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-228"><a href="#cb1-228" aria-hidden="true" tabindex="-1"></a>Esta última métrica, dada en la Ecuación 8, se obtiene como el **promedio de dos componentes principales**:</span>
-<span id="cb1-229"><a href="#cb1-229" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-230"><a href="#cb1-230" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-231"><a href="#cb1-231" aria-hidden="true" tabindex="-1"></a>\text{Puntuación Final} = \frac{\text{Promedio Tipo de Contenido} + \text{Promedio Métricas Globales}}{2} \tag{8}</span>
-<span id="cb1-232"><a href="#cb1-232" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-233"><a href="#cb1-233" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-234"><a href="#cb1-234" aria-hidden="true" tabindex="-1"></a>donde se tienen los siguientes valores:</span>
-<span id="cb1-235"><a href="#cb1-235" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-236"><a href="#cb1-236" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-237"><a href="#cb1-237" aria-hidden="true" tabindex="-1"></a>\text{Promedio de Evaluación por Tipo de Contenido} = \frac{\sum_{\text{tipo}} \text{Puntuación por tipo de contenido}}{\text{Total de Tipos}} \tag{9}</span>
-<span id="cb1-238"><a href="#cb1-238" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-239"><a href="#cb1-239" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-240"><a href="#cb1-240" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-241"><a href="#cb1-241" aria-hidden="true" tabindex="-1"></a>\text{Promedio de Métricas Globales} = \frac{\sum_{\text{métrica}} \text{Métrica Global}}{\text{Total de Métricas}} \tag{10}</span>
-<span id="cb1-242"><a href="#cb1-242" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-243"><a href="#cb1-243" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-244"><a href="#cb1-244" aria-hidden="true" tabindex="-1"></a>La puntuación final proporciona una medida cuantitativa de la calidad del contenido generado.</span>
-<span id="cb1-245"><a href="#cb1-245" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-246"><a href="#cb1-246" aria-hidden="true" tabindex="-1"></a><span class="fu">### Ejemplo de métricas obtenidas por el agente</span></span>
-<span id="cb1-247"><a href="#cb1-247" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-248"><a href="#cb1-248" aria-hidden="true" tabindex="-1"></a>En el conjunto de tablas que se presenta a continuación puede observarse el resultado de las diferentes métricas establecidas para evaluar el desempeño del agente desarrollado en un caso de uso que no corresponde con el que será presentado más adelante en el *video demostrativo*. A pesar de esto, su interpretación sigue siendo la misma para todos los materiales que genere en relación a diferentes cursos, por lo que puede extenderse fácilmente a otros resultados numéricos que se obtengan en esta u otras ejecuciones.</span>
-<span id="cb1-249"><a href="#cb1-249" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-250"><a href="#cb1-250" aria-hidden="true" tabindex="-1"></a><span class="fu">#### **Puntuaciones por Tema**</span></span>
-<span id="cb1-251"><a href="#cb1-251" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-252"><a href="#cb1-252" aria-hidden="true" tabindex="-1"></a>**Tabla 1.**</span>
-<span id="cb1-253"><a href="#cb1-253" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-254"><a href="#cb1-254" aria-hidden="true" tabindex="-1"></a>*Puntuaciones obtenidas por tema.*</span>
-<span id="cb1-255"><a href="#cb1-255" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-256"><a href="#cb1-256" aria-hidden="true" tabindex="-1"></a>| **Tema** | **Notas de Clase** | **Problemas de Práctica** | **Preguntas de Discusión** | **Objetivos de Aprendizaje** | **Recursos Sugeridos** | **Promedio** |</span>
-<span id="cb1-257"><a href="#cb1-257" aria-hidden="true" tabindex="-1"></a>|-----------|-----------|-----------|-----------|-----------|-----------|-----------|</span>
-<span id="cb1-258"><a href="#cb1-258" aria-hidden="true" tabindex="-1"></a>| **1** | 0.664 | 0.650 | 0.417 | 0.357 | 0.600 | 0.537 |</span>
-<span id="cb1-259"><a href="#cb1-259" aria-hidden="true" tabindex="-1"></a>| **2** | 0.671 | 0.650 | 0.190 | 0.405 | 0.600 | 0.503 |</span>
-<span id="cb1-260"><a href="#cb1-260" aria-hidden="true" tabindex="-1"></a>| **3** | 0.720 | 0.650 | 0.433 | 0.405 | 0.600 | 0.562 |</span>
-<span id="cb1-261"><a href="#cb1-261" aria-hidden="true" tabindex="-1"></a>| **4** | 0.682 | 0.650 | 0.306 | 0.405 | 0.600 | 0.528 |</span>
-<span id="cb1-262"><a href="#cb1-262" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-263"><a href="#cb1-263" aria-hidden="true" tabindex="-1"></a>Elaboración propia.</span>
-<span id="cb1-264"><a href="#cb1-264" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-265"><a href="#cb1-265" aria-hidden="true" tabindex="-1"></a><span class="fu">#### **Puntuaciones por Tipo de Contenido**</span></span>
-<span id="cb1-266"><a href="#cb1-266" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-267"><a href="#cb1-267" aria-hidden="true" tabindex="-1"></a>**Tabla 2.**</span>
-<span id="cb1-268"><a href="#cb1-268" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-269"><a href="#cb1-269" aria-hidden="true" tabindex="-1"></a>*Puntuaciones obtenidas por tipo de contenido.*</span>
-<span id="cb1-270"><a href="#cb1-270" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-271"><a href="#cb1-271" aria-hidden="true" tabindex="-1"></a>| **Tipo de Contenido**        | **Puntaje** |</span>
-<span id="cb1-272"><a href="#cb1-272" aria-hidden="true" tabindex="-1"></a>|------------------------------|-------------|</span>
-<span id="cb1-273"><a href="#cb1-273" aria-hidden="true" tabindex="-1"></a>| **Notas de Clase**           | 0.684       |</span>
-<span id="cb1-274"><a href="#cb1-274" aria-hidden="true" tabindex="-1"></a>| **Problemas de Práctica**    | 0.650       |</span>
-<span id="cb1-275"><a href="#cb1-275" aria-hidden="true" tabindex="-1"></a>| **Preguntas de Discusión**   | 0.337       |</span>
-<span id="cb1-276"><a href="#cb1-276" aria-hidden="true" tabindex="-1"></a>| **Objetivos de Aprendizaje** | 0.393       |</span>
-<span id="cb1-277"><a href="#cb1-277" aria-hidden="true" tabindex="-1"></a>| **Recursos Sugeridos**       | 0.600       |</span>
-<span id="cb1-278"><a href="#cb1-278" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-279"><a href="#cb1-279" aria-hidden="true" tabindex="-1"></a>Elaboración propia.</span>
-<span id="cb1-280"><a href="#cb1-280" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-281"><a href="#cb1-281" aria-hidden="true" tabindex="-1"></a><span class="fu">#### **Métricas Globales**</span></span>
-<span id="cb1-282"><a href="#cb1-282" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-283"><a href="#cb1-283" aria-hidden="true" tabindex="-1"></a>**Tabla 3.**</span>
-<span id="cb1-284"><a href="#cb1-284" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-285"><a href="#cb1-285" aria-hidden="true" tabindex="-1"></a>*Resultados de las métricas globales.*</span>
-<span id="cb1-286"><a href="#cb1-286" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-287"><a href="#cb1-287" aria-hidden="true" tabindex="-1"></a>| **Métrica**               | **Puntaje** |</span>
-<span id="cb1-288"><a href="#cb1-288" aria-hidden="true" tabindex="-1"></a>|---------------------------|-------------|</span>
-<span id="cb1-289"><a href="#cb1-289" aria-hidden="true" tabindex="-1"></a>| **Consistencia Temática** | 0.696       |</span>
-<span id="cb1-290"><a href="#cb1-290" aria-hidden="true" tabindex="-1"></a>| **Legibilidad**           | 0.226       |</span>
-<span id="cb1-291"><a href="#cb1-291" aria-hidden="true" tabindex="-1"></a>| **Uso de Terminología**   | 0.228       |</span>
-<span id="cb1-292"><a href="#cb1-292" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-293"><a href="#cb1-293" aria-hidden="true" tabindex="-1"></a>Elaboración propia.</span>
-<span id="cb1-294"><a href="#cb1-294" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-295"><a href="#cb1-295" aria-hidden="true" tabindex="-1"></a>Finalmente, con todos estos datos es posible decir que la puntuación final otorgada por el agente para este caso es de $0.458$, el cual fue obtenido mediante **TF-IDF** (Term Frequency - Inverse Document Frequency) y **cosine similarity** (similitud del coseno) e indica un nivel de consistencia moderado entre los temas generados dentro del material educativo para el curso.</span>
-<span id="cb1-296"><a href="#cb1-296" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-297"><a href="#cb1-297" aria-hidden="true" tabindex="-1"></a>Puede decirse que, si bien este resultado refleja que los temas están relacionados porque pertenecen al mismo curso, presentan diferencias significativas en su contenido, lo cual es esperado en un temario extenso. Por una parte, TF-IDF permite representar cada tema como un vector numérico basado en la frecuencia e importancia de las palabras dentro del conjunto de documentos, mientras que la similitud del coseno mide el grado de similitud entre estos vectores, proporcionando una puntuación entre 0 y 1, donde 1 indica alta similitud y 0 ausencia de ella.</span>
-<span id="cb1-298"><a href="#cb1-298" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-299"><a href="#cb1-299" aria-hidden="true" tabindex="-1"></a>También es importante considerar que, de acuerdo con este puntaje, los temas del material educativo comparten algunos términos clave pero también tienen suficiente variación para no ser considerados repetitivos o redundantes. Esto representa beneficios en un curso donde se abordan diferentes aspectos de una misma materia, asegurando diversidad temática sin perder coherencia general.</span>
-<span id="cb1-300"><a href="#cb1-300" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-301"><a href="#cb1-301" aria-hidden="true" tabindex="-1"></a><span class="fu">## Desafíos de implementación y soluciones</span></span>
-<span id="cb1-302"><a href="#cb1-302" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-303"><a href="#cb1-303" aria-hidden="true" tabindex="-1"></a><span class="fu">### Retos enfrentados</span></span>
-<span id="cb1-304"><a href="#cb1-304" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-305"><a href="#cb1-305" aria-hidden="true" tabindex="-1"></a>Es importante mencionar que el desarrollo del presente trabajo ha representado un reto muy amplio, considerando que las API gratuitas suelen tener restricciones en la cantidad de solicitudes por minuto o día, lo que puede afectar la generación de contenido en tiempo real. Adicionalmente, los **LLM** gratuitos pueden no estar tan optimizados o actualizados como las versiones de pago, lo que puede llevar a errores en la información generada y falta de conexión entre los temas explicados en el material pedagógico generado. De igual manera, algunas API gratuitas no permiten entrenar o ajustar el modelo para mejorar la pertinencia del contenido según el curso. </span>
-<span id="cb1-306"><a href="#cb1-306" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-307"><a href="#cb1-307" aria-hidden="true" tabindex="-1"></a>De acuerdo con estos retos, puede decirse que emplear la API de Gemini como **LLM** para integrar con el agente fue un acercamiento adecuado en términos de los recursos existentes, sin embargo, problemas como la desconexión entre algunas secciones del material académico resultante siguen estando fuera del alcance de las herramientas gratuitas explradas.</span>
-<span id="cb1-308"><a href="#cb1-308" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-309"><a href="#cb1-309" aria-hidden="true" tabindex="-1"></a><span class="fu">### Oportunidades de mejora</span></span>
-<span id="cb1-310"><a href="#cb1-310" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-311"><a href="#cb1-311" aria-hidden="true" tabindex="-1"></a>Como una oportunidad de mejora, se ha identificado la posibilidad de mejorar la generación de las *flashcards*, que actúan como material didáctico complementario para facilitar la discusión de preguntas y respuestas relevantes en términos de los temas vistos en cada curso. Sin embargo, la correcta generación de estos materiales está sujeta a la información que se le proporciona al agente, por lo que se considera una posible área de mejoramiento en futuras iterciones del ejercicio.</span>
-<span id="cb1-312"><a href="#cb1-312" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-313"><a href="#cb1-313" aria-hidden="true" tabindex="-1"></a><span class="fu">## Presentación del código</span></span>
-<span id="cb1-314"><a href="#cb1-314" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-315"><a href="#cb1-315" aria-hidden="true" tabindex="-1"></a>En consideración con las instrucciones proporcionadas para el desarrollo del presente proyecto, y teniendo en cuenta las limitaciones computaciones con las que se cuenta debido a la utilización de servicios de despliegue gratuitos, el código fuente del agente desarrollado se encontrará disponible para su verificación y uso a través del siguiente repositorio de GitHub: <span class="co">[</span><span class="ot">LLM_educational_agent</span><span class="co">](https://github.com/RNA-y-Algo-Bioinsp-2024-02/LLM_educational_agent)</span>. Para que los resultados proporcionados por el agente sean satisfactorios deben tenerse en cuenta los siguientes aspectos clave:</span>
-<span id="cb1-316"><a href="#cb1-316" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-317"><a href="#cb1-317" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>El código ha sido diseñado para ejecutarse en Google Colab, por lo que su utilización ideal implica correrlo desde dicho entorno de ejecución.</span>
-<span id="cb1-318"><a href="#cb1-318" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>En el repositorio de GitHub se encuentra una **guía de ejecución** con las instrucciones necesarias para que la experiencia de crear contenidos educativos con ayuda del agente sea la mejor posible.</span>
+<span id="cb1-226"><a href="#cb1-226" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Uso de terminología académica:** En conformidad con la Ecuación 7, se analiza la densidad de términos especializados extraídos del syllabus: </span>
+<span id="cb1-227"><a href="#cb1-227" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-228"><a href="#cb1-228" aria-hidden="true" tabindex="-1"></a>  \text{Terminología Global} = \frac{\sum_{t=1}^{T} \text{Terminología}_{t}}{T} \tag{7}</span>
+<span id="cb1-229"><a href="#cb1-229" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-230"><a href="#cb1-230" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-231"><a href="#cb1-231" aria-hidden="true" tabindex="-1"></a><span class="fu">### Puntuación global</span></span>
+<span id="cb1-232"><a href="#cb1-232" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-233"><a href="#cb1-233" aria-hidden="true" tabindex="-1"></a>Esta última métrica, dada en la Ecuación 8, se obtiene como el **promedio de dos componentes principales**:</span>
+<span id="cb1-234"><a href="#cb1-234" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-235"><a href="#cb1-235" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-236"><a href="#cb1-236" aria-hidden="true" tabindex="-1"></a>\text{Puntuación Final} = \frac{\text{Promedio Tipo de Contenido} + \text{Promedio Métricas Globales}}{2} \tag{8}</span>
+<span id="cb1-237"><a href="#cb1-237" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-238"><a href="#cb1-238" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-239"><a href="#cb1-239" aria-hidden="true" tabindex="-1"></a>donde se tienen los siguientes valores:</span>
+<span id="cb1-240"><a href="#cb1-240" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-241"><a href="#cb1-241" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-242"><a href="#cb1-242" aria-hidden="true" tabindex="-1"></a>\text{Promedio de Evaluación por Tipo de Contenido} = \frac{\sum_{\text{tipo}} \text{Puntuación por tipo de contenido}}{\text{Total de Tipos}} \tag{9}</span>
+<span id="cb1-243"><a href="#cb1-243" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-244"><a href="#cb1-244" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-245"><a href="#cb1-245" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-246"><a href="#cb1-246" aria-hidden="true" tabindex="-1"></a>\text{Promedio de Métricas Globales} = \frac{\sum_{\text{métrica}} \text{Métrica Global}}{\text{Total de Métricas}} \tag{10}</span>
+<span id="cb1-247"><a href="#cb1-247" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-248"><a href="#cb1-248" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-249"><a href="#cb1-249" aria-hidden="true" tabindex="-1"></a>La puntuación final proporciona una medida cuantitativa de la calidad del contenido generado.</span>
+<span id="cb1-250"><a href="#cb1-250" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-251"><a href="#cb1-251" aria-hidden="true" tabindex="-1"></a><span class="fu">### Ejemplo de métricas obtenidas por el agente</span></span>
+<span id="cb1-252"><a href="#cb1-252" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-253"><a href="#cb1-253" aria-hidden="true" tabindex="-1"></a>En el conjunto de tablas que se presenta a continuación puede observarse el resultado de las diferentes métricas establecidas para evaluar el desempeño del agente desarrollado en un caso de uso que no corresponde con el que será presentado más adelante en el *video demostrativo*. A pesar de esto, su interpretación sigue siendo la misma para todos los materiales que genere en relación a diferentes cursos, por lo que puede extenderse fácilmente a otros resultados numéricos que se obtengan en esta u otras ejecuciones.</span>
+<span id="cb1-254"><a href="#cb1-254" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-255"><a href="#cb1-255" aria-hidden="true" tabindex="-1"></a><span class="fu">#### **Puntuaciones por Tema**</span></span>
+<span id="cb1-256"><a href="#cb1-256" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-257"><a href="#cb1-257" aria-hidden="true" tabindex="-1"></a>**Tabla 1.**</span>
+<span id="cb1-258"><a href="#cb1-258" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-259"><a href="#cb1-259" aria-hidden="true" tabindex="-1"></a>*Puntuaciones obtenidas por tema.*</span>
+<span id="cb1-260"><a href="#cb1-260" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-261"><a href="#cb1-261" aria-hidden="true" tabindex="-1"></a>| **Tema** | **Notas de Clase** | **Problemas de Práctica** | **Preguntas de Discusión** | **Objetivos de Aprendizaje** | **Recursos Sugeridos** | **Promedio** |</span>
+<span id="cb1-262"><a href="#cb1-262" aria-hidden="true" tabindex="-1"></a>|-----------|-----------|-----------|-----------|-----------|-----------|-----------|</span>
+<span id="cb1-263"><a href="#cb1-263" aria-hidden="true" tabindex="-1"></a>| **1** | 0.664 | 0.650 | 0.417 | 0.357 | 0.600 | 0.537 |</span>
+<span id="cb1-264"><a href="#cb1-264" aria-hidden="true" tabindex="-1"></a>| **2** | 0.671 | 0.650 | 0.190 | 0.405 | 0.600 | 0.503 |</span>
+<span id="cb1-265"><a href="#cb1-265" aria-hidden="true" tabindex="-1"></a>| **3** | 0.720 | 0.650 | 0.433 | 0.405 | 0.600 | 0.562 |</span>
+<span id="cb1-266"><a href="#cb1-266" aria-hidden="true" tabindex="-1"></a>| **4** | 0.682 | 0.650 | 0.306 | 0.405 | 0.600 | 0.528 |</span>
+<span id="cb1-267"><a href="#cb1-267" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-268"><a href="#cb1-268" aria-hidden="true" tabindex="-1"></a>Elaboración propia.</span>
+<span id="cb1-269"><a href="#cb1-269" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-270"><a href="#cb1-270" aria-hidden="true" tabindex="-1"></a><span class="fu">#### **Puntuaciones por Tipo de Contenido**</span></span>
+<span id="cb1-271"><a href="#cb1-271" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-272"><a href="#cb1-272" aria-hidden="true" tabindex="-1"></a>**Tabla 2.**</span>
+<span id="cb1-273"><a href="#cb1-273" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-274"><a href="#cb1-274" aria-hidden="true" tabindex="-1"></a>*Puntuaciones obtenidas por tipo de contenido.*</span>
+<span id="cb1-275"><a href="#cb1-275" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-276"><a href="#cb1-276" aria-hidden="true" tabindex="-1"></a>| **Tipo de Contenido**        | **Puntaje** |</span>
+<span id="cb1-277"><a href="#cb1-277" aria-hidden="true" tabindex="-1"></a>|------------------------------|-------------|</span>
+<span id="cb1-278"><a href="#cb1-278" aria-hidden="true" tabindex="-1"></a>| **Notas de Clase**           | 0.684       |</span>
+<span id="cb1-279"><a href="#cb1-279" aria-hidden="true" tabindex="-1"></a>| **Problemas de Práctica**    | 0.650       |</span>
+<span id="cb1-280"><a href="#cb1-280" aria-hidden="true" tabindex="-1"></a>| **Preguntas de Discusión**   | 0.337       |</span>
+<span id="cb1-281"><a href="#cb1-281" aria-hidden="true" tabindex="-1"></a>| **Objetivos de Aprendizaje** | 0.393       |</span>
+<span id="cb1-282"><a href="#cb1-282" aria-hidden="true" tabindex="-1"></a>| **Recursos Sugeridos**       | 0.600       |</span>
+<span id="cb1-283"><a href="#cb1-283" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-284"><a href="#cb1-284" aria-hidden="true" tabindex="-1"></a>Elaboración propia.</span>
+<span id="cb1-285"><a href="#cb1-285" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-286"><a href="#cb1-286" aria-hidden="true" tabindex="-1"></a><span class="fu">#### **Métricas Globales**</span></span>
+<span id="cb1-287"><a href="#cb1-287" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-288"><a href="#cb1-288" aria-hidden="true" tabindex="-1"></a>**Tabla 3.**</span>
+<span id="cb1-289"><a href="#cb1-289" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-290"><a href="#cb1-290" aria-hidden="true" tabindex="-1"></a>*Resultados de las métricas globales.*</span>
+<span id="cb1-291"><a href="#cb1-291" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-292"><a href="#cb1-292" aria-hidden="true" tabindex="-1"></a>| **Métrica**               | **Puntaje** |</span>
+<span id="cb1-293"><a href="#cb1-293" aria-hidden="true" tabindex="-1"></a>|---------------------------|-------------|</span>
+<span id="cb1-294"><a href="#cb1-294" aria-hidden="true" tabindex="-1"></a>| **Consistencia Temática** | 0.696       |</span>
+<span id="cb1-295"><a href="#cb1-295" aria-hidden="true" tabindex="-1"></a>| **Legibilidad**           | 0.226       |</span>
+<span id="cb1-296"><a href="#cb1-296" aria-hidden="true" tabindex="-1"></a>| **Uso de Terminología**   | 0.228       |</span>
+<span id="cb1-297"><a href="#cb1-297" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-298"><a href="#cb1-298" aria-hidden="true" tabindex="-1"></a>Elaboración propia.</span>
+<span id="cb1-299"><a href="#cb1-299" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-300"><a href="#cb1-300" aria-hidden="true" tabindex="-1"></a>Finalmente, con todos estos datos es posible decir que la puntuación final otorgada por el agente para este caso es de $0.458$, el cual fue obtenido mediante **TF-IDF** (Term Frequency - Inverse Document Frequency) y **cosine similarity** (similitud del coseno) e indica un nivel de consistencia moderado entre los temas generados dentro del material educativo para el curso.</span>
+<span id="cb1-301"><a href="#cb1-301" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-302"><a href="#cb1-302" aria-hidden="true" tabindex="-1"></a>Puede decirse que, si bien este resultado refleja que los temas están relacionados porque pertenecen al mismo curso, presentan diferencias significativas en su contenido, lo cual es esperado en un temario extenso. Por una parte, TF-IDF permite representar cada tema como un vector numérico basado en la frecuencia e importancia de las palabras dentro del conjunto de documentos, mientras que la similitud del coseno mide el grado de similitud entre estos vectores, proporcionando una puntuación entre 0 y 1, donde 1 indica alta similitud y 0 ausencia de ella.</span>
+<span id="cb1-303"><a href="#cb1-303" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-304"><a href="#cb1-304" aria-hidden="true" tabindex="-1"></a>También es importante considerar que, de acuerdo con este puntaje, los temas del material educativo comparten algunos términos clave pero también tienen suficiente variación para no ser considerados repetitivos o redundantes. Esto representa beneficios en un curso donde se abordan diferentes aspectos de una misma materia, asegurando diversidad temática sin perder coherencia general.</span>
+<span id="cb1-305"><a href="#cb1-305" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-306"><a href="#cb1-306" aria-hidden="true" tabindex="-1"></a><span class="fu">## Desafíos de implementación y soluciones</span></span>
+<span id="cb1-307"><a href="#cb1-307" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-308"><a href="#cb1-308" aria-hidden="true" tabindex="-1"></a><span class="fu">### Retos enfrentados</span></span>
+<span id="cb1-309"><a href="#cb1-309" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-310"><a href="#cb1-310" aria-hidden="true" tabindex="-1"></a>Es importante mencionar que el desarrollo del presente trabajo ha representado un reto muy amplio, considerando que las API gratuitas suelen tener restricciones en la cantidad de solicitudes por minuto o día, lo que puede afectar la generación de contenido en tiempo real. Adicionalmente, los **LLM** gratuitos pueden no estar tan optimizados o actualizados como las versiones de pago, lo que puede llevar a errores en la información generada y falta de conexión entre los temas explicados en el material pedagógico generado. De igual manera, algunas API gratuitas no permiten entrenar o ajustar el modelo para mejorar la pertinencia del contenido según el curso. </span>
+<span id="cb1-311"><a href="#cb1-311" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-312"><a href="#cb1-312" aria-hidden="true" tabindex="-1"></a>De acuerdo con estos retos, puede decirse que emplear la API de Gemini como **LLM** para integrar con el agente fue un acercamiento adecuado en términos de los recursos existentes, sin embargo, problemas como la desconexión entre algunas secciones del material académico resultante siguen estando fuera del alcance de las herramientas gratuitas explradas.</span>
+<span id="cb1-313"><a href="#cb1-313" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-314"><a href="#cb1-314" aria-hidden="true" tabindex="-1"></a><span class="fu">### Oportunidades de mejora</span></span>
+<span id="cb1-315"><a href="#cb1-315" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-316"><a href="#cb1-316" aria-hidden="true" tabindex="-1"></a>Como una oportunidad de mejora, se ha identificado la posibilidad de mejorar la generación de las *flashcards*, que actúan como material didáctico complementario para facilitar la discusión de preguntas y respuestas relevantes en términos de los temas vistos en cada curso. Sin embargo, la correcta generación de estos materiales está sujeta a la información que se le proporciona al agente, por lo que se considera una posible área de mejoramiento en futuras iterciones del ejercicio.</span>
+<span id="cb1-317"><a href="#cb1-317" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-318"><a href="#cb1-318" aria-hidden="true" tabindex="-1"></a><span class="fu">## Presentación del código</span></span>
 <span id="cb1-319"><a href="#cb1-319" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-320"><a href="#cb1-320" aria-hidden="true" tabindex="-1"></a><span class="fu">## Consideraciones éticas</span></span>
+<span id="cb1-320"><a href="#cb1-320" aria-hidden="true" tabindex="-1"></a>En consideración con las instrucciones proporcionadas para el desarrollo del presente proyecto, y teniendo en cuenta las limitaciones computaciones con las que se cuenta debido a la utilización de servicios de despliegue gratuitos, el código fuente del agente desarrollado se encontrará disponible para su verificación y uso a través del siguiente repositorio de GitHub: <span class="co">[</span><span class="ot">LLM_educational_agent</span><span class="co">](https://github.com/RNA-y-Algo-Bioinsp-2024-02/LLM_educational_agent)</span>. Para que los resultados proporcionados por el agente sean satisfactorios deben tenerse en cuenta los siguientes aspectos clave:</span>
 <span id="cb1-321"><a href="#cb1-321" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-322"><a href="#cb1-322" aria-hidden="true" tabindex="-1"></a>Considerando lo que se mencionó al principio del presente ejercicio, es importante analizar las implicaciones éticas de utilizar Inteligencia Artificial en las actividades de apoyo a la labor académica, generando materiales pedagógicos que tengan la pertinencia y calidad necesarias para que su uso sea permitido. En primer lugar, los docentes deben tener en cuenta que de manera previa a la utilización de estos contenidos, dichos resultados deben ser evaluados en términos de su precisión y rigor académico, de manera que esté basado en fuentes confiables y tenga información actualizada. Asimismo, es importante que verifiquen que dichos contenidos no estén reproduciendo algún sesgo que se encontrara presente en los datos de entrenamiento del **LLM**, por lo que se hace necesaria una revisión manual antes de cualquier tipo de publicación.</span>
-<span id="cb1-323"><a href="#cb1-323" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-324"><a href="#cb1-324" aria-hidden="true" tabindex="-1"></a>Sumado a lo anterior, se considera importante que los estudiantes sepan cuándo los materiales académicos que están utilizando fueron generados con ayuda de Inteligencia Artificial, pues esto puede fomentar el necesario debate acerca del uso responsable de estas herramientas. Finalmente, se hace una especial mención de la importancia de cumplir las normativas de protección de datos a la hora de utilizar este u otros agentes de IA, pues la protección de la información es un aspecto cada vez más importante en una sociedad donde los datos representan uno de sus activos más valiosos.</span>
-<span id="cb1-325"><a href="#cb1-325" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-326"><a href="#cb1-326" aria-hidden="true" tabindex="-1"></a><span class="fu">## Contenidos audiovisuales</span></span>
-<span id="cb1-327"><a href="#cb1-327" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-328"><a href="#cb1-328" aria-hidden="true" tabindex="-1"></a><span class="fu">### Video demostrativo</span></span>
-<span id="cb1-329"><a href="#cb1-329" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-330"><a href="#cb1-330" aria-hidden="true" tabindex="-1"></a>Como se ha venido realizando a lo largo del curso, el presente proyecto también contará con un video demostrativo que brindará mayor claridad con respecto a su uso, resultados e interpretación de estos últimos. Dicha demostración podrá visualizarse a continuación:</span>
-<span id="cb1-331"><a href="#cb1-331" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-332"><a href="#cb1-332" aria-hidden="true" tabindex="-1"></a><span class="fu">### Contribuciones individuales</span></span>
-<span id="cb1-333"><a href="#cb1-333" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-334"><a href="#cb1-334" aria-hidden="true" tabindex="-1"></a>Las contribuciones realizadas por cada uno de los integrantes del equipo en el desarrollo de los ejercicios correspondientes al presente trabajo se muestran en el siguiente video.</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<span id="cb1-322"><a href="#cb1-322" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>El código ha sido diseñado para ejecutarse en Google Colab, por lo que su utilización ideal implica correrlo desde dicho entorno de ejecución.</span>
+<span id="cb1-323"><a href="#cb1-323" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>En el repositorio de GitHub se encuentra una **guía de ejecución** con las instrucciones necesarias para que la experiencia de crear contenidos educativos con ayuda del agente sea la mejor posible.</span>
+<span id="cb1-324"><a href="#cb1-324" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-325"><a href="#cb1-325" aria-hidden="true" tabindex="-1"></a><span class="fu">## Consideraciones éticas</span></span>
+<span id="cb1-326"><a href="#cb1-326" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-327"><a href="#cb1-327" aria-hidden="true" tabindex="-1"></a>Considerando lo que se mencionó al principio del presente ejercicio, es importante analizar las implicaciones éticas de utilizar Inteligencia Artificial en las actividades de apoyo a la labor académica, generando materiales pedagógicos que tengan la pertinencia y calidad necesarias para que su uso sea permitido. En primer lugar, los docentes deben tener en cuenta que de manera previa a la utilización de estos contenidos, dichos resultados deben ser evaluados en términos de su precisión y rigor académico, de manera que esté basado en fuentes confiables y tenga información actualizada. Asimismo, es importante que verifiquen que dichos contenidos no estén reproduciendo algún sesgo que se encontrara presente en los datos de entrenamiento del **LLM**, por lo que se hace necesaria una revisión manual antes de cualquier tipo de publicación.</span>
+<span id="cb1-328"><a href="#cb1-328" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-329"><a href="#cb1-329" aria-hidden="true" tabindex="-1"></a>Sumado a lo anterior, se considera importante que los estudiantes sepan cuándo los materiales académicos que están utilizando fueron generados con ayuda de Inteligencia Artificial, pues esto puede fomentar el necesario debate acerca del uso responsable de estas herramientas. Finalmente, se hace una especial mención de la importancia de cumplir las normativas de protección de datos a la hora de utilizar este u otros agentes de IA, pues la protección de la información es un aspecto cada vez más importante en una sociedad donde los datos representan uno de sus activos más valiosos.</span>
+<span id="cb1-330"><a href="#cb1-330" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-331"><a href="#cb1-331" aria-hidden="true" tabindex="-1"></a><span class="fu">## Contenidos audiovisuales</span></span>
+<span id="cb1-332"><a href="#cb1-332" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-333"><a href="#cb1-333" aria-hidden="true" tabindex="-1"></a><span class="fu">### Video demostrativo</span></span>
+<span id="cb1-334"><a href="#cb1-334" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-335"><a href="#cb1-335" aria-hidden="true" tabindex="-1"></a>Como se ha venido realizando a lo largo del curso, el presente proyecto también contará con un video demostrativo que brindará mayor claridad con respecto a su uso, resultados e interpretación de estos últimos. Dicha demostración podrá visualizarse a continuación:</span>
+<span id="cb1-336"><a href="#cb1-336" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-337"><a href="#cb1-337" aria-hidden="true" tabindex="-1"></a>// Link de video</span>
+<span id="cb1-338"><a href="#cb1-338" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-339"><a href="#cb1-339" aria-hidden="true" tabindex="-1"></a><span class="fu">### Contribuciones individuales</span></span>
+<span id="cb1-340"><a href="#cb1-340" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-341"><a href="#cb1-341" aria-hidden="true" tabindex="-1"></a>Las contribuciones realizadas por cada uno de los integrantes del equipo en el desarrollo del presente trabajo se muestran en el siguiente video.</span>
+<span id="cb1-342"><a href="#cb1-342" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-343"><a href="#cb1-343" aria-hidden="true" tabindex="-1"></a>// Link de video</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 
