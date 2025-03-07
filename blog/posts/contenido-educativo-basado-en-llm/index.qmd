@@ -334,7 +334,7 @@ Sumado a lo anterior, se considera importante que los estudiantes sepan cuándo 
 
 Como se ha venido realizando a lo largo del curso, el presente proyecto también contará con un video demostrativo que brindará mayor claridad con respecto a su uso, resultados e interpretación de estos últimos. Dicha demostración podrá visualizarse a continuación:
 
-// Link de video
+{{< video https://youtu.be/afaP_nkuYjs >}}
 
 ### Contribuciones individuales
 
