@@ -488,7 +488,7 @@ En este sentido, se ha de observar que los resultados en el entrenamiento son mu
 
 **Matriz de confusión**
 
-Igualmente, en la Figura 9 se observan cuántos datos de cada clase fueron clasificados correctamente en la diagonal principal de la matriz de confusión.
+En adición a las métricas obtenidas para el modelo de redes neuronales artificiales, en la Figura 9 se observan cuántos datos de cada clase fueron clasificados correctamente en la diagonal principal de la matriz de confusión.
 
 **Figura 9.**
 
