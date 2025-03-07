@@ -99,7 +99,7 @@ show_dataframe(df)
 
 Elaboración propia.
 
-Una vez entendida la estructura y consistencia de los datos, se procede con una fase de análisis para su preparación y limpieza. Usando diccionarios de variables para interpretar el significado y contexto de cada una de las variables, se ha decidido eliminar las siguientes, ya que a priori consideramos que no aportan relevancia práctica o lógica al modelo. Estas variables son:
+Una vez entendida la estructura y consistencia de los datos, se procede con una fase de análisis para su preparación y limpieza. Usando diccionarios de variables para interpretar el significado y contexto de cada una de las variables, se ha decidido eliminar las siguientes, considerando que no aportan relevancia práctica o lógica al modelo. Estas variables son:
 
 -   **id**: es un identificador único del crédito, por lo que no proporciona información adicional útil para el modelo.
 
@@ -119,7 +119,7 @@ Una vez entendida la estructura y consistencia de los datos, se procede con una 
 
 -   Debido a la relación directa entre **grade** y **subgrade**, se opta por descartar **grade** y conservar **subgrade**, ya que esta última proporciona un nivel de detalle mayor y, por lo tanto, más información relevante para el análisis.
 
--   **Depuración de variables**: Adicionalmente, debido a la gran cantidad de variables con valores faltantes, se decidió eliminar aquellas que presentan más del 75% de datos faltantes. Con un porcentaje tan elevado, no es óptimo realizar imputaciones u otros procedimientos de recuperación de datos. Las variables que serán eliminadas son: **mths_since_last_record, mths_since_last_major_derog, annual_inc_joint, dti_joint, verification_status_joint, open_acc_6m, open_il_6m, open_il_12m, open_il_24m, mths_since_rcnt_il, total_bal_il, il_util, open_rv_12m, open_rv_24m, max_bal_bc, all_util, inq_fi, total_cu_tl** y **inq_last_12m**.
+-   **Depuración de variables**: Adicionalmente, debido a la gran cantidad de variables con valores faltantes, se decidió eliminar aquellas que presentan más del 75% de datos faltantes. Con un porcentaje tan elevado, no es óptimo realizar imputaciones u otros procedimientos de recuperación de datos.
 
 ### Análisis Visual y Tratamiento de NAs
 
@@ -354,17 +354,7 @@ Este método asegura que las características tengan una varianza de 1 y estén 
 
 El análisis descriptivo mostró que la variable respuesta del dataset está altamente desbalanceada, lo cual representa un reto significativo al crear el modelo. Un modelo entrenado en estas condiciones puede tender a predecir únicamente la clase mayoritaria, generando métricas como el *accuracy* con valores engañosamente altos, pero sin reflejar una verdadera capacidad predictiva. Para abordar este problema, se emplearán las siguientes técnicas:
 
--   **Sobremuestreo y Submuestreo**: esta estrategia, ilustrada en la Figura 5, combina el aumento de las clases minoritarias mediante sobremuestreo y la reducción de las clases mayoritarias mediante submuestreo. El objetivo es equilibrar la cantidad de datos entre las clases, incentivando al modelo a aprender las características de todas las clases y mejorando sus métricas al minimizar la función de pérdida. Esto fue utilizado para todas las clases en el entrenamiento y el valor final para cada clase fue el siguiente:
-
-    -   Current: 150.000
-
-    -   Fully Paid: 125.700
-
-    -   Charged Off: 50.000
-
-    -   Default: 50.000
-
-    -   Issued: 50.000
+-   **Sobremuestreo y Submuestreo**: esta estrategia, ilustrada en la Figura 5, combina el aumento de las clases minoritarias mediante sobremuestreo con la estrategia SMOTE (generando muestras ficticias a partir de la información proporcionada) y la reducción de las clases mayoritarias mediante submuestreo. El objetivo es equilibrar la cantidad de datos entre las clases, incentivando al modelo a aprender las características de todas las clases y mejorando sus métricas al minimizar la función de pérdida. Como se mencionará más adelante, emplear un balance perfecto entre todas las clases no representó una ventaja en términos del desempeño del modelo (dada la naturaleza del conjunto de datos analizado), por lo tanto se optó por la escogencia de clases con pesos que representaran correctamente su importancia en el proceso de entrenamiento del modelo de redes neuronales artificiales. 
 
 **Figura 5.**
 
@@ -428,49 +418,23 @@ De acuerdo con la matriz de confusión observada en la Figura 7, se pueden notar
 
 ##### Ingeniería de características
 
-Debido a que contamos con variables temporales, vamos a centrar el proceso de ingeniería de características en estas variables para darles un tratamiento que ayuden la capacidad predictiva del modelo (también se puede pensar en arquitecturas como LSTM para el manejo de este tipo de datos)
+Durante la fase de diseño del modelo de mayor complejidad, se consideró conveniente emplear una estrategia de ingeniería de características enfocada en los siguientes aspectos, con el objetivo de mejorar los resultados obtenidos en el modelo anterior:
 
-**Cálculo de Intervalos de Tiempo** : Calculamos el **tiempo transcurrido** desde una fecha de referencia (`2025-01-01`):
+-   En primer lugar, se procuró utilizar variables cuya consecución o interpretación no esté sujeta a eventos posteriores a la aprobación del crédito. Sin embargo, esto puede hacer que el modelo pierda capacidad para identificar las características relevantes de cada una de las clases, pues algunos de los aspectos más importantes del comportamiento de pago de los prestarios solo podrán saberse después de que se se haya iniciado el proceso de aprobación de los productos financieros solicitados.
 
--   **Antigüedad del préstamo (`loan_age_years`)**: Tiempo desde que se emitió el préstamo.
-
--   **Historial de crédito (`credit_history_years`)**: Años desde la apertura del primer crédito.
-
--   **Días desde el último pago (`days_since_last_payment`)**: Indicador de riesgo si el valor es alto.
-
--   **Días desde la última consulta de crédito (`days_since_last_credit_pull`)**: Indica actividad reciente del cliente.
+-   Por otra parte, se empleó un **árbol de decisión** para seleccionar las características que tuvieran un impacto más significativo en los resultados proporcionados por el modelo, mejorando el proceso de escogencia de variables adecuadas para este caso.
 
 ##### Evaluación del modelo
 
-Dado el desbalance de la variable objetivo, utilizaremos métricas diseñadas para proporcionar una evaluación más equitativa del modelo:
+Con el fin de evaluar los resultados del modelo de una forma más equitativa, se seleccionaron las siguientes métricas como marco de referencia para la evaluación del comportamiento del modelo de redes neuronales artificiales, asegurándose de no favorecer especialmente a la clase mayoritaria en comparación con las demás:
 
--   **F1-Score Macro**: a diferencia de métricas como el **accuracy**, que tienden a favorecer la clase mayoritaria en datasets desbalanceados, el **F1-Score Macro** asigna igual importancia a todas las clases, independientemente del número de muestras. Esto nos brinda una evaluación más realista del desempeño del modelo.
+-   **F1-Score Macro**: a diferencia de métricas como el **accuracy**, que tienden a favorecer la clase mayoritaria en datasets desbalanceados, el **F1-Score Macro** asigna igual importancia a todas las clases, independientemente del número de muestras. Esto brinda una evaluación más realista del desempeño del modelo.
 
 ##### Función de pérdida
 
 Para abordar el desbalance de clases durante el entrenamiento, utilizaremos técnicas como:
 
 -   **Focal Loss:** esta función de pérdida está diseñada específicamente para problemas de clasificación desbalanceados. Su objetivo es priorizar las clases minoritarias al reducir la importancia de las predicciones correctamente clasificadas para las clases mayoritarias. Esto ayuda al modelo a concentrarse más en aprender las características de las clases menos representadas.
-
-##### Pesos de las clases
-
-Podemos además a incentivar al modelo a aprender los patrones de las clases minortitarias y ser capaz de predecirlos dandole un peso mnyor a estas clases, por lo que un error en las clases minoritarias pesa mucho más.
-
--   **Pesos de las Clases:** en algunos casos, asignar pesos inversamente proporcionales al tamaño de cada clase en la función de pérdida puede ser una estrategia complementaria para equilibrar la importancia de las clases en el modelo, como puede observarse en la Tabla 2 a continuación.
-
-**Tabla 2.**
-
-*Pesos asignados a cada clase en el modelo.*
-
-| Clase       |  Peso |
-|-------------|------:|
-| Current     |  0.58 |
-| Fully Paid  | 0.725 |
-| Charged Off |  1.16 |
-| In Progress |  10.0 |
-| Late        | 1.933 |
-
-Elaboración propia.
 
 ##### Callbacks
 
@@ -486,32 +450,20 @@ Las capas definidas en el modelo fueron las siguiente:
 
 2.  **Primera Capa Oculta**
 
-    Contiene **1024 neuronas** con activación **ReLU**, lo que permite capturar relaciones no lineales en los datos.\
+    Contiene **256 neuronas** con activación **ReLU**, lo que permite capturar relaciones no lineales en los datos.\
     Se aplica **Batch Normalization** para estabilizar el entrenamiento y acelerar la convergencia.\
-    Se incorpora un **Dropout del 40%** para reducir el sobreajuste regularizando la activación de las neuronas.
+    Se incorpora un **Dropout del 30%** para reducir el sobreajuste regularizando la activación de las neuronas.
 
 3.  **Segunda Capa Oculta**
 
-    La cantidad de neuronas se reduce a **512**, lo que permite refinar la representación aprendida por la red.\
-    Se mantiene la activación **ReLU**.\
-    Se aplica **Batch Normalization** y **Dropout del 30%** para evitar el sobreajuste.
+    La cantidad de neuronas se reduce a **128**, lo que permite refinar la representación aprendida por la red. Por otra parte, se mantiene la activación **ReLU** y se aplica un **Batch Normalization** y **Dropout del 20%** para evitar el sobreajuste.
 
 4.  **Tercera Capa Oculta**
 
-    Se continúa reduciendo la dimensionalidad a **256 neuronas** para extraer patrones más específicos.\
-    Se mantiene la combinación de **ReLU + Batch Normalization + Dropout (30%)** para asegurar un entrenamiento estable.
+    Finalmente, se reduce la dimensionalidad a un total de **64  neuronas** para extraer patrones más específicos.\
+    Se mantiene la combinación de anterior de funciones de activación, **Batch Normalization** y **Dropout** para asegurar un entrenamiento estable.
 
-5.  **Cuarta Capa Oculta**
-
-    Se emplean **128 neuronas** con activación **ReLU**.\
-    Se mantiene **Batch Normalization** y **Dropout del 20%**, reduciendo progresivamente la tasa de dropout a medida que la red avanza hacia capas más específicas.
-
-6.  **Quinta Capa Oculta**
-
-    Se incorporan **64 neuronas**, permitiendo una mayor compactación de las representaciones.\
-    Se conserva **ReLU**, **Batch Normalization** y **Dropout del 20%**.
-
-7.  **Capa de Salida**
+5.  **Capa de Salida**
 
     Contiene **una neurona por cada clase del problema de clasificación multiclase**.\
     Utiliza **Softmax** como función de activación, lo que convierte las salidas en probabilidades normalizadas, asegurando que la suma de las probabilidades sea igual a 1.
@@ -526,112 +478,27 @@ En la Figura 8 se puede evidenciar cómo la función de pérdida va disminuyendo
 
 *Evolución de las métricas obtenidas por el modelo a través de las épocas.* ![Evolución de las métricas obtenidas por el modelo a través de las épocas](metricas_final.png) Elaboración propia.
 
-Finalmente se ha de observar que en el entrenamiento los resultados son muy estables mostrando una convergencia, mientras que en la validación tiende a fluctuar, pero mostrando buenos resultados a pesar de las flucutaciones, ya que ninguna es extrema.
+En este sentido, se ha de observar que los resultados en el entrenamiento son muy estables mostrando una convergencia, además de que las fluctuaciones observadas en los datos de validación son mucho menores que los obtenidos anteriormente, siendo esta una mejora frente a los últimos resultados que fueron evaluados.
 
-#### **Reporte de clasificación**
+#### **Resultados de clasificación**
 
-A continuación se muestra una visión mucho más clara de los resultados obtenidos por el modelo para el conjunto de prueba, ya que en los problemas multiclase puede llegar a ser engañoso considerar solamente la métrica global calculada por el modelo. En los resultados mostrados por la Tabla 3, se evidencia que la clase *Default* es la que presenta más dificultades para el modelo.
+**F1-score macro:** 0.64
 
-**Tabla 3.**
-
-*Reporte de clasificación del modelo de mayor complejidad.*
-
-| **Clase**        | **Precision** | **Recall** | **F1-score** | **Support** |
-|------------------|---------------|------------|--------------|-------------|
-| **Charged Off**  | 1.00          | 0.99       | 0.99         | 9509        |
-| **Current**      | 0.99          | 0.79       | 0.88         | 120560      |
-| **Fully Paid**   | 1.00          | 1.00       | 1.00         | 41689       |
-| **In Progress**  | 0.44          | 0.58       | 0.50         | 2976        |
-| **Late**         | 0.09          | 0.88       | 0.17         | 2742        |
-| **Accuracy**     | \-            | \-         | 0.85         | 177476      |
-| **Macro avg**    | 0.70          | 0.85       | 0.71         | 177476      |
-| **Weighted avg** | 0.97          | 0.85       | 0.90         | 177476      |
-
-**F1-score macro:** 0.71
-
-**Recall macro:** 0.85
-
-Elaboración propia.
+**Recall macro:** 0.74
 
 **Matriz de confusión**
 
-Igualmente, en la Figura 9 se observan cuántos datos de cada clase fueron clasificados correctamente en la diagonal principal de la matriz de confusión. También se observan las dificultades que tuvo el modelo, así como su claridad para predecir algunas de las clases en el problema.
+Igualmente, en la Figura 9 se observan cuántos datos de cada clase fueron clasificados correctamente en la diagonal principal de la matriz de confusión.
 
 **Figura 9.**
 
 *Matriz de confusión obtenida al evaluar el conjunto de prueba en el modelo.* ![Matriz de confusión obtenida al evaluar el conjunto de prueba en el modelo.](matriz_de_confusion.png) Elaboración propia.
 
-Como mejoras a futuro se consideraría enriquecer el modelo teniendo una mayor cantidad de datos para las clases más difíciles de clasificar, junto con una mayor recopilación de información del banco, que apunte a las características de estas personas.
+En consideración con los resultados mostrados anteriormente, se pudo reducir visiblemente la confusión entre las clases **Late** y **Current**, sin embargo, las predicciones erróneas en este caso pueden ser explicadas a la luz de la no consideración de variables prospectivas en la arquitectura del modelo, las cuales permitirían diferenciar ambas categorías de una mejor forma.
 
 ## Conclusiones y aprendizajes a partir de los modelos
 
-En este punto, se pone en evidencia el problema de utilizar métricas como *accuracy* en lugar del *f1-score* cuando los datos se encuentran desbalanceados, resaltando la importancia de hacer un análisis exploratorio del dataset.
-
-Los resultados que se mostrarán a continuación muestran que el desarrollo del modelo fue un problema retador, tanto por el alto volumen de datos como por el desbalanceo de las clases, ambos factores que añaden dificultad al problema, sin embargo, fue posible darles un tratamiento correcto para obtener una mejor solución.
-
-### Pesos del modelo
-
-En este sentido, es posible obtener el peso de cada una de las características del modelo, dando como resultado el orden de importancia de las 19 características utilizadas, las cuales pueden observarse en la Tabla 4.
-
-**Tabla 4.**
-
-*Importancia de cada una de las variables empleadas en el modelo de redes neuronales artificiales.*
-
-| Feature                        |  Importance |
-|--------------------------------|------------:|
-| last_pymnt_d_day_of_week       | 1644.288574 |
-| last_pymnt_d_month             | 1508.413818 |
-| last_credit_pull_d_month       |  562.279358 |
-| loan_age_years                 |  482.754181 |
-| installment                    |  303.830078 |
-| recoveries                     |  258.369934 |
-| days_since_last_payment        |  256.875885 |
-| last_credit_pull_d_day_of_week |  234.173584 |
-| out_prncp_inv                  |  204.917572 |
-| out_prncp                      |  204.653198 |
-| last_pymnt_d_year              |  194.993286 |
-| collection_recovery_fee        |  191.655243 |
-| issue_d_year                   |  167.871353 |
-| last_pymnt_amnt                |  151.017563 |
-| last_credit_pull_d_year        |  126.103256 |
-| total_rec_prncp                |  103.840637 |
-| days_since_last_credit_pull    |   88.737617 |
-| total_pymnt                    |   86.705498 |
-| total_pymnt_inv                |   85.052872 |
-
-Elaboración propia.
-
-#### **Variables de Fecha y Tiempo**
-
--   **`last_pymnt_d_day_of_week`**: Día de la semana en que se realizó el último pago. Puede revelar patrones de pago recurrentes.\
--   **`last_pymnt_d_month`**: Mes del último pago. Ayuda a detectar estacionalidad en los pagos.\
--   **`last_pymnt_d_year`**: Año del último pago. Captura tendencias anuales en el comportamiento del prestatario.\
--   **`loan_age_years`**: Antigüedad del préstamo en años. Permite evaluar el riesgo según el tiempo que ha pasado desde su emisión.\
--   **`issue_d_year`**: Año en que se emitió el préstamo. Útil para analizar cambios en la concesión de créditos a lo largo del tiempo.\
--   **`days_since_last_payment`**: Días desde el último pago realizado. Un número alto puede indicar posible morosidad.\
--   **`days_since_last_credit_pull`**: Días desde la última consulta de crédito del prestatario. Si es alto, puede significar falta de actividad financiera reciente.
-
-#### **Variables Relacionadas con Pagos**
-
--   **`installment`**: Pago mensual que debe realizar el prestatario. Refleja la carga financiera del crédito.\
--   **`last_pymnt_amnt`**: Monto del último pago realizado. Indica la capacidad de pago reciente del prestatario.\
--   **`total_pymnt`**: Suma total pagada por el prestatario, incluyendo capital e intereses.\
--   **`total_pymnt_inv`**: Suma total pagada a los inversionistas. Similar a `total_pymnt`, pero desde la perspectiva del inversor.
-
-#### **Variables de Historial Crediticio**
-
--   **`last_credit_pull_d_month`**: Mes de la última consulta de crédito del prestatario. Indica actividad reciente en su historial crediticio.\
--   **`last_credit_pull_d_year`**: Año de la última consulta de crédito. Útil para evaluar la regularidad en la revisión crediticia.\
--   **`last_credit_pull_d_day_of_week`**: Día de la semana en que se realizó la última consulta de crédito. Puede reflejar patrones en las evaluaciones de riesgo.
-
-#### **Variables de Recuperación y Deuda Pendiente**
-
--   **`recoveries`**: Monto recuperado de préstamos que habían caído en mora. Evalúa la efectividad del proceso de cobranza.\
--   **`collection_recovery_fee`**: Costos asociados a la recuperación de préstamos en mora. Permite analizar la eficiencia del cobro.\
--   **`out_prncp`**: Principal pendiente de pago del prestatario. Indica cuánto capital aún no ha sido devuelto.\
--   **`out_prncp_inv`**: Principal pendiente de pago desde la perspectiva de los inversionistas.
-
-Podemos ver la importancia de la ingeniería de características que se realizó, pues la mayoría de ellas quedaron entre las características más importantes del modelo que además permitieron mejorar el rendimiento obtenido.
+En este punto, se pone en evidencia la dificultad de considerar este problema sin variables prospectivas que puedan brindar información acerca de los eventos futuros relacionados al comportamiento de pago por parte de los prestatarios hacia la entidad financiera. Sin embargo, se considera que los resultados obtenidos son satisfactorios es términos de las limitaciones presentadas y sus implicaciones en el desarrollo de un modelo de redes neuronales artificiales. Por lo tanto, se plantea como una posible mejora hacia el futuro la utilización de un conjunto de datos distinto, que contenga otro tipo de variables explicativas de cada clase (o una definición de clases que pueda ser obtenida a partir de un conjunto de variables no prospectivas).
 
 ## Puesta en producción del modelo
 
@@ -667,35 +534,29 @@ Ahora bien, la ley colombiana regula las actividades financieras de las cooperat
 
 -   Las **cooperativas de ahorro y crédito** como organismos cooperativos que tienen la función principal de adelantar actividades financieras con sus asociados de forma única. A su vez, deben solicitar autorización de la Supersolidaria para la prestación de sus servicios.
 
-Teniendo en cuenta lo anterior, al hacer énfasis en la actividad ejercida por las cooperativas financieras, es posible observar que dichas entidades deben tener una especial importancia en la correcta gestión del riesgo de crédito, pues de esto depende en gran medida su capacidad para continuar prestando sus servicios a sus asociados o terceros que así lo necesiten. Por lo tanto, este caso de uso obedece a la situación en que una cooperativa financiera necesite evaluar cuál sería la decisión adecuada con respecto al crédito solicitado por un tercero no asociado, considerando las variables que interactúan en el problema y se muestran en la Tabla 5.
+Teniendo en cuenta lo anterior, al hacer énfasis en la actividad ejercida por las cooperativas financieras, es posible observar que dichas entidades deben tener una especial importancia en la correcta gestión del riesgo de crédito, pues de esto depende en gran medida su capacidad para continuar prestando sus servicios a sus asociados o terceros que así lo necesiten. Por lo tanto, este caso de uso obedece a la situación en que una cooperativa financiera necesite evaluar cuál sería la decisión adecuada con respecto al crédito solicitado por un tercero no asociado, considerando las variables que interactúan en el problema y se muestran en la Tabla 2.
 
-**Tabla 5.**
+**Tabla 2.**
 
 *Información del perfil de crédito a analizar en el caso de estudio.*
 
 | **Variable**                                | **Valor**          | **Descripción**                                                                                   |
 |---------------------------------------------|--------------------|---------------------------------------------------------------------------------------------------|
-| **Pago Mensual**                            | $500,000           | Monto que debe pagar el prestatario mensualmente si el préstamo es originado.                     |
-| **Pagos Recibidos por Monto Total**         | $2,000,000         | Pagos realizados hasta la fecha para el monto total financiado.                                   |
-| **Pagos Recibidos por Porción Inversionista**| $1,200,000         | Pagos realizados hasta la fecha para la porción financiada por inversionistas.                    |
-| **Principal Recibido**                      | $1,800,000         | Monto principal recibido hasta la fecha.                                                           |
-| **Último Pago Recibido**                    | $500,000           | Monto total del último pago realizado.                                                             |
-| **Última Fecha de Pago (Día)**              | 20 de enero        | El último día de la semana en que se recibió el pago.                                              |
-| **Última Fecha de Pago (Mes)**              | Enero 2025         | El mes en el cual se realizó el último pago.                                                      |
-| **Último Informe de Crédito (Mes)**         | Octubre 2024       | El mes más reciente en el que se obtuvo el informe de crédito del prestatario.                     |
-| **Años con el Préstamo**                    | 3 años             | Número de años que el prestatario lleva con el préstamo.                                           |
-| **Recuperación**                            | $400,000           | La recuperación bruta después de la cancelación por incobrabilidad.                                |
-| **Días Desde el Último Pago**               | 10 días            | Número de días desde que se recibió el último pago.                                               |
-| **Última Fecha de Consulta**                | 15 de enero 2025   | El día más reciente en el que se consultó el crédito del prestatario.                              |
-| **Saldo Pendiente (Monto Inversión)**       | $500,000           | Saldo principal pendiente de la parte financiada por inversionistas.                               |
-| **Saldo Pendiente (Total)**                 | $1,000,000         | Saldo principal pendiente del monto total financiado.                                              |
-| **Última Fecha de Pago (Año)**              | 2025               | El año en el cual se realizó el último pago.                                                      |
-| **Tarifa por Cancelación**                  | $50,000            | Tarifa de cobro después de la cancelación por incobrabilidad.                                      |
-| **Año del Préstamo**                        | 2022               | El año en que se originó el préstamo.                                                              |
-| **Último Informe de Crédito (Año)**         | 2024               | El año más reciente en que se obtuvo el informe de crédito para este préstamo.                    |
-| **Último Informe de Crédito (Días)**        | 100 días           | Número de días desde el último informe de crédito.                                                |
+| **Pago Mensual propusto**                            | $4500           | Es el máximo pago mensual que estaría dispuesto a pagar el prestatario si se aprueba el préstamo solicitado.                     |
+| **Pago Mensual**         | $200        | Es el monto estimado del pago mensual que debe hacer el prestatario si se aprueba el préstamo solicitado.                                   |
+| **Monto Financiado por Inversionistas**| $4500         | Cantidad total del préstamo que será financiada específicamente por inversionistas en el momento de otorgarse el préstamo.                    |
+| **Monto Total Financiado**                      | $5000         | Monto total que podría ser comprometido al momento de aprobar el crédito, el cual puede coincidir o ser inferior al monto solicitado.                                                  |
+| **Tasa de Interés**                    | 9.5%           | Tasa de interés del Banco de la República en el momento de la solicitud.                                                   |
+| **Monto Original del Préstamo**                    | $5000          | Monto original solicitado por el prestatario para el préstamo; si la entidad crediticia lo ajusta a la baja, esto se refleja aquí.                                                  |
+| **Monto Histórico de Cobro**                    | $1000          | Suma total histórica de montos que alguna vez estuvieron en estado de cobranza por incumplimiento del prestatario.                                                |
+| **Saldo Total Actual**                    | $15000          | Saldo actual combinado de todas las cuentas activas del prestatario (incluye tanto crédito rotativo como crédito en cuotas).                                               |
+| **Límite Total de Crédito Rotativo**                    | $20000          | El límite máximo combinado otorgado al prestatario para todas sus líneas de crédito rotativo.                                         |
+| **Relación Deuda-Ingresos**                    | 35.2%           | Relación entre los pagos mensuales totales de deuda del prestatario (excluyendo hipotecas y el préstamo actual solicitado) dividido por su ingreso mensual autodeclarado.                                               |
+| **Saldo Total de Crédito Rotativo**                    | $5000           | Monto total actual que el prestatario tiene como saldo pendiente en créditos rotativos (como tarjetas de crédito).solicitud.                                                   |
+| **Línea de Crédito Rotativo**                    | 75%           | Porcentaje del crédito rotativo disponible que está actualmente en uso por parte del prestatario.                                                |
+| **Calificación de Préstamo**                    | B3           | Subcalificación asignada por la entidad crediticia al último préstamo solicitado por el prestatario que fue aprobado.                                               |
 
-Dados estos datos, es posible observar que la respuesta por parte del modelo desplegado será que el prestatario muestra un **riesgo crediticio elevado** debido a múltiples indicadores, como lo pueden ser: capacidad de pago limitada, historial crediticio inconsistente y alta utilización de crédito rotativo. De acuerdo con esto, las condiciones del préstamo requieren garantías sustanciales, por lo que la cooperativa financiera podría considerar estrategias como la restructuración concertada de dichas condiciones o la venta de cartera en otra entidad.
+Dados estos datos, es posible observar que la respuesta por parte del modelo desplegado será que el prestatario muestra un **riesgo crediticio bajo**, por lo cual es considerado un buen candidato para la aprobación de futuros préstamos, pues ha presentado un comportamiento de pago adecuado a nivel histórico y su capacidad de pago está demostrada al momento de realizar la solicitud que está siendo evaluada actualmente.
 
 # Aplicación web
 

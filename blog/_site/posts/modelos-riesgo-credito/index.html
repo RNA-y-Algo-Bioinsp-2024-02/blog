@@ -258,10 +258,7 @@ window.Quarto = {
   <li><a href="#preprocesamiento" id="toc-preprocesamiento" class="nav-link" data-scroll-target="#preprocesamiento"><span class="header-section-number">1.3.1</span> Preprocesamiento</a></li>
   <li><a href="#diseño-y-arquitectura" id="toc-diseño-y-arquitectura" class="nav-link" data-scroll-target="#diseño-y-arquitectura"><span class="header-section-number">1.3.2</span> Diseño y Arquitectura</a></li>
   </ul></li>
-  <li><a href="#conclusiones-y-aprendizajes-a-partir-de-los-modelos" id="toc-conclusiones-y-aprendizajes-a-partir-de-los-modelos" class="nav-link" data-scroll-target="#conclusiones-y-aprendizajes-a-partir-de-los-modelos"><span class="header-section-number">1.4</span> Conclusiones y aprendizajes a partir de los modelos</a>
-  <ul class="collapse">
-  <li><a href="#pesos-del-modelo" id="toc-pesos-del-modelo" class="nav-link" data-scroll-target="#pesos-del-modelo"><span class="header-section-number">1.4.1</span> Pesos del modelo</a></li>
-  </ul></li>
+  <li><a href="#conclusiones-y-aprendizajes-a-partir-de-los-modelos" id="toc-conclusiones-y-aprendizajes-a-partir-de-los-modelos" class="nav-link" data-scroll-target="#conclusiones-y-aprendizajes-a-partir-de-los-modelos"><span class="header-section-number">1.4</span> Conclusiones y aprendizajes a partir de los modelos</a></li>
   <li><a href="#puesta-en-producción-del-modelo" id="toc-puesta-en-producción-del-modelo" class="nav-link" data-scroll-target="#puesta-en-producción-del-modelo"><span class="header-section-number">1.5</span> Puesta en producción del modelo</a>
   <ul class="collapse">
   <li><a href="#creación-de-la-api" id="toc-creación-de-la-api" class="nav-link" data-scroll-target="#creación-de-la-api"><span class="header-section-number">1.5.1</span> Creación de la API</a></li>
@@ -897,7 +894,7 @@ window.Quarto = {
 </div>
 </div>
 <p>Elaboración propia.</p>
-<p>Una vez entendida la estructura y consistencia de los datos, se procede con una fase de análisis para su preparación y limpieza. Usando diccionarios de variables para interpretar el significado y contexto de cada una de las variables, se ha decidido eliminar las siguientes, ya que a priori consideramos que no aportan relevancia práctica o lógica al modelo. Estas variables son:</p>
+<p>Una vez entendida la estructura y consistencia de los datos, se procede con una fase de análisis para su preparación y limpieza. Usando diccionarios de variables para interpretar el significado y contexto de cada una de las variables, se ha decidido eliminar las siguientes, considerando que no aportan relevancia práctica o lógica al modelo. Estas variables son:</p>
 <ul>
 <li><p><strong>id</strong>: es un identificador único del crédito, por lo que no proporciona información adicional útil para el modelo.</p></li>
 <li><p><strong>member_id</strong>: al ser un identificador único del prestatario, tampoco añade valor informativo al análisis.</p></li>
@@ -908,7 +905,7 @@ window.Quarto = {
 <li><p><strong>collection_recovery_fee</strong>, <strong>out_prncp</strong> y <strong>out_prncp_inv</strong> al igual que la variable anterior, no se incluye por estar causada por eventos posteriores al interés del modelo.</p></li>
 <li><p>Las variables <strong>next_pymnt_d</strong>, <strong>last_pymnt_d</strong>, <strong>earliest_cr_line</strong>, <strong>issue_d</strong> y <strong>last_credit_pull_d</strong> corresponden a fechas registradas durante el proceso del préstamo. Dado que estas variables representan información recolectada después de la aprobación del préstamo, no se consideran relevantes para el análisis y pueden ser descartadas.</p></li>
 <li><p>Debido a la relación directa entre <strong>grade</strong> y <strong>subgrade</strong>, se opta por descartar <strong>grade</strong> y conservar <strong>subgrade</strong>, ya que esta última proporciona un nivel de detalle mayor y, por lo tanto, más información relevante para el análisis.</p></li>
-<li><p><strong>Depuración de variables</strong>: Adicionalmente, debido a la gran cantidad de variables con valores faltantes, se decidió eliminar aquellas que presentan más del 75% de datos faltantes. Con un porcentaje tan elevado, no es óptimo realizar imputaciones u otros procedimientos de recuperación de datos. Las variables que serán eliminadas son: <strong>mths_since_last_record, mths_since_last_major_derog, annual_inc_joint, dti_joint, verification_status_joint, open_acc_6m, open_il_6m, open_il_12m, open_il_24m, mths_since_rcnt_il, total_bal_il, il_util, open_rv_12m, open_rv_24m, max_bal_bc, all_util, inq_fi, total_cu_tl</strong> y <strong>inq_last_12m</strong>.</p></li>
+<li><p><strong>Depuración de variables</strong>: Adicionalmente, debido a la gran cantidad de variables con valores faltantes, se decidió eliminar aquellas que presentan más del 75% de datos faltantes. Con un porcentaje tan elevado, no es óptimo realizar imputaciones u otros procedimientos de recuperación de datos.</p></li>
 </ul>
 </section>
 <section id="análisis-visual-y-tratamiento-de-nas" class="level3" data-number="1.2.2">
@@ -23735,14 +23732,7 @@ X' = \frac{X - \mu}{\sigma} \tag{10}
 <h4 data-number="1.3.1.4" class="anchored" data-anchor-id="balanceo-de-clases"><span class="header-section-number">1.3.1.4</span> Balanceo de clases</h4>
 <p>El análisis descriptivo mostró que la variable respuesta del dataset está altamente desbalanceada, lo cual representa un reto significativo al crear el modelo. Un modelo entrenado en estas condiciones puede tender a predecir únicamente la clase mayoritaria, generando métricas como el <em>accuracy</em> con valores engañosamente altos, pero sin reflejar una verdadera capacidad predictiva. Para abordar este problema, se emplearán las siguientes técnicas:</p>
 <ul>
-<li><p><strong>Sobremuestreo y Submuestreo</strong>: esta estrategia, ilustrada en la Figura 5, combina el aumento de las clases minoritarias mediante sobremuestreo y la reducción de las clases mayoritarias mediante submuestreo. El objetivo es equilibrar la cantidad de datos entre las clases, incentivando al modelo a aprender las características de todas las clases y mejorando sus métricas al minimizar la función de pérdida. Esto fue utilizado para todas las clases en el entrenamiento y el valor final para cada clase fue el siguiente:</p>
-<ul>
-<li><p>Current: 150.000</p></li>
-<li><p>Fully Paid: 125.700</p></li>
-<li><p>Charged Off: 50.000</p></li>
-<li><p>Default: 50.000</p></li>
-<li><p>Issued: 50.000</p></li>
-</ul></li>
+<li><strong>Sobremuestreo y Submuestreo</strong>: esta estrategia, ilustrada en la Figura 5, combina el aumento de las clases minoritarias mediante sobremuestreo con la estrategia SMOTE (generando muestras ficticias a partir de la información proporcionada) y la reducción de las clases mayoritarias mediante submuestreo. El objetivo es equilibrar la cantidad de datos entre las clases, incentivando al modelo a aprender las características de todas las clases y mejorando sus métricas al minimizar la función de pérdida. Como se mencionará más adelante, emplear un balance perfecto entre todas las clases no representó una ventaja en términos del desempeño del modelo (dada la naturaleza del conjunto de datos analizado), por lo tanto se optó por la escogencia de clases con pesos que representaran correctamente su importancia en el proceso de entrenamiento del modelo de redes neuronales artificiales.</li>
 </ul>
 <p><strong>Figura 5.</strong></p>
 <p><em>Ilustración del funcionamiento de las técnicas de sobremuestreo y submuestreo.</em> <img src="muestreo.png" class="img-fluid" alt="Ilustración del funcionamiento de las técnicas de sobremuestreo y submuestreo"></p>
@@ -23792,20 +23782,17 @@ X' = \frac{X - \mu}{\sigma} \tag{10}
 <h4 data-number="1.3.2.2" class="anchored" data-anchor-id="modelo-con-mayor-complejidad"><span class="header-section-number">1.3.2.2</span> Modelo con mayor complejidad</h4>
 <section id="ingeniería-de-características" class="level5" data-number="1.3.2.2.1">
 <h5 data-number="1.3.2.2.1" class="anchored" data-anchor-id="ingeniería-de-características"><span class="header-section-number">1.3.2.2.1</span> Ingeniería de características</h5>
-<p>Debido a que contamos con variables temporales, vamos a centrar el proceso de ingeniería de características en estas variables para darles un tratamiento que ayuden la capacidad predictiva del modelo (también se puede pensar en arquitecturas como LSTM para el manejo de este tipo de datos)</p>
-<p><strong>Cálculo de Intervalos de Tiempo</strong> : Calculamos el <strong>tiempo transcurrido</strong> desde una fecha de referencia (<code>2025-01-01</code>):</p>
+<p>Durante la fase de diseño del modelo de mayor complejidad, se consideró conveniente emplear una estrategia de ingeniería de características enfocada en los siguientes aspectos, con el objetivo de mejorar los resultados obtenidos en el modelo anterior:</p>
 <ul>
-<li><p><strong>Antigüedad del préstamo (<code>loan_age_years</code>)</strong>: Tiempo desde que se emitió el préstamo.</p></li>
-<li><p><strong>Historial de crédito (<code>credit_history_years</code>)</strong>: Años desde la apertura del primer crédito.</p></li>
-<li><p><strong>Días desde el último pago (<code>days_since_last_payment</code>)</strong>: Indicador de riesgo si el valor es alto.</p></li>
-<li><p><strong>Días desde la última consulta de crédito (<code>days_since_last_credit_pull</code>)</strong>: Indica actividad reciente del cliente.</p></li>
+<li><p>En primer lugar, se procuró utilizar variables cuya consecución o interpretación no esté sujeta a eventos posteriores a la aprobación del crédito. Sin embargo, esto puede hacer que el modelo pierda capacidad para identificar las características relevantes de cada una de las clases, pues algunos de los aspectos más importantes del comportamiento de pago de los prestarios solo podrán saberse después de que se se haya iniciado el proceso de aprobación de los productos financieros solicitados.</p></li>
+<li><p>Por otra parte, se empleó un <strong>árbol de decisión</strong> para seleccionar las características que tuvieran un impacto más significativo en los resultados proporcionados por el modelo, mejorando el proceso de escogencia de variables adecuadas para este caso.</p></li>
 </ul>
 </section>
 <section id="evaluación-del-modelo-1" class="level5" data-number="1.3.2.2.2">
 <h5 data-number="1.3.2.2.2" class="anchored" data-anchor-id="evaluación-del-modelo-1"><span class="header-section-number">1.3.2.2.2</span> Evaluación del modelo</h5>
-<p>Dado el desbalance de la variable objetivo, utilizaremos métricas diseñadas para proporcionar una evaluación más equitativa del modelo:</p>
+<p>Con el fin de evaluar los resultados del modelo de una forma más equitativa, se seleccionaron las siguientes métricas como marco de referencia para la evaluación del comportamiento del modelo de redes neuronales artificiales, asegurándose de no favorecer especialmente a la clase mayoritaria en comparación con las demás:</p>
 <ul>
-<li><strong>F1-Score Macro</strong>: a diferencia de métricas como el <strong>accuracy</strong>, que tienden a favorecer la clase mayoritaria en datasets desbalanceados, el <strong>F1-Score Macro</strong> asigna igual importancia a todas las clases, independientemente del número de muestras. Esto nos brinda una evaluación más realista del desempeño del modelo.</li>
+<li><strong>F1-Score Macro</strong>: a diferencia de métricas como el <strong>accuracy</strong>, que tienden a favorecer la clase mayoritaria en datasets desbalanceados, el <strong>F1-Score Macro</strong> asigna igual importancia a todas las clases, independientemente del número de muestras. Esto brinda una evaluación más realista del desempeño del modelo.</li>
 </ul>
 </section>
 <section id="función-de-pérdida" class="level5" data-number="1.3.2.2.3">
@@ -23815,331 +23802,56 @@ X' = \frac{X - \mu}{\sigma} \tag{10}
 <li><strong>Focal Loss:</strong> esta función de pérdida está diseñada específicamente para problemas de clasificación desbalanceados. Su objetivo es priorizar las clases minoritarias al reducir la importancia de las predicciones correctamente clasificadas para las clases mayoritarias. Esto ayuda al modelo a concentrarse más en aprender las características de las clases menos representadas.</li>
 </ul>
 </section>
-<section id="pesos-de-las-clases" class="level5" data-number="1.3.2.2.4">
-<h5 data-number="1.3.2.2.4" class="anchored" data-anchor-id="pesos-de-las-clases"><span class="header-section-number">1.3.2.2.4</span> Pesos de las clases</h5>
-<p>Podemos además a incentivar al modelo a aprender los patrones de las clases minortitarias y ser capaz de predecirlos dandole un peso mnyor a estas clases, por lo que un error en las clases minoritarias pesa mucho más.</p>
-<ul>
-<li><strong>Pesos de las Clases:</strong> en algunos casos, asignar pesos inversamente proporcionales al tamaño de cada clase en la función de pérdida puede ser una estrategia complementaria para equilibrar la importancia de las clases en el modelo, como puede observarse en la Tabla 2 a continuación.</li>
-</ul>
-<p><strong>Tabla 2.</strong></p>
-<p><em>Pesos asignados a cada clase en el modelo.</em></p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Clase</th>
-<th style="text-align: right;">Peso</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Current</td>
-<td style="text-align: right;">0.58</td>
-</tr>
-<tr class="even">
-<td>Fully Paid</td>
-<td style="text-align: right;">0.725</td>
-</tr>
-<tr class="odd">
-<td>Charged Off</td>
-<td style="text-align: right;">1.16</td>
-</tr>
-<tr class="even">
-<td>In Progress</td>
-<td style="text-align: right;">10.0</td>
-</tr>
-<tr class="odd">
-<td>Late</td>
-<td style="text-align: right;">1.933</td>
-</tr>
-</tbody>
-</table>
-<p>Elaboración propia.</p>
-</section>
-<section id="callbacks" class="level5" data-number="1.3.2.2.5">
-<h5 data-number="1.3.2.2.5" class="anchored" data-anchor-id="callbacks"><span class="header-section-number">1.3.2.2.5</span> Callbacks</h5>
+<section id="callbacks" class="level5" data-number="1.3.2.2.4">
+<h5 data-number="1.3.2.2.4" class="anchored" data-anchor-id="callbacks"><span class="header-section-number">1.3.2.2.4</span> Callbacks</h5>
 <ul>
 <li><strong>Reduce Learning Rate on Plateu:</strong> ayuda a mantener la capacidad de mejora durante el entrenamiento, los cálculos del gradiente, que dependen de la tasa de aprendizaje pueden no ser capaces de llegar al mínimo de la función de pérdida, por lo que este callback reduce la tasa de entrenamiento si para una cantidad de Epochs dada, no ha habida una mejoría en los resultados, esto permite tener un aprendizaje con capacidad de mejoría a través de las Epochs.</li>
 </ul>
 </section>
-<section id="capas-1" class="level5" data-number="1.3.2.2.6">
-<h5 data-number="1.3.2.2.6" class="anchored" data-anchor-id="capas-1"><span class="header-section-number">1.3.2.2.6</span> Capas</h5>
+<section id="capas-1" class="level5" data-number="1.3.2.2.5">
+<h5 data-number="1.3.2.2.5" class="anchored" data-anchor-id="capas-1"><span class="header-section-number">1.3.2.2.5</span> Capas</h5>
 <p>Las capas definidas en el modelo fueron las siguiente:</p>
 <ol type="1">
 <li><p><strong>Capa de Entrada</strong></p>
 <p>Define el tamaño de entrada, el cual corresponde al número de características del dataset ya balanceado. Esta capa recibe los datos y los prepara para su procesamiento en las siguientes capas.</p></li>
 <li><p><strong>Primera Capa Oculta</strong></p>
-<p>Contiene <strong>1024 neuronas</strong> con activación <strong>ReLU</strong>, lo que permite capturar relaciones no lineales en los datos.<br>
+<p>Contiene <strong>256 neuronas</strong> con activación <strong>ReLU</strong>, lo que permite capturar relaciones no lineales en los datos.<br>
 Se aplica <strong>Batch Normalization</strong> para estabilizar el entrenamiento y acelerar la convergencia.<br>
-Se incorpora un <strong>Dropout del 40%</strong> para reducir el sobreajuste regularizando la activación de las neuronas.</p></li>
+Se incorpora un <strong>Dropout del 30%</strong> para reducir el sobreajuste regularizando la activación de las neuronas.</p></li>
 <li><p><strong>Segunda Capa Oculta</strong></p>
-<p>La cantidad de neuronas se reduce a <strong>512</strong>, lo que permite refinar la representación aprendida por la red.<br>
-Se mantiene la activación <strong>ReLU</strong>.<br>
-Se aplica <strong>Batch Normalization</strong> y <strong>Dropout del 30%</strong> para evitar el sobreajuste.</p></li>
+<p>La cantidad de neuronas se reduce a <strong>128</strong>, lo que permite refinar la representación aprendida por la red. Por otra parte, se mantiene la activación <strong>ReLU</strong> y se aplica un <strong>Batch Normalization</strong> y <strong>Dropout del 20%</strong> para evitar el sobreajuste.</p></li>
 <li><p><strong>Tercera Capa Oculta</strong></p>
-<p>Se continúa reduciendo la dimensionalidad a <strong>256 neuronas</strong> para extraer patrones más específicos.<br>
-Se mantiene la combinación de <strong>ReLU + Batch Normalization + Dropout (30%)</strong> para asegurar un entrenamiento estable.</p></li>
-<li><p><strong>Cuarta Capa Oculta</strong></p>
-<p>Se emplean <strong>128 neuronas</strong> con activación <strong>ReLU</strong>.<br>
-Se mantiene <strong>Batch Normalization</strong> y <strong>Dropout del 20%</strong>, reduciendo progresivamente la tasa de dropout a medida que la red avanza hacia capas más específicas.</p></li>
-<li><p><strong>Quinta Capa Oculta</strong></p>
-<p>Se incorporan <strong>64 neuronas</strong>, permitiendo una mayor compactación de las representaciones.<br>
-Se conserva <strong>ReLU</strong>, <strong>Batch Normalization</strong> y <strong>Dropout del 20%</strong>.</p></li>
+<p>Finalmente, se reduce la dimensionalidad a un total de <strong>64 neuronas</strong> para extraer patrones más específicos.<br>
+Se mantiene la combinación de anterior de funciones de activación, <strong>Batch Normalization</strong> y <strong>Dropout</strong> para asegurar un entrenamiento estable.</p></li>
 <li><p><strong>Capa de Salida</strong></p>
 <p>Contiene <strong>una neurona por cada clase del problema de clasificación multiclase</strong>.<br>
 Utiliza <strong>Softmax</strong> como función de activación, lo que convierte las salidas en probabilidades normalizadas, asegurando que la suma de las probabilidades sea igual a 1.</p></li>
 </ol>
 </section>
-<section id="resultados-del-modelo" class="level5" data-number="1.3.2.2.7">
-<h5 data-number="1.3.2.2.7" class="anchored" data-anchor-id="resultados-del-modelo"><span class="header-section-number">1.3.2.2.7</span> Resultados del modelo</h5>
+<section id="resultados-del-modelo" class="level5" data-number="1.3.2.2.6">
+<h5 data-number="1.3.2.2.6" class="anchored" data-anchor-id="resultados-del-modelo"><span class="header-section-number">1.3.2.2.6</span> Resultados del modelo</h5>
 <p><strong>Evolución de las métricas</strong></p>
 <p>En la Figura 8 se puede evidenciar cómo la función de pérdida va disminuyendo a lo largo de las épocas, con lo cual se va obteniendo un <em>accuracy</em> mucho más alto.</p>
 <p><strong>Figura 8.</strong></p>
 <p><em>Evolución de las métricas obtenidas por el modelo a través de las épocas.</em> <img src="metricas_final.png" class="img-fluid" alt="Evolución de las métricas obtenidas por el modelo a través de las épocas"> Elaboración propia.</p>
-<p>Finalmente se ha de observar que en el entrenamiento los resultados son muy estables mostrando una convergencia, mientras que en la validación tiende a fluctuar, pero mostrando buenos resultados a pesar de las flucutaciones, ya que ninguna es extrema.</p>
+<p>En este sentido, se ha de observar que los resultados en el entrenamiento son muy estables mostrando una convergencia, además de que las fluctuaciones observadas en los datos de validación son mucho menores que los obtenidos anteriormente, siendo esta una mejora frente a los últimos resultados que fueron evaluados.</p>
 </section>
 </section>
-<section id="reporte-de-clasificación" class="level4" data-number="1.3.2.3">
-<h4 data-number="1.3.2.3" class="anchored" data-anchor-id="reporte-de-clasificación"><span class="header-section-number">1.3.2.3</span> <strong>Reporte de clasificación</strong></h4>
-<p>A continuación se muestra una visión mucho más clara de los resultados obtenidos por el modelo para el conjunto de prueba, ya que en los problemas multiclase puede llegar a ser engañoso considerar solamente la métrica global calculada por el modelo. En los resultados mostrados por la Tabla 3, se evidencia que la clase <em>Default</em> es la que presenta más dificultades para el modelo.</p>
-<p><strong>Tabla 3.</strong></p>
-<p><em>Reporte de clasificación del modelo de mayor complejidad.</em></p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 25%">
-<col style="width: 20%">
-<col style="width: 16%">
-<col style="width: 19%">
-<col style="width: 18%">
-</colgroup>
-<thead>
-<tr class="header">
-<th><strong>Clase</strong></th>
-<th><strong>Precision</strong></th>
-<th><strong>Recall</strong></th>
-<th><strong>F1-score</strong></th>
-<th><strong>Support</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Charged Off</strong></td>
-<td>1.00</td>
-<td>0.99</td>
-<td>0.99</td>
-<td>9509</td>
-</tr>
-<tr class="even">
-<td><strong>Current</strong></td>
-<td>0.99</td>
-<td>0.79</td>
-<td>0.88</td>
-<td>120560</td>
-</tr>
-<tr class="odd">
-<td><strong>Fully Paid</strong></td>
-<td>1.00</td>
-<td>1.00</td>
-<td>1.00</td>
-<td>41689</td>
-</tr>
-<tr class="even">
-<td><strong>In Progress</strong></td>
-<td>0.44</td>
-<td>0.58</td>
-<td>0.50</td>
-<td>2976</td>
-</tr>
-<tr class="odd">
-<td><strong>Late</strong></td>
-<td>0.09</td>
-<td>0.88</td>
-<td>0.17</td>
-<td>2742</td>
-</tr>
-<tr class="even">
-<td><strong>Accuracy</strong></td>
-<td>-</td>
-<td>-</td>
-<td>0.85</td>
-<td>177476</td>
-</tr>
-<tr class="odd">
-<td><strong>Macro avg</strong></td>
-<td>0.70</td>
-<td>0.85</td>
-<td>0.71</td>
-<td>177476</td>
-</tr>
-<tr class="even">
-<td><strong>Weighted avg</strong></td>
-<td>0.97</td>
-<td>0.85</td>
-<td>0.90</td>
-<td>177476</td>
-</tr>
-</tbody>
-</table>
-<p><strong>F1-score macro:</strong> 0.71</p>
-<p><strong>Recall macro:</strong> 0.85</p>
-<p>Elaboración propia.</p>
+<section id="resultados-de-clasificación" class="level4" data-number="1.3.2.3">
+<h4 data-number="1.3.2.3" class="anchored" data-anchor-id="resultados-de-clasificación"><span class="header-section-number">1.3.2.3</span> <strong>Resultados de clasificación</strong></h4>
+<p><strong>F1-score macro:</strong> 0.64</p>
+<p><strong>Recall macro:</strong> 0.74</p>
 <p><strong>Matriz de confusión</strong></p>
-<p>Igualmente, en la Figura 9 se observan cuántos datos de cada clase fueron clasificados correctamente en la diagonal principal de la matriz de confusión. También se observan las dificultades que tuvo el modelo, así como su claridad para predecir algunas de las clases en el problema.</p>
+<p>Igualmente, en la Figura 9 se observan cuántos datos de cada clase fueron clasificados correctamente en la diagonal principal de la matriz de confusión.</p>
 <p><strong>Figura 9.</strong></p>
 <p><em>Matriz de confusión obtenida al evaluar el conjunto de prueba en el modelo.</em> <img src="matriz_de_confusion.png" class="img-fluid" alt="Matriz de confusión obtenida al evaluar el conjunto de prueba en el modelo."> Elaboración propia.</p>
-<p>Como mejoras a futuro se consideraría enriquecer el modelo teniendo una mayor cantidad de datos para las clases más difíciles de clasificar, junto con una mayor recopilación de información del banco, que apunte a las características de estas personas.</p>
+<p>En consideración con los resultados mostrados anteriormente, se pudo reducir visiblemente la confusión entre las clases <strong>Late</strong> y <strong>Current</strong>, sin embargo, las predicciones erróneas en este caso pueden ser explicadas a la luz de la no consideración de variables prospectivas en la arquitectura del modelo, las cuales permitirían diferenciar ambas categorías de una mejor forma.</p>
 </section>
 </section>
 </section>
 <section id="conclusiones-y-aprendizajes-a-partir-de-los-modelos" class="level2" data-number="1.4">
 <h2 data-number="1.4" class="anchored" data-anchor-id="conclusiones-y-aprendizajes-a-partir-de-los-modelos"><span class="header-section-number">1.4</span> Conclusiones y aprendizajes a partir de los modelos</h2>
-<p>En este punto, se pone en evidencia el problema de utilizar métricas como <em>accuracy</em> en lugar del <em>f1-score</em> cuando los datos se encuentran desbalanceados, resaltando la importancia de hacer un análisis exploratorio del dataset.</p>
-<p>Los resultados que se mostrarán a continuación muestran que el desarrollo del modelo fue un problema retador, tanto por el alto volumen de datos como por el desbalanceo de las clases, ambos factores que añaden dificultad al problema, sin embargo, fue posible darles un tratamiento correcto para obtener una mejor solución.</p>
-<section id="pesos-del-modelo" class="level3" data-number="1.4.1">
-<h3 data-number="1.4.1" class="anchored" data-anchor-id="pesos-del-modelo"><span class="header-section-number">1.4.1</span> Pesos del modelo</h3>
-<p>En este sentido, es posible obtener el peso de cada una de las características del modelo, dando como resultado el orden de importancia de las 19 características utilizadas, las cuales pueden observarse en la Tabla 4.</p>
-<p><strong>Tabla 4.</strong></p>
-<p><em>Importancia de cada una de las variables empleadas en el modelo de redes neuronales artificiales.</em></p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Feature</th>
-<th style="text-align: right;">Importance</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>last_pymnt_d_day_of_week</td>
-<td style="text-align: right;">1644.288574</td>
-</tr>
-<tr class="even">
-<td>last_pymnt_d_month</td>
-<td style="text-align: right;">1508.413818</td>
-</tr>
-<tr class="odd">
-<td>last_credit_pull_d_month</td>
-<td style="text-align: right;">562.279358</td>
-</tr>
-<tr class="even">
-<td>loan_age_years</td>
-<td style="text-align: right;">482.754181</td>
-</tr>
-<tr class="odd">
-<td>installment</td>
-<td style="text-align: right;">303.830078</td>
-</tr>
-<tr class="even">
-<td>recoveries</td>
-<td style="text-align: right;">258.369934</td>
-</tr>
-<tr class="odd">
-<td>days_since_last_payment</td>
-<td style="text-align: right;">256.875885</td>
-</tr>
-<tr class="even">
-<td>last_credit_pull_d_day_of_week</td>
-<td style="text-align: right;">234.173584</td>
-</tr>
-<tr class="odd">
-<td>out_prncp_inv</td>
-<td style="text-align: right;">204.917572</td>
-</tr>
-<tr class="even">
-<td>out_prncp</td>
-<td style="text-align: right;">204.653198</td>
-</tr>
-<tr class="odd">
-<td>last_pymnt_d_year</td>
-<td style="text-align: right;">194.993286</td>
-</tr>
-<tr class="even">
-<td>collection_recovery_fee</td>
-<td style="text-align: right;">191.655243</td>
-</tr>
-<tr class="odd">
-<td>issue_d_year</td>
-<td style="text-align: right;">167.871353</td>
-</tr>
-<tr class="even">
-<td>last_pymnt_amnt</td>
-<td style="text-align: right;">151.017563</td>
-</tr>
-<tr class="odd">
-<td>last_credit_pull_d_year</td>
-<td style="text-align: right;">126.103256</td>
-</tr>
-<tr class="even">
-<td>total_rec_prncp</td>
-<td style="text-align: right;">103.840637</td>
-</tr>
-<tr class="odd">
-<td>days_since_last_credit_pull</td>
-<td style="text-align: right;">88.737617</td>
-</tr>
-<tr class="even">
-<td>total_pymnt</td>
-<td style="text-align: right;">86.705498</td>
-</tr>
-<tr class="odd">
-<td>total_pymnt_inv</td>
-<td style="text-align: right;">85.052872</td>
-</tr>
-</tbody>
-</table>
-<p>Elaboración propia.</p>
-<section id="variables-de-fecha-y-tiempo" class="level4" data-number="1.4.1.1">
-<h4 data-number="1.4.1.1" class="anchored" data-anchor-id="variables-de-fecha-y-tiempo"><span class="header-section-number">1.4.1.1</span> <strong>Variables de Fecha y Tiempo</strong></h4>
-<ul>
-<li><strong><code>last_pymnt_d_day_of_week</code></strong>: Día de la semana en que se realizó el último pago. Puede revelar patrones de pago recurrentes.<br>
-</li>
-<li><strong><code>last_pymnt_d_month</code></strong>: Mes del último pago. Ayuda a detectar estacionalidad en los pagos.<br>
-</li>
-<li><strong><code>last_pymnt_d_year</code></strong>: Año del último pago. Captura tendencias anuales en el comportamiento del prestatario.<br>
-</li>
-<li><strong><code>loan_age_years</code></strong>: Antigüedad del préstamo en años. Permite evaluar el riesgo según el tiempo que ha pasado desde su emisión.<br>
-</li>
-<li><strong><code>issue_d_year</code></strong>: Año en que se emitió el préstamo. Útil para analizar cambios en la concesión de créditos a lo largo del tiempo.<br>
-</li>
-<li><strong><code>days_since_last_payment</code></strong>: Días desde el último pago realizado. Un número alto puede indicar posible morosidad.<br>
-</li>
-<li><strong><code>days_since_last_credit_pull</code></strong>: Días desde la última consulta de crédito del prestatario. Si es alto, puede significar falta de actividad financiera reciente.</li>
-</ul>
-</section>
-<section id="variables-relacionadas-con-pagos" class="level4" data-number="1.4.1.2">
-<h4 data-number="1.4.1.2" class="anchored" data-anchor-id="variables-relacionadas-con-pagos"><span class="header-section-number">1.4.1.2</span> <strong>Variables Relacionadas con Pagos</strong></h4>
-<ul>
-<li><strong><code>installment</code></strong>: Pago mensual que debe realizar el prestatario. Refleja la carga financiera del crédito.<br>
-</li>
-<li><strong><code>last_pymnt_amnt</code></strong>: Monto del último pago realizado. Indica la capacidad de pago reciente del prestatario.<br>
-</li>
-<li><strong><code>total_pymnt</code></strong>: Suma total pagada por el prestatario, incluyendo capital e intereses.<br>
-</li>
-<li><strong><code>total_pymnt_inv</code></strong>: Suma total pagada a los inversionistas. Similar a <code>total_pymnt</code>, pero desde la perspectiva del inversor.</li>
-</ul>
-</section>
-<section id="variables-de-historial-crediticio" class="level4" data-number="1.4.1.3">
-<h4 data-number="1.4.1.3" class="anchored" data-anchor-id="variables-de-historial-crediticio"><span class="header-section-number">1.4.1.3</span> <strong>Variables de Historial Crediticio</strong></h4>
-<ul>
-<li><strong><code>last_credit_pull_d_month</code></strong>: Mes de la última consulta de crédito del prestatario. Indica actividad reciente en su historial crediticio.<br>
-</li>
-<li><strong><code>last_credit_pull_d_year</code></strong>: Año de la última consulta de crédito. Útil para evaluar la regularidad en la revisión crediticia.<br>
-</li>
-<li><strong><code>last_credit_pull_d_day_of_week</code></strong>: Día de la semana en que se realizó la última consulta de crédito. Puede reflejar patrones en las evaluaciones de riesgo.</li>
-</ul>
-</section>
-<section id="variables-de-recuperación-y-deuda-pendiente" class="level4" data-number="1.4.1.4">
-<h4 data-number="1.4.1.4" class="anchored" data-anchor-id="variables-de-recuperación-y-deuda-pendiente"><span class="header-section-number">1.4.1.4</span> <strong>Variables de Recuperación y Deuda Pendiente</strong></h4>
-<ul>
-<li><strong><code>recoveries</code></strong>: Monto recuperado de préstamos que habían caído en mora. Evalúa la efectividad del proceso de cobranza.<br>
-</li>
-<li><strong><code>collection_recovery_fee</code></strong>: Costos asociados a la recuperación de préstamos en mora. Permite analizar la eficiencia del cobro.<br>
-</li>
-<li><strong><code>out_prncp</code></strong>: Principal pendiente de pago del prestatario. Indica cuánto capital aún no ha sido devuelto.<br>
-</li>
-<li><strong><code>out_prncp_inv</code></strong>: Principal pendiente de pago desde la perspectiva de los inversionistas.</li>
-</ul>
-<p>Podemos ver la importancia de la ingeniería de características que se realizó, pues la mayoría de ellas quedaron entre las características más importantes del modelo que además permitieron mejorar el rendimiento obtenido.</p>
-</section>
-</section>
+<p>En este punto, se pone en evidencia la dificultad de considerar este problema sin variables prospectivas que puedan brindar información acerca de los eventos futuros relacionados al comportamiento de pago por parte de los prestatarios hacia la entidad financiera. Sin embargo, se considera que los resultados obtenidos son satisfactorios es términos de las limitaciones presentadas y sus implicaciones en el desarrollo de un modelo de redes neuronales artificiales. Por lo tanto, se plantea como una posible mejora hacia el futuro la utilización de un conjunto de datos distinto, que contenga otro tipo de variables explicativas de cada clase (o una definición de clases que pueda ser obtenida a partir de un conjunto de variables no prospectivas).</p>
 </section>
 <section id="puesta-en-producción-del-modelo" class="level2" data-number="1.5">
 <h2 data-number="1.5" class="anchored" data-anchor-id="puesta-en-producción-del-modelo"><span class="header-section-number">1.5</span> Puesta en producción del modelo</h2>
@@ -24169,8 +23881,8 @@ Utiliza <strong>Softmax</strong> como función de activación, lo que convierte 
 <li><p>Las <strong>cooperativas financieras</strong> como organismos cooperativos que tienen como función principal la realización de actividades financieras, se consideran establecimientos de crédito y pueden solicitar autorización de la Superfinanciera para ofrecer sus servicios a terceros no asociados a la cooperativa.</p></li>
 <li><p>Las <strong>cooperativas de ahorro y crédito</strong> como organismos cooperativos que tienen la función principal de adelantar actividades financieras con sus asociados de forma única. A su vez, deben solicitar autorización de la Supersolidaria para la prestación de sus servicios.</p></li>
 </ul>
-<p>Teniendo en cuenta lo anterior, al hacer énfasis en la actividad ejercida por las cooperativas financieras, es posible observar que dichas entidades deben tener una especial importancia en la correcta gestión del riesgo de crédito, pues de esto depende en gran medida su capacidad para continuar prestando sus servicios a sus asociados o terceros que así lo necesiten. Por lo tanto, este caso de uso obedece a la situación en que una cooperativa financiera necesite evaluar cuál sería la decisión adecuada con respecto al crédito solicitado por un tercero no asociado, considerando las variables que interactúan en el problema y se muestran en la Tabla 5.</p>
-<p><strong>Tabla 5.</strong></p>
+<p>Teniendo en cuenta lo anterior, al hacer énfasis en la actividad ejercida por las cooperativas financieras, es posible observar que dichas entidades deben tener una especial importancia en la correcta gestión del riesgo de crédito, pues de esto depende en gran medida su capacidad para continuar prestando sus servicios a sus asociados o terceros que así lo necesiten. Por lo tanto, este caso de uso obedece a la situación en que una cooperativa financiera necesite evaluar cuál sería la decisión adecuada con respecto al crédito solicitado por un tercero no asociado, considerando las variables que interactúan en el problema y se muestran en la Tabla 2.</p>
+<p><strong>Tabla 2.</strong></p>
 <p><em>Información del perfil de crédito a analizar en el caso de estudio.</em></p>
 <table class="caption-top table">
 <colgroup>
@@ -24187,103 +23899,73 @@ Utiliza <strong>Softmax</strong> como función de activación, lo que convierte 
 </thead>
 <tbody>
 <tr class="odd">
+<td><strong>Pago Mensual propusto</strong></td>
+<td>$4500</td>
+<td>Es el máximo pago mensual que estaría dispuesto a pagar el prestatario si se aprueba el préstamo solicitado.</td>
+</tr>
+<tr class="even">
 <td><strong>Pago Mensual</strong></td>
-<td>$500,000</td>
-<td>Monto que debe pagar el prestatario mensualmente si el préstamo es originado.</td>
-</tr>
-<tr class="even">
-<td><strong>Pagos Recibidos por Monto Total</strong></td>
-<td>$2,000,000</td>
-<td>Pagos realizados hasta la fecha para el monto total financiado.</td>
+<td>$200</td>
+<td>Es el monto estimado del pago mensual que debe hacer el prestatario si se aprueba el préstamo solicitado.</td>
 </tr>
 <tr class="odd">
-<td><strong>Pagos Recibidos por Porción Inversionista</strong></td>
-<td>$1,200,000</td>
-<td>Pagos realizados hasta la fecha para la porción financiada por inversionistas.</td>
+<td><strong>Monto Financiado por Inversionistas</strong></td>
+<td>$4500</td>
+<td>Cantidad total del préstamo que será financiada específicamente por inversionistas en el momento de otorgarse el préstamo.</td>
 </tr>
 <tr class="even">
-<td><strong>Principal Recibido</strong></td>
-<td>$1,800,000</td>
-<td>Monto principal recibido hasta la fecha.</td>
+<td><strong>Monto Total Financiado</strong></td>
+<td>$5000</td>
+<td>Monto total que podría ser comprometido al momento de aprobar el crédito, el cual puede coincidir o ser inferior al monto solicitado.</td>
 </tr>
 <tr class="odd">
-<td><strong>Último Pago Recibido</strong></td>
-<td>$500,000</td>
-<td>Monto total del último pago realizado.</td>
+<td><strong>Tasa de Interés</strong></td>
+<td>9.5%</td>
+<td>Tasa de interés del Banco de la República en el momento de la solicitud.</td>
 </tr>
 <tr class="even">
-<td><strong>Última Fecha de Pago (Día)</strong></td>
-<td>20 de enero</td>
-<td>El último día de la semana en que se recibió el pago.</td>
+<td><strong>Monto Original del Préstamo</strong></td>
+<td>$5000</td>
+<td>Monto original solicitado por el prestatario para el préstamo; si la entidad crediticia lo ajusta a la baja, esto se refleja aquí.</td>
 </tr>
 <tr class="odd">
-<td><strong>Última Fecha de Pago (Mes)</strong></td>
-<td>Enero 2025</td>
-<td>El mes en el cual se realizó el último pago.</td>
+<td><strong>Monto Histórico de Cobro</strong></td>
+<td>$1000</td>
+<td>Suma total histórica de montos que alguna vez estuvieron en estado de cobranza por incumplimiento del prestatario.</td>
 </tr>
 <tr class="even">
-<td><strong>Último Informe de Crédito (Mes)</strong></td>
-<td>Octubre 2024</td>
-<td>El mes más reciente en el que se obtuvo el informe de crédito del prestatario.</td>
+<td><strong>Saldo Total Actual</strong></td>
+<td>$15000</td>
+<td>Saldo actual combinado de todas las cuentas activas del prestatario (incluye tanto crédito rotativo como crédito en cuotas).</td>
 </tr>
 <tr class="odd">
-<td><strong>Años con el Préstamo</strong></td>
-<td>3 años</td>
-<td>Número de años que el prestatario lleva con el préstamo.</td>
+<td><strong>Límite Total de Crédito Rotativo</strong></td>
+<td>$20000</td>
+<td>El límite máximo combinado otorgado al prestatario para todas sus líneas de crédito rotativo.</td>
 </tr>
 <tr class="even">
-<td><strong>Recuperación</strong></td>
-<td>$400,000</td>
-<td>La recuperación bruta después de la cancelación por incobrabilidad.</td>
+<td><strong>Relación Deuda-Ingresos</strong></td>
+<td>35.2%</td>
+<td>Relación entre los pagos mensuales totales de deuda del prestatario (excluyendo hipotecas y el préstamo actual solicitado) dividido por su ingreso mensual autodeclarado.</td>
 </tr>
 <tr class="odd">
-<td><strong>Días Desde el Último Pago</strong></td>
-<td>10 días</td>
-<td>Número de días desde que se recibió el último pago.</td>
+<td><strong>Saldo Total de Crédito Rotativo</strong></td>
+<td>$5000</td>
+<td>Monto total actual que el prestatario tiene como saldo pendiente en créditos rotativos (como tarjetas de crédito).solicitud.</td>
 </tr>
 <tr class="even">
-<td><strong>Última Fecha de Consulta</strong></td>
-<td>15 de enero 2025</td>
-<td>El día más reciente en el que se consultó el crédito del prestatario.</td>
+<td><strong>Línea de Crédito Rotativo</strong></td>
+<td>75%</td>
+<td>Porcentaje del crédito rotativo disponible que está actualmente en uso por parte del prestatario.</td>
 </tr>
 <tr class="odd">
-<td><strong>Saldo Pendiente (Monto Inversión)</strong></td>
-<td>$500,000</td>
-<td>Saldo principal pendiente de la parte financiada por inversionistas.</td>
-</tr>
-<tr class="even">
-<td><strong>Saldo Pendiente (Total)</strong></td>
-<td>$1,000,000</td>
-<td>Saldo principal pendiente del monto total financiado.</td>
-</tr>
-<tr class="odd">
-<td><strong>Última Fecha de Pago (Año)</strong></td>
-<td>2025</td>
-<td>El año en el cual se realizó el último pago.</td>
-</tr>
-<tr class="even">
-<td><strong>Tarifa por Cancelación</strong></td>
-<td>$50,000</td>
-<td>Tarifa de cobro después de la cancelación por incobrabilidad.</td>
-</tr>
-<tr class="odd">
-<td><strong>Año del Préstamo</strong></td>
-<td>2022</td>
-<td>El año en que se originó el préstamo.</td>
-</tr>
-<tr class="even">
-<td><strong>Último Informe de Crédito (Año)</strong></td>
-<td>2024</td>
-<td>El año más reciente en que se obtuvo el informe de crédito para este préstamo.</td>
-</tr>
-<tr class="odd">
-<td><strong>Último Informe de Crédito (Días)</strong></td>
-<td>100 días</td>
-<td>Número de días desde el último informe de crédito.</td>
+<td><strong>Calificación de Préstamo</strong></td>
+<td>B3</td>
+<td>Subcalificación asignada por la entidad crediticia al último préstamo solicitado por el prestatario que fue aprobado.</td>
 </tr>
 </tbody>
 </table>
-<p>Dados estos datos, es posible observar que la respuesta por parte del modelo desplegado será que el prestatario muestra un <strong>riesgo crediticio elevado</strong> debido a múltiples indicadores, como lo pueden ser: capacidad de pago limitada, historial crediticio inconsistente y alta utilización de crédito rotativo. De acuerdo con esto, las condiciones del préstamo requieren garantías sustanciales, por lo que la cooperativa financiera podría considerar estrategias como la restructuración concertada de dichas condiciones o la venta de cartera en otra entidad.</p>
+<p>Dados estos datos, es posible observar que la respuesta por parte del modelo desplegado será que el prestatario muestra un <strong>riesgo crediticio bajo</strong>, por lo cual es considerado un buen candidato para la aprobación de futuros préstamos, pues ha presentado un comportamiento de pago adecuado a nivel histórico y su capacidad de pago está demostrada al momento de realizar la solicitud que está siendo evaluada actualmente.</p>
 </section>
 </section>
 <section id="aplicación-web" class="level1" data-number="2">
@@ -25106,7 +24788,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a>Elaboración propia.</span>
 <span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a>Una vez entendida la estructura y consistencia de los datos, se procede con una fase de análisis para su preparación y limpieza. Usando diccionarios de variables para interpretar el significado y contexto de cada una de las variables, se ha decidido eliminar las siguientes, ya que a priori consideramos que no aportan relevancia práctica o lógica al modelo. Estas variables son:</span>
+<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a>Una vez entendida la estructura y consistencia de los datos, se procede con una fase de análisis para su preparación y limpieza. Usando diccionarios de variables para interpretar el significado y contexto de cada una de las variables, se ha decidido eliminar las siguientes, considerando que no aportan relevancia práctica o lógica al modelo. Estas variables son:</span>
 <span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-105"><a href="#cb3-105" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**id**: es un identificador único del crédito, por lo que no proporciona información adicional útil para el modelo.</span>
 <span id="cb3-106"><a href="#cb3-106" aria-hidden="true" tabindex="-1"></a></span>
@@ -25126,7 +24808,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb3-120"><a href="#cb3-120" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-121"><a href="#cb3-121" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Debido a la relación directa entre **grade** y **subgrade**, se opta por descartar **grade** y conservar **subgrade**, ya que esta última proporciona un nivel de detalle mayor y, por lo tanto, más información relevante para el análisis.</span>
 <span id="cb3-122"><a href="#cb3-122" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-123"><a href="#cb3-123" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Depuración de variables**: Adicionalmente, debido a la gran cantidad de variables con valores faltantes, se decidió eliminar aquellas que presentan más del 75% de datos faltantes. Con un porcentaje tan elevado, no es óptimo realizar imputaciones u otros procedimientos de recuperación de datos. Las variables que serán eliminadas son: **mths_since_last_record, mths_since_last_major_derog, annual_inc_joint, dti_joint, verification_status_joint, open_acc_6m, open_il_6m, open_il_12m, open_il_24m, mths_since_rcnt_il, total_bal_il, il_util, open_rv_12m, open_rv_24m, max_bal_bc, all_util, inq_fi, total_cu_tl** y **inq_last_12m**.</span>
+<span id="cb3-123"><a href="#cb3-123" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Depuración de variables**: Adicionalmente, debido a la gran cantidad de variables con valores faltantes, se decidió eliminar aquellas que presentan más del 75% de datos faltantes. Con un porcentaje tan elevado, no es óptimo realizar imputaciones u otros procedimientos de recuperación de datos.</span>
 <span id="cb3-124"><a href="#cb3-124" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-125"><a href="#cb3-125" aria-hidden="true" tabindex="-1"></a><span class="fu">### Análisis Visual y Tratamiento de NAs</span></span>
 <span id="cb3-126"><a href="#cb3-126" aria-hidden="true" tabindex="-1"></a></span>
@@ -25361,412 +25043,273 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb3-357"><a href="#cb3-357" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-358"><a href="#cb3-358" aria-hidden="true" tabindex="-1"></a>El análisis descriptivo mostró que la variable respuesta del dataset está altamente desbalanceada, lo cual representa un reto significativo al crear el modelo. Un modelo entrenado en estas condiciones puede tender a predecir únicamente la clase mayoritaria, generando métricas como el *accuracy* con valores engañosamente altos, pero sin reflejar una verdadera capacidad predictiva. Para abordar este problema, se emplearán las siguientes técnicas:</span>
 <span id="cb3-359"><a href="#cb3-359" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-360"><a href="#cb3-360" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Sobremuestreo y Submuestreo**: esta estrategia, ilustrada en la Figura 5, combina el aumento de las clases minoritarias mediante sobremuestreo y la reducción de las clases mayoritarias mediante submuestreo. El objetivo es equilibrar la cantidad de datos entre las clases, incentivando al modelo a aprender las características de todas las clases y mejorando sus métricas al minimizar la función de pérdida. Esto fue utilizado para todas las clases en el entrenamiento y el valor final para cada clase fue el siguiente:</span>
+<span id="cb3-360"><a href="#cb3-360" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Sobremuestreo y Submuestreo**: esta estrategia, ilustrada en la Figura 5, combina el aumento de las clases minoritarias mediante sobremuestreo con la estrategia SMOTE (generando muestras ficticias a partir de la información proporcionada) y la reducción de las clases mayoritarias mediante submuestreo. El objetivo es equilibrar la cantidad de datos entre las clases, incentivando al modelo a aprender las características de todas las clases y mejorando sus métricas al minimizar la función de pérdida. Como se mencionará más adelante, emplear un balance perfecto entre todas las clases no representó una ventaja en términos del desempeño del modelo (dada la naturaleza del conjunto de datos analizado), por lo tanto se optó por la escogencia de clases con pesos que representaran correctamente su importancia en el proceso de entrenamiento del modelo de redes neuronales artificiales. </span>
 <span id="cb3-361"><a href="#cb3-361" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-362"><a href="#cb3-362" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Current: 150.000</span>
+<span id="cb3-362"><a href="#cb3-362" aria-hidden="true" tabindex="-1"></a>**Figura 5.**</span>
 <span id="cb3-363"><a href="#cb3-363" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-364"><a href="#cb3-364" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Fully Paid: 125.700</span>
+<span id="cb3-364"><a href="#cb3-364" aria-hidden="true" tabindex="-1"></a>*Ilustración del funcionamiento de las técnicas de sobremuestreo y submuestreo.* <span class="al">![Ilustración del funcionamiento de las técnicas de sobremuestreo y submuestreo](muestreo.png)</span></span>
 <span id="cb3-365"><a href="#cb3-365" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-366"><a href="#cb3-366" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Charged Off: 50.000</span>
+<span id="cb3-366"><a href="#cb3-366" aria-hidden="true" tabindex="-1"></a>Tomado de *Handling imbalanced dataset in supervised learning using family of SMOTE algorithm*, por RohitWalimbe, 2017 (https://www.datasciencecentral.com/handling-imbalanced-data-sets-in-supervised-learning-using-family)</span>
 <span id="cb3-367"><a href="#cb3-367" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-368"><a href="#cb3-368" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Default: 50.000</span>
+<span id="cb3-368"><a href="#cb3-368" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Agrupamiento de las clases**: en esta estrategia se agruparon algunas de las clases con una menor cantidad de datos, teniendo en cuenta que, como se verá más adelante, son clases que tienen tan pocos datos que predecirlas es altamente complejo; esto pone en evidencia las limitaciones de las técnicas de sobremuestreo y submuestreo en la presencia de clases altamente desbalanceadas.</span>
 <span id="cb3-369"><a href="#cb3-369" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-370"><a href="#cb3-370" aria-hidden="true" tabindex="-1"></a><span class="ss">    -   </span>Issued: 50.000</span>
+<span id="cb3-370"><a href="#cb3-370" aria-hidden="true" tabindex="-1"></a><span class="fu">### Diseño y Arquitectura</span></span>
 <span id="cb3-371"><a href="#cb3-371" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-372"><a href="#cb3-372" aria-hidden="true" tabindex="-1"></a>**Figura 5.**</span>
+<span id="cb3-372"><a href="#cb3-372" aria-hidden="true" tabindex="-1"></a>Todo lo descrito a continuación fue implementado mediante Tensorflow.</span>
 <span id="cb3-373"><a href="#cb3-373" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-374"><a href="#cb3-374" aria-hidden="true" tabindex="-1"></a>*Ilustración del funcionamiento de las técnicas de sobremuestreo y submuestreo.* <span class="al">![Ilustración del funcionamiento de las técnicas de sobremuestreo y submuestreo](muestreo.png)</span></span>
+<span id="cb3-374"><a href="#cb3-374" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Modelo simple</span></span>
 <span id="cb3-375"><a href="#cb3-375" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-376"><a href="#cb3-376" aria-hidden="true" tabindex="-1"></a>Tomado de *Handling imbalanced dataset in supervised learning using family of SMOTE algorithm*, por RohitWalimbe, 2017 (https://www.datasciencecentral.com/handling-imbalanced-data-sets-in-supervised-learning-using-family)</span>
+<span id="cb3-376"><a href="#cb3-376" aria-hidden="true" tabindex="-1"></a>Este es el modelo que utilzaremos como referencia, este reflejará los resultados que se obtienen, no solo al utilizar una arquitectura bastante sencilla del modelo, sino además no realizar un proceso de ingeniería de características, es entonces esperado un mal rendimiento en este modelo al tener malas prácticas dentro del mismo.</span>
 <span id="cb3-377"><a href="#cb3-377" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-378"><a href="#cb3-378" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Agrupamiento de las clases**: en esta estrategia se agruparon algunas de las clases con una menor cantidad de datos, teniendo en cuenta que, como se verá más adelante, son clases que tienen tan pocos datos que predecirlas es altamente complejo; esto pone en evidencia las limitaciones de las técnicas de sobremuestreo y submuestreo en la presencia de clases altamente desbalanceadas.</span>
+<span id="cb3-378"><a href="#cb3-378" aria-hidden="true" tabindex="-1"></a><span class="fu">##### Evaluación del modelo</span></span>
 <span id="cb3-379"><a href="#cb3-379" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-380"><a href="#cb3-380" aria-hidden="true" tabindex="-1"></a><span class="fu">### Diseño y Arquitectura</span></span>
+<span id="cb3-380"><a href="#cb3-380" aria-hidden="true" tabindex="-1"></a>Utilizaremos la métrica más simple posible, que es la que toma Tensorflow por defecto, el accuracy.</span>
 <span id="cb3-381"><a href="#cb3-381" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-382"><a href="#cb3-382" aria-hidden="true" tabindex="-1"></a>Todo lo descrito a continuación fue implementado mediante Tensorflow.</span>
+<span id="cb3-382"><a href="#cb3-382" aria-hidden="true" tabindex="-1"></a>**Función de pérdida**</span>
 <span id="cb3-383"><a href="#cb3-383" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-384"><a href="#cb3-384" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Modelo simple</span></span>
+<span id="cb3-384"><a href="#cb3-384" aria-hidden="true" tabindex="-1"></a>La función de pérdida a elegir, es sparse categorical cross entropy, la cual esta pensada para problemas de clasificación multiclase donde la variable esta codificada mediante Ordinal o Label Encoder, no mediante One Hot Encoding (para este caso usar sparse cross entropy).</span>
 <span id="cb3-385"><a href="#cb3-385" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-386"><a href="#cb3-386" aria-hidden="true" tabindex="-1"></a>Este es el modelo que utilzaremos como referencia, este reflejará los resultados que se obtienen, no solo al utilizar una arquitectura bastante sencilla del modelo, sino además no realizar un proceso de ingeniería de características, es entonces esperado un mal rendimiento en este modelo al tener malas prácticas dentro del mismo.</span>
+<span id="cb3-386"><a href="#cb3-386" aria-hidden="true" tabindex="-1"></a><span class="fu">##### Capas</span></span>
 <span id="cb3-387"><a href="#cb3-387" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-388"><a href="#cb3-388" aria-hidden="true" tabindex="-1"></a><span class="fu">##### Evaluación del modelo</span></span>
+<span id="cb3-388"><a href="#cb3-388" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>**Capa de entrada.**</span>
 <span id="cb3-389"><a href="#cb3-389" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-390"><a href="#cb3-390" aria-hidden="true" tabindex="-1"></a>Utilizaremos la métrica más simple posible, que es la que toma Tensorflow por defecto, el accuracy.</span>
+<span id="cb3-390"><a href="#cb3-390" aria-hidden="true" tabindex="-1"></a>    La capa de entrada está definida para recibir un número de características igual a la dimensión de los datos en el conjunto balanceado.</span>
 <span id="cb3-391"><a href="#cb3-391" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-392"><a href="#cb3-392" aria-hidden="true" tabindex="-1"></a>**Función de pérdida**</span>
+<span id="cb3-392"><a href="#cb3-392" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>**Primera Capa Oculta.**</span>
 <span id="cb3-393"><a href="#cb3-393" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-394"><a href="#cb3-394" aria-hidden="true" tabindex="-1"></a>La función de pérdida a elegir, es sparse categorical cross entropy, la cual esta pensada para problemas de clasificación multiclase donde la variable esta codificada mediante Ordinal o Label Encoder, no mediante One Hot Encoding (para este caso usar sparse cross entropy).</span>
+<span id="cb3-394"><a href="#cb3-394" aria-hidden="true" tabindex="-1"></a>    Contiene 32 neuronas con activación ReLU, lo que permite que el modelo aprenda patrones no lineales en los datos. Además se agrego regularización $L_2$ para evitar el sobreajuste, y un dropout del 20% para reducir la posibilidad de sobreajuste.</span>
 <span id="cb3-395"><a href="#cb3-395" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-396"><a href="#cb3-396" aria-hidden="true" tabindex="-1"></a><span class="fu">##### Capas</span></span>
+<span id="cb3-396"><a href="#cb3-396" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>**Capa de Salida.**</span>
 <span id="cb3-397"><a href="#cb3-397" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-398"><a href="#cb3-398" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>**Capa de entrada.**</span>
+<span id="cb3-398"><a href="#cb3-398" aria-hidden="true" tabindex="-1"></a>    La capa de salida contiene tantas neuronas como clases en el problema, se utiliza la función de activación softmax para convertir las salidas en probabilidades.</span>
 <span id="cb3-399"><a href="#cb3-399" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-400"><a href="#cb3-400" aria-hidden="true" tabindex="-1"></a>    La capa de entrada está definida para recibir un número de características igual a la dimensión de los datos en el conjunto balanceado.</span>
+<span id="cb3-400"><a href="#cb3-400" aria-hidden="true" tabindex="-1"></a><span class="fu">##### Resultados del modelo de baja complejidad</span></span>
 <span id="cb3-401"><a href="#cb3-401" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-402"><a href="#cb3-402" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>**Primera Capa Oculta.**</span>
+<span id="cb3-402"><a href="#cb3-402" aria-hidden="true" tabindex="-1"></a>**Evolución de las métricas**</span>
 <span id="cb3-403"><a href="#cb3-403" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-404"><a href="#cb3-404" aria-hidden="true" tabindex="-1"></a>    Contiene 32 neuronas con activación ReLU, lo que permite que el modelo aprenda patrones no lineales en los datos. Además se agrego regularización $L_2$ para evitar el sobreajuste, y un dropout del 20% para reducir la posibilidad de sobreajuste.</span>
+<span id="cb3-404"><a href="#cb3-404" aria-hidden="true" tabindex="-1"></a>Es posible notar en la Figura 6 que, durante el entrenamiento, el modelo tiene una función de pérdida muy alta y una precisión que, en vez de incrementar, va disminuyendo en los datos de validación a pesar de que empieza en un valor muy alto. Los motivos por los cuales sucede esto serán abordados más adelante de una manera específica.</span>
 <span id="cb3-405"><a href="#cb3-405" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-406"><a href="#cb3-406" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>**Capa de Salida.**</span>
+<span id="cb3-406"><a href="#cb3-406" aria-hidden="true" tabindex="-1"></a>**Figura 6.**</span>
 <span id="cb3-407"><a href="#cb3-407" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-408"><a href="#cb3-408" aria-hidden="true" tabindex="-1"></a>    La capa de salida contiene tantas neuronas como clases en el problema, se utiliza la función de activación softmax para convertir las salidas en probabilidades.</span>
+<span id="cb3-408"><a href="#cb3-408" aria-hidden="true" tabindex="-1"></a>*Evolución de las métricas del modelo a través de las épocas durante el proceso de entrenamiento.* <span class="al">![Evolución de las métricas del modelo a través de las épocas durante el proceso de entrenamiento.](metricas_baja.png)</span> Elaboración propia.</span>
 <span id="cb3-409"><a href="#cb3-409" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-410"><a href="#cb3-410" aria-hidden="true" tabindex="-1"></a><span class="fu">##### Resultados del modelo de baja complejidad</span></span>
+<span id="cb3-410"><a href="#cb3-410" aria-hidden="true" tabindex="-1"></a>**Reporte de clasificación**</span>
 <span id="cb3-411"><a href="#cb3-411" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-412"><a href="#cb3-412" aria-hidden="true" tabindex="-1"></a>**Evolución de las métricas**</span>
+<span id="cb3-412"><a href="#cb3-412" aria-hidden="true" tabindex="-1"></a>**Matriz de confusión**</span>
 <span id="cb3-413"><a href="#cb3-413" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-414"><a href="#cb3-414" aria-hidden="true" tabindex="-1"></a>Es posible notar en la Figura 6 que, durante el entrenamiento, el modelo tiene una función de pérdida muy alta y una precisión que, en vez de incrementar, va disminuyendo en los datos de validación a pesar de que empieza en un valor muy alto. Los motivos por los cuales sucede esto serán abordados más adelante de una manera específica.</span>
+<span id="cb3-414"><a href="#cb3-414" aria-hidden="true" tabindex="-1"></a>De acuerdo con la matriz de confusión observada en la Figura 7, se pueden notar ciertas dificultades para predecir clases como *Fully Paid*. Sin embargo, el modelo predice bien clases como *Charged Off* y *Current*.</span>
 <span id="cb3-415"><a href="#cb3-415" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-416"><a href="#cb3-416" aria-hidden="true" tabindex="-1"></a>**Figura 6.**</span>
+<span id="cb3-416"><a href="#cb3-416" aria-hidden="true" tabindex="-1"></a>**Figura 7.**</span>
 <span id="cb3-417"><a href="#cb3-417" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-418"><a href="#cb3-418" aria-hidden="true" tabindex="-1"></a>*Evolución de las métricas del modelo a través de las épocas durante el proceso de entrenamiento.* <span class="al">![Evolución de las métricas del modelo a través de las épocas durante el proceso de entrenamiento.](metricas_baja.png)</span> Elaboración propia.</span>
+<span id="cb3-418"><a href="#cb3-418" aria-hidden="true" tabindex="-1"></a>*Matriz de confusión del modelo de baja complejidad.* <span class="al">![Matriz de confusón del modelo de baja complejidad.](matriz_de_confusion_baja.png)</span> Elaboración propia.</span>
 <span id="cb3-419"><a href="#cb3-419" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-420"><a href="#cb3-420" aria-hidden="true" tabindex="-1"></a>**Reporte de clasificación**</span>
+<span id="cb3-420"><a href="#cb3-420" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Modelo con mayor complejidad</span></span>
 <span id="cb3-421"><a href="#cb3-421" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-422"><a href="#cb3-422" aria-hidden="true" tabindex="-1"></a>**Matriz de confusión**</span>
+<span id="cb3-422"><a href="#cb3-422" aria-hidden="true" tabindex="-1"></a><span class="fu">##### Ingeniería de características</span></span>
 <span id="cb3-423"><a href="#cb3-423" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-424"><a href="#cb3-424" aria-hidden="true" tabindex="-1"></a>De acuerdo con la matriz de confusión observada en la Figura 7, se pueden notar ciertas dificultades para predecir clases como *Fully Paid*. Sin embargo, el modelo predice bien clases como *Charged Off* y *Current*.</span>
+<span id="cb3-424"><a href="#cb3-424" aria-hidden="true" tabindex="-1"></a>Durante la fase de diseño del modelo de mayor complejidad, se consideró conveniente emplear una estrategia de ingeniería de características enfocada en los siguientes aspectos, con el objetivo de mejorar los resultados obtenidos en el modelo anterior:</span>
 <span id="cb3-425"><a href="#cb3-425" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-426"><a href="#cb3-426" aria-hidden="true" tabindex="-1"></a>**Figura 7.**</span>
+<span id="cb3-426"><a href="#cb3-426" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>En primer lugar, se procuró utilizar variables cuya consecución o interpretación no esté sujeta a eventos posteriores a la aprobación del crédito. Sin embargo, esto puede hacer que el modelo pierda capacidad para identificar las características relevantes de cada una de las clases, pues algunos de los aspectos más importantes del comportamiento de pago de los prestarios solo podrán saberse después de que se se haya iniciado el proceso de aprobación de los productos financieros solicitados.</span>
 <span id="cb3-427"><a href="#cb3-427" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-428"><a href="#cb3-428" aria-hidden="true" tabindex="-1"></a>*Matriz de confusión del modelo de baja complejidad.* <span class="al">![Matriz de confusón del modelo de baja complejidad.](matriz_de_confusion_baja.png)</span> Elaboración propia.</span>
+<span id="cb3-428"><a href="#cb3-428" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Por otra parte, se empleó un **árbol de decisión** para seleccionar las características que tuvieran un impacto más significativo en los resultados proporcionados por el modelo, mejorando el proceso de escogencia de variables adecuadas para este caso.</span>
 <span id="cb3-429"><a href="#cb3-429" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-430"><a href="#cb3-430" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Modelo con mayor complejidad</span></span>
+<span id="cb3-430"><a href="#cb3-430" aria-hidden="true" tabindex="-1"></a><span class="fu">##### Evaluación del modelo</span></span>
 <span id="cb3-431"><a href="#cb3-431" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-432"><a href="#cb3-432" aria-hidden="true" tabindex="-1"></a><span class="fu">##### Ingeniería de características</span></span>
+<span id="cb3-432"><a href="#cb3-432" aria-hidden="true" tabindex="-1"></a>Con el fin de evaluar los resultados del modelo de una forma más equitativa, se seleccionaron las siguientes métricas como marco de referencia para la evaluación del comportamiento del modelo de redes neuronales artificiales, asegurándose de no favorecer especialmente a la clase mayoritaria en comparación con las demás:</span>
 <span id="cb3-433"><a href="#cb3-433" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-434"><a href="#cb3-434" aria-hidden="true" tabindex="-1"></a>Debido a que contamos con variables temporales, vamos a centrar el proceso de ingeniería de características en estas variables para darles un tratamiento que ayuden la capacidad predictiva del modelo (también se puede pensar en arquitecturas como LSTM para el manejo de este tipo de datos)</span>
+<span id="cb3-434"><a href="#cb3-434" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**F1-Score Macro**: a diferencia de métricas como el **accuracy**, que tienden a favorecer la clase mayoritaria en datasets desbalanceados, el **F1-Score Macro** asigna igual importancia a todas las clases, independientemente del número de muestras. Esto brinda una evaluación más realista del desempeño del modelo.</span>
 <span id="cb3-435"><a href="#cb3-435" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-436"><a href="#cb3-436" aria-hidden="true" tabindex="-1"></a>**Cálculo de Intervalos de Tiempo** : Calculamos el **tiempo transcurrido** desde una fecha de referencia (<span class="in">`2025-01-01`</span>):</span>
+<span id="cb3-436"><a href="#cb3-436" aria-hidden="true" tabindex="-1"></a><span class="fu">##### Función de pérdida</span></span>
 <span id="cb3-437"><a href="#cb3-437" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-438"><a href="#cb3-438" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Antigüedad del préstamo (`loan_age_years`)**: Tiempo desde que se emitió el préstamo.</span>
+<span id="cb3-438"><a href="#cb3-438" aria-hidden="true" tabindex="-1"></a>Para abordar el desbalance de clases durante el entrenamiento, utilizaremos técnicas como:</span>
 <span id="cb3-439"><a href="#cb3-439" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-440"><a href="#cb3-440" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Historial de crédito (`credit_history_years`)**: Años desde la apertura del primer crédito.</span>
+<span id="cb3-440"><a href="#cb3-440" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Focal Loss:** esta función de pérdida está diseñada específicamente para problemas de clasificación desbalanceados. Su objetivo es priorizar las clases minoritarias al reducir la importancia de las predicciones correctamente clasificadas para las clases mayoritarias. Esto ayuda al modelo a concentrarse más en aprender las características de las clases menos representadas.</span>
 <span id="cb3-441"><a href="#cb3-441" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-442"><a href="#cb3-442" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Días desde el último pago (`days_since_last_payment`)**: Indicador de riesgo si el valor es alto.</span>
+<span id="cb3-442"><a href="#cb3-442" aria-hidden="true" tabindex="-1"></a><span class="fu">##### Callbacks</span></span>
 <span id="cb3-443"><a href="#cb3-443" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-444"><a href="#cb3-444" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Días desde la última consulta de crédito (`days_since_last_credit_pull`)**: Indica actividad reciente del cliente.</span>
+<span id="cb3-444"><a href="#cb3-444" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Reduce Learning Rate on Plateu:** ayuda a mantener la capacidad de mejora durante el entrenamiento, los cálculos del gradiente, que dependen de la tasa de aprendizaje pueden no ser capaces de llegar al mínimo de la función de pérdida, por lo que este callback reduce la tasa de entrenamiento si para una cantidad de Epochs dada, no ha habida una mejoría en los resultados, esto permite tener un aprendizaje con capacidad de mejoría a través de las Epochs.</span>
 <span id="cb3-445"><a href="#cb3-445" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-446"><a href="#cb3-446" aria-hidden="true" tabindex="-1"></a><span class="fu">##### Evaluación del modelo</span></span>
+<span id="cb3-446"><a href="#cb3-446" aria-hidden="true" tabindex="-1"></a><span class="fu">##### Capas</span></span>
 <span id="cb3-447"><a href="#cb3-447" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-448"><a href="#cb3-448" aria-hidden="true" tabindex="-1"></a>Dado el desbalance de la variable objetivo, utilizaremos métricas diseñadas para proporcionar una evaluación más equitativa del modelo:</span>
+<span id="cb3-448"><a href="#cb3-448" aria-hidden="true" tabindex="-1"></a>Las capas definidas en el modelo fueron las siguiente:</span>
 <span id="cb3-449"><a href="#cb3-449" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-450"><a href="#cb3-450" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**F1-Score Macro**: a diferencia de métricas como el **accuracy**, que tienden a favorecer la clase mayoritaria en datasets desbalanceados, el **F1-Score Macro** asigna igual importancia a todas las clases, independientemente del número de muestras. Esto nos brinda una evaluación más realista del desempeño del modelo.</span>
+<span id="cb3-450"><a href="#cb3-450" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>**Capa de Entrada**</span>
 <span id="cb3-451"><a href="#cb3-451" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-452"><a href="#cb3-452" aria-hidden="true" tabindex="-1"></a><span class="fu">##### Función de pérdida</span></span>
+<span id="cb3-452"><a href="#cb3-452" aria-hidden="true" tabindex="-1"></a>    Define el tamaño de entrada, el cual corresponde al número de características del dataset ya balanceado. Esta capa recibe los datos y los prepara para su procesamiento en las siguientes capas.</span>
 <span id="cb3-453"><a href="#cb3-453" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-454"><a href="#cb3-454" aria-hidden="true" tabindex="-1"></a>Para abordar el desbalance de clases durante el entrenamiento, utilizaremos técnicas como:</span>
+<span id="cb3-454"><a href="#cb3-454" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>**Primera Capa Oculta**</span>
 <span id="cb3-455"><a href="#cb3-455" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-456"><a href="#cb3-456" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Focal Loss:** esta función de pérdida está diseñada específicamente para problemas de clasificación desbalanceados. Su objetivo es priorizar las clases minoritarias al reducir la importancia de las predicciones correctamente clasificadas para las clases mayoritarias. Esto ayuda al modelo a concentrarse más en aprender las características de las clases menos representadas.</span>
-<span id="cb3-457"><a href="#cb3-457" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-458"><a href="#cb3-458" aria-hidden="true" tabindex="-1"></a><span class="fu">##### Pesos de las clases</span></span>
+<span id="cb3-456"><a href="#cb3-456" aria-hidden="true" tabindex="-1"></a>    Contiene **256 neuronas** con activación **ReLU**, lo que permite capturar relaciones no lineales en los datos.\</span>
+<span id="cb3-457"><a href="#cb3-457" aria-hidden="true" tabindex="-1"></a>    Se aplica **Batch Normalization** para estabilizar el entrenamiento y acelerar la convergencia.\</span>
+<span id="cb3-458"><a href="#cb3-458" aria-hidden="true" tabindex="-1"></a>    Se incorpora un **Dropout del 30%** para reducir el sobreajuste regularizando la activación de las neuronas.</span>
 <span id="cb3-459"><a href="#cb3-459" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-460"><a href="#cb3-460" aria-hidden="true" tabindex="-1"></a>Podemos además a incentivar al modelo a aprender los patrones de las clases minortitarias y ser capaz de predecirlos dandole un peso mnyor a estas clases, por lo que un error en las clases minoritarias pesa mucho más.</span>
+<span id="cb3-460"><a href="#cb3-460" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>**Segunda Capa Oculta**</span>
 <span id="cb3-461"><a href="#cb3-461" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-462"><a href="#cb3-462" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Pesos de las Clases:** en algunos casos, asignar pesos inversamente proporcionales al tamaño de cada clase en la función de pérdida puede ser una estrategia complementaria para equilibrar la importancia de las clases en el modelo, como puede observarse en la Tabla 2 a continuación.</span>
+<span id="cb3-462"><a href="#cb3-462" aria-hidden="true" tabindex="-1"></a>    La cantidad de neuronas se reduce a **128**, lo que permite refinar la representación aprendida por la red. Por otra parte, se mantiene la activación **ReLU** y se aplica un **Batch Normalization** y **Dropout del 20%** para evitar el sobreajuste.</span>
 <span id="cb3-463"><a href="#cb3-463" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-464"><a href="#cb3-464" aria-hidden="true" tabindex="-1"></a>**Tabla 2.**</span>
+<span id="cb3-464"><a href="#cb3-464" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>**Tercera Capa Oculta**</span>
 <span id="cb3-465"><a href="#cb3-465" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-466"><a href="#cb3-466" aria-hidden="true" tabindex="-1"></a>*Pesos asignados a cada clase en el modelo.*</span>
-<span id="cb3-467"><a href="#cb3-467" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-468"><a href="#cb3-468" aria-hidden="true" tabindex="-1"></a>| Clase       |  Peso |</span>
-<span id="cb3-469"><a href="#cb3-469" aria-hidden="true" tabindex="-1"></a>|-------------|------:|</span>
-<span id="cb3-470"><a href="#cb3-470" aria-hidden="true" tabindex="-1"></a>| Current     |  0.58 |</span>
-<span id="cb3-471"><a href="#cb3-471" aria-hidden="true" tabindex="-1"></a>| Fully Paid  | 0.725 |</span>
-<span id="cb3-472"><a href="#cb3-472" aria-hidden="true" tabindex="-1"></a>| Charged Off |  1.16 |</span>
-<span id="cb3-473"><a href="#cb3-473" aria-hidden="true" tabindex="-1"></a>| In Progress |  10.0 |</span>
-<span id="cb3-474"><a href="#cb3-474" aria-hidden="true" tabindex="-1"></a>| Late        | 1.933 |</span>
+<span id="cb3-466"><a href="#cb3-466" aria-hidden="true" tabindex="-1"></a>    Finalmente, se reduce la dimensionalidad a un total de **64  neuronas** para extraer patrones más específicos.\</span>
+<span id="cb3-467"><a href="#cb3-467" aria-hidden="true" tabindex="-1"></a>    Se mantiene la combinación de anterior de funciones de activación, **Batch Normalization** y **Dropout** para asegurar un entrenamiento estable.</span>
+<span id="cb3-468"><a href="#cb3-468" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-469"><a href="#cb3-469" aria-hidden="true" tabindex="-1"></a><span class="ss">5.  </span>**Capa de Salida**</span>
+<span id="cb3-470"><a href="#cb3-470" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-471"><a href="#cb3-471" aria-hidden="true" tabindex="-1"></a>    Contiene **una neurona por cada clase del problema de clasificación multiclase**.\</span>
+<span id="cb3-472"><a href="#cb3-472" aria-hidden="true" tabindex="-1"></a>    Utiliza **Softmax** como función de activación, lo que convierte las salidas en probabilidades normalizadas, asegurando que la suma de las probabilidades sea igual a 1.</span>
+<span id="cb3-473"><a href="#cb3-473" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-474"><a href="#cb3-474" aria-hidden="true" tabindex="-1"></a><span class="fu">##### Resultados del modelo</span></span>
 <span id="cb3-475"><a href="#cb3-475" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-476"><a href="#cb3-476" aria-hidden="true" tabindex="-1"></a>Elaboración propia.</span>
+<span id="cb3-476"><a href="#cb3-476" aria-hidden="true" tabindex="-1"></a>**Evolución de las métricas**</span>
 <span id="cb3-477"><a href="#cb3-477" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-478"><a href="#cb3-478" aria-hidden="true" tabindex="-1"></a><span class="fu">##### Callbacks</span></span>
+<span id="cb3-478"><a href="#cb3-478" aria-hidden="true" tabindex="-1"></a>En la Figura 8 se puede evidenciar cómo la función de pérdida va disminuyendo a lo largo de las épocas, con lo cual se va obteniendo un *accuracy* mucho más alto.</span>
 <span id="cb3-479"><a href="#cb3-479" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-480"><a href="#cb3-480" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Reduce Learning Rate on Plateu:** ayuda a mantener la capacidad de mejora durante el entrenamiento, los cálculos del gradiente, que dependen de la tasa de aprendizaje pueden no ser capaces de llegar al mínimo de la función de pérdida, por lo que este callback reduce la tasa de entrenamiento si para una cantidad de Epochs dada, no ha habida una mejoría en los resultados, esto permite tener un aprendizaje con capacidad de mejoría a través de las Epochs.</span>
+<span id="cb3-480"><a href="#cb3-480" aria-hidden="true" tabindex="-1"></a>**Figura 8.**</span>
 <span id="cb3-481"><a href="#cb3-481" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-482"><a href="#cb3-482" aria-hidden="true" tabindex="-1"></a><span class="fu">##### Capas</span></span>
+<span id="cb3-482"><a href="#cb3-482" aria-hidden="true" tabindex="-1"></a>*Evolución de las métricas obtenidas por el modelo a través de las épocas.* <span class="al">![Evolución de las métricas obtenidas por el modelo a través de las épocas](metricas_final.png)</span> Elaboración propia.</span>
 <span id="cb3-483"><a href="#cb3-483" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-484"><a href="#cb3-484" aria-hidden="true" tabindex="-1"></a>Las capas definidas en el modelo fueron las siguiente:</span>
+<span id="cb3-484"><a href="#cb3-484" aria-hidden="true" tabindex="-1"></a>En este sentido, se ha de observar que los resultados en el entrenamiento son muy estables mostrando una convergencia, además de que las fluctuaciones observadas en los datos de validación son mucho menores que los obtenidos anteriormente, siendo esta una mejora frente a los últimos resultados que fueron evaluados.</span>
 <span id="cb3-485"><a href="#cb3-485" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-486"><a href="#cb3-486" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>**Capa de Entrada**</span>
+<span id="cb3-486"><a href="#cb3-486" aria-hidden="true" tabindex="-1"></a><span class="fu">#### **Resultados de clasificación**</span></span>
 <span id="cb3-487"><a href="#cb3-487" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-488"><a href="#cb3-488" aria-hidden="true" tabindex="-1"></a>    Define el tamaño de entrada, el cual corresponde al número de características del dataset ya balanceado. Esta capa recibe los datos y los prepara para su procesamiento en las siguientes capas.</span>
+<span id="cb3-488"><a href="#cb3-488" aria-hidden="true" tabindex="-1"></a>**F1-score macro:** 0.64</span>
 <span id="cb3-489"><a href="#cb3-489" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-490"><a href="#cb3-490" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>**Primera Capa Oculta**</span>
+<span id="cb3-490"><a href="#cb3-490" aria-hidden="true" tabindex="-1"></a>**Recall macro:** 0.74</span>
 <span id="cb3-491"><a href="#cb3-491" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-492"><a href="#cb3-492" aria-hidden="true" tabindex="-1"></a>    Contiene **1024 neuronas** con activación **ReLU**, lo que permite capturar relaciones no lineales en los datos.\</span>
-<span id="cb3-493"><a href="#cb3-493" aria-hidden="true" tabindex="-1"></a>    Se aplica **Batch Normalization** para estabilizar el entrenamiento y acelerar la convergencia.\</span>
-<span id="cb3-494"><a href="#cb3-494" aria-hidden="true" tabindex="-1"></a>    Se incorpora un **Dropout del 40%** para reducir el sobreajuste regularizando la activación de las neuronas.</span>
+<span id="cb3-492"><a href="#cb3-492" aria-hidden="true" tabindex="-1"></a>**Matriz de confusión**</span>
+<span id="cb3-493"><a href="#cb3-493" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-494"><a href="#cb3-494" aria-hidden="true" tabindex="-1"></a>Igualmente, en la Figura 9 se observan cuántos datos de cada clase fueron clasificados correctamente en la diagonal principal de la matriz de confusión.</span>
 <span id="cb3-495"><a href="#cb3-495" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-496"><a href="#cb3-496" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>**Segunda Capa Oculta**</span>
+<span id="cb3-496"><a href="#cb3-496" aria-hidden="true" tabindex="-1"></a>**Figura 9.**</span>
 <span id="cb3-497"><a href="#cb3-497" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-498"><a href="#cb3-498" aria-hidden="true" tabindex="-1"></a>    La cantidad de neuronas se reduce a **512**, lo que permite refinar la representación aprendida por la red.\</span>
-<span id="cb3-499"><a href="#cb3-499" aria-hidden="true" tabindex="-1"></a>    Se mantiene la activación **ReLU**.\</span>
-<span id="cb3-500"><a href="#cb3-500" aria-hidden="true" tabindex="-1"></a>    Se aplica **Batch Normalization** y **Dropout del 30%** para evitar el sobreajuste.</span>
+<span id="cb3-498"><a href="#cb3-498" aria-hidden="true" tabindex="-1"></a>*Matriz de confusión obtenida al evaluar el conjunto de prueba en el modelo.* <span class="al">![Matriz de confusión obtenida al evaluar el conjunto de prueba en el modelo.](matriz_de_confusion.png)</span> Elaboración propia.</span>
+<span id="cb3-499"><a href="#cb3-499" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-500"><a href="#cb3-500" aria-hidden="true" tabindex="-1"></a>En consideración con los resultados mostrados anteriormente, se pudo reducir visiblemente la confusión entre las clases **Late** y **Current**, sin embargo, las predicciones erróneas en este caso pueden ser explicadas a la luz de la no consideración de variables prospectivas en la arquitectura del modelo, las cuales permitirían diferenciar ambas categorías de una mejor forma.</span>
 <span id="cb3-501"><a href="#cb3-501" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-502"><a href="#cb3-502" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>**Tercera Capa Oculta**</span>
+<span id="cb3-502"><a href="#cb3-502" aria-hidden="true" tabindex="-1"></a><span class="fu">## Conclusiones y aprendizajes a partir de los modelos</span></span>
 <span id="cb3-503"><a href="#cb3-503" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-504"><a href="#cb3-504" aria-hidden="true" tabindex="-1"></a>    Se continúa reduciendo la dimensionalidad a **256 neuronas** para extraer patrones más específicos.\</span>
-<span id="cb3-505"><a href="#cb3-505" aria-hidden="true" tabindex="-1"></a>    Se mantiene la combinación de **ReLU + Batch Normalization + Dropout (30%)** para asegurar un entrenamiento estable.</span>
-<span id="cb3-506"><a href="#cb3-506" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-507"><a href="#cb3-507" aria-hidden="true" tabindex="-1"></a><span class="ss">5.  </span>**Cuarta Capa Oculta**</span>
-<span id="cb3-508"><a href="#cb3-508" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-509"><a href="#cb3-509" aria-hidden="true" tabindex="-1"></a>    Se emplean **128 neuronas** con activación **ReLU**.\</span>
-<span id="cb3-510"><a href="#cb3-510" aria-hidden="true" tabindex="-1"></a>    Se mantiene **Batch Normalization** y **Dropout del 20%**, reduciendo progresivamente la tasa de dropout a medida que la red avanza hacia capas más específicas.</span>
+<span id="cb3-504"><a href="#cb3-504" aria-hidden="true" tabindex="-1"></a>En este punto, se pone en evidencia la dificultad de considerar este problema sin variables prospectivas que puedan brindar información acerca de los eventos futuros relacionados al comportamiento de pago por parte de los prestatarios hacia la entidad financiera. Sin embargo, se considera que los resultados obtenidos son satisfactorios es términos de las limitaciones presentadas y sus implicaciones en el desarrollo de un modelo de redes neuronales artificiales. Por lo tanto, se plantea como una posible mejora hacia el futuro la utilización de un conjunto de datos distinto, que contenga otro tipo de variables explicativas de cada clase (o una definición de clases que pueda ser obtenida a partir de un conjunto de variables no prospectivas).</span>
+<span id="cb3-505"><a href="#cb3-505" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-506"><a href="#cb3-506" aria-hidden="true" tabindex="-1"></a><span class="fu">## Puesta en producción del modelo</span></span>
+<span id="cb3-507"><a href="#cb3-507" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-508"><a href="#cb3-508" aria-hidden="true" tabindex="-1"></a>Debido a la naturaleza del proyecto, tareas como lo son la monitoría del modelo se dejan como futuras mejorías, nos centraremos específicamente en dos.</span>
+<span id="cb3-509"><a href="#cb3-509" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-510"><a href="#cb3-510" aria-hidden="true" tabindex="-1"></a><span class="fu">### Creación de la API</span></span>
 <span id="cb3-511"><a href="#cb3-511" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-512"><a href="#cb3-512" aria-hidden="true" tabindex="-1"></a><span class="ss">6.  </span>**Quinta Capa Oculta**</span>
+<span id="cb3-512"><a href="#cb3-512" aria-hidden="true" tabindex="-1"></a>Se utilizó el framework de Python llamado FastAPI @fastapi para convertir el modelo en una API que pudiera realizar predicciones de acuerdo con la información de cada usuario. En el repositorio de GitHub se encuentra el archivo con el código necesario para lograr este resultado.</span>
 <span id="cb3-513"><a href="#cb3-513" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-514"><a href="#cb3-514" aria-hidden="true" tabindex="-1"></a>    Se incorporan **64 neuronas**, permitiendo una mayor compactación de las representaciones.\</span>
-<span id="cb3-515"><a href="#cb3-515" aria-hidden="true" tabindex="-1"></a>    Se conserva **ReLU**, **Batch Normalization** y **Dropout del 20%**.</span>
-<span id="cb3-516"><a href="#cb3-516" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-517"><a href="#cb3-517" aria-hidden="true" tabindex="-1"></a><span class="ss">7.  </span>**Capa de Salida**</span>
-<span id="cb3-518"><a href="#cb3-518" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-519"><a href="#cb3-519" aria-hidden="true" tabindex="-1"></a>    Contiene **una neurona por cada clase del problema de clasificación multiclase**.\</span>
-<span id="cb3-520"><a href="#cb3-520" aria-hidden="true" tabindex="-1"></a>    Utiliza **Softmax** como función de activación, lo que convierte las salidas en probabilidades normalizadas, asegurando que la suma de las probabilidades sea igual a 1.</span>
+<span id="cb3-514"><a href="#cb3-514" aria-hidden="true" tabindex="-1"></a><span class="fu">### Despliegue del modelo</span></span>
+<span id="cb3-515"><a href="#cb3-515" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-516"><a href="#cb3-516" aria-hidden="true" tabindex="-1"></a>Adicionalmente, se empleó Render como servicio de computación en la nube para desplegar el modelo. Esta plataforma fue elegida por su simplicidad para realizar la tarea además de la posibilidad que brinda de utilizar recursos gratuitos.</span>
+<span id="cb3-517"><a href="#cb3-517" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-518"><a href="#cb3-518" aria-hidden="true" tabindex="-1"></a>Para observar el resultado se pueden consultar los siguientes archivos, necesarios para el despliegue en el repositorio desde donde se realizó dicha actividad: &lt;ins&gt;<span class="co">[</span><span class="ot">Repositorio despliegue del modelo</span><span class="co">](https://github.com/RNA-y-Algo-Bioinsp-2024-02/model_credit_risk)</span>&lt;/ins&gt;.</span>
+<span id="cb3-519"><a href="#cb3-519" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-520"><a href="#cb3-520" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Dockerfile:** describe como construir la imagen de tal manera que contenga todas las dependencias necesarias define el puerto de ejecución de la API.</span>
 <span id="cb3-521"><a href="#cb3-521" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-522"><a href="#cb3-522" aria-hidden="true" tabindex="-1"></a><span class="fu">##### Resultados del modelo</span></span>
+<span id="cb3-522"><a href="#cb3-522" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**requirements.txt:** contiene los nombres y las versiones de todos los paquetes necesarios para ejecutar la API.</span>
 <span id="cb3-523"><a href="#cb3-523" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-524"><a href="#cb3-524" aria-hidden="true" tabindex="-1"></a>**Evolución de las métricas**</span>
+<span id="cb3-524"><a href="#cb3-524" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**app.py:** archivo con la API creada utilizando FastAPI que define los parámetros necesarios para llamar la API y obtener predicciones con el modelo entrenado.</span>
 <span id="cb3-525"><a href="#cb3-525" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-526"><a href="#cb3-526" aria-hidden="true" tabindex="-1"></a>En la Figura 8 se puede evidenciar cómo la función de pérdida va disminuyendo a lo largo de las épocas, con lo cual se va obteniendo un *accuracy* mucho más alto.</span>
+<span id="cb3-526"><a href="#cb3-526" aria-hidden="true" tabindex="-1"></a>Además se agregó un workflow con GitHub Actions para automatizar el despliegue del modelo a la última versión en Render, lo cual es el inicio del monitoreo necesario para el modelo como un agregado que se puede profundizar más en el futuro.</span>
 <span id="cb3-527"><a href="#cb3-527" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-528"><a href="#cb3-528" aria-hidden="true" tabindex="-1"></a>**Figura 8.**</span>
+<span id="cb3-528"><a href="#cb3-528" aria-hidden="true" tabindex="-1"></a><span class="fu">## Caso de uso</span></span>
 <span id="cb3-529"><a href="#cb3-529" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-530"><a href="#cb3-530" aria-hidden="true" tabindex="-1"></a>*Evolución de las métricas obtenidas por el modelo a través de las épocas.* <span class="al">![Evolución de las métricas obtenidas por el modelo a través de las épocas](metricas_final.png)</span> Elaboración propia.</span>
+<span id="cb3-530"><a href="#cb3-530" aria-hidden="true" tabindex="-1"></a>A continuación se desarrollará un caso de uso que ejemplifica cómo el uso del modelo desplegado anteriormente a través de una aplicación web puede traer beneficios a las entidades bancarias en los procesos de toma de decisiones, así como darle una mayor claridad a los usuarios de estos servicios, en términos de cononocer los motivos por los cuales se toman ciertas decisiones respecto a sus préstamos o productos bancarios (como puede ser la venta de cartera o similares).</span>
 <span id="cb3-531"><a href="#cb3-531" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-532"><a href="#cb3-532" aria-hidden="true" tabindex="-1"></a>Finalmente se ha de observar que en el entrenamiento los resultados son muy estables mostrando una convergencia, mientras que en la validación tiende a fluctuar, pero mostrando buenos resultados a pesar de las flucutaciones, ya que ninguna es extrema.</span>
+<span id="cb3-532"><a href="#cb3-532" aria-hidden="true" tabindex="-1"></a>De acuerdo con el @cooperativasdefinicion, en Colombia se encuentran reglamentadas el conjunto de "empresas asociativas sin ánimo de lucro en las cuales los trabajadores o los usuarios, según el caso, son simultáneamente los aportantes y los gestores de la Empresa", bajo el nombre de cooperativas. Estas entidades son reguladas por la Superintendencia de la Economía Solidaria **Supersolidaria** o por la Superintendencia Financiera de Colombia **Superfinanciera** y tienen como objetivo la distribución o producción de bienes o servicios que satisfagan las necesidades de sus asociados, de manera colaborativa y eficiente. De la misma manera, las cooperativas tienen facultades legales para asociarse entre sí en miras al cumplimiento de sus propósitos económicos y sociales de una mejor manera.</span>
 <span id="cb3-533"><a href="#cb3-533" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-534"><a href="#cb3-534" aria-hidden="true" tabindex="-1"></a><span class="fu">#### **Reporte de clasificación**</span></span>
+<span id="cb3-534"><a href="#cb3-534" aria-hidden="true" tabindex="-1"></a>Ahora bien, la ley colombiana regula las actividades financieras de las cooperativas de la siguiente manera, según @supersolidaria:</span>
 <span id="cb3-535"><a href="#cb3-535" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-536"><a href="#cb3-536" aria-hidden="true" tabindex="-1"></a>A continuación se muestra una visión mucho más clara de los resultados obtenidos por el modelo para el conjunto de prueba, ya que en los problemas multiclase puede llegar a ser engañoso considerar solamente la métrica global calculada por el modelo. En los resultados mostrados por la Tabla 3, se evidencia que la clase *Default* es la que presenta más dificultades para el modelo.</span>
+<span id="cb3-536"><a href="#cb3-536" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Las **cooperativas financieras** como organismos cooperativos que tienen como función principal la realización de actividades financieras, se consideran establecimientos de crédito y pueden solicitar autorización de la Superfinanciera para ofrecer sus servicios a terceros no asociados a la cooperativa.</span>
 <span id="cb3-537"><a href="#cb3-537" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-538"><a href="#cb3-538" aria-hidden="true" tabindex="-1"></a>**Tabla 3.**</span>
+<span id="cb3-538"><a href="#cb3-538" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Las **cooperativas de ahorro y crédito** como organismos cooperativos que tienen la función principal de adelantar actividades financieras con sus asociados de forma única. A su vez, deben solicitar autorización de la Supersolidaria para la prestación de sus servicios.</span>
 <span id="cb3-539"><a href="#cb3-539" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-540"><a href="#cb3-540" aria-hidden="true" tabindex="-1"></a>*Reporte de clasificación del modelo de mayor complejidad.*</span>
+<span id="cb3-540"><a href="#cb3-540" aria-hidden="true" tabindex="-1"></a>Teniendo en cuenta lo anterior, al hacer énfasis en la actividad ejercida por las cooperativas financieras, es posible observar que dichas entidades deben tener una especial importancia en la correcta gestión del riesgo de crédito, pues de esto depende en gran medida su capacidad para continuar prestando sus servicios a sus asociados o terceros que así lo necesiten. Por lo tanto, este caso de uso obedece a la situación en que una cooperativa financiera necesite evaluar cuál sería la decisión adecuada con respecto al crédito solicitado por un tercero no asociado, considerando las variables que interactúan en el problema y se muestran en la Tabla 2.</span>
 <span id="cb3-541"><a href="#cb3-541" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-542"><a href="#cb3-542" aria-hidden="true" tabindex="-1"></a>| **Clase**        | **Precision** | **Recall** | **F1-score** | **Support** |</span>
-<span id="cb3-543"><a href="#cb3-543" aria-hidden="true" tabindex="-1"></a>|------------------|---------------|------------|--------------|-------------|</span>
-<span id="cb3-544"><a href="#cb3-544" aria-hidden="true" tabindex="-1"></a>| **Charged Off**  | 1.00          | 0.99       | 0.99         | 9509        |</span>
-<span id="cb3-545"><a href="#cb3-545" aria-hidden="true" tabindex="-1"></a>| **Current**      | 0.99          | 0.79       | 0.88         | 120560      |</span>
-<span id="cb3-546"><a href="#cb3-546" aria-hidden="true" tabindex="-1"></a>| **Fully Paid**   | 1.00          | 1.00       | 1.00         | 41689       |</span>
-<span id="cb3-547"><a href="#cb3-547" aria-hidden="true" tabindex="-1"></a>| **In Progress**  | 0.44          | 0.58       | 0.50         | 2976        |</span>
-<span id="cb3-548"><a href="#cb3-548" aria-hidden="true" tabindex="-1"></a>| **Late**         | 0.09          | 0.88       | 0.17         | 2742        |</span>
-<span id="cb3-549"><a href="#cb3-549" aria-hidden="true" tabindex="-1"></a>| **Accuracy**     | <span class="sc">\-</span>            | <span class="sc">\-</span>         | 0.85         | 177476      |</span>
-<span id="cb3-550"><a href="#cb3-550" aria-hidden="true" tabindex="-1"></a>| **Macro avg**    | 0.70          | 0.85       | 0.71         | 177476      |</span>
-<span id="cb3-551"><a href="#cb3-551" aria-hidden="true" tabindex="-1"></a>| **Weighted avg** | 0.97          | 0.85       | 0.90         | 177476      |</span>
-<span id="cb3-552"><a href="#cb3-552" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-553"><a href="#cb3-553" aria-hidden="true" tabindex="-1"></a>**F1-score macro:** 0.71</span>
-<span id="cb3-554"><a href="#cb3-554" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-555"><a href="#cb3-555" aria-hidden="true" tabindex="-1"></a>**Recall macro:** 0.85</span>
-<span id="cb3-556"><a href="#cb3-556" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-557"><a href="#cb3-557" aria-hidden="true" tabindex="-1"></a>Elaboración propia.</span>
-<span id="cb3-558"><a href="#cb3-558" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-559"><a href="#cb3-559" aria-hidden="true" tabindex="-1"></a>**Matriz de confusión**</span>
-<span id="cb3-560"><a href="#cb3-560" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-561"><a href="#cb3-561" aria-hidden="true" tabindex="-1"></a>Igualmente, en la Figura 9 se observan cuántos datos de cada clase fueron clasificados correctamente en la diagonal principal de la matriz de confusión. También se observan las dificultades que tuvo el modelo, así como su claridad para predecir algunas de las clases en el problema.</span>
-<span id="cb3-562"><a href="#cb3-562" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-563"><a href="#cb3-563" aria-hidden="true" tabindex="-1"></a>**Figura 9.**</span>
-<span id="cb3-564"><a href="#cb3-564" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-565"><a href="#cb3-565" aria-hidden="true" tabindex="-1"></a>*Matriz de confusión obtenida al evaluar el conjunto de prueba en el modelo.* <span class="al">![Matriz de confusión obtenida al evaluar el conjunto de prueba en el modelo.](matriz_de_confusion.png)</span> Elaboración propia.</span>
-<span id="cb3-566"><a href="#cb3-566" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-567"><a href="#cb3-567" aria-hidden="true" tabindex="-1"></a>Como mejoras a futuro se consideraría enriquecer el modelo teniendo una mayor cantidad de datos para las clases más difíciles de clasificar, junto con una mayor recopilación de información del banco, que apunte a las características de estas personas.</span>
-<span id="cb3-568"><a href="#cb3-568" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-569"><a href="#cb3-569" aria-hidden="true" tabindex="-1"></a><span class="fu">## Conclusiones y aprendizajes a partir de los modelos</span></span>
-<span id="cb3-570"><a href="#cb3-570" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-571"><a href="#cb3-571" aria-hidden="true" tabindex="-1"></a>En este punto, se pone en evidencia el problema de utilizar métricas como *accuracy* en lugar del *f1-score* cuando los datos se encuentran desbalanceados, resaltando la importancia de hacer un análisis exploratorio del dataset.</span>
-<span id="cb3-572"><a href="#cb3-572" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-573"><a href="#cb3-573" aria-hidden="true" tabindex="-1"></a>Los resultados que se mostrarán a continuación muestran que el desarrollo del modelo fue un problema retador, tanto por el alto volumen de datos como por el desbalanceo de las clases, ambos factores que añaden dificultad al problema, sin embargo, fue posible darles un tratamiento correcto para obtener una mejor solución.</span>
-<span id="cb3-574"><a href="#cb3-574" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-575"><a href="#cb3-575" aria-hidden="true" tabindex="-1"></a><span class="fu">### Pesos del modelo</span></span>
-<span id="cb3-576"><a href="#cb3-576" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-577"><a href="#cb3-577" aria-hidden="true" tabindex="-1"></a>En este sentido, es posible obtener el peso de cada una de las características del modelo, dando como resultado el orden de importancia de las 19 características utilizadas, las cuales pueden observarse en la Tabla 4.</span>
-<span id="cb3-578"><a href="#cb3-578" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-579"><a href="#cb3-579" aria-hidden="true" tabindex="-1"></a>**Tabla 4.**</span>
-<span id="cb3-580"><a href="#cb3-580" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-581"><a href="#cb3-581" aria-hidden="true" tabindex="-1"></a>*Importancia de cada una de las variables empleadas en el modelo de redes neuronales artificiales.*</span>
-<span id="cb3-582"><a href="#cb3-582" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-583"><a href="#cb3-583" aria-hidden="true" tabindex="-1"></a>| Feature                        |  Importance |</span>
-<span id="cb3-584"><a href="#cb3-584" aria-hidden="true" tabindex="-1"></a>|--------------------------------|------------:|</span>
-<span id="cb3-585"><a href="#cb3-585" aria-hidden="true" tabindex="-1"></a>| last_pymnt_d_day_of_week       | 1644.288574 |</span>
-<span id="cb3-586"><a href="#cb3-586" aria-hidden="true" tabindex="-1"></a>| last_pymnt_d_month             | 1508.413818 |</span>
-<span id="cb3-587"><a href="#cb3-587" aria-hidden="true" tabindex="-1"></a>| last_credit_pull_d_month       |  562.279358 |</span>
-<span id="cb3-588"><a href="#cb3-588" aria-hidden="true" tabindex="-1"></a>| loan_age_years                 |  482.754181 |</span>
-<span id="cb3-589"><a href="#cb3-589" aria-hidden="true" tabindex="-1"></a>| installment                    |  303.830078 |</span>
-<span id="cb3-590"><a href="#cb3-590" aria-hidden="true" tabindex="-1"></a>| recoveries                     |  258.369934 |</span>
-<span id="cb3-591"><a href="#cb3-591" aria-hidden="true" tabindex="-1"></a>| days_since_last_payment        |  256.875885 |</span>
-<span id="cb3-592"><a href="#cb3-592" aria-hidden="true" tabindex="-1"></a>| last_credit_pull_d_day_of_week |  234.173584 |</span>
-<span id="cb3-593"><a href="#cb3-593" aria-hidden="true" tabindex="-1"></a>| out_prncp_inv                  |  204.917572 |</span>
-<span id="cb3-594"><a href="#cb3-594" aria-hidden="true" tabindex="-1"></a>| out_prncp                      |  204.653198 |</span>
-<span id="cb3-595"><a href="#cb3-595" aria-hidden="true" tabindex="-1"></a>| last_pymnt_d_year              |  194.993286 |</span>
-<span id="cb3-596"><a href="#cb3-596" aria-hidden="true" tabindex="-1"></a>| collection_recovery_fee        |  191.655243 |</span>
-<span id="cb3-597"><a href="#cb3-597" aria-hidden="true" tabindex="-1"></a>| issue_d_year                   |  167.871353 |</span>
-<span id="cb3-598"><a href="#cb3-598" aria-hidden="true" tabindex="-1"></a>| last_pymnt_amnt                |  151.017563 |</span>
-<span id="cb3-599"><a href="#cb3-599" aria-hidden="true" tabindex="-1"></a>| last_credit_pull_d_year        |  126.103256 |</span>
-<span id="cb3-600"><a href="#cb3-600" aria-hidden="true" tabindex="-1"></a>| total_rec_prncp                |  103.840637 |</span>
-<span id="cb3-601"><a href="#cb3-601" aria-hidden="true" tabindex="-1"></a>| days_since_last_credit_pull    |   88.737617 |</span>
-<span id="cb3-602"><a href="#cb3-602" aria-hidden="true" tabindex="-1"></a>| total_pymnt                    |   86.705498 |</span>
-<span id="cb3-603"><a href="#cb3-603" aria-hidden="true" tabindex="-1"></a>| total_pymnt_inv                |   85.052872 |</span>
-<span id="cb3-604"><a href="#cb3-604" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-605"><a href="#cb3-605" aria-hidden="true" tabindex="-1"></a>Elaboración propia.</span>
-<span id="cb3-606"><a href="#cb3-606" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-607"><a href="#cb3-607" aria-hidden="true" tabindex="-1"></a><span class="fu">#### **Variables de Fecha y Tiempo**</span></span>
-<span id="cb3-608"><a href="#cb3-608" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-609"><a href="#cb3-609" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`last_pymnt_d_day_of_week`**: Día de la semana en que se realizó el último pago. Puede revelar patrones de pago recurrentes.\</span>
-<span id="cb3-610"><a href="#cb3-610" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`last_pymnt_d_month`**: Mes del último pago. Ayuda a detectar estacionalidad en los pagos.\</span>
-<span id="cb3-611"><a href="#cb3-611" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`last_pymnt_d_year`**: Año del último pago. Captura tendencias anuales en el comportamiento del prestatario.\</span>
-<span id="cb3-612"><a href="#cb3-612" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`loan_age_years`**: Antigüedad del préstamo en años. Permite evaluar el riesgo según el tiempo que ha pasado desde su emisión.\</span>
-<span id="cb3-613"><a href="#cb3-613" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`issue_d_year`**: Año en que se emitió el préstamo. Útil para analizar cambios en la concesión de créditos a lo largo del tiempo.\</span>
-<span id="cb3-614"><a href="#cb3-614" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`days_since_last_payment`**: Días desde el último pago realizado. Un número alto puede indicar posible morosidad.\</span>
-<span id="cb3-615"><a href="#cb3-615" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`days_since_last_credit_pull`**: Días desde la última consulta de crédito del prestatario. Si es alto, puede significar falta de actividad financiera reciente.</span>
-<span id="cb3-616"><a href="#cb3-616" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-617"><a href="#cb3-617" aria-hidden="true" tabindex="-1"></a><span class="fu">#### **Variables Relacionadas con Pagos**</span></span>
-<span id="cb3-618"><a href="#cb3-618" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-619"><a href="#cb3-619" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`installment`**: Pago mensual que debe realizar el prestatario. Refleja la carga financiera del crédito.\</span>
-<span id="cb3-620"><a href="#cb3-620" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`last_pymnt_amnt`**: Monto del último pago realizado. Indica la capacidad de pago reciente del prestatario.\</span>
-<span id="cb3-621"><a href="#cb3-621" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`total_pymnt`**: Suma total pagada por el prestatario, incluyendo capital e intereses.\</span>
-<span id="cb3-622"><a href="#cb3-622" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`total_pymnt_inv`**: Suma total pagada a los inversionistas. Similar a <span class="in">`total_pymnt`</span>, pero desde la perspectiva del inversor.</span>
+<span id="cb3-542"><a href="#cb3-542" aria-hidden="true" tabindex="-1"></a>**Tabla 2.**</span>
+<span id="cb3-543"><a href="#cb3-543" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-544"><a href="#cb3-544" aria-hidden="true" tabindex="-1"></a>*Información del perfil de crédito a analizar en el caso de estudio.*</span>
+<span id="cb3-545"><a href="#cb3-545" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-546"><a href="#cb3-546" aria-hidden="true" tabindex="-1"></a>| **Variable**                                | **Valor**          | **Descripción**                                                                                   |</span>
+<span id="cb3-547"><a href="#cb3-547" aria-hidden="true" tabindex="-1"></a>|---------------------------------------------|--------------------|---------------------------------------------------------------------------------------------------|</span>
+<span id="cb3-548"><a href="#cb3-548" aria-hidden="true" tabindex="-1"></a>| **Pago Mensual propusto**                            | $4500           | Es el máximo pago mensual que estaría dispuesto a pagar el prestatario si se aprueba el préstamo solicitado.                     |</span>
+<span id="cb3-549"><a href="#cb3-549" aria-hidden="true" tabindex="-1"></a>| **Pago Mensual**         | $200        | Es el monto estimado del pago mensual que debe hacer el prestatario si se aprueba el préstamo solicitado.                                   |</span>
+<span id="cb3-550"><a href="#cb3-550" aria-hidden="true" tabindex="-1"></a>| **Monto Financiado por Inversionistas**| $4500         | Cantidad total del préstamo que será financiada específicamente por inversionistas en el momento de otorgarse el préstamo.                    |</span>
+<span id="cb3-551"><a href="#cb3-551" aria-hidden="true" tabindex="-1"></a>| **Monto Total Financiado**                      | $5000         | Monto total que podría ser comprometido al momento de aprobar el crédito, el cual puede coincidir o ser inferior al monto solicitado.                                                  |</span>
+<span id="cb3-552"><a href="#cb3-552" aria-hidden="true" tabindex="-1"></a>| **Tasa de Interés**                    | 9.5%           | Tasa de interés del Banco de la República en el momento de la solicitud.                                                   |</span>
+<span id="cb3-553"><a href="#cb3-553" aria-hidden="true" tabindex="-1"></a>| **Monto Original del Préstamo**                    | $5000          | Monto original solicitado por el prestatario para el préstamo; si la entidad crediticia lo ajusta a la baja, esto se refleja aquí.                                                  |</span>
+<span id="cb3-554"><a href="#cb3-554" aria-hidden="true" tabindex="-1"></a>| **Monto Histórico de Cobro**                    | $1000          | Suma total histórica de montos que alguna vez estuvieron en estado de cobranza por incumplimiento del prestatario.                                                |</span>
+<span id="cb3-555"><a href="#cb3-555" aria-hidden="true" tabindex="-1"></a>| **Saldo Total Actual**                    | $15000          | Saldo actual combinado de todas las cuentas activas del prestatario (incluye tanto crédito rotativo como crédito en cuotas).                                               |</span>
+<span id="cb3-556"><a href="#cb3-556" aria-hidden="true" tabindex="-1"></a>| **Límite Total de Crédito Rotativo**                    | $20000          | El límite máximo combinado otorgado al prestatario para todas sus líneas de crédito rotativo.                                         |</span>
+<span id="cb3-557"><a href="#cb3-557" aria-hidden="true" tabindex="-1"></a>| **Relación Deuda-Ingresos**                    | 35.2%           | Relación entre los pagos mensuales totales de deuda del prestatario (excluyendo hipotecas y el préstamo actual solicitado) dividido por su ingreso mensual autodeclarado.                                               |</span>
+<span id="cb3-558"><a href="#cb3-558" aria-hidden="true" tabindex="-1"></a>| **Saldo Total de Crédito Rotativo**                    | $5000           | Monto total actual que el prestatario tiene como saldo pendiente en créditos rotativos (como tarjetas de crédito).solicitud.                                                   |</span>
+<span id="cb3-559"><a href="#cb3-559" aria-hidden="true" tabindex="-1"></a>| **Línea de Crédito Rotativo**                    | 75%           | Porcentaje del crédito rotativo disponible que está actualmente en uso por parte del prestatario.                                                |</span>
+<span id="cb3-560"><a href="#cb3-560" aria-hidden="true" tabindex="-1"></a>| **Calificación de Préstamo**                    | B3           | Subcalificación asignada por la entidad crediticia al último préstamo solicitado por el prestatario que fue aprobado.                                               |</span>
+<span id="cb3-561"><a href="#cb3-561" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-562"><a href="#cb3-562" aria-hidden="true" tabindex="-1"></a>Dados estos datos, es posible observar que la respuesta por parte del modelo desplegado será que el prestatario muestra un **riesgo crediticio bajo**, por lo cual es considerado un buen candidato para la aprobación de futuros préstamos, pues ha presentado un comportamiento de pago adecuado a nivel histórico y su capacidad de pago está demostrada al momento de realizar la solicitud que está siendo evaluada actualmente.</span>
+<span id="cb3-563"><a href="#cb3-563" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-564"><a href="#cb3-564" aria-hidden="true" tabindex="-1"></a><span class="fu"># Aplicación web</span></span>
+<span id="cb3-565"><a href="#cb3-565" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-566"><a href="#cb3-566" aria-hidden="true" tabindex="-1"></a>Como se mencionó anteriormente, el modelo de redes neuronales artificiales fue desplegado en una aplicación web titulada *CrediMetric* que podrá ser accedida en el siguiente enlace: &lt;ins&gt;<span class="co">[</span><span class="ot">CrediMetric</span><span class="co">](https://front-credit-risk.onrender.com/)</span>&lt;/ins&gt;.</span>
+<span id="cb3-567"><a href="#cb3-567" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-568"><a href="#cb3-568" aria-hidden="true" tabindex="-1"></a>Esta aplicación web cuenta con una funcionalidad que permitirá a las entidades financieras evaluar los perfiles de crédito de los casos en los que necesitan evaluar una decisión especial, además de permitir que los prestatarios también puedan conocer su perfil de riesgo de crédito de una manera más completa y descriptiva.</span>
+<span id="cb3-569"><a href="#cb3-569" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-570"><a href="#cb3-570" aria-hidden="true" tabindex="-1"></a><span class="fu"># Video publicitario</span></span>
+<span id="cb3-571"><a href="#cb3-571" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-572"><a href="#cb3-572" aria-hidden="true" tabindex="-1"></a>De manera adicional a los resultados anteriormente obtenidos, se presentan los siguientes recursos audiovisuales como material complementario al desarrollo del presente ejercicio mostrando la forma en que la herramienta web puede ser utilizada y los diferentes contextos en los que su uso puede resultar beneficioso para las entidades financieras y las personas naturales:</span>
+<span id="cb3-573"><a href="#cb3-573" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-574"><a href="#cb3-574" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Lista de reproducción de los contenidos complementarios: &lt;ins&gt;<span class="co">[</span><span class="ot">Redes Neuronales y Algoritmos Bioinspirados \| CrediMetric</span><span class="co">](https://www.youtube.com/playlist?list=PL6M0kvPyv0EbZ4FTTQHGzsTv5Yri6RmOQ)</span>&lt;/ins&gt;</span>
+<span id="cb3-575"><a href="#cb3-575" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-576"><a href="#cb3-576" aria-hidden="true" tabindex="-1"></a><span class="fu">## Contribuciones individuales</span></span>
+<span id="cb3-577"><a href="#cb3-577" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-578"><a href="#cb3-578" aria-hidden="true" tabindex="-1"></a>Las contribuciones realizadas por cada uno de los integrantes del equipo en el desarrollo de los ejercicios correspondientes a **Modelos de riesgo de crédito con Redes Neuronales Artificiales** se muestran en el siguiente video.</span>
+<span id="cb3-579"><a href="#cb3-579" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-580"><a href="#cb3-580" aria-hidden="true" tabindex="-1"></a>{{&lt; video https://youtu.be/3H1xWTNLn0g &gt;}}</span>
+<span id="cb3-581"><a href="#cb3-581" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-582"><a href="#cb3-582" aria-hidden="true" tabindex="-1"></a><span class="fu"># Correcciones implementadas sobre la primera versión del informe</span></span>
+<span id="cb3-583"><a href="#cb3-583" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-584"><a href="#cb3-584" aria-hidden="true" tabindex="-1"></a>A partir de esta sección, el presente informe presenta un desarrollo actualizado basado en una serie de mejoras y ajustes implementados tras una evaluación detallada del trabajo realizado. A continuación, se ofrece una visión general de los cambios incorporados, permitiendo apreciar de manera clara la mejora alcanzada en cada caso.</span>
+<span id="cb3-585"><a href="#cb3-585" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-586"><a href="#cb3-586" aria-hidden="true" tabindex="-1"></a><span class="fu">## Modelado y evaluación de desempeño</span></span>
+<span id="cb3-587"><a href="#cb3-587" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-588"><a href="#cb3-588" aria-hidden="true" tabindex="-1"></a>Con el objetivo de abordar las correcciones identificadas en relación con el desempeño del modelo de redes neuronales artificiales en la clasificación de las categorías del riesgo de crédito, especialmente la confusión entre las clases **Late** y **Current**, así como la baja representación de **In Progress**, se implementaron las siguientes mejoras en el procesamiento de datos, el balanceo de clases y la calibración del modelo:</span>
+<span id="cb3-589"><a href="#cb3-589" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-590"><a href="#cb3-590" aria-hidden="true" tabindex="-1"></a><span class="fu">### Balanceo de clases: </span></span>
+<span id="cb3-591"><a href="#cb3-591" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-592"><a href="#cb3-592" aria-hidden="true" tabindex="-1"></a>Considerando el desbalance de los datos y la predominancia de las clases **Current** Y **Fully paid**, se implementó una estrategia combinada de submuestreo y sobremuestreo para balancear la cantidad de muestras en el conjunto de datos de entrenamiento (como se especificará más adelante). Por medio de esta estrategia, se logró que el modelo distinguiera mejor los casos de **Late**, aunque la mejora en ¨*recall* y *f1-score* para esta categoría fue limitada debido a la naturaleza de las variables disponibles.</span>
+<span id="cb3-593"><a href="#cb3-593" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-594"><a href="#cb3-594" aria-hidden="true" tabindex="-1"></a><span class="fu">### Uso exclusivo de variables no prospectivas</span></span>
+<span id="cb3-595"><a href="#cb3-595" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-596"><a href="#cb3-596" aria-hidden="true" tabindex="-1"></a>Respondiendo a la corrección realizada en este sentido, el modelo de redes neuronales entrenado solamente contó con variables *no prospectivas*, es decir, aquellas que están disponibles antes de la aprobación del crédito y que no dependen del comportamiento posterior del cliente o de las condiciones finalmente definidas por la entidad financiera. Debido a esto, se presentaron ciertas limitaciones en la capacidad del modelo para identificar correctamente clases como **Late** e **In Progress**, puesto que la mayor cantidad de información relacionada con el retraso en los pagos o el desarrollo de un crédito en progreso solamente se puede encontrar en variables que tendrán sentido una vez se aprueba el crédito. </span>
+<span id="cb3-597"><a href="#cb3-597" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-598"><a href="#cb3-598" aria-hidden="true" tabindex="-1"></a>Adicionalmente, es necesario considerar que un mismo crédito puede estar en diferentes clases (como por ejemplo **Late**, **Current** e **In progress**) en diferentes momentos del tiempo y esto no puede detectarse sino con la utilziación de variables prospectivas, por lo que conseguir una mejor predicción para estas clases sigue siendo un reto que debe ser abordado con estrategias diferentes a las planteadas en el presente ejercicio.</span>
+<span id="cb3-599"><a href="#cb3-599" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-600"><a href="#cb3-600" aria-hidden="true" tabindex="-1"></a><span class="fu">### Evalución y otros ajustes</span></span>
+<span id="cb3-601"><a href="#cb3-601" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-602"><a href="#cb3-602" aria-hidden="true" tabindex="-1"></a>En concordancia con las estrategias mencionadas anteriormente, también se hizo un proceso más exhaustivo de ingeniería de características, seleccionando por medio de un **árbol de decisión** aquellas variables no prospectivas que representaban una mayor importancia en el proceso de entrenamiento del modelo. Asimismo, se probaron varias configuraciones de pesos para las categorías analizadas en el problema de clasificación, esperando obtener la mejor representación posible de las clases minoritarias; de esta manera se redujo parcialmente la confusión entre **Late** y **Current** dentro de las limitaciones ocasionadas por las variables no prospectivas.</span>
+<span id="cb3-603"><a href="#cb3-603" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-604"><a href="#cb3-604" aria-hidden="true" tabindex="-1"></a><span class="fu">## Balanceo de clases en el entrenamiento</span></span>
+<span id="cb3-605"><a href="#cb3-605" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-606"><a href="#cb3-606" aria-hidden="true" tabindex="-1"></a>Teniendo en cuenta lo dicho anteriormente, se realizó una nueva estrategia de balanceo de clases en el entrenamiento del modelo de redes neuronales, considerando que en el conjunto de datos original, las clases **Current** y **Fully paid** tenían un número de registros considerablemente mayor en comparación con las clases **Charged off**, **Late** e **In progress**. En este sentido, es importante mencionar que la estrategia de balanceo utilizada implementó una combinación de submuestreo aleatorio *RandomUnderSampler* y sobremuestreo con *SMOTE*. A continuación se describe con mayor detalle el enfoque de balanceo utilizado:</span>
+<span id="cb3-607"><a href="#cb3-607" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-608"><a href="#cb3-608" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>**Submuestreo aleatorio:** Esta estrategia ayuda a reducir la cantidad de muestras de las clases mayoritarias para evitar que dominen el entrenamiento del modelo, ayudando a prevenir el sesgo del modelo hacia las clases **Current** y **Fully paid**. Sin embargo, se procuró no eliminar una cantidad sustancial de datos, pues podría ocasionar el efecto contrario y perder información importante para la predicción de dichas categorías.</span>
+<span id="cb3-609"><a href="#cb3-609" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-610"><a href="#cb3-610" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>**Sobremuestreo con SMOTE:** Por medio de este proceso se generaron nuevas muestras sintéticas para las clases minoritarias, en vez de duplicar registros existentes en el conjunto de datos original. Gracias a esto, el modelo pudo aprender patrones más diversos en las clases **Charged off**, **Late** e **In progress**, ayudando a reducir el riesgo de sobreajuste en el modelo.</span>
+<span id="cb3-611"><a href="#cb3-611" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-612"><a href="#cb3-612" aria-hidden="true" tabindex="-1"></a>Sin embargo, es posible notar que no se buscó utilizar un enfoque que balanceara perfectamente el conjunto de datos, haciendo que todas las clases tuviesen el mismo número de muestras en el entrenamiento del modelo de redes neuronales. Esto sucedió debido a que se identificaron varias dificultades a la hora de entrenar un modelo que cumpliera con dicha característica, entre las cuales se encuentran las siguientes:</span>
+<span id="cb3-613"><a href="#cb3-613" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-614"><a href="#cb3-614" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>El submuestreo llegó a eliminar una gran cantidad de información de las clases mayoritarias, de manera que el modelo - posiblemente - perdió información importante para realizar predicciones correctas en estas clases y no mejoró en su desempeño global, que era lo que se esperaba.</span>
+<span id="cb3-615"><a href="#cb3-615" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-616"><a href="#cb3-616" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Cuando se siguió una estrategia de sobremuestreo para equiparar la cantidad de registros en las clases minoritarias con las mayoritarias, posiblemente los datos (artificiales o duplicados) que se generaron no representaron de manera realisra la distribución real de estas clases, generando un sobreajuste en el modelo e impidiendo una correcta generalización en los datos de validación y prueba.</span>
+<span id="cb3-617"><a href="#cb3-617" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-618"><a href="#cb3-618" aria-hidden="true" tabindex="-1"></a>Finalmente, se llegó a la conclusión de que el enfoque de balanceo de clases utilizado fue el más conveniente de acuerdo con la naturaleza del conjunto de datos analizado, mejorando los resultados que se habían obtenido con anterioridad y utilizando solamente las variables **no prospectivas**, según se mencionó en el ítem anterior.</span>
+<span id="cb3-619"><a href="#cb3-619" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-620"><a href="#cb3-620" aria-hidden="true" tabindex="-1"></a><span class="fu">## Aplicación web</span></span>
+<span id="cb3-621"><a href="#cb3-621" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-622"><a href="#cb3-622" aria-hidden="true" tabindex="-1"></a>De acuerdo con las correcciones sugeridas, se verificó que la herramienta web &lt;ins&gt;<span class="co">[</span><span class="ot">CrediMetric</span><span class="co">](https://front-credit-risk.onrender.com/)</span>&lt;/ins&gt; implementara correctamente el modelo de redes neuronales desarrollado y corregido en el presente ejercicio, brindando predicciones de acuerdo a la información proporcionada y manejando adecuadamente los errores que pudieran encontrarse en el flujo de ejecución de la herramienta. </span>
 <span id="cb3-623"><a href="#cb3-623" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-624"><a href="#cb3-624" aria-hidden="true" tabindex="-1"></a><span class="fu">#### **Variables de Historial Crediticio**</span></span>
+<span id="cb3-624"><a href="#cb3-624" aria-hidden="true" tabindex="-1"></a><span class="fu">## Presentación y material complementario</span></span>
 <span id="cb3-625"><a href="#cb3-625" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-626"><a href="#cb3-626" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`last_credit_pull_d_month`**: Mes de la última consulta de crédito del prestatario. Indica actividad reciente en su historial crediticio.\</span>
-<span id="cb3-627"><a href="#cb3-627" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`last_credit_pull_d_year`**: Año de la última consulta de crédito. Útil para evaluar la regularidad en la revisión crediticia.\</span>
-<span id="cb3-628"><a href="#cb3-628" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`last_credit_pull_d_day_of_week`**: Día de la semana en que se realizó la última consulta de crédito. Puede reflejar patrones en las evaluaciones de riesgo.</span>
-<span id="cb3-629"><a href="#cb3-629" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-630"><a href="#cb3-630" aria-hidden="true" tabindex="-1"></a><span class="fu">#### **Variables de Recuperación y Deuda Pendiente**</span></span>
-<span id="cb3-631"><a href="#cb3-631" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-632"><a href="#cb3-632" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`recoveries`**: Monto recuperado de préstamos que habían caído en mora. Evalúa la efectividad del proceso de cobranza.\</span>
-<span id="cb3-633"><a href="#cb3-633" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`collection_recovery_fee`**: Costos asociados a la recuperación de préstamos en mora. Permite analizar la eficiencia del cobro.\</span>
-<span id="cb3-634"><a href="#cb3-634" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`out_prncp`**: Principal pendiente de pago del prestatario. Indica cuánto capital aún no ha sido devuelto.\</span>
-<span id="cb3-635"><a href="#cb3-635" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**`out_prncp_inv`**: Principal pendiente de pago desde la perspectiva de los inversionistas.</span>
-<span id="cb3-636"><a href="#cb3-636" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-637"><a href="#cb3-637" aria-hidden="true" tabindex="-1"></a>Podemos ver la importancia de la ingeniería de características que se realizó, pues la mayoría de ellas quedaron entre las características más importantes del modelo que además permitieron mejorar el rendimiento obtenido.</span>
-<span id="cb3-638"><a href="#cb3-638" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-639"><a href="#cb3-639" aria-hidden="true" tabindex="-1"></a><span class="fu">## Puesta en producción del modelo</span></span>
-<span id="cb3-640"><a href="#cb3-640" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-641"><a href="#cb3-641" aria-hidden="true" tabindex="-1"></a>Debido a la naturaleza del proyecto, tareas como lo son la monitoría del modelo se dejan como futuras mejorías, nos centraremos específicamente en dos.</span>
-<span id="cb3-642"><a href="#cb3-642" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-643"><a href="#cb3-643" aria-hidden="true" tabindex="-1"></a><span class="fu">### Creación de la API</span></span>
-<span id="cb3-644"><a href="#cb3-644" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-645"><a href="#cb3-645" aria-hidden="true" tabindex="-1"></a>Se utilizó el framework de Python llamado FastAPI @fastapi para convertir el modelo en una API que pudiera realizar predicciones de acuerdo con la información de cada usuario. En el repositorio de GitHub se encuentra el archivo con el código necesario para lograr este resultado.</span>
-<span id="cb3-646"><a href="#cb3-646" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-647"><a href="#cb3-647" aria-hidden="true" tabindex="-1"></a><span class="fu">### Despliegue del modelo</span></span>
-<span id="cb3-648"><a href="#cb3-648" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-649"><a href="#cb3-649" aria-hidden="true" tabindex="-1"></a>Adicionalmente, se empleó Render como servicio de computación en la nube para desplegar el modelo. Esta plataforma fue elegida por su simplicidad para realizar la tarea además de la posibilidad que brinda de utilizar recursos gratuitos.</span>
-<span id="cb3-650"><a href="#cb3-650" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-651"><a href="#cb3-651" aria-hidden="true" tabindex="-1"></a>Para observar el resultado se pueden consultar los siguientes archivos, necesarios para el despliegue en el repositorio desde donde se realizó dicha actividad: &lt;ins&gt;<span class="co">[</span><span class="ot">Repositorio despliegue del modelo</span><span class="co">](https://github.com/RNA-y-Algo-Bioinsp-2024-02/model_credit_risk)</span>&lt;/ins&gt;.</span>
-<span id="cb3-652"><a href="#cb3-652" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-653"><a href="#cb3-653" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Dockerfile:** describe como construir la imagen de tal manera que contenga todas las dependencias necesarias define el puerto de ejecución de la API.</span>
-<span id="cb3-654"><a href="#cb3-654" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-655"><a href="#cb3-655" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**requirements.txt:** contiene los nombres y las versiones de todos los paquetes necesarios para ejecutar la API.</span>
-<span id="cb3-656"><a href="#cb3-656" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-657"><a href="#cb3-657" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**app.py:** archivo con la API creada utilizando FastAPI que define los parámetros necesarios para llamar la API y obtener predicciones con el modelo entrenado.</span>
-<span id="cb3-658"><a href="#cb3-658" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-659"><a href="#cb3-659" aria-hidden="true" tabindex="-1"></a>Además se agregó un workflow con GitHub Actions para automatizar el despliegue del modelo a la última versión en Render, lo cual es el inicio del monitoreo necesario para el modelo como un agregado que se puede profundizar más en el futuro.</span>
-<span id="cb3-660"><a href="#cb3-660" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-661"><a href="#cb3-661" aria-hidden="true" tabindex="-1"></a><span class="fu">## Caso de uso</span></span>
-<span id="cb3-662"><a href="#cb3-662" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-663"><a href="#cb3-663" aria-hidden="true" tabindex="-1"></a>A continuación se desarrollará un caso de uso que ejemplifica cómo el uso del modelo desplegado anteriormente a través de una aplicación web puede traer beneficios a las entidades bancarias en los procesos de toma de decisiones, así como darle una mayor claridad a los usuarios de estos servicios, en términos de cononocer los motivos por los cuales se toman ciertas decisiones respecto a sus préstamos o productos bancarios (como puede ser la venta de cartera o similares).</span>
-<span id="cb3-664"><a href="#cb3-664" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-665"><a href="#cb3-665" aria-hidden="true" tabindex="-1"></a>De acuerdo con el @cooperativasdefinicion, en Colombia se encuentran reglamentadas el conjunto de "empresas asociativas sin ánimo de lucro en las cuales los trabajadores o los usuarios, según el caso, son simultáneamente los aportantes y los gestores de la Empresa", bajo el nombre de cooperativas. Estas entidades son reguladas por la Superintendencia de la Economía Solidaria **Supersolidaria** o por la Superintendencia Financiera de Colombia **Superfinanciera** y tienen como objetivo la distribución o producción de bienes o servicios que satisfagan las necesidades de sus asociados, de manera colaborativa y eficiente. De la misma manera, las cooperativas tienen facultades legales para asociarse entre sí en miras al cumplimiento de sus propósitos económicos y sociales de una mejor manera.</span>
-<span id="cb3-666"><a href="#cb3-666" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-667"><a href="#cb3-667" aria-hidden="true" tabindex="-1"></a>Ahora bien, la ley colombiana regula las actividades financieras de las cooperativas de la siguiente manera, según @supersolidaria:</span>
-<span id="cb3-668"><a href="#cb3-668" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-669"><a href="#cb3-669" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Las **cooperativas financieras** como organismos cooperativos que tienen como función principal la realización de actividades financieras, se consideran establecimientos de crédito y pueden solicitar autorización de la Superfinanciera para ofrecer sus servicios a terceros no asociados a la cooperativa.</span>
-<span id="cb3-670"><a href="#cb3-670" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-671"><a href="#cb3-671" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Las **cooperativas de ahorro y crédito** como organismos cooperativos que tienen la función principal de adelantar actividades financieras con sus asociados de forma única. A su vez, deben solicitar autorización de la Supersolidaria para la prestación de sus servicios.</span>
-<span id="cb3-672"><a href="#cb3-672" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-673"><a href="#cb3-673" aria-hidden="true" tabindex="-1"></a>Teniendo en cuenta lo anterior, al hacer énfasis en la actividad ejercida por las cooperativas financieras, es posible observar que dichas entidades deben tener una especial importancia en la correcta gestión del riesgo de crédito, pues de esto depende en gran medida su capacidad para continuar prestando sus servicios a sus asociados o terceros que así lo necesiten. Por lo tanto, este caso de uso obedece a la situación en que una cooperativa financiera necesite evaluar cuál sería la decisión adecuada con respecto al crédito solicitado por un tercero no asociado, considerando las variables que interactúan en el problema y se muestran en la Tabla 5.</span>
-<span id="cb3-674"><a href="#cb3-674" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-675"><a href="#cb3-675" aria-hidden="true" tabindex="-1"></a>**Tabla 5.**</span>
-<span id="cb3-676"><a href="#cb3-676" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-677"><a href="#cb3-677" aria-hidden="true" tabindex="-1"></a>*Información del perfil de crédito a analizar en el caso de estudio.*</span>
-<span id="cb3-678"><a href="#cb3-678" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-679"><a href="#cb3-679" aria-hidden="true" tabindex="-1"></a>| **Variable**                                | **Valor**          | **Descripción**                                                                                   |</span>
-<span id="cb3-680"><a href="#cb3-680" aria-hidden="true" tabindex="-1"></a>|---------------------------------------------|--------------------|---------------------------------------------------------------------------------------------------|</span>
-<span id="cb3-681"><a href="#cb3-681" aria-hidden="true" tabindex="-1"></a>| **Pago Mensual**                            | $500,000           | Monto que debe pagar el prestatario mensualmente si el préstamo es originado.                     |</span>
-<span id="cb3-682"><a href="#cb3-682" aria-hidden="true" tabindex="-1"></a>| **Pagos Recibidos por Monto Total**         | $2,000,000         | Pagos realizados hasta la fecha para el monto total financiado.                                   |</span>
-<span id="cb3-683"><a href="#cb3-683" aria-hidden="true" tabindex="-1"></a>| **Pagos Recibidos por Porción Inversionista**| $1,200,000         | Pagos realizados hasta la fecha para la porción financiada por inversionistas.                    |</span>
-<span id="cb3-684"><a href="#cb3-684" aria-hidden="true" tabindex="-1"></a>| **Principal Recibido**                      | $1,800,000         | Monto principal recibido hasta la fecha.                                                           |</span>
-<span id="cb3-685"><a href="#cb3-685" aria-hidden="true" tabindex="-1"></a>| **Último Pago Recibido**                    | $500,000           | Monto total del último pago realizado.                                                             |</span>
-<span id="cb3-686"><a href="#cb3-686" aria-hidden="true" tabindex="-1"></a>| **Última Fecha de Pago (Día)**              | 20 de enero        | El último día de la semana en que se recibió el pago.                                              |</span>
-<span id="cb3-687"><a href="#cb3-687" aria-hidden="true" tabindex="-1"></a>| **Última Fecha de Pago (Mes)**              | Enero 2025         | El mes en el cual se realizó el último pago.                                                      |</span>
-<span id="cb3-688"><a href="#cb3-688" aria-hidden="true" tabindex="-1"></a>| **Último Informe de Crédito (Mes)**         | Octubre 2024       | El mes más reciente en el que se obtuvo el informe de crédito del prestatario.                     |</span>
-<span id="cb3-689"><a href="#cb3-689" aria-hidden="true" tabindex="-1"></a>| **Años con el Préstamo**                    | 3 años             | Número de años que el prestatario lleva con el préstamo.                                           |</span>
-<span id="cb3-690"><a href="#cb3-690" aria-hidden="true" tabindex="-1"></a>| **Recuperación**                            | $400,000           | La recuperación bruta después de la cancelación por incobrabilidad.                                |</span>
-<span id="cb3-691"><a href="#cb3-691" aria-hidden="true" tabindex="-1"></a>| **Días Desde el Último Pago**               | 10 días            | Número de días desde que se recibió el último pago.                                               |</span>
-<span id="cb3-692"><a href="#cb3-692" aria-hidden="true" tabindex="-1"></a>| **Última Fecha de Consulta**                | 15 de enero 2025   | El día más reciente en el que se consultó el crédito del prestatario.                              |</span>
-<span id="cb3-693"><a href="#cb3-693" aria-hidden="true" tabindex="-1"></a>| **Saldo Pendiente (Monto Inversión)**       | $500,000           | Saldo principal pendiente de la parte financiada por inversionistas.                               |</span>
-<span id="cb3-694"><a href="#cb3-694" aria-hidden="true" tabindex="-1"></a>| **Saldo Pendiente (Total)**                 | $1,000,000         | Saldo principal pendiente del monto total financiado.                                              |</span>
-<span id="cb3-695"><a href="#cb3-695" aria-hidden="true" tabindex="-1"></a>| **Última Fecha de Pago (Año)**              | 2025               | El año en el cual se realizó el último pago.                                                      |</span>
-<span id="cb3-696"><a href="#cb3-696" aria-hidden="true" tabindex="-1"></a>| **Tarifa por Cancelación**                  | $50,000            | Tarifa de cobro después de la cancelación por incobrabilidad.                                      |</span>
-<span id="cb3-697"><a href="#cb3-697" aria-hidden="true" tabindex="-1"></a>| **Año del Préstamo**                        | 2022               | El año en que se originó el préstamo.                                                              |</span>
-<span id="cb3-698"><a href="#cb3-698" aria-hidden="true" tabindex="-1"></a>| **Último Informe de Crédito (Año)**         | 2024               | El año más reciente en que se obtuvo el informe de crédito para este préstamo.                    |</span>
-<span id="cb3-699"><a href="#cb3-699" aria-hidden="true" tabindex="-1"></a>| **Último Informe de Crédito (Días)**        | 100 días           | Número de días desde el último informe de crédito.                                                |</span>
-<span id="cb3-700"><a href="#cb3-700" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-701"><a href="#cb3-701" aria-hidden="true" tabindex="-1"></a>Dados estos datos, es posible observar que la respuesta por parte del modelo desplegado será que el prestatario muestra un **riesgo crediticio elevado** debido a múltiples indicadores, como lo pueden ser: capacidad de pago limitada, historial crediticio inconsistente y alta utilización de crédito rotativo. De acuerdo con esto, las condiciones del préstamo requieren garantías sustanciales, por lo que la cooperativa financiera podría considerar estrategias como la restructuración concertada de dichas condiciones o la venta de cartera en otra entidad.</span>
-<span id="cb3-702"><a href="#cb3-702" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-703"><a href="#cb3-703" aria-hidden="true" tabindex="-1"></a><span class="fu"># Aplicación web</span></span>
-<span id="cb3-704"><a href="#cb3-704" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-705"><a href="#cb3-705" aria-hidden="true" tabindex="-1"></a>Como se mencionó anteriormente, el modelo de redes neuronales artificiales fue desplegado en una aplicación web titulada *CrediMetric* que podrá ser accedida en el siguiente enlace: &lt;ins&gt;<span class="co">[</span><span class="ot">CrediMetric</span><span class="co">](https://front-credit-risk.onrender.com/)</span>&lt;/ins&gt;.</span>
-<span id="cb3-706"><a href="#cb3-706" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-707"><a href="#cb3-707" aria-hidden="true" tabindex="-1"></a>Esta aplicación web cuenta con una funcionalidad que permitirá a las entidades financieras evaluar los perfiles de crédito de los casos en los que necesitan evaluar una decisión especial, además de permitir que los prestatarios también puedan conocer su perfil de riesgo de crédito de una manera más completa y descriptiva.</span>
-<span id="cb3-708"><a href="#cb3-708" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-709"><a href="#cb3-709" aria-hidden="true" tabindex="-1"></a><span class="fu"># Video publicitario</span></span>
-<span id="cb3-710"><a href="#cb3-710" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-711"><a href="#cb3-711" aria-hidden="true" tabindex="-1"></a>De manera adicional a los resultados anteriormente obtenidos, se presentan los siguientes recursos audiovisuales como material complementario al desarrollo del presente ejercicio mostrando la forma en que la herramienta web puede ser utilizada y los diferentes contextos en los que su uso puede resultar beneficioso para las entidades financieras y las personas naturales:</span>
-<span id="cb3-712"><a href="#cb3-712" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-713"><a href="#cb3-713" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Lista de reproducción de los contenidos complementarios: &lt;ins&gt;<span class="co">[</span><span class="ot">Redes Neuronales y Algoritmos Bioinspirados \| CrediMetric</span><span class="co">](https://www.youtube.com/playlist?list=PL6M0kvPyv0EbZ4FTTQHGzsTv5Yri6RmOQ)</span>&lt;/ins&gt;</span>
-<span id="cb3-714"><a href="#cb3-714" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-715"><a href="#cb3-715" aria-hidden="true" tabindex="-1"></a><span class="fu">## Contribuciones individuales</span></span>
-<span id="cb3-716"><a href="#cb3-716" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-717"><a href="#cb3-717" aria-hidden="true" tabindex="-1"></a>Las contribuciones realizadas por cada uno de los integrantes del equipo en el desarrollo de los ejercicios correspondientes a **Modelos de riesgo de crédito con Redes Neuronales Artificiales** se muestran en el siguiente video.</span>
-<span id="cb3-718"><a href="#cb3-718" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-719"><a href="#cb3-719" aria-hidden="true" tabindex="-1"></a>{{&lt; video https://youtu.be/3H1xWTNLn0g &gt;}}</span>
-<span id="cb3-720"><a href="#cb3-720" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-721"><a href="#cb3-721" aria-hidden="true" tabindex="-1"></a><span class="fu"># Correcciones implementadas sobre la primera versión del informe</span></span>
-<span id="cb3-722"><a href="#cb3-722" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-723"><a href="#cb3-723" aria-hidden="true" tabindex="-1"></a>A partir de esta sección, el presente informe presenta un desarrollo actualizado basado en una serie de mejoras y ajustes implementados tras una evaluación detallada del trabajo realizado. A continuación, se ofrece una visión general de los cambios incorporados, permitiendo apreciar de manera clara la mejora alcanzada en cada caso.</span>
-<span id="cb3-724"><a href="#cb3-724" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-725"><a href="#cb3-725" aria-hidden="true" tabindex="-1"></a><span class="fu">## Modelado y evaluación de desempeño</span></span>
-<span id="cb3-726"><a href="#cb3-726" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-727"><a href="#cb3-727" aria-hidden="true" tabindex="-1"></a>Con el objetivo de abordar las correcciones identificadas en relación con el desempeño del modelo de redes neuronales artificiales en la clasificación de las categorías del riesgo de crédito, especialmente la confusión entre las clases **Late** y **Current**, así como la baja representación de **In Progress**, se implementaron las siguientes mejoras en el procesamiento de datos, el balanceo de clases y la calibración del modelo:</span>
-<span id="cb3-728"><a href="#cb3-728" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-729"><a href="#cb3-729" aria-hidden="true" tabindex="-1"></a><span class="fu">### Balanceo de clases: </span></span>
-<span id="cb3-730"><a href="#cb3-730" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-731"><a href="#cb3-731" aria-hidden="true" tabindex="-1"></a>Considerando el desbalance de los datos y la predominancia de las clases **Current** Y **Fully paid**, se implementó una estrategia combinada de submuestreo y sobremuestreo para balancear la cantidad de muestras en el conjunto de datos de entrenamiento (como se especificará más adelante). Por medio de esta estrategia, se logró que el modelo distinguiera mejor los casos de **Late**, aunque la mejora en ¨*recall* y *f1-score* para esta categoría fue limitada debido a la naturaleza de las variables disponibles.</span>
-<span id="cb3-732"><a href="#cb3-732" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-733"><a href="#cb3-733" aria-hidden="true" tabindex="-1"></a><span class="fu">### Uso exclusivo de variables no prospectivas</span></span>
-<span id="cb3-734"><a href="#cb3-734" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-735"><a href="#cb3-735" aria-hidden="true" tabindex="-1"></a>Respondiendo a la corrección realizada en este sentido, el modelo de redes neuronales entrenado solamente contó con variables *no prospectivas*, es decir, aquellas que están disponibles antes de la aprobación del crédito y que no dependen del comportamiento posterior del cliente o de las condiciones finalmente definidas por la entidad financiera. Debido a esto, se presentaron ciertas limitaciones en la capacidad del modelo para identificar correctamente clases como **Late** e **In Progress**, puesto que la mayor cantidad de información relacionada con el retraso en los pagos o el desarrollo de un crédito en progreso solamente se puede encontrar en variables que tendrán sentido una vez se aprueba el crédito. </span>
-<span id="cb3-736"><a href="#cb3-736" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-737"><a href="#cb3-737" aria-hidden="true" tabindex="-1"></a>Adicionalmente, es necesario considerar que un mismo crédito puede estar en diferentes clases (como por ejemplo **Late**, **Current** e **In progress**) en diferentes momentos del tiempo y esto no puede detectarse sino con la utilziación de variables prospectivas, por lo que conseguir una mejor predicción para estas clases sigue siendo un reto que debe ser abordado con estrategias diferentes a las planteadas en el presente ejercicio.</span>
-<span id="cb3-738"><a href="#cb3-738" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-739"><a href="#cb3-739" aria-hidden="true" tabindex="-1"></a><span class="fu">### Evalución y otros ajustes</span></span>
-<span id="cb3-740"><a href="#cb3-740" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-741"><a href="#cb3-741" aria-hidden="true" tabindex="-1"></a>En concordancia con las estrategias mencionadas anteriormente, también se hizo un proceso más exhaustivo de ingeniería de características, seleccionando por medio de un **árbol de decisión** aquellas variables no prospectivas que representaban una mayor importancia en el proceso de entrenamiento del modelo. Asimismo, se probaron varias configuraciones de pesos para las categorías analizadas en el problema de clasificación, esperando obtener la mejor representación posible de las clases minoritarias; de esta manera se redujo parcialmente la confusión entre **Late** y **Current** dentro de las limitaciones ocasionadas por las variables no prospectivas.</span>
-<span id="cb3-742"><a href="#cb3-742" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-743"><a href="#cb3-743" aria-hidden="true" tabindex="-1"></a><span class="fu">## Balanceo de clases en el entrenamiento</span></span>
-<span id="cb3-744"><a href="#cb3-744" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-745"><a href="#cb3-745" aria-hidden="true" tabindex="-1"></a>Teniendo en cuenta lo dicho anteriormente, se realizó una nueva estrategia de balanceo de clases en el entrenamiento del modelo de redes neuronales, considerando que en el conjunto de datos original, las clases **Current** y **Fully paid** tenían un número de registros considerablemente mayor en comparación con las clases **Charged off**, **Late** e **In progress**. En este sentido, es importante mencionar que la estrategia de balanceo utilizada implementó una combinación de submuestreo aleatorio *RandomUnderSampler* y sobremuestreo con *SMOTE*. A continuación se describe con mayor detalle el enfoque de balanceo utilizado:</span>
-<span id="cb3-746"><a href="#cb3-746" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-747"><a href="#cb3-747" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>**Submuestreo aleatorio:** Esta estrategia ayuda a reducir la cantidad de muestras de las clases mayoritarias para evitar que dominen el entrenamiento del modelo, ayudando a prevenir el sesgo del modelo hacia las clases **Current** y **Fully paid**. Sin embargo, se procuró no eliminar una cantidad sustancial de datos, pues podría ocasionar el efecto contrario y perder información importante para la predicción de dichas categorías.</span>
-<span id="cb3-748"><a href="#cb3-748" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-749"><a href="#cb3-749" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>**Sobremuestreo con SMOTE:** Por medio de este proceso se generaron nuevas muestras sintéticas para las clases minoritarias, en vez de duplicar registros existentes en el conjunto de datos original. Gracias a esto, el modelo pudo aprender patrones más diversos en las clases **Charged off**, **Late** e **In progress**, ayudando a reducir el riesgo de sobreajuste en el modelo.</span>
-<span id="cb3-750"><a href="#cb3-750" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-751"><a href="#cb3-751" aria-hidden="true" tabindex="-1"></a>Sin embargo, es posible notar que no se buscó utilizar un enfoque que balanceara perfectamente el conjunto de datos, haciendo que todas las clases tuviesen el mismo número de muestras en el entrenamiento del modelo de redes neuronales. Esto sucedió debido a que se identificaron varias dificultades a la hora de entrenar un modelo que cumpliera con dicha característica, entre las cuales se encuentran las siguientes:</span>
-<span id="cb3-752"><a href="#cb3-752" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-753"><a href="#cb3-753" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>El submuestreo llegó a eliminar una gran cantidad de información de las clases mayoritarias, de manera que el modelo - posiblemente - perdió información importante para realizar predicciones correctas en estas clases y no mejoró en su desempeño global, que era lo que se esperaba.</span>
-<span id="cb3-754"><a href="#cb3-754" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-755"><a href="#cb3-755" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Cuando se siguió una estrategia de sobremuestreo para equiparar la cantidad de registros en las clases minoritarias con las mayoritarias, posiblemente los datos (artificiales o duplicados) que se generaron no representaron de manera realisra la distribución real de estas clases, generando un sobreajuste en el modelo e impidiendo una correcta generalización en los datos de validación y prueba.</span>
-<span id="cb3-756"><a href="#cb3-756" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-757"><a href="#cb3-757" aria-hidden="true" tabindex="-1"></a>Finalmente, se llegó a la conclusión de que el enfoque de balanceo de clases utilizado fue el más conveniente de acuerdo con la naturaleza del conjunto de datos analizado, mejorando los resultados que se habían obtenido con anterioridad y utilizando solamente las variables **no prospectivas**, según se mencionó en el ítem anterior.</span>
-<span id="cb3-758"><a href="#cb3-758" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-759"><a href="#cb3-759" aria-hidden="true" tabindex="-1"></a><span class="fu">## Aplicación web</span></span>
-<span id="cb3-760"><a href="#cb3-760" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-761"><a href="#cb3-761" aria-hidden="true" tabindex="-1"></a>De acuerdo con las correcciones sugeridas, se verificó que la herramienta web &lt;ins&gt;<span class="co">[</span><span class="ot">CrediMetric</span><span class="co">](https://front-credit-risk.onrender.com/)</span>&lt;/ins&gt; implementara correctamente el modelo de redes neuronales desarrollado y corregido en el presente ejercicio, brindando predicciones de acuerdo a la información proporcionada y manejando adecuadamente los errores que pudieran encontrarse en el flujo de ejecución de la herramienta. </span>
-<span id="cb3-762"><a href="#cb3-762" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-763"><a href="#cb3-763" aria-hidden="true" tabindex="-1"></a><span class="fu">## Presentación y material complementario</span></span>
-<span id="cb3-764"><a href="#cb3-764" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-765"><a href="#cb3-765" aria-hidden="true" tabindex="-1"></a>Para finalizar, se realizó un énfasis especial en la generación de material complementario que fuera pertinente para comprender de una mejor manera la utilización de los productos obtenidos durante la realización del presente trabajo (es decir, el modelo de redes neuronales artificiales y el sitio web). Por lo tanto, en concordancia con la sugerencia presentada, se grabó y publicó un video tutorial de la aplicación web *CrediMetric* el cual puede encontrarse en la lista de reproducción mencionada en una sección anterior de este reporte, con el objetivo de brindar un mayor entendimiento con respecto a la utilización de dicha herramienta y los posibles casos de uso en que puede ser aplicada. </span>
+<span id="cb3-626"><a href="#cb3-626" aria-hidden="true" tabindex="-1"></a>Para finalizar, se realizó un énfasis especial en la generación de material complementario que fuera pertinente para comprender de una mejor manera la utilización de los productos obtenidos durante la realización del presente trabajo (es decir, el modelo de redes neuronales artificiales y el sitio web). Por lo tanto, en concordancia con la sugerencia presentada, se grabó y publicó un video tutorial de la aplicación web *CrediMetric* el cual puede encontrarse en la lista de reproducción mencionada en una sección anterior de este reporte, con el objetivo de brindar un mayor entendimiento con respecto a la utilización de dicha herramienta y los posibles casos de uso en que puede ser aplicada. </span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
