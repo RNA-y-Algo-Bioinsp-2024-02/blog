@@ -717,11 +717,11 @@ Las contribuciones realizadas por cada uno de los integrantes del equipo en el d
 
 # Correcciones implementadas sobre la primera versión del informe
 
-Como ha sido posible observar, el presente informe contiene una serie de diferencias con respecto a la primera versión que se publicó con anterioridad, esto debido al conjunto de correcciones que fueron propuestas después de la evaluación del trabajo realizado. A continuación se da a conocer una visión general de los cambios que fueron desarrollados de manera específica, de manera que puedan ser comparados más fácilmente respecto a su primera implementación y pueda verse más claramente la mejora alcanzada en cada caso.
+A partir de esta sección, el presente informe presenta un desarrollo actualizado basado en una serie de mejoras y ajustes implementados tras una evaluación detallada del trabajo realizado. A continuación, se ofrece una visión general de los cambios incorporados, permitiendo apreciar de manera clara la mejora alcanzada en cada caso.
 
 ## Modelado y evaluación de desempeño
 
-Con el objetivo de abordar las correcciones identificadas en relación con el desempeño del modelo de redes neuronales artificiales en la clasificación de categorías, especialmente la confusión entre las clases **Late** y **Current**, así como la baja representación de **In Progress**, se implementaron las siguientes mejoras en el procesamiento de datos, el balanceo de clases y la calibración del modelo:
+Con el objetivo de abordar las correcciones identificadas en relación con el desempeño del modelo de redes neuronales artificiales en la clasificación de las categorías del riesgo de crédito, especialmente la confusión entre las clases **Late** y **Current**, así como la baja representación de **In Progress**, se implementaron las siguientes mejoras en el procesamiento de datos, el balanceo de clases y la calibración del modelo:
 
 ### Balanceo de clases: 
 
