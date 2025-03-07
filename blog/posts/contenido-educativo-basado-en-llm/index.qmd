@@ -340,4 +340,4 @@ Como se ha venido realizando a lo largo del curso, el presente proyecto también
 
 Las contribuciones realizadas por cada uno de los integrantes del equipo en el desarrollo del presente trabajo se muestran en el siguiente video.
 
-// Link de video
+{{< video https://youtu.be/8AMewCw2kz8 >}}
