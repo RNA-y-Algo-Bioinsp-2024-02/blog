@@ -478,7 +478,7 @@ En la Figura 8 se puede evidenciar cómo la función de pérdida va disminuyendo
 
 *Evolución de las métricas obtenidas por el modelo a través de las épocas.* 
 
-![Evolución de las métricas obtenidas por el modelo a través de las épocas](metricas_final.png)Elaboración propia.
+![Evolución de las métricas obtenidas por el modelo a través de las épocas](metricas_modelo_final.png)Elaboración propia.
 
 En este sentido, se ha de observar que los resultados en el entrenamiento son muy estables mostrando una convergencia, además de que las fluctuaciones observadas en los datos de validación son mucho menores que los obtenidos anteriormente, siendo esta una mejora frente a los últimos resultados que fueron evaluados.
 
@@ -496,7 +496,7 @@ En adición a las métricas obtenidas para el modelo de redes neuronales artific
 
 *Matriz de confusión obtenida al evaluar el conjunto de prueba en el modelo.* 
 
-![Matriz de confusión obtenida al evaluar el conjunto de prueba en el modelo.](matriz_de_confusion.png)Elaboración propia.
+![Matriz de confusión obtenida al evaluar el conjunto de prueba en el modelo.](matriz_de_confusion_modelo_final.png)Elaboración propia.
 
 En consideración con los resultados mostrados anteriormente, se pudo reducir visiblemente la confusión entre las clases **Late** y **Current**, sin embargo, las predicciones erróneas en este caso pueden ser explicadas a la luz de la no consideración de variables prospectivas en la arquitectura del modelo, las cuales permitirían diferenciar ambas categorías de una mejor forma.
 
